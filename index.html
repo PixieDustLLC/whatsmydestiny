@@ -1,0 +1,1632 @@
+<html>
+<head>
+<meta http-equiv = "content-type" content = "application/xhtml+xml; charset = UTF-8" />
+<meta content = 'width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0' name = 'viewport' /><meta name = "viewport" content = "width = device-width, maximum-scale = 1.0, initial-scale = 1.0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta name = "apple-mobile-web-app-capable" content = "yes">
+<meta name = "title" content = "Num" /><meta name = "description" content = "Wes Hamilton Numerology" />
+<title>Wes Hamilton Numerology</title>
+<!--<script src="phonegap.js"></script>-->
+<script src="jquery.min.js"></script>
+
+<script type="text/javascript" src="jsPDF/jspdf.js"></script>
+<script type="text/javascript" src="jsPDF/libs/Deflate/adler32cs.js"></script>
+<script type="text/javascript" src="jsPDF/libs/FileSaver.js/FileSaver.js"></script>
+<script type="text/javascript" src="jsPDF/libs/Blob.js/BlobBuilder.js"></script>
+<script type="text/javascript" src="jsPDF/jspdf.plugin.addimage.js"></script>
+<script type="text/javascript" src="jsPDF/jspdf.plugin.standard_fonts_metrics.js"></script>
+<script type="text/javascript" src="jsPDF/jspdf.plugin.split_text_to_size.js"></script>
+<script type="text/javascript" src="jsPDF/jspdf.plugin.from_html.js"></script>
+
+<script src="metabyfieldvalue.js"></script>
+<script>
+var web=true;
+var viewportWidth=1;
+var viewportHeight=1;
+var canv;
+var ctx;
+
+var cellsDown=24;
+var rowCells=1;
+//var cols=[8,14,4,6,6];
+//var limits=[8,14,4,6,6];
+//var cellsAcross=cols.reduce((a, b) => a + b, 0);
+var cellsAcross=32;
+//var types=["numeric","alpha","numeric","alphanumeric","alphanumeric"];
+//var labels=["num","alpha","num","both","both"];
+var g=1;
+var uiObj=[];
+var rowCount=0;
+var shifted=false;
+var colorMap={
+        "bg":{"focus":{"r":0, "g":0, "b":0}, "blur":{"r":240, "g":240, "b":"240"}},
+        "color":{"focus":{"r":255, "g":255, "b":255}, "blur":{"r":100, "g":100, "b":"100"}}
+  };
+var buttons=[];
+function init(){
+  canv=document.getElementById('mainCanvas');
+  ctx=canv.getContext('2d');
+
+  //console.log('init()');
+  document.getElementById('preloadHolder').style.display="none";
+  geometry();
+  labelObj=[
+  ];
+  var defaultValueSize=.85; 
+  var defaultLabelSize=.75; 
+  uiObj=[{
+        "id":"firstNameInput", "focusable":true,
+        "limit":20, "type":"alpha", 
+        "w":16, "h":rowCells, 
+        "l":2, "t":1, 
+        "r":18, "b":2, 
+        "down":1, "up":-2,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"First Name",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"middleNameInput", "focusable":true,
+        "limit":20, "type":"alpha", 
+        "w":16, "h":rowCells, 
+        "l":2, "t":2, 
+        "r":18, "b":3, 
+        "down":1, "up":-1,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Middle Name",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"lastNameInput", "focusable":true,
+        "limit":20, "type":"alpha", 
+        "w":16, "h":rowCells, 
+        "l":2, "t":3, 
+        "r":18, "b":4, 
+        "down":1, "up":-1,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Last Name",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"birthdayInput", "focusable":true,
+        "limit":8, "type":"numericslash", 
+        "w":11, "h":rowCells, 
+        "l":2, "t":5, 
+        "r":13, "b":6, 
+        "down":3, "up":-1,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Birthday",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"dayOfWeek", "focusable":false,
+        "limit":10, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":13, "t":5, 
+        "r":15, "b":6, 
+        "down":2, "up":-2,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"ageInYears", "focusable":true,
+        "limit":10, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":16, "t":5, 
+        "r":18, "b":6, 
+        "down":2, "up":-2,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+
+        ,{
+        "id":"firstName", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":7, 
+        "r":9, "b":8, 
+        "down":2, "up":-3,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"First Name",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"physicalPlane", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":15, "t":7, 
+        "r":24, "b":8, 
+        "down":2, "up":-2,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Physical Plane",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"middleName", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":8, 
+        "r":9, "b":9, 
+        "down":2, "up":-2,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Middle Name",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"mentalPlane", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":15, "t":8, 
+        "r":24, "b":9, 
+        "down":2, "up":-2,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Mental Plane",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"lastName", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":9, 
+        "r":9, "b":10, 
+        "down":3, "up":-2,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Last Name",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"emotionalPlane", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":15, "t":9, 
+        "r":24, "b":10, 
+        "down":1, "up":-2,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Emotional Plane",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"spiritualPlane", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":15, "t":10, 
+        "r":24, "b":11, 
+        "down":3, "up":-1,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Spiritual Plane",
+        "value":"",
+        "focus":0}
+
+        ,{
+        "id":"dayOfBirth", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":11, 
+        "r":9, "b":12, 
+        "down":1, "up":-3,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Day of Birth",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"birthpath", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":12, 
+        "r":9, "b":13, 
+        "down":4, "up":-1,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Birthpath",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"personalYear", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":7, "h":rowCells, 
+        "l":15, "t":12, 
+        "r":22, "b":13, 
+        "down":4, "up":-3,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Personal Year:",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"personalMonth", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":5, "h":rowCells, 
+        "l":22, "t":12, 
+        "r":27, "b":13, 
+        "down":4, "up":-4,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Month:",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"personalDay", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":27, "t":12, 
+        "r":31, "b":13, 
+        "down":4, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Day:",
+        "value":"",
+        "focus":0}
+
+
+        ,{
+        "id":"destiny", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":14, 
+        "r":9, "b":15, 
+        "down":4, "up":-4,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Destiny",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":16, "t":14, 
+        "r":20, "b":15, 
+        "down":5, "up":-4,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Pinnacles",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":5, "h":rowCells, 
+        "l":21, "t":14, 
+        "r":26, "b":15, 
+        "down":5, "up":-4,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Challenges",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":3, "h":rowCells, 
+        "l":27, "t":14, 
+        "r":30, "b":15, 
+        "down":5, "up":-4,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Ages",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"realization", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":15, 
+        "r":9, "b":16, 
+        "down":5, "up":-4,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Realization",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":12, "t":15, 
+        "r":16, "b":16, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"First",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"firstPinnacle", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":16, "t":15, 
+        "r":18, "b":16, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"firstChallenge", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":21, "t":15, 
+        "r":23, "b":16, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":26, "t":15, 
+        "r":30, "b":16, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"  0 to 30",
+        "value":"",
+        "focus":0}
+
+        ,{
+        "id":"heartsDesire", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":16, 
+        "r":9, "b":17, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Heart's Desire",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":12, "t":16, 
+        "r":16, "b":17, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Second",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"secondPinnacle", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":16, "t":16, 
+        "r":18, "b":17, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"secondChallenge", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":21, "t":16, 
+        "r":23, "b":17, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":26, "t":16, 
+        "r":30, "b":17, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"31 to 39",
+        "value":"",
+        "focus":0}
+
+        ,{
+        "id":"personality", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":17, 
+        "r":9, "b":18, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Personality",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":12, "t":17, 
+        "r":16, "b":18, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Third",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"thirdPinnacle", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":16, "t":17, 
+        "r":18, "b":18, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"thirdChallenge", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":21, "t":17, 
+        "r":23, "b":18, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":26, "t":17, 
+        "r":30, "b":18, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"40 to 48",
+        "value":"",
+        "focus":0}
+
+        ,{
+        "id":"habitChallenge", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells, 
+        "l":0, "t":18, 
+        "r":9, "b":19, 
+        "down":5, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Habit Challenge",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":12, "t":18, 
+        "r":16, "b":19, 
+        "down":6, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Fourth",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"fourthPinnacle", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":16, "t":18, 
+        "r":18, "b":19, 
+        "down":8, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"fourthChallenge", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":2, "h":rowCells, 
+        "l":21, "t":18, 
+        "r":23, "b":19, 
+        "down":10, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":4, "h":rowCells, 
+        "l":26, "t":18, 
+        "r":30, "b":19, 
+        "down":11, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"49 to   *",
+        "value":"",
+        "focus":0}
+
+        ,{
+        "id":"~", "focusable":true,
+        "limit":5, "type":"label", 
+        "w":9, "h":rowCells*2, 
+        "l":0, "t":20, 
+        "r":9, "b":22, 
+        "down":11, "up":-5,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Distribution of Numbers in Name",
+        "value":"",
+        "focus":0}
+
+        ,{
+        "id":"count1", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":1, "h":2, 
+        "l":10, "t":20, 
+        "r":11, "b":22, 
+        "down":10, "up":-6,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"1",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"count2", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":1, "h":2, 
+        "l":11.75, "t":20, 
+        "r":12.75, "b":22, 
+        "down":1, "up":-6,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"2",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"count3", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":1, "h":2, 
+        "l":13.5, "t":20, 
+        "r":14.5, "b":22, 
+        "down":1, "up":-7,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"3",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"count4", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":1, "h":2, 
+        "l":15.25, "t":20, 
+        "r":16.25, "b":22, 
+        "down":1, "up":-7,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"4",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"count5", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":1, "h":2, 
+        "l":17, "t":20, 
+        "r":18, "b":22, 
+        "down":1, "up":-8,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"5",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"count6", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":1, "h":2, 
+        "l":18.75, "t":20, 
+        "r":19.75, "b":22, 
+        "down":1, "up":-9,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"6",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"count7", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":1, "h":2, 
+        "l":20.5, "t":20, 
+        "r":21.5, "b":22, 
+        "down":1, "up":-9,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"7",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"count8", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":1, "h":2, 
+        "l":22.25, "t":20, 
+        "r":23.25, "b":22, 
+        "down":1, "up":-10,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"8",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"count9", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":1, "h":2, 
+        "l":24, "t":20, 
+        "r":25, "b":22, 
+        "down":1, "up":-10,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"9",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"karmicLesson", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":6, "h":2, 
+        "l":25.5, "t":20, 
+        "r":31.5, "b":22, 
+        "down":1, "up":-11,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Karmic Lesson",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"findInput", "focusable":true,
+        "limit":20, "type":"alpha", 
+        "w":8, "h":1, 
+        "l":1, "t":23, 
+        "r":9, "b":24, 
+        "down":2, "up":-11,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Find",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"metaDisplay", "focusable":true,
+        "limit":2, "type":"label", 
+        "w":13, "h":6.5, 
+        "l":18.5, "t":0, 
+        "r":31.5, "b":6.5, 
+        "down":1, "up":-11,
+        "valueSize":.6, "labelSize":.7, 
+        "label":"",
+        "value":"",
+        "focus":0}
+
+  ];
+/*
+        ,{
+        "id":"load", 
+        "w":6, "h":1, 
+        "l":10, "t":0, 
+        "r":16, "b":1, 
+        "label":"Search",
+        "value":""}
+*/
+  buttons=[{
+        "id":"save", 
+        "w":4, "h":1, 
+        "l":10, "t":23, 
+        "r":14, "b":24, 
+        "label":"Save",
+        "value":""}
+        ,{
+        "id":"delete", 
+        "w":4, "h":1, 
+        "l":15, "t":23, 
+        "r":19 , "b":24, 
+        "label":"Delete",
+        "value":""}
+        ,{
+        "id":"clear", 
+        "w":4, "h":1, 
+        "l":20, "t":23, 
+        "r":24, "b":24, 
+        "label":"Clear",
+        "value":""}      
+        ,{
+        "id":"menu", 
+        "w":5, "h":1, 
+        "l":26, "t":23, 
+        "r":31, "b":24, 
+        "label":"Menu",
+        "value":""}      
+  ];
+  for(var u=0; u<uiObj.length; u++){
+    if(uiObj[u].id=="metaDisplay"){
+      listLeft=uiObj[u].l;
+      listRight=uiObj[u].r;
+      listTop=uiObj[u].t;
+      listWidth=uiObj[u].w;
+      }
+    }
+
+  window.setInterval('secondTick()', 1000);
+  window.requestAnimationFrame(tick); 
+$(document.body).on('keydown', function(e) {
+    //dbuga(e.keyCode);
+    
+    switch (e.which) {
+        // key code for left arrow
+        case 9:
+            //tab
+            e.preventDefault();
+            if(shifted==false){
+              setUiFocus((uiFocus+1)%uiObj.length);
+              }
+            else{
+              setUiFocus((uiFocus-1+uiObj.length)%uiObj.length);
+              }
+            break;
+        case 13:
+            // return
+            e.preventDefault(); 
+            setUiFocus((uiFocus+1)%uiObj.length); 
+            break;
+        case 8:
+            // delete
+            e.preventDefault(); 
+            if(uiFocus>-1){
+              if(uiObj[uiFocus].type != "label"){
+                if(typed==false){
+                  uiObj[uiFocus].value="";
+                  typed=true;
+                  }
+                else{
+                  var str=uiObj[uiFocus].value;
+                  var parts=str.split("");
+                  if(parts.length>0){
+                    var junk=parts.pop();
+                    }
+                  uiObj[uiFocus].value=parts.join('');
+                  }
+                userInput();
+                }
+              }
+            break;
+        case 16:
+            // shift down
+            e.preventDefault(); 
+            shifted=true;
+            break;
+        case 27:
+            // esc
+            e.preventDefault(); 
+            setUiFocus(-1);
+            break;
+                
+        case 37:
+            // left arrow
+            e.preventDefault();
+            setUiFocus((uiFocus+uiObj.length-1)%uiObj.length);
+            break;
+        
+        case 39:
+            // right arrow
+            e.preventDefault();
+            setUiFocus((uiFocus+1)%uiObj.length);
+            //while(uiObj[uiFocus]['focusable']==false){
+            //  setUiFocus((uiFocus+1)%uiObj.length);
+            //  }
+            break;
+        case 40:
+            // down arrow
+            e.preventDefault();
+            if(uiFocus>-1){
+              setUiFocus((uiFocus+uiObj.length+uiObj[uiFocus].down)%uiObj.length);
+              }
+            break;
+        
+        case 38:
+            // up arrow
+            e.preventDefault();
+            if(uiFocus>-1){
+              setUiFocus((uiFocus+uiObj.length+uiObj[uiFocus].up)%uiObj.length);
+              }
+            break;
+       
+    }
+  var char="";
+  var type="";
+  //dbuga(e.keyCode);
+  if((e.keyCode >=48)&&(e.keyCode <=57)){
+    char=String.fromCharCode(e.keyCode);
+    type="numeric";
+    }
+  if(e.keyCode ==32){
+    char=" ";
+    type="alpha";
+    }
+  if(e.keyCode ==189){
+    char="-";
+    type="alpha";
+    }
+  if(e.keyCode ==191){
+    //char="/";
+    //type="slash";
+    }
+  if((e.keyCode >=65)&&(e.keyCode <=90)){
+    type="alpha";
+    if(shifted){
+      char=String.fromCharCode(e.keyCode);
+      }
+    else{
+      char=String.fromCharCode(e.keyCode+32);
+      }
+    }
+  if((char != "")&&(uiFocus>-1)){// valid entry
+    //dbuga(type+" "+char);
+    if(uiObj[uiFocus].type != "label"){
+
+      var fieldType=uiObj[uiFocus].type;
+      if(fieldType.indexOf(type)>-1){
+        if(typed==false){
+          uiObj[uiFocus].value=char;
+          typed=true;
+          }
+        else{
+          if(uiObj[uiFocus].value.length<uiObj[uiFocus].limit){
+            uiObj[uiFocus].value+=char;
+            }
+          }
+        }
+      userInput();
+      }
+    } 
+  });
+  $(document.body).on('keyup', function(e) {
+    //dbuga(e.keyCode);
+    switch (e.which) {
+        case 16:
+            // shift up
+            e.preventDefault(); 
+            shifted=false;
+            break;
+    }
+  });
+  //userInput();
+  setupLocalStorage()
+  }
+function roundRect(ctx, x, y, w, h, rad, lineWidth, strokeStyle, fillStyle, label, labelColor, font, iconAlpha){
+  var inset=rad+lineWidth/2;
+  if(lineWidth>0){
+    ctx.beginPath();
+    ctx.arc(x+inset,y+inset, rad, pi*1, pi*1.5, false);
+    ctx.arc(x+w-inset,y+inset, rad, pi*1.5, pi*2, false);
+    ctx.arc(x+w-inset, y+h-inset, rad, 0, pi*.5, false);
+    ctx.arc(x+inset,y+h-inset, rad, pi*.5, pi*1, false);
+    ctx.closePath();
+    ctx.strokeStyle=strokeStyle;
+    ctx.fillStyle=fillStyle;
+    ctx.fill();
+    ctx.lineWidth=lineWidth;
+    ctx.stroke(); 
+    }
+  if(label.indexOf(".png")>-1){
+    ctx.globalAlpha=iconAlpha;
+    var img=document.getElementById(label);
+    ctx.drawImage(img, x+inset, y+inset, w-inset*2, h-inset*2);
+    ctx.globalAlpha=1;
+    }
+  else{
+    ctx.fillStyle=labelColor;
+    ctx.textBaseline= "middle";  
+    ctx.textAlign= "center";  
+    ctx.font=font;  
+    var parts=label.split("-");
+    //1:step:1/2, start:1/2
+    //2:step:1/3 start:1/3
+    //3:step:1/4 start:1/4
+    var step=h/(parts.length+1);
+    for (var p=0; p<parts.length; p++){
+      ctx.fillText(parts[p],x+w/2,y+step+step*p);
+      }
+    }
+  }
+
+function setupLocalStorage(){
+  if(localStorage.getItem("savedObj") === null) {
+    localStorage.setItem("savedObj", JSON.stringify(savedObj));
+    }
+  else{
+    savedObj=JSON.parse(localStorage.getItem("savedObj"));
+    }
+
+  if(localStorage.getItem("reading") === null) {
+    localStorage.setItem("reading", JSON.stringify(reading));
+    }
+  else{
+    reading=JSON.parse(localStorage.getItem("reading"));
+    updateIdValue("firstNameInput", reading.firstNameInput);
+    updateIdValue("middleNameInput", reading.middleNameInput);
+    updateIdValue("lastNameInput", reading.lastNameInput);
+    updateIdValue("birthdayInput", reading.birthdayInput);
+    userInput();
+    testReadingSaved();
+    }
+  }
+
+
+var reading={"valid":false};
+var savedObj={};
+var readingSaved=false;
+var daysOfWeek=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+function userInput(){
+  var nowDate=new Date();
+  reading.valid=false;
+  reading.birthYYYY="";
+  reading.birthMM="";
+  reading.birthDD="";
+  reading.birthMMDDYYYY="";
+
+  reading.firstNameInput=valueOfId("firstNameInput").toLowerCase();
+  reading.middleNameInput=valueOfId("middleNameInput").toLowerCase();
+  reading.lastNameInput=valueOfId("lastNameInput").toLowerCase();
+  reading.birthdayInput=valueOfId("birthdayInput");
+  reading.findInput=valueOfId("findInput").toLowerCase();
+
+  var birthdayValue=valueOfId("birthdayInput");
+  //dbug("birthdayValue.length "+birthdayValue.length); 
+  if(birthdayValue.length==8){
+    console.log(birthdayValue);
+    reading.birthMMDDYYYY=birthdayValue;
+    var parts=birthdayValue.split('');
+    reading.birthYYYY=parts.slice(4,8).join('');
+    reading.birthDD=parts.slice(2,4).join('');
+    reading.birthMM=parts.slice(0,2).join('');
+    //dbuga(uiObj[uiFocus].id+ " " +uiObj[uiFocus].value);
+    reading.birthdateDate=new Date(Number(reading.birthYYYY), Number(reading.birthMM)-1, Number(reading.birthDD));
+    reading.dayOfWeekNum=reading.birthdateDate.getDay();
+    updateIdValue("dayOfWeek", daysOfWeek[reading.dayOfWeekNum]);
+    reading.dayOfBirth=reduceNumStr(reading.birthDD, "reading.birthDD");
+    updateIdValue("dayOfBirth", reading.dayOfBirth);
+    reading.ageInYears=getAge(reading.birthdateDate);
+    updateIdValue("ageInYears", reading.ageInYears);
+    reading.birthpath=reduceNumStr(reading.birthMMDDYYYY, "reading.birthMMDDYYYY");
+    updateIdValue("birthpath", reading.birthpath);
+    }
+
+
+  reading.firstNameSum=sumArray(strToNums(valueOfId("firstNameInput")));
+  reading.firstNameVal=reduceNumStr(""+reading.firstNameSum, "reading.firstNameSum");
+  updateIdValue("firstName", reading.firstNameVal);
+  reading.middleNameSum=sumArray(strToNums(valueOfId("middleNameInput")));
+  reading.middleNameVal=reduceNumStr(""+reading.middleNameSum, "reading.middleNameSum");
+  updateIdValue("middleName", reading.middleNameVal);
+  reading.lastNameSum=sumArray(strToNums(valueOfId("lastNameInput")));
+  reading.lastNameVal=reduceNumStr(""+reading.lastNameSum, "reading.lastNameSum");
+  updateIdValue("lastName", reading.lastNameVal);
+  reading.destiny=reduceNumStr(""+sumArray([master(reading.firstNameVal), master(reading.middleNameVal), master(reading.lastNameVal)]), "destiny");
+  updateIdValue("destiny", reading.destiny);
+  //console.log(reading);
+  reading.nameStr=valueOfId("firstNameInput")+valueOfId("middleNameInput")+valueOfId("lastNameInput");
+  reading.nameVowelArray=vowels(reading.nameStr);
+  reading.heartsDesire=reduceNumStr(""+sumLetterArray(reading.nameVowelArray), "heartsDesire");
+  updateIdValue("heartsDesire", reading.heartsDesire);
+  reading.nameConsonantArray=consonants(reading.nameStr);
+  reading.personality=reduceNumStr(""+sumLetterArray(reading.nameConsonantArray), "personality");
+  updateIdValue("personality", reading.personality);
+  if(birthdayValue.length==8){  
+    reading.realization=reduceNumStr(""+sumArray([reading.destiny, reading.birthpath]), "realization");
+    updateIdValue("realization", reading.realization);
+    }
+  reading.habitChallenge=reduceNumStr(""+reading.nameStr.length, "habitChallenge");
+  updateIdValue("habitChallenge", reading.habitChallenge);
+  reading.counts=[-1,
+    numberCount(1,reading.nameStr), 
+    numberCount(2,reading.nameStr), 
+    numberCount(3,reading.nameStr), 
+    numberCount(4,reading.nameStr), 
+    numberCount(5,reading.nameStr), 
+    numberCount(6,reading.nameStr), 
+    numberCount(7,reading.nameStr), 
+    numberCount(8,reading.nameStr), 
+    numberCount(9,reading.nameStr)
+    ];
+  var karmicArray=[];
+  for(var n=1; n<=9; n++){
+    updateIdValue("count"+n, ""+reading.counts[n]);
+    if(reading.counts[n]==0){karmicArray.push(""+n);}
+    }
+  updateIdValue("karmicLesson", karmicArray.join(" "));
+  reading.physicalPlane=reading.counts[4]+reading.counts[5];
+  reading.mentalPlane=reading.counts[1]+reading.counts[8];
+  reading.emotionalPlane=reading.counts[2]+reading.counts[3]+reading.counts[6];
+  reading.spiritualPlane=reading.counts[7]+reading.counts[9];
+
+  updateIdValue("physicalPlane", ""+reading.physicalPlane);
+  updateIdValue("mentalPlane", ""+reading.mentalPlane);
+  updateIdValue("emotionalPlane", ""+reading.emotionalPlane);
+  updateIdValue("spiritualPlane", ""+reading.spiritualPlane);
+
+  //personal
+  reading.globalYear=nowDate.getFullYear();
+  reading.globalYearVal=reduceNumStr(""+reading.globalYear, "globalyear");
+  var personalYearNum=Number(reading.birthMM)+Number(reading.birthDD)+Number(reading.globalYear);
+  reading.personalYear=reduceNumStr(""+personalYearNum, "personalYear");
+  updateIdValue("personalYear", ""+reading.personalYear);
+
+  reading.globalMonth=nowDate.getMonth()+1;
+  reading.globalMonthVal=reduceNumStr(""+reading.globalMonth, "globalMonth");
+  console.log("reading.personalYear="+reading.personalYear);
+  console.log("reading.globalMonthVal="+reading.globalMonthVal);
+  
+  reading.personalMonthNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal);
+  reading.personalMonth=reduceNumStr(""+reading.personalMonthNum, "personalMonth");
+  updateIdValue("personalMonth", ""+reading.personalMonth);
+
+
+
+  reading.globalDay=nowDate.getDate();
+  reading.globalDayVal=reduceNumStr(""+reading.globalDay, "globalDay");
+  reading.personalDayNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal)+Number(reading.globalDay);
+  reading.personalDay=reduceNumStr(reading.personalDayNum+"");
+  updateIdValue("personalDay", ""+reading.personalDay);
+
+  var m=Number(unmaster(reduceNumStr(reading.birthMM)), "m");
+  var d=Number(unmaster(reduceNumStr(reading.birthDD)), "d");
+  var y=Number(unmaster(reduceNumStr(reading.birthYYYY)), "y");
+  //console.log(m+" "+d+" "+y);
+  reading.firstPinnacle=reduceNumStr(""+(m+d), "firstPinnacle");
+  updateIdValue("firstPinnacle", ""+reading.firstPinnacle);
+  reading.secondPinnacle=reduceNumStr(""+(d+y), "secondPinnacle");
+  updateIdValue("secondPinnacle", ""+reading.secondPinnacle);
+  reading.thirdPinnacle=reduceNumStr(""+sumArray([reading.firstPinnacle,reading.secondPinnacle]), "thirdPinnacle");
+  updateIdValue("thirdPinnacle", ""+reading.thirdPinnacle);
+  reading.fourthPinnacle=reduceNumStr(""+(m+y), "fourthPinnacle");
+  updateIdValue("fourthPinnacle", ""+reading.fourthPinnacle);
+
+  reading.firstChallenge=reduceNumStr(""+Math.abs(m-d), "firstChallenge");
+  updateIdValue("firstChallenge", ""+reading.firstChallenge);
+  //console.log("reading.firstChallenge "+reading.firstChallenge);
+
+  reading.secondChallenge=reduceNumStr(""+Math.abs(d-y), "secondChallenge");
+  updateIdValue("secondChallenge", ""+reading.secondChallenge);
+  //console.log("reading.secondChallenge "+reading.secondChallenge);
+
+  reading.thirdChallenge=reduceNumStr(""+Math.abs(Number(unmaster(reading.firstChallenge))-Number(unmaster(reading.secondChallenge))), "thirdChallenge");
+  updateIdValue("thirdChallenge", ""+reading.thirdChallenge);
+  //console.log("reading.thirdChallenge "+reading.thirdChallenge);
+
+  reading.fourthChallenge=reduceNumStr(""+Math.abs(m-y), "fourthChallenge");
+  updateIdValue("fourthChallenge", ""+reading.fourthChallenge);
+  //console.log("reading.fourthChallenge "+reading.fourthChallenge);
+ 
+  localStorage.setItem("reading", JSON.stringify(reading));
+
+  updateResultButtons();
+
+  if(metaFocus != -1){updateMeta();}
+  if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0)){
+    reading.valid=true;
+    }
+  testReadingSaved();
+  }
+function testReadingSaved(){
+  readingSaved=false;
+  if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0)){
+    var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput;
+    if(inArray(newKey, Object.keys(savedObj))){
+      if(savedObj[newKey]==reading.birthdayInput){
+        readingSaved=true;
+        }
+      }
+    }
+  }
+function getAge(birthDate) {
+    var today = new Date();
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+function numberCount(num, str){
+  var nums=strToNums(str);
+  var count=0;
+  for(var n=0; n<nums.length; n++){
+    if(nums[n]==num){count++;}
+    }
+  return count;
+  }
+function vowels(str){
+  var vowels=[];
+  var consonants=[];
+  var parts=str.split(''); 
+  var prevVowel=false;
+  for(var p=0; p<parts.length; p++){
+    if(isVowel(parts[p])){
+      if((parts[p]=="y")&&(prevVowel==true)){
+        consonants.push(parts[p]);
+        prevVowel=false;
+        }
+      else{
+        vowels.push(parts[p]);
+        prevVowel=true;
+        }
+      }
+    else{
+      consonants.push(parts[p]);
+      prevVowel=false;
+      }
+    }
+  return vowels;
+  }
+function consonants(str){
+  var vowels=[];
+  var consonants=[];
+  var parts=str.split(''); 
+  var prevVowel=false;
+  for(var p=0; p<parts.length; p++){
+    if(isVowel(parts[p])){
+      if((parts[p]=="y")&&(prevVowel==true)){
+        consonants.push(parts[p]);
+        prevVowel=false;
+        }
+      else{
+        vowels.push(parts[p]);
+        prevVowel=true;
+        }
+      }
+    else{
+      consonants.push(parts[p]);
+      prevVowel=false;
+      }
+    }
+  return consonants;
+  }
+function isVowel(c) {
+    return ['a', 'e', 'i', 'o', 'u', 'y'].indexOf(c.toLowerCase()) !== -1
+}
+function sumArray(arr){
+  var sum=0;
+  for (var n=0; n<arr.length; n++){
+    var item=""+arr[n];
+    if(item.indexOf("/")>-1){item=unmaster(item);}
+    sum+=Number(item);
+    }
+  return sum;
+  }
+function updateIdValue(id, value){
+  for (var u=0; u<uiObj.length; u++){
+    if(uiObj[u].id==id){
+      uiObj[u].value=value;
+      }
+    }
+  }
+function updateIdLabel(id, value){
+  for (var u=0; u<uiObj.length; u++){
+    if(uiObj[u].id==id){
+      uiObj[u].label=value;
+      }
+    }
+  }
+
+function valueOfId(id){
+  var value="";
+  for (var u=0; u<uiObj.length; u++){
+    if(uiObj[u].id==id){
+      value=uiObj[u].value;
+      }
+    }
+  return value;
+  }
+var uiFocus=-1;
+var typed=false;
+function setUiFocus(toNum){
+  updateIdLabel('metaDisplay', "");
+  uiFocus=toNum;
+  typed=false;
+  if(uiFocus != -1){setMetaFocus(toNum); }
+  }
+var metaFocus=-1;
+function setMetaFocus(toNum){
+  if(inArray(uiObj[toNum]['id'], Object.keys(metaByFieldValue))){
+    metaFocus=toNum;
+    updateMeta();
+    }
+  }
+function updateMeta(){
+
+  updateIdLabel("metaDisplay", "");
+  updateIdValue("metaDisplay", "");
+  if(inArray(uiObj[metaFocus]['id'], Object.keys(metaByFieldValue))){// should be true anyways
+    var fields=Object.keys(metaByFieldValue);
+    for (var f=0; f<fields.length; f++){
+      if(fields[f]==uiObj[metaFocus]['id']){
+        var fieldMeta=metaByFieldValue[fields[f]];
+        updateIdLabel("metaDisplay", ""+fieldMeta['label']);
+
+        if(inArray(uiObj[metaFocus]['value'], Object.keys(fieldMeta))){
+          var values=Object.keys(fieldMeta);
+          for(var v=0; v<values.length; v++){
+            if(values[v]==uiObj[metaFocus]['value']){
+              console.log(fieldMeta['label']+" "+fieldMeta[values[v]]);
+              if((fieldMeta[values[v]]=="")&&(values[v].indexOf("/")>-1)){
+                updateIdValue("metaDisplay", ""+fieldMeta[unmaster(values[v])]);
+                }
+              else{
+                updateIdValue("metaDisplay", ""+fieldMeta[values[v]]);
+                }
+              }
+            }
+          }
+        else{// val not found, is karma?
+          if(uiObj[metaFocus]['id']=="karmicLesson"){
+            console.log('karmicLesson '+uiObj[metaFocus].value)
+            var glom=uiObj[metaFocus].value;
+            if(glom !=""){
+              var parts=glom.split(" ");
+              var str="";
+              for(var p=0; p<parts.length; p++){
+                console.log(parts[p]);
+                str+=fieldMeta[parts[p]]+" ";
+                }
+              updateIdValue("metaDisplay", str)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+function randomColor(){
+  return "rgba(" + rnd(256) +","+ rnd(256) +","+ rnd(256) +",.5)";
+  }
+var frames=0;
+function tick(timestamp){
+  
+  canv.width=viewportWidth;
+  drawGrid();
+  
+
+  frames++;
+  window.requestAnimationFrame(tick);
+  }
+function rnd(range){
+  return Math.floor(Math.random()*range);
+  }
+function wrapText(context, text, x, y, maxWidth, lineHeight, stroke) {
+        var words = text.split(' ');
+        var line = '';
+
+        for(var n = 0; n < words.length; n++) {
+          var testLine = line + words[n] + ' ';
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+          if (testWidth > maxWidth && n > 0) {
+            if(stroke){context.strokeText(line, x, y);}
+            else{context.fillText(line, x, y);}
+            line = words[n] + ' ';
+            y += lineHeight;
+          }
+          else {
+            line = testLine;
+            }
+          }
+        if(stroke){context.strokeText(line, x, y);}
+        else{context.fillText(line, x, y);}
+      }
+      
+function drawGrid(){
+  ctx.strokeStyle="rgba(0,0,0,.05)";
+  ctx.lineWidth=g/32;
+  ctx.beginPath();
+  for (var x=0; x<=cellsAcross; x++){
+    ctx.moveTo(x*g, 0);
+    ctx.lineTo(x*g, cellsDown*g);
+    }
+  for (var y=0; y<=cellsDown; y++){
+    ctx.moveTo(0, y*g);
+    ctx.lineTo(cellsAcross*g, y*g);
+    }
+  ctx.stroke();
+  var focusPad=.1*g;
+  var blurPad=.05*g;
+
+  for (var u=0; u<uiObj.length; u++){
+    if(uiObj[u]['focusable']){
+      if(u==uiFocus){uiObj[u]['focus']+=focusStep;}
+      else{uiObj[u].focus-=focusStep;}
+      if(uiObj[u].focus>1){uiObj[u]['focus']=1;}
+      if(uiObj[u].focus<0){uiObj[u]['focus']=0;}
+      }
+    var prog=Math.sin(uiObj[u].focus*pi/2);
+    var colorR=Math.floor(prog*colorMap['color']['focus'].r+(1-prog)*colorMap['color']['blur'].r);
+    var colorG=Math.floor(prog*colorMap['color']['focus'].g+(1-prog)*colorMap['color']['blur'].g);
+    var colorB=Math.floor(prog*colorMap['color']['focus'].b+(1-prog)*colorMap['color']['blur'].b);
+    var bgR=Math.floor(prog*colorMap['bg']['focus'].r+(1-prog)*colorMap['bg']['blur'].r);
+    var bgG=Math.floor(prog*colorMap['bg']['focus'].g+(1-prog)*colorMap['bg']['blur'].g);
+    var bgB=Math.floor(prog*colorMap['bg']['focus'].b+(1-prog)*colorMap['bg']['blur'].b);
+
+
+    var pad=blurPad-focusPad*uiObj[u]['focus'];
+    var value=uiObj[u].value;
+    if(uiObj[u].type.indexOf("slash")>-1){
+      value=dateFormat(value);
+      }
+    if(uiObj[u].type.indexOf("alpha")>-1){
+      value=titleCase(value);
+      }
+
+    var valueFontPx=uiObj[u].valueSize*g-pad*0;
+    var labelFontPx=uiObj[u].labelSize*g-pad*0;
+    var valueLinePx=uiObj[u].valueSize*g*1.2;
+    var labelLinePx=uiObj[u].labelSize*g*1.2;
+
+    if((uiObj[u].type != "label")||(prog>0)){
+      ctx.fillStyle="rgb("+bgR+","+bgG+","+bgB+")";
+      ctx.fillRect(uiObj[u]['l']*g+pad, uiObj[u]['t']*g+pad, uiObj[u]['w']*g-pad*2, uiObj[u]['h']*g-pad*2);
+      ctx.lineWidth=g/32;
+      ctx.strokeStyle="rgb("+colorR+","+colorG+","+colorB+")";
+      ctx.strokeRect(uiObj[u]['l']*g+pad, uiObj[u]['t']*g+pad, uiObj[u]['w']*g-pad*2, uiObj[u]['h']*g-pad*2);
+      }
+    ctx.textBaseline="middle";
+    ctx.fillStyle="rgb("+colorR+","+colorG+","+colorB+")";
+    ctx.strokeStyle="rgb("+colorR+","+colorG+","+colorB+")";
+    if(uiObj[u]['h']==1){//horizontal field
+        ctx.textAlign="right";
+        ctx.font=valueFontPx+"px avantbook";
+        ctx.fillText(value, uiObj[u]['r']*g-g*.2, uiObj[u]['t']*g+uiObj[u]['h']*g/2);
+        if(prog>0){//embolden
+          ctx.lineWidth=prog*g/32;
+          ctx.strokeText(value, uiObj[u]['r']*g-g*.2, uiObj[u]['t']*g+uiObj[u]['h']*g/2);
+          }
+        ctx.textAlign="left";//label
+        ctx.font=labelFontPx+"px avantbook";
+        ctx.fillText(uiObj[u]['label'], uiObj[u]['l']*g+g*.2, uiObj[u]['t']*g+g/2, uiObj[u]['w']*g);
+      }
+    else{//vertical field
+      var c=uiObj[u]['l']/2+uiObj[u]['r']/2;
+      ctx.textAlign="center";
+      ctx.font=valueFontPx+"px avantbook";
+      var finding=false;
+      if(uiFocus>-1){
+        if(uiObj[uiFocus]['id']=="findInput"){finding=true;}
+        }
+
+      //dbug('finding='+finding);
+      if((uiObj[u]['id']=="metaDisplay")&&(finding)){
+
+        ctx.font=labelFontPx+"px avantbook";
+        wrapText(ctx, uiObj[u]['label'], c*g, uiObj[u]['t']*g+g/2, uiObj[u]['w']*g, labelLinePx, false);
+        drawResultButtons();
+        }
+      else{
+        wrapText(ctx, value, c*g, uiObj[u]['t']*g+g*1.5, uiObj[u]['w']*g, valueLinePx, false);
+        if(prog>0){//embolden
+          ctx.lineWidth=prog*g/32;
+          wrapText(ctx, value, c*g, uiObj[u]['t']*g+g*1.5, uiObj[u]['w']*g, valueLinePx, true);
+          }
+        ctx.font=labelFontPx+"px avantbook";
+        wrapText(ctx, uiObj[u]['label'], c*g, uiObj[u]['t']*g+g/2, uiObj[u]['w']*g, labelLinePx, false);
+        }
+      }
+    }
+  var bm=g*.1;
+  var buttonFontPx=labelFontPx-bm
+  for(var b=0; b<buttons.length; b++){
+    var but=buttons[b];
+    var bgColor="#888";
+    if(buttons[b]['id']=="save"){
+      if((readingSaved==true)||(reading.valid==false)){bgColor="#ccc";}
+      }
+    if(buttons[b]['id']=="delete"){
+      if(readingSaved==false){bgColor="#ccc";}
+      }
+    roundRect(ctx, but.l*g+bm, but.t*g+bm, but.w*g-2*bm, but.h*g-2*bm, g/10, g/32, "#888", bgColor, but.label, "#ddd", buttonFontPx+"px avantbold", 1);
+ 
+    }
+  }
+var results=[];
+function updateResultButtons(){
+  results=[];
+  if(reading.findInput.length==0){
+    return false;
+    }
+  var keys=Object.keys(savedObj);
+  for(var k=0; k<keys.length; k++){
+    if(keys[k].indexOf(reading.findInput)>-1){
+      results.push(keys[k]);
+      }
+    }
+  }
+function drawResultButtons(){
+  if(results.length>0){
+    updateIdLabel("metaDisplay", "Find '"+reading.findInput +"' Showing: " +results.length);
+    }
+  var bm=g*.1;
+  var buttonFontPx=g*.7;
+  for(var r=0; r<results.length; r++){
+    //dbuga(results[r]);
+    var bgColor="#888";
+    roundRect(ctx, listLeft*g+bm, (listTop+1+r)*g+bm, listWidth*g-2*bm, g-2*bm, g/10, g/32, "#888", bgColor, titleCase(results[r]), "#ddd", buttonFontPx+"px avantbold", 1);
+    }
+
+  }
+function selectSaved(savedKey){
+  //dbuga('selectSaved('+savedKey+')');
+  updateIdValue('birthdayInput',savedObj[savedKey]);
+  var lastFirstMiddle=savedKey.replace(',', '');
+  var parts=lastFirstMiddle.split(' ');
+  updateIdValue('firstNameInput',parts[1]);
+  updateIdValue('middleNameInput',parts[2]);
+  updateIdValue('lastNameInput',parts[0]);
+  updateIdValue('findInput',"");
+  userInput();
+  uiFocus=-1;
+
+  }
+function handleEvent(evt){
+  var found=-1;
+  for (var r=0; r<results.length; r++){
+    if((evt.x>listLeft*g)&&(evt.x<listRight*g)&&(evt.y>(listTop+1+r)*g)&&(evt.y<(listTop+2+r)*g)){
+      selectSaved(results[r]);
+      return false;
+      }
+    }
+  for (var u=0; u<uiObj.length; u++){
+    if((evt.x>uiObj[u]['l']*g)&&(evt.x<uiObj[u]['r']*g)&&(evt.y>uiObj[u]['t']*g)&&(evt.y<uiObj[u]['b']*g)){
+      found=u;
+      }
+    }
+  if(found>-1){
+    //console.log(uiObj[found]['label']);
+    if(uiFocus==found){setUiFocus(-1);}
+    else{setUiFocus(found);}
+    }
+  for(var b=0; b<buttons.length; b++){
+    //dbuga(evt.x+" "+buttons[b]['l']*g);
+    if((evt.x>buttons[b]['l']*g)&&(evt.x<buttons[b]['r']*g)&&(evt.y>buttons[b]['t']*g)&&(evt.y<buttons[b]['b']*g)){
+      console.log(buttons[b]['id']);
+      if((buttons[b]['id']=="save")&&(reading.valid==true)){
+        saveInputs();
+        }
+      if(buttons[b]['id']=="delete"){
+        if(readingSaved==true){
+          var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput;
+          delete savedObj[newKey];
+          localStorage.setItem("savedObj", JSON.stringify(savedObj));
+          readingSaved=false;
+          }
+        }
+
+      if(buttons[b]['id']=="clear"){
+        updateIdValue("firstNameInput", "");
+        updateIdValue("middleNameInput", "");
+        updateIdValue("lastNameInput", "");
+        updateIdValue("birthdayInput", "");
+  
+        userInput();        
+        }
+      }
+    }
+  }
+function saveInputs(){
+  console.log('saveInputs()');
+  var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput;
+  savedObj[newKey]=reading.birthdayInput;
+  readingSaved=true;
+  localStorage.setItem("savedObj", JSON.stringify(savedObj));
+  }
+var focusStep=.1;
+var listLeft=0;
+var listRight=0;
+var listTop=0
+var listWidth=0;
+function geometry(){
+    viewportWidth = window.innerWidth;
+    viewportHeight = window.innerHeight;    
+    canv.width=viewportWidth;
+    canv.height=viewportHeight;
+    g=viewportHeight/cellsDown;
+    //cellsAcross=Math.floor(viewportWidth/g);
+/*
+    g=viewportWidth/cellsAcross;
+    cellsDown=Math.floor(viewportHeight/g);
+*/
+  }
+function secondTick(){
+  //dbug("fps:"+frames);
+  frames=0;
+  if((viewportWidth != window.innerWidth)||(viewportHeight != window.innerHeight)){
+    geometry();
+    }
+  //drawGrid();
+  }
+function inArray(needle, haystack) {
+  for(var i = 0; i < haystack.length; i++) {
+    if(haystack[i] == needle) return true;
+    }
+  return false;
+  }
+
+function dbuga(msg){
+  document.getElementById('debugDiv').innerHTML+="<br />"+msg;
+  }
+function dbug(msg){
+  document.getElementById('debugDiv').innerHTML=""+msg;
+  }
+function mouseDown(e){
+  var evt={"type":"start", "x":e.clientX, "y":e.clientY};
+  handleEvent(evt);
+  }
+function touchStart(e){
+  var evt={"type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
+  handleEvent(evt);
+  }
+var alphabet= "abcdefghijklmnopqrstuvwxyz";
+var valphabet="12345678912345678912345678";
+var valphabetArray=valphabet.split('');
+function sumLetterArray(letterArray){
+  var sum=0;
+  var arr=strToNums(letterArray.join(''));
+  for (var n=0; n<arr.length; n++){
+    sum+=arr[n];
+    }
+  return sum;
+  }
+function strToNums(str){
+  str=str.toLowerCase();
+  var parts=str.split('');
+  var nums=[];
+  for (var p=0; p<parts.length; p++){
+    var part=parts[p];
+    if(alphabet.indexOf(part)>-1){
+      nums.push(Number(valphabetArray[alphabet.indexOf(part)]));
+      }
+    }
+  return nums;
+  }
+function reduceNumStr(str, debug){//"04021968"
+
+  console.log(str+" "+debug+".length="+str.length+" ");
+  var masterNum="";
+  var karmicNum="";
+  if((str=="11")||(str=="22")||(str=="33")){masterNum=str+"/";}
+  if((str=="13")||(str=="14")||(str=="16")||(str=="19")){karmicNum=str+"/";}
+  var safety=100;
+  while((str.length>1)&&(safety>0)){
+    safety--;
+    var parts=str.split('');
+    var sum=0;
+    for(var p=0; p<parts.length; p++){
+      sum+=Number(parts[p]);
+      }
+    if((sum==11)||(sum==22)||(sum==33)){masterNum=sum+"/";}
+    if((sum==13)||(sum==14)||(sum==16)||(sum==19)){karmicNum=sum+"/";}
+    str=""+sum+"";
+    console.log(" - "+str+"="+str.length);
+    }
+  if(safety==0){alert("reduce error str="+str);}
+  return masterNum+karmicNum+str;
+  }
+function unmaster(str){
+  var parts=str.split("/");
+  str=parts.pop();
+  return str;
+  }
+function master(str){
+  var parts=str.split("/");
+  str=parts.shift();
+  return str;
+  }
+function dateFormat(num){
+    var parts=num.split('');
+    var pLen=parts.length;
+    for (var p=pLen; p<8; p++){
+      parts.push(" ");
+      }
+    var formatted=parts[0]+parts[1]+"/"+parts[2]+parts[3]+"/"+parts[4]+parts[5]+parts[6]+parts[7];
+    return formatted;
+  }
+function titleCase(str){
+  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+var pi=Math.PI;
+</script>
+<link rel = "stylesheet" type = "text/css" href = "reset.css">
+<style>
+#mainCanvas{background-color:#eeeeee;}
+@font-face {
+    font-family: 'avantbook';
+    src: url('avantgarde-book.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+@font-face {
+    font-family: 'avantbold';
+    src: url('avantgarde-bold.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+</style>
+</head>
+<body onload="init()" ontouchstart="touchStart(event)" onmousedown="mouseDown(event)">
+<div id="preloadHolder" style="position:absolute;">
+  <div style="font-family:avantbook; position:absolute; top:100px;">avantbold 1234567890</div>
+  <div style="font-family:avantbold; position:absolute; top:300px;">aventbook 1234567890</div>
+</div>
+<canvas id="mainCanvas" style="position:absolute;" ></canvas>
+<div id="debugDiv" style="font-family:avantbook; position:absolute; "></div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<html>
+<head>
+<meta http-equiv = "content-type" content = "application/xhtml+xml; charset = UTF-8" />
+<meta content = 'width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0' name = 'viewport' /><meta name = "viewport" content = "width = device-width, maximum-scale = 1.0, initial-scale = 1.0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta name = "apple-mobile-web-app-capable" content = "yes">
+<meta name = "title" content = "La Forêt" /><meta name = "description" content = "Wes Hamilton Numerology" />
+<title>Wes Hamilton Numerology</title>
+<!--<script src="phonegap.js"></script>-->
+<!--<script src="jquery.min.js"></script>--> 
+<script>
+var web=true;
+var viewportWidth=1;
+var viewportHeight=1;
+var canv;
+var ctx;
+var cellsAcross=16;
+var cellsDown=0;
+var rowCells=2;
+var cols=[2,6,2,3,3];
+var g=1;
+var uiObj=[];
+var rowCount=0;
+function init(){
+  canv=document.getElementById('mainCanvas');
+  ctx=canv.getContext('2d');
+  console.log('init()');
+  document.getElementById('preloadHolder').style.display="none";
+  geometry()
+  uiObj=[];
+  rowCount=0;
+  while((rowCount*rowCells)<cellsDown-1){
+    var atX=0;
+    for (var c=0; c<cols.length; c++){
+      var w=cols[c];
+      var newObj={
+        "row":rowCount, "col":c, 
+        "w":w, "h":rowCells, 
+        "l":atX, "t":rowCount*rowCells, 
+        "r":atX+w, "b":rowCount*rowCells+rowCells, 
+        "label":uiObj.length,
+        "focus":0,
+        "bg":{"focus":{"r":0, "g":0, "b":0}, "blur":{"r":200, "g":200, "b":"200"}},
+        "color":{"focus":{"r":255, "g":255, "b":255}, "blur":{"r":100, "g":100, "b":"100"}}
+        };
+      uiObj.push(newObj);
+      atX+=w;
+      }
+    rowCount++;
+    }
+
+  window.setInterval('secondTick()', 1000);
+  window.requestAnimationFrame(tick); 
+  }
+var uiFocus=-1;
+function randomColor(){
+  return "rgba(" + rnd(256) +","+ rnd(256) +","+ rnd(256) +",.5)";
+  }
+var frames=0;
+function tick(timestamp){
+  
+  canv.width=viewportWidth;
+  drawGrid();
+  
+
+  frames++;
+  window.requestAnimationFrame(tick);
+  }
+function rnd(range){
+  return Math.floor(Math.random()*range);
+  }
+
+function drawGrid(){
+  ctx.strokeStyle="rgba(0,0,0,.2)";
+  ctx.lineWidth=g/32;
+  ctx.beginPath();
+  for (var x=0; x<=cellsAcross; x++){
+    ctx.moveTo(x*g, 0);
+    ctx.lineTo(x*g, cellsDown*g);
+    }
+  for (var y=0; y<=cellsDown; y++){
+    ctx.moveTo(0, y*g);
+    ctx.lineTo(cellsAcross*g, y*g);
+    }
+  ctx.stroke();
+  var focusPad=.2*g;
+  var blurPad=.5*g;
+
+  for (var u=0; u<uiObj.length; u++){
+    if(u==uiFocus){uiObj[u]['focus']+=focusStep;}
+    else{uiObj[u].focus-=focusStep;}
+    if(uiObj[u].focus>1){uiObj[u]['focus']=1;}
+    if(uiObj[u].focus<0){uiObj[u]['focus']=0;}
+    var prog=Math.sin(uiObj[u].focus*pi/2);
+    var colorR=Math.floor(prog*uiObj[u]['color']['focus'].r+(1-prog)*uiObj[u]['color']['blur'].r);
+    var colorG=Math.floor(prog*uiObj[u]['color']['focus'].g+(1-prog)*uiObj[u]['color']['blur'].g);
+    var colorB=Math.floor(prog*uiObj[u]['color']['focus'].b+(1-prog)*uiObj[u]['color']['blur'].b);
+    var bgR=Math.floor(prog*uiObj[u]['bg']['focus'].r+(1-prog)*uiObj[u]['bg']['blur'].r);
+    var bgG=Math.floor(prog*uiObj[u]['bg']['focus'].g+(1-prog)*uiObj[u]['bg']['blur'].g);
+    var bgB=Math.floor(prog*uiObj[u]['bg']['focus'].b+(1-prog)*uiObj[u]['bg']['blur'].b);
+
+
+    var pad=blurPad-focusPad*uiObj[u]['focus'];
+    var fontPx=.8*(uiObj[u]['h']*g-pad*2);
+    ctx.fillStyle="rgb("+bgR+","+bgG+","+bgB+")";
+    ctx.fillRect(uiObj[u]['l']*g+pad, uiObj[u]['t']*g+pad, uiObj[u]['w']*g-pad*2, uiObj[u]['h']*g-pad*2);
+    ctx.lineWidth=g/32;
+    ctx.strokeStyle="rgb("+colorR+","+colorG+","+colorB+")";
+    ctx.strokeRect(uiObj[u]['l']*g+pad, uiObj[u]['t']*g+pad, uiObj[u]['w']*g-pad*2, uiObj[u]['h']*g-pad*2);
+    ctx.textAlign="right";
+    ctx.textBaseline="middle";
+    ctx.font=fontPx+"px avantbook";
+    ctx.fillStyle="rgb("+colorR+","+colorG+","+colorB+")";
+    ctx.fillText(uiObj[u]['label'], uiObj[u]['r']*g-pad*1.25, uiObj[u]['t']*g+uiObj[u]['h']*g/2);
+    if(prog>0){
+      ctx.lineWidth=prog*g/16;
+
+      ctx.strokeStyle="rgb("+colorR+","+colorG+","+colorB+")";
+      ctx.strokeText(uiObj[u]['label'], uiObj[u]['r']*g-pad*1.25, uiObj[u]['t']*g+uiObj[u]['h']*g/2);
+      }
+ 
+    }
+  }
+function handleEvent(evt){
+  var found=-1;
+  for (var u=0; u<uiObj.length; u++){
+    if((evt.x>uiObj[u]['l']*g)&&(evt.x<uiObj[u]['r']*g)&&(evt.y>uiObj[u]['t']*g)&&(evt.y<uiObj[u]['b']*g)){
+      found=u;
+      }
+    }
+  if(found>-1){
+    console.log(uiObj[found]['label']);
+    if(uiFocus==found){uiFocus=-1;}
+    else{uiFocus=found;}
+    }
+  }
+var focusStep=.1;
+function geometry(){
+    viewportWidth = window.innerWidth;
+    viewportHeight = window.innerHeight;    
+    canv.width=viewportWidth;
+    canv.height=viewportHeight;
+    g=viewportWidth/cellsAcross;
+    cellsDown=Math.floor(viewportHeight/g);
+  }
+function secondTick(){
+  dbug("fps:"+frames);
+  frames=0;
+  if((viewportWidth != window.innerWidth)||(viewportHeight != window.innerHeight)){
+    geometry();
+    }
+  //drawGrid();
+  }
+function dbuga(msg){
+  document.getElementById('debugDiv').innerHTML+="<br />"+msg;
+  }
+function dbug(msg){
+  document.getElementById('debugDiv').innerHTML=""+msg;
+  }
+function mouseDown(e){
+  var evt={"type":"start", "x":e.clientX, "y":e.clientY};
+  handleEvent(evt);
+  }
+
+var pi=Math.PI;
+</script>
+<link rel = "stylesheet" type = "text/css" href = "reset.css">
+<style>
+#mainCanvas{background-color:#0000a8;}
+@font-face {
+    font-family: 'avantbook';
+    src: url('avantgarde-book.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+@font-face {
+    font-family: 'avantbold';
+    src: url('avantgarde-bold.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+</style>
+</head>
+<body onload="init()"  onmousedown="mouseDown(event)">
+<div id="preloadHolder" style="position:absolute;">
+  <div style="font-family:avantbook; position:absolute; top:100px;">avantbold 1234567890</div>
+  <div style="font-family:avantbold; position:absolute; top:300px;">aventbook 1234567890</div>
+</div>
+<canvas id="mainCanvas" style="position:absolute;" ></canvas>
+<div id="debugDiv" style="font-family:avantbook; position:absolute; top:0px;">debugDiv</div>
+
+</body>
+</html>
