@@ -12,8 +12,10 @@
 
 <script type="text/javascript" src="jsPDF/jspdf.js"></script>
 <script type="text/javascript" src="jsPDF/libs/Deflate/adler32cs.js"></script>
-<script type="text/javascript" src="jsPDF/libs/FileSaver.js/FileSaver.js"></script>
-<script type="text/javascript" src="jsPDF/libs/Blob.js/BlobBuilder.js"></script>
+
+<script type="text/javascript" src="jsPDF/libs/FileSaver/FileSaver.js"></script>
+<script type="text/javascript" src="jsPDF/libs/Blob/BlobBuilder.js"></script>
+
 <script type="text/javascript" src="jsPDF/jspdf.plugin.addimage.js"></script>
 <script type="text/javascript" src="jsPDF/jspdf.plugin.standard_fonts_metrics.js"></script>
 <script type="text/javascript" src="jsPDF/jspdf.plugin.split_text_to_size.js"></script>
@@ -189,14 +191,14 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"spiritualPlane", "focusable":true,
+        "id":"intuitivePlane", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
         "l":15, "t":10, 
         "r":24, "b":11, 
         "down":3, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
-        "label":"Spiritual Plane",
+        "label":"Intuitive Plane",
         "value":"",
         "focus":0}
 
@@ -955,7 +957,7 @@ function userInput(){
     reading.birthdateDate=new Date(Number(reading.birthYYYY), Number(reading.birthMM)-1, Number(reading.birthDD));
     reading.dayOfWeekNum=reading.birthdateDate.getDay();
     updateIdValue("dayOfWeek", daysOfWeek[reading.dayOfWeekNum]);
-    reading.dayOfBirth=reduceNumStr(reading.birthDD, "reading.birthDD");
+    reading.dayOfBirth=Number(reading.birthDD)+"";//1-31
     updateIdValue("dayOfBirth", reading.dayOfBirth);
     reading.ageInYears=getAge(reading.birthdateDate);
     updateIdValue("ageInYears", reading.ageInYears);
@@ -1006,15 +1008,15 @@ function userInput(){
     if(reading.counts[n]==0){karmicArray.push(""+n);}
     }
   updateIdValue("karmicLesson", karmicArray.join(" "));
-  reading.physicalPlane=reading.counts[4]+reading.counts[5];
-  reading.mentalPlane=reading.counts[1]+reading.counts[8];
-  reading.emotionalPlane=reading.counts[2]+reading.counts[3]+reading.counts[6];
-  reading.spiritualPlane=reading.counts[7]+reading.counts[9];
+  reading.physicalPlane=reduceNumStr(""+(reading.counts[4]+reading.counts[5]));
+  reading.mentalPlane=reduceNumStr(""+(reading.counts[1]+reading.counts[8]));
+  reading.emotionalPlane=reduceNumStr(""+(reading.counts[2]+reading.counts[3]+reading.counts[6]));
+  reading.intuitivePlane=reduceNumStr(""+(reading.counts[7]+reading.counts[9]));
 
   updateIdValue("physicalPlane", ""+reading.physicalPlane);
   updateIdValue("mentalPlane", ""+reading.mentalPlane);
   updateIdValue("emotionalPlane", ""+reading.emotionalPlane);
-  updateIdValue("spiritualPlane", ""+reading.spiritualPlane);
+  updateIdValue("intuitivePlane", ""+reading.intuitivePlane);
 
   //personal
   reading.globalYear=nowDate.getFullYear();
@@ -1577,7 +1579,7 @@ function reduceNumStr(str, debug){//"04021968"
     str=""+sum+"";
     console.log(" - "+str+"="+str.length);
     }
-  if(safety==0){alert("reduce error str="+str);}
+  if(safety==0){alert(debug+" reduce error str="+str);}
   return masterNum+karmicNum+str;
   }
 function unmaster(str){
