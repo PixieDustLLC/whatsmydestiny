@@ -796,7 +796,7 @@ function init(){
     var found=false;
     lastPress=e.keyCode;
     if(lastPress==0){return false;}
-    dbuga("<b>keypress</b> lastDown:"+lastDown +" lastPress:"+lastPress+" "+String.fromCharCode(lastPress));
+    dbug("<b>keypress</b> lastDown:"+lastDown +" lastPress:"+lastPress+" "+String.fromCharCode(lastPress));
     if(lastPress==13){//return
       found=true;
       e.preventDefault(); 
@@ -2143,17 +2143,22 @@ function phoneFormat(num){
     var formatted="("+parts[0]+parts[1]+parts[2]+") "+parts[3]+parts[4]+parts[5]+"-"+parts[6]+parts[7]+parts[8]+parts[9];
     return formatted;
   }
-
+var blurring=false;
 function hideTextarea(){
-  //dbuga('hideTextarea() '+lastArea);
+  dbuga('hideTextarea() '+lastArea+" "+blurring);
+  blurring=true;
   document.getElementById(lastArea).blur();
   }
 var lastArea="dummyArea";
 function focusBounce(){
-  dbuga('focusBounce() '+lastArea);
-  document.getElementById(lastArea).focus();
-  setUiFocus((uiFocus+1)%uiObj.length);
-
+  dbuga('focusBounce() '+lastArea+" "+blurring);
+  if(blurring==false){
+    document.getElementById(lastArea).focus();
+    setUiFocus((uiFocus+1)%uiObj.length);
+    }
+  else{
+    blurring=false;
+    }
   }
 function focusTextarea(){
   //dbuga('focusTextarea() ' +document.activeElement.id);
