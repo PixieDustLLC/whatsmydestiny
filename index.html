@@ -2144,23 +2144,24 @@ function phoneFormat(num){
   }
 
 function hideTextarea(){
-  dbuga('hideTextarea() ' +document.activeElement.id);
-  var ta=document.getElementById('inputArea');
-  ta.style.opacity="0";
-  ta.style.visibility="hidden";
-  ta.blur();
+  dbuga('hideTextarea() '+lastArea);
+  document.getElementById(lastArea).blur();
   }
+var lastArea="dummyArea";
 function focusTextarea(){
   dbuga('focusTextarea() ' +document.activeElement.id);
-  if(document.activeElement.id != "inputArea"){
-    document.getElementById("dummyArea").focus();
-    window.setTimeout(function () { 
-      document.getElementById("dummyArea").blur();
-      dbuga('focusTextarea() timeout fired' +document.activeElement.id);
-      document.getElementById("inputArea").focus();
-      }, 1000);
-    }
+  if(lastArea== "inputArea"){
+    lastArea="dummyArea");
   }
+  if(lastArea== "dummyArea"){
+    lastArea="inputArea";
+  }
+
+  window.setTimeout(function () { 
+    document.getElementById(lastArea).focus();
+    dbuga('focusTextarea() timeout fired' +lastArea);
+  }, 1000);
+}
 function titleCase(str){
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
