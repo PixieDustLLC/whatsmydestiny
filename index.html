@@ -42,7 +42,6 @@ var colorMap={
         "bg":{"focus":{"r":0, "g":0, "b":0}, "blur":{"r":240, "g":240, "b":"240"}},
         "color":{"focus":{"r":255, "g":255, "b":255}, "blur":{"r":100, "g":100, "b":"100"}}
   };
-var buttons=[];
 var rCanv;
 var rCtx;
 function init(){
@@ -724,58 +723,6 @@ function init(){
         "label":"Search",
         "value":""}
 */
-/*
-  buttons=[{
-        "id":"saveOk", 
-        "w":6, "h":1, 
-        "l":19, "t":5, 
-        "r":25, "b":6, 
-        "label":"OK",
-        "value":""}
-        ,{
-        "id":"saveCancel", 
-        "w":6, "h":1, 
-        "l":25, "t":5, 
-        "r":31, "b":6, 
-        "label":"Cancel",
-        "value":""}
-        ,{
-        "id":"save", 
-        "w":4, "h":1, 
-        "l":10, "t":23, 
-        "r":14, "b":24, 
-        "label":"Save",
-        "value":""}
-        ,{
-        "id":"delete", 
-        "w":4, "h":1, 
-        "l":14, "t":23, 
-        "r":18 , "b":24, 
-        "label":"Delete",
-        "value":""}
-        ,{
-        "id":"clear", 
-        "w":4, "h":1, 
-        "l":18, "t":23, 
-        "r":22, "b":24, 
-        "label":"Clear",
-        "value":""}      
-        ,{
-        "id":"detail", 
-        "w":4, "h":1, 
-        "l":23, "t":23, 
-        "r":27, "b":24, 
-        "label":"Detail",
-        "value":""}      
-        ,{
-        "id":"summary", 
-        "w":4, "h":1, 
-        "l":27, "t":23, 
-        "r":31, "b":24, 
-        "label":"Summary",
-        "value":""}      
-  ];
-*/
   for(var u=0; u<uiObj.length; u++){
     if(uiObj[u].id=="metaDisplay"){
       listLeft=uiObj[u].l;
@@ -784,7 +731,7 @@ function init(){
       listWidth=uiObj[u].w;
       }
     }
-  hideSave();
+  //hideSave();
   window.setInterval('secondTick()', 1000);
   window.requestAnimationFrame(tick); 
 
@@ -921,13 +868,8 @@ var unhideLeft=19;
 var hideTop=-2;
 var unhideTop=5;
 
-
+/*
 function hideSave(){
-
-  saving=false;
-  //buttons[0]["t"]=hideTop;
-  //buttons[1]["t"]=hideTop;
-
   uiObj[0]["l"]=unhideLeft;
   uiObj[1]["l"]=hideLeft;
   uiObj[2]["l"]=hideLeft;
@@ -936,7 +878,6 @@ function hideSave(){
   uiObj[1]["r"]=hideLeft+12;
   uiObj[2]["r"]=hideLeft+12;
   uiObj[3]["r"]=hideLeft+12;
-
   }
 function showSave(){
 
@@ -955,6 +896,7 @@ function showSave(){
   uiObj[3]["r"]=unhideLeft+12;
 
   }
+*/
 
 function setupLocalStorage(){
   if(localStorage.getItem("savedObj") === null) {
@@ -1875,7 +1817,7 @@ function handleEvent(evt){
     }
   if(found>-1){
     if(found>3){
-      hideSave()
+      //hideSave()
       }
     //dbuga(uiObj[found]['label']);
     if(uiFocus==found){
@@ -1883,51 +1825,6 @@ function handleEvent(evt){
       setUiFocus(-1);
       }
     else{setUiFocus(found);}
-    }
-  for(var b=0; b<buttons.length; b++){
-    //dbuga(evt.x+" "+buttons[b]['l']*g);
-    if((evt.x>buttons[b]['l']*g)&&(evt.x<buttons[b]['r']*g)&&(evt.y>buttons[b]['t']*g)&&(evt.y<buttons[b]['b']*g)){
-      //console.log(buttons[b]['id']);
-      if((buttons[b]['id']=="save")&&(reading.valid==true)){
-        showSave();	
-        }
-      if((buttons[b]['id']=="saveOk")&&(reading.valid==true)){
-        hideSave();
-        saveInputs();
-        }
-      if((buttons[b]['id']=="saveCancel")&&(reading.valid==true)){
-        hideSave();
-        }
-      if(buttons[b]['id']=="delete"){
-        if(readingSaved==true){
-          var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput;
-          delete savedObj[newKey];
-          localStorage.setItem("savedObj", JSON.stringify(savedObj));
-          readingSaved=false;
-          }
-        }
-
-      if(buttons[b]['id']=="clear"){
-        clearReading();
-        updateValues();
-        //userInput();        
-        }
-      if(buttons[b]['id']=="detail"){
-        if(reading.valid){
-          metaFocus=-1;
-
-          window.setTimeout("detailReport()", 100);
-          }
-        }
-      if(buttons[b]['id']=="summary"){
-        if(reading.valid){
-          metaFocus=-1;
-          hideButtons=true;
-          window.setTimeout("summaryReport()", 100);
-          }
-        }
-
-      }
     }
   }
 function clearReading(){
@@ -1972,7 +1869,6 @@ reading.thirdChallenge=0;
 reading.fourthChallenge=0;
 
   }
-var hideButtons=false;
 function saveInputs(){
   //console.log('saveInputs()');
   var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.currentNameInput;
