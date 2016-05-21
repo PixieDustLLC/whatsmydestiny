@@ -2292,7 +2292,7 @@ function devent(e){
 <div id="spinner" style="display:none;"><img class="dialogimage" src="nav/please_wait.png"/></div>
 <div id="downloadpdf" style="display:none;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
 <div id="uploadingpdf" style="display:none;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
-<textarea id="inputArea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;"></textarea>
-<textarea id="dummyArea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;"></textarea>
+<textarea id="inputArea" onblur="preventDefault();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;"></textarea>
+<textarea id="dummyArea" onblur="preventDefault();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;"></textarea>
 </body>
 </html>
