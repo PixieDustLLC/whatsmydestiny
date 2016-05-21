@@ -796,7 +796,7 @@ function init(){
     var found=false;
     lastPress=e.keyCode;
     if(lastPress==0){return false;}
-    //dbug("<b>keypress</b> lastDown:"+lastDown +" lastPress:"+lastPress+" "+String.fromCharCode(lastPress));
+    dbug("<b>keypress</b> lastDown:"+lastDown +" lastPress:"+lastPress+" "+String.fromCharCode(lastPress));
     if(lastPress==13){//return
       found=true;
       e.preventDefault(); 
@@ -1826,7 +1826,7 @@ function drawResultButtons(){
 
   }
 function selectSaved(savedKey){
-  //dbuga('selectSaved('+savedKey+')');
+  dbuga('selectSaved('+savedKey+')');
   var savedItem=savedObj[savedKey];
   if(typeof(savedItem)=="string"){
     console.log(savedItem+" = string");
@@ -1869,8 +1869,11 @@ function handleEvent(evt){
     if(found>3){
       hideSave()
       }
-    //console.log(uiObj[found]['label']);
-    if(uiFocus==found){setUiFocus(-1);}
+    dbuga(uiObj[found]['label']);
+    if(uiFocus==found){
+      dbuga(uiObj[found]['label']+" set to -1");
+      setUiFocus(-1);
+      }
     else{setUiFocus(found);}
     }
   for(var b=0; b<buttons.length; b++){
