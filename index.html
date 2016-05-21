@@ -796,7 +796,7 @@ function init(){
     var found=false;
     lastPress=e.keyCode;
     if(lastPress==0){return false;}
-    dbug("<b>keypress</b> lastDown:"+lastDown +" lastPress:"+lastPress+" "+String.fromCharCode(lastPress));
+    //dbug("<b>keypress</b> lastDown:"+lastDown +" lastPress:"+lastPress+" "+String.fromCharCode(lastPress));
     if(lastPress==13){//return
       found=true;
       e.preventDefault(); 
@@ -1271,7 +1271,7 @@ var uiFocus=4;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
-  dbuga('setUiFocus('+toNum+')');
+  //dbuga('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
@@ -2145,18 +2145,19 @@ function phoneFormat(num){
   }
 var blurring=false;
 function hideTextarea(){
-  dbuga('hideTextarea() '+lastArea+" "+blurring);
+  //dbuga('hideTextarea() '+lastArea+" "+blurring);
   if(uiObj[uiFocus].id.indexOf("Input")>-1){
-    dbuga(' -- dont hide');
+    //dbuga(' -- dont hide');
     blurring=false;
     return false;
     }
   blurring=true;
-  document.getElementById(lastArea).blur();
+  document.activeElement.blur();
+  //dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
   }
 var lastArea="dummyArea";
 function focusBounce(){
-  dbuga('focusBounce() '+lastArea+" "+blurring);
+  //dbuga('focusBounce() '+lastArea+" "+blurring);
   if(blurring==false){
     document.getElementById(lastArea).focus();
     setUiFocus((uiFocus+1)%uiObj.length);
@@ -2176,7 +2177,7 @@ function focusTextarea(){
 
   window.setTimeout(function () { 
     document.getElementById(lastArea).focus();
-    dbuga('focusTextarea() timeout fired last:' +lastArea+" active:"+document.activeElement.id);
+    //dbuga('focusTextarea() timeout fired last:' +lastArea+" active:"+document.activeElement.id);
   }, 100);
 }
 function titleCase(str){
