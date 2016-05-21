@@ -85,7 +85,7 @@ var rui = {
   },
   geometry:function(){
     if((window.innerWidth == rui.ww)&&(window.innerHeight < rui.wh)){
-      // false resize from keyboard ignore
+      //dbuga('rui.geometry false resize from keyboard ignore');
       return false;
       }
     if((window.innerWidth != rui.ww)||(window.innerHeight != rui.wh)){

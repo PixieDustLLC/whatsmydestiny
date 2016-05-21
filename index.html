@@ -1267,7 +1267,8 @@ function valueOfId(id){
     }
   return value;
   }
-var uiFocus=4;
+var uiFocus=-1;
+var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
   //updateIdLabel('metaDisplay', "");
@@ -1275,7 +1276,6 @@ function setUiFocus(toNum){
   typed=false;
   if(uiFocus != -1){setMetaFocus(toNum); }
   }
-var metaFocus=-1;
 function setMetaFocus(toNum){
   if(inArray(uiObj[toNum]['id'], Object.keys(metaByFieldValue))){
     metaFocus=toNum;
@@ -2021,6 +2021,10 @@ function geometry(){
 function secondTick(){
   //dbug("fps:"+frames);
   frames=0;
+  if((viewportWidth == window.innerWidth)&&(viewportHeight > window.innerHeight)){
+    //dbuga(' geometry false resize cancelled.');
+    return false;
+    }
   if((viewportWidth != window.innerWidth)||(viewportHeight != window.innerHeight)){
     geometry();
     }
