@@ -1271,6 +1271,7 @@ var uiFocus=4;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
+  dbuga('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
@@ -2151,6 +2152,8 @@ var lastArea="dummyArea";
 function focusBounce(){
   dbuga('focusBounce() '+lastArea);
   document.getElementById(lastArea).focus();
+  setUiFocus((uiFocus+1)%uiObj.length);
+
   }
 function focusTextarea(){
   //dbuga('focusTextarea() ' +document.activeElement.id);
