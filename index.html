@@ -1271,12 +1271,13 @@ var uiFocus=-1;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
-  //dbuga('setUiFocus('+toNum+')');
+  dbuga('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
   if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
   else{hideTextarea();}
+
   if(uiFocus != -1){setMetaFocus(toNum); }
   }
 function setMetaFocus(toNum){
@@ -2145,7 +2146,7 @@ function phoneFormat(num){
   }
 var blurring=false;
 function hideTextarea(){
-  //dbuga('hideTextarea() '+lastArea+" "+blurring);
+  dbuga('hideTextarea() '+lastArea+" "+blurring);
   if(uiObj[uiFocus].id.indexOf("Input")>-1){
     //dbuga(' -- dont hide');
     blurring=false;
@@ -2153,11 +2154,11 @@ function hideTextarea(){
     }
   blurring=true;
   document.activeElement.blur();
-  //dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
+  dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
   }
 var lastArea="dummyArea";
 function focusBounce(){
-  //dbuga('focusBounce() '+lastArea+" "+blurring);
+  dbuga('focusBounce() '+lastArea+" "+blurring);
   if(blurring==false){
     document.getElementById(lastArea).focus();
     setUiFocus((uiFocus+1)%uiObj.length);
@@ -2167,7 +2168,7 @@ function focusBounce(){
     }
   }
 function focusTextarea(){
-  //dbuga('focusTextarea() ' +document.activeElement.id);
+  dbuga('focusTextarea() ' +document.activeElement.id);
   if(lastArea== "inputArea"){
     lastArea="dummyArea";
   }
