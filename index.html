@@ -1274,6 +1274,8 @@ function setUiFocus(toNum){
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
+  if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
+  else{hideTextarea();}
   if(uiFocus != -1){setMetaFocus(toNum); }
   }
 function setMetaFocus(toNum){
@@ -1852,7 +1854,7 @@ function selectSaved(savedKey){
 
   }
 function handleEvent(evt){
-  dbuga(evt.type+" "+evt.src);
+  dbuga(evt.type+" "+evt.source);
   evt.y-=yOffset;
   var found=-1;
   for (var r=0; r<results.length; r++){
@@ -2284,6 +2286,6 @@ function devent(e){
 <div id="spinner" style="display:none;"><img class="dialogimage" src="nav/please_wait.png"/></div>
 <div id="downloadpdf" style="display:none;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
 <div id="uploadingpdf" style="display:none;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
-<textarea id="inputArea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;" onblur="focusTextarea()" onfocus="hideTextarea()"></textarea>
+<textarea id="inputArea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;"></textarea>
 </body>
 </html>
