@@ -1275,9 +1275,12 @@ function setUiFocus(toNum){
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
-  if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
+  if(uiFocus>-1){
+    if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
+    else{hideTextarea();}
+    }
   else{hideTextarea();}
-
+  
   if(uiFocus != -1){setMetaFocus(toNum); }
   }
 function setMetaFocus(toNum){
