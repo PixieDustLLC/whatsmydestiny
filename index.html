@@ -1852,6 +1852,7 @@ function selectSaved(savedKey){
 
   }
 function handleEvent(evt){
+  dbuga(evt.type+" "+evt.src);
   evt.y-=yOffset;
   var found=-1;
   for (var r=0; r<results.length; r++){
@@ -2039,11 +2040,13 @@ function dbug(msg){
   document.getElementById('debugDiv').innerHTML=""+msg;
   }
 function mouseDown(e){
-  var evt={"type":"start", "x":e.clientX, "y":e.clientY};
+  e.preventDefault();
+  var evt={"source":"mousedown", "type":"start", "x":e.clientX, "y":e.clientY};
   handleEvent(evt);
   }
 function touchStart(e){
-  var evt={"type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
+  e.preventDefault();
+  var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
   handleEvent(evt);
   }
 var alphabet= "abcdefghijklmnopqrstuvwxyz";
