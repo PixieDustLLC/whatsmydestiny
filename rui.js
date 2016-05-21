@@ -84,6 +84,10 @@ var rui = {
     return "toggleMenu("+menuName+") return";
   },
   geometry:function(){
+    if((window.innerWidth == rui.ww)&&(window.innerHeight < rui.wh)){
+      // false resize from keyboard ignore
+      return false;
+      }
     if((window.innerWidth != rui.ww)||(window.innerHeight != rui.wh)){
       rui.ww=window.innerWidth;
       rui.wh=window.innerHeight;
