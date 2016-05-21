@@ -939,11 +939,11 @@ function hideSave(){
 
   }
 function showSave(){
-/*
+
   uiFocus=1;
   saving=true;
-  buttons[0]["t"]=unhideTop;
-  buttons[1]["t"]=unhideTop;
+  //buttons[0]["t"]=unhideTop;
+  //buttons[1]["t"]=unhideTop;
 
   uiObj[0]["l"]=hideLeft;
   uiObj[1]["l"]=unhideLeft;
@@ -953,7 +953,7 @@ function showSave(){
   uiObj[1]["r"]=unhideLeft+12;
   uiObj[2]["r"]=unhideLeft+12;
   uiObj[3]["r"]=unhideLeft+12;
-*/
+
   }
 
 function setupLocalStorage(){
@@ -1828,7 +1828,7 @@ function drawResultButtons(){
 
   }
 function selectSaved(savedKey){
-  dbuga('selectSaved('+savedKey+')');
+  //dbuga('selectSaved('+savedKey+')');
   var savedItem=savedObj[savedKey];
   if(typeof(savedItem)=="string"){
     console.log(savedItem+" = string");
@@ -1854,7 +1854,7 @@ function selectSaved(savedKey){
 
   }
 function handleEvent(evt){
-  dbuga(evt.type+" "+evt.source);
+  //dbuga(evt.type+" "+evt.source);
   evt.y-=yOffset;
   var found=-1;
   for (var r=0; r<results.length; r++){
@@ -1872,9 +1872,9 @@ function handleEvent(evt){
     if(found>3){
       hideSave()
       }
-    dbuga(uiObj[found]['label']);
+    //dbuga(uiObj[found]['label']);
     if(uiFocus==found){
-      dbuga(uiObj[found]['label']+" set to -1");
+      //dbuga(uiObj[found]['label']+" set to -1");
       setUiFocus(-1);
       }
     else{setUiFocus(found);}
@@ -2144,12 +2144,12 @@ function phoneFormat(num){
   }
 
 function hideTextarea(){
-  dbuga('hideTextarea() '+lastArea);
+  //dbuga('hideTextarea() '+lastArea);
   document.getElementById(lastArea).blur();
   }
 var lastArea="dummyArea";
 function focusTextarea(){
-  dbuga('focusTextarea() ' +document.activeElement.id);
+  //dbuga('focusTextarea() ' +document.activeElement.id);
   if(lastArea== "inputArea"){
     lastArea="dummyArea";
   }
@@ -2159,8 +2159,8 @@ function focusTextarea(){
 
   window.setTimeout(function () { 
     document.getElementById(lastArea).focus();
-    dbuga('focusTextarea() timeout fired' +lastArea);
-  }, 1000);
+    //dbuga('focusTextarea() timeout fired' +lastArea);
+  }, 100);
 }
 function titleCase(str){
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
