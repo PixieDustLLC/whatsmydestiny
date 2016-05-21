@@ -2152,11 +2152,14 @@ function hideTextarea(){
   }
 function focusTextarea(){
   dbuga('focusTextarea() ' +document.activeElement.id);
-  document.getElementById("dummyArea").focus();
-  window.setTimeout(function () { 
-    dbuga('focusTextarea() timeout fired' +document.activeElement.id);
-    document.getElementById("inputArea").focus();
-    }, 0);
+  if(document.activeElement.id != "inputArea"){
+    document.getElementById("dummyArea").focus();
+    window.setTimeout(function () { 
+      document.getElementById("dummyArea").blur();
+      dbuga('focusTextarea() timeout fired' +document.activeElement.id);
+      document.getElementById("inputArea").focus();
+      }, 1000);
+    }
   }
 function titleCase(str){
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
