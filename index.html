@@ -2149,9 +2149,9 @@ function phoneFormat(num){
   }
 var blurring=false;
 function hideTextarea(){
-  dbuga('hideTextarea() '+lastArea+" "+blurring);
+  dbuga('hideTextarea() uiFocus:'+uiFocus+" blur:'+lastArea+" blur:"+blurring);
   if(uiObj[uiFocus].id.indexOf("Input")>-1){
-    //dbuga(' -- dont hide');
+    dbuga(' -- dont hide');
     blurring=false;
     return false;
     }
