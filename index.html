@@ -2142,12 +2142,14 @@ function phoneFormat(num){
   }
 
 function hideTextarea(){
+  dbuga('hideTextarea()');
   var ta=document.getElementById('inputArea');
   ta.style.opacity="0";
   ta.style.visibility="hidden";
   //ta.blur();
   }
 function focusTextarea(){
+  dbuga('focusTextarea()');
         window.setTimeout(function () { 
             document.getElementById("inputArea").focus();
         }, 0);
