@@ -1,1 +1,0 @@
-dir *.png > dir.txt
