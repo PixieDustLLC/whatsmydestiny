@@ -2144,7 +2144,7 @@ function phoneFormat(num){
   }
 
 function hideTextarea(){
-  dbuga('hideTextarea()');
+  dbuga('hideTextarea() ' +document.activeElement.id);
   var ta=document.getElementById('inputArea');
   ta.style.opacity="0";
   ta.style.visibility="hidden";
@@ -2154,7 +2154,7 @@ function focusTextarea(){
   dbuga('focusTextarea() ' +document.activeElement.id);
   document.getElementById("dummyArea").focus();
   window.setTimeout(function () { 
-    dbuga('focusTextarea() timeout fired');
+    dbuga('focusTextarea() timeout fired' +document.activeElement.id);
     document.getElementById("inputArea").focus();
     }, 0);
   }
