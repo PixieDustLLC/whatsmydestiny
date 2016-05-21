@@ -874,7 +874,7 @@ function init(){
   //userInput();
 
   setupLocalStorage();
-  focusTextarea();
+  ////focusTextarea();
   rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgb(255,255,255)", "icons/", "white", "red", "avantbook", "avantbold");
   }
 var lastDown=0;
@@ -1267,7 +1267,7 @@ function valueOfId(id){
     }
   return value;
   }
-var uiFocus=4;
+var uiFocus=-1;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
