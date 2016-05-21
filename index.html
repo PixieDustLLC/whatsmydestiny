@@ -2148,7 +2148,7 @@ function hideTextarea(){
   dbuga('hideTextarea() '+lastArea+" "+blurring);
   if(uiObj[uiFocus].id.indexOf("Input")>-1){
     dbuga(' -- dont hide');
-
+    blurring=false;
     return false;
     }
   blurring=true;
@@ -2176,7 +2176,7 @@ function focusTextarea(){
 
   window.setTimeout(function () { 
     document.getElementById(lastArea).focus();
-    //dbuga('focusTextarea() timeout fired' +lastArea);
+    dbuga('focusTextarea() timeout fired last:' +lastArea+" active:"+document.activeElement.id);
   }, 100);
 }
 function titleCase(str){
