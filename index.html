@@ -2151,10 +2151,12 @@ function hideTextarea(){
   ta.blur();
   }
 function focusTextarea(){
-  dbuga('focusTextarea()');
-        window.setTimeout(function () { 
-            document.getElementById("inputArea").focus();
-        }, 0);
+  dbuga('focusTextarea() ' +document.activeElement.id);
+  document.getElementById("dummyArea").focus();
+  window.setTimeout(function () { 
+    dbuga('focusTextarea() timeout fired');
+    document.getElementById("inputArea").focus();
+    }, 0);
   }
 function titleCase(str){
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -2287,5 +2289,6 @@ function devent(e){
 <div id="downloadpdf" style="display:none;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
 <div id="uploadingpdf" style="display:none;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
 <textarea id="inputArea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;"></textarea>
+<textarea id="dummyArea" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;"></textarea>
 </body>
 </html>
