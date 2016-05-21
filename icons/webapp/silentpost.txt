@@ -1,0 +1,1 @@
+{} - INSERT INTO receipts (x_first_name, x_last_name, x_email, x_type, x_amount, x_MD5_Hash, x_catalog_link_id, dateYYYYMMDD, x_response_code, x_response_reason_code, x_response_reason_text, x_avs_code, x_auth_code, x_trans_id, x_method, x_card_type, x_account_number) VALUES ('', '', '', '', '', '', '', '20160503', '', '', '', '', '', '', '', '', '')
