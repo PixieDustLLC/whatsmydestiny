@@ -822,7 +822,7 @@ function init(){
 
   setupLocalStorage();
   ////focusTextarea();
-  rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgb(255,255,255)", "icons/", "white", "red", "avantbook", "avantbold");
+  rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgb(255,255,255)", "icons/", "white", "red", 0.25, "avantbook", "avantbold");
   }
 var lastDown=0;
 var lastPress=0;
@@ -2110,13 +2110,8 @@ function updateClientLayout(){
 
 var barButtons=[
 {"name":"systemToggle", "func":"rui.toggleMenu('system')", "selected":false, "float":"left", "labelOn":"menu.png", "labelOff":"menu.png"},
-{"name":"playPause", "func":"playPause()",  "selected":false, "float":"left", "labelOn":"pause.png", "labelOff":"play.png"},
-{"name":"prevStep",  "func":"prevStep()", "selected":false, "float":"left", "labelOn":"back.png", "labelOff":"back.png"},
-{"name":"numStep",  "func":"", "selected":false, "float":"left", "labelOn":"", "labelOff":""},
-{"name":"nextStep", "func":"nextStep()", "selected":false, "float":"left", "labelOn":"next.png", "labelOff":"next.png"},
 {"name":"contextToggle", "func":"rui.toggleMenu('context')", "selected":false, "float":"right", "labelOn":"shortmenu.png", "labelOff":"shortmenu.png"},
-{"name":"favorite", "func":"favorite()", "selected":false, "float":"right", "labelOn":"star.png", "labelOff":"star.png"},
-{"name":"searchToggle", "func":"rui.toggleMenu('search')", "selected":false, "float":"right", "labelOn":"search.png", "labelOff":"search.png"},
+{"name":"searchToggle", "func":"rui.toggleMenu('search')", "selected":false, "float":"right", "labelOn":"magnifier.png", "labelOff":"magnifier.png"},
 {"name":"dashboardToggle", "func":"rui.toggleMenu('dashboard')", "selected":false, "float":"center", "labelOn":"arrowup.png", "labelOff":"arrowdown.png"}
 ];
 var buttonNumByName={};
@@ -2132,17 +2127,15 @@ var menuKeys=["dashboard", "search", "system", "context"];
     //sorts stackers, 
     //stack:0 = auto collapse
 var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "align":"left", "panes":[
-    {"width":10, "height":29, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"home"},
-       {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"search"},
-       {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"profile"},
-       {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"help"},
-       {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"about"},
-       {"x":0, "y":15, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"upgrade"},
-       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"refresh"},
-       {"x":0, "y":21, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"login"},
-       {"x":0, "y":24, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"my_purchases"},
-       {"x":0, "y":27, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"add_art"}
+    {"width":10, "height":23, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "contents":[
+       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"wand", "label":"main"},
+       {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"pdfdoc", "label":"pdf"},
+       {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"profile", "label":"contacts"},
+       {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"venn", "label":"relationships"},
+       {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"www", "label":"website"},
+       {"x":0, "y":15, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"w", "label":"about"},
+       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"questionmark", "label":"help"},
+       {"x":0, "y":21, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"email", "label":"email"}
       ]}
     ]
   },
@@ -2161,10 +2154,10 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
     ]
   },
   "context":{"selected":false,  "stack":0, "buttonName":"contextToggle", "align":"right", "panes":[
-    {"width":8, "height":8, "left":-4, "top":4, "selection":-1, "barColor":"", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"help"},
-       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"share"},
-       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"refresh"}
+    {"width":8, "height":8, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "contents":[
+       {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"questionmark", "label":"help"},
+       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"share", "label":"share"},
+       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"refresh", "label":"refresh"}
       ]}
     ]
   }

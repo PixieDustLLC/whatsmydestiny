@@ -9,6 +9,7 @@ var rui = {
   thinPx:0,
   widePx:0,
   barPad:.75,
+  iconPad:0,
   barColor:"green",
   bgColor:"yellow",
   textColor:"black",
@@ -20,9 +21,9 @@ var rui = {
   mcanv:"",
   mctx:"",
   preloaded:0,
-  preloadArray:["arrowdown.png", "palette.png", "droparrowbox.png", "play.png", "pause.png", "shortmenu.png", "folder.png", "trash.png", "art.png", "menu.png", "star.png", "next.png", "back.png", "refresh.png", "roundplus.png", "roundx.png", "imagefile.png", "i.png", "questionmark.png", "embedcode.png", "mic.png", "speaker.png", "reticule.png", "profile.png", "power.png", "rocket.png", "home.png", "duplicate.png", "pencil.png", "magnifier.png", "moviefile.png", "pdfdoc.png", "share.png", "arrowup.png", "venn.png", "www.png", "w.png", "wand.png"],
+  preloadArray:["arrowdown.png", "arrowup.png", "art.png", "back.png", "cart.png", "droparrowbox.png", "duplicate.png", "email.png", "embedcode.png", "folder.png", "home.png", "i.png", "imagefile.png", "magnifier.png", "menu.png", "mic.png", "moviefile.png", "next.png", "palette.png", "pause.png", "pdfdoc.png", "pencil.png", "play.png", "power.png", "profile.png", "questionmark.png", "refresh.png", "reticule.png", "rocket.png", "roundplus.png", "roundx.png", "share.png", "shortmenu.png", "speaker.png", "star.png", "trash.png", "venn.png", "w.png", "wand.png", "www.png"],
 
-  createRui:function(containerRef, barColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons,  paraFont, headFont){
+  createRui:function(containerRef, barColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, iconPad, paraFont, headFont){
   rui.ruiCreated=true;
   rui.barColor=barColor;
   rui.surroundColor=surroundColor;
@@ -30,6 +31,7 @@ var rui = {
   rui.textColor=textColor;
   rui.circleColor=circleColor;
   rui.iconPath=iconPath;
+  rui.iconPad=iconPad;
   rui.paraFont=paraFont;
   rui.headFont=headFont;
   var htmlString="";
@@ -225,7 +227,7 @@ var rui = {
             rui.roundRect(rui.mctx, px+rui.g*contents[c].x+pad, py+rui.g*contents[c].y+pad, rui.g*contents[c].w-pad*2, rui.g*contents[c].h-pad*2, rui.g/4, true, true);
             }// end of type color
           if(contents[c].type=="icon"){
-            var cPad=rui.g/2;
+            var cPad=rui.g*rui.iconPad;
             rui.mctx.shadowBlur = 0;
             var image=document.getElementById("menu_"+contents[c].icon+".png");
             rui.mctx.fillStyle=rui.circleColor;
@@ -238,7 +240,7 @@ var rui = {
             rui.mctx.textBaseline="middle";
             rui.mctx.textAlign="left";
             rui.mctx.font=rui.g*.8+"px "+rui.paraFont;
-            rui.mctx.fillText(rui.capLabel(contents[c].icon), px+rui.g*(contents[c].x+2.5), py+rui.g*(contents[c].y+contents[c].h/2));
+            rui.mctx.fillText(rui.capLabel(contents[c].label), px+rui.g*(contents[c].x+2.5), py+rui.g*(contents[c].y+contents[c].h/2));
             if((panes[p].barColor != "")&&(c<contents.length-1)){
               rui.mctx.lineWidth=g/10;
               rui.mctx.beginPath();
