@@ -20,7 +20,7 @@ var rui = {
   mcanv:"",
   mctx:"",
   preloaded:0,
-  preloadArray:["arrowdown.png", "palette.png", "droparrowbox.png", "play.png", "pause.png", "shortmenu.png", "folder.png", "trash.png", "art.png", "menu.png", "star.png", "next.png", "back.png", "refresh.png", "add_art.png", "close.png", "imagefile.png", "about.png", "help.png", "embedcode.png", "mic.png", "speaker.png", "zoom.png", "profile.png", "login.png", "my_purchases.png", "upgrade.png", "home.png", "duplicate.png", "trace.png", "search.png", "moviefile.png", "pdfdoc.png", "share.png", "arrowup.png"],
+  preloadArray:["arrowdown.png", "palette.png", "droparrowbox.png", "play.png", "pause.png", "shortmenu.png", "folder.png", "trash.png", "art.png", "menu.png", "star.png", "next.png", "back.png", "refresh.png", "roundplus.png", "roundx.png", "imagefile.png", "i.png", "questionmark.png", "embedcode.png", "mic.png", "speaker.png", "reticule.png", "profile.png", "power.png", "rocket.png", "home.png", "duplicate.png", "pencil.png", "magnifier.png", "moviefile.png", "pdfdoc.png", "share.png", "arrowup.png", "venn.png", "www.png", "w.png", "wand.png"],
 
   createRui:function(containerRef, barColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons,  paraFont, headFont){
   rui.ruiCreated=true;
