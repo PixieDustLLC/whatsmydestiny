@@ -2272,16 +2272,16 @@ function selectResult(id){
   rui.drawUx();
   var contact=contactsArray[id];
 
-  if(contact.name.givenName==null){contact.name.givenName="";}
+  if(contact.name.givenName===null){contact.name.givenName="";}
   updateIdValue("firstNameInput", contact.name.givenName);
 
-  if(contact.name.middleName==null){contact.name.middleName="";}
+  if(contact.name.middleName===null){contact.name.middleName="";}
   updateIdValue("middleNameInput", contact.name.middleName);
 
-  if(contact.name.familyName==null){contact.name.familyName="";}
+  if(contact.name.familyName===null){contact.name.familyName="";}
   updateIdValue("lastNameInput", contact.name.familyName);
 
-  if(contact.birthday==null){contact.birthday="";}
+  if(contact.birthday===null){contact.birthday="";}
   else{
     dbuga("contact.birthday "+contact.birthday);
     var birthdayObj=new Date(Number(contact.birthday));
@@ -2295,10 +2295,10 @@ function selectResult(id){
   updateIdValue("birthdayInput", contact.birthday);
   // convert to mmddyyyy
 
-  if(contact.emails==null){contact.emails=[];}
+  if(contact.emails===null){contact.emails=[];}
   if(contact.emails.length>0){updateIdValue("emailInput", contact.emails[0].value);}
 
-  if(contact.phoneNumbers==null){contact.phoneNumbers=[];}
+  if(contact.phoneNumbers===null){contact.phoneNumbers=[];}
   var cleaned="";
   if(contact.phoneNumbers.length>0){
     var value=contact.phoneNumbers[0].value;
