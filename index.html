@@ -2134,7 +2134,7 @@ function phoneContactFormat(num){
     for (var p=pLen; p<10; p++){
       parts.push(" ");
       }
-    var formatted="1"+parts[0]+parts[1]+parts[2]+"-"+parts[3]+parts[4]+parts[5]+"-"+parts[6]+parts[7]+parts[8]+parts[9];
+    var formatted=""+parts[0]+parts[1]+parts[2]+"-"+parts[3]+parts[4]+parts[5]+"-"+parts[6]+parts[7]+parts[8]+parts[9];
     return formatted;
   }
 var blurring=false;
@@ -2397,7 +2397,9 @@ function saveContact(){
   name.middleName = reading.middleNameInput;
   name.familyName = reading.lastNameInput;
   contact.name = name;
-  dbuga("save contact "+JSON.stringify(contact));
+  var cString=JSON.stringify(contact);
+  cString=cString.replace(/\,/g, "<br>");
+  dbuga("save contact "+cString);
   // save to device
   contact.save(contactsSaveSuccess,contactsSaveError);
   }
