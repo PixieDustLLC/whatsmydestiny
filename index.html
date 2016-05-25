@@ -2377,6 +2377,7 @@ function saveContact(){
       var phoneNumber = new ContactField('home', phoneContactFormat(reading.phoneInput), false);    
       contact.phoneNumbers.push(phoneNumber);
       }
+    contact.emails=selectedContact.emails;
     if(contact.emails.length>0){
       contact.emails[0].value=reading.emailInput;
       }
@@ -2414,9 +2415,9 @@ function saveContact(){
   name.middleName = titleCase(reading.middleNameInput);
   name.familyName = titleCase(reading.lastNameInput);
   contact.name = name;
-  var cString=JSON.stringify(contact);
-  cString=cString.replace(/\,/g, "<br>");
-  dbuga("save contact "+cString);
+  //var cString=JSON.stringify(contact);
+  //cString=cString.replace(/\,/g, "<br>");
+  //dbuga("save contact "+cString);
   // save to device
   contact.save(contactsSaveSuccess,contactsSaveError);
   }
