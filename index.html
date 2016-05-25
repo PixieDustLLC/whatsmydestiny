@@ -1911,6 +1911,7 @@ function handleEvent(evt){
     }
   }
 function clearReading(){
+  selectedContactId=-1;
         updateIdValue("firstNameInput", "");
         updateIdValue("middleNameInput", "");
         updateIdValue("lastNameInput", "");
@@ -2260,7 +2261,7 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
     {"width":8, "height":8, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "contents":[
        {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"questionmark", "label":"help"},
        {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"saveContact()", "icon":"share", "label":"save"},
-       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"refresh", "label":"refresh"}
+       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"clearReading()", "icon":"refresh", "label":"clear"}
       ]}
     ]
   }
