@@ -2377,12 +2377,23 @@ function saveContact(){
       var phoneNumber = new ContactField('home', phoneContactFormat(reading.phoneInput), false);    
       contact.phoneNumbers.push(phoneNumber);
       }
+    if(contact.emails.length>0){
+      contact.emails[0].value=reading.emailInput;
+      }
+    else{
+      var email = new ContactField('home', reading.emailInput, false);    
+      contact.emails.push(email);
+      }
     }
   else{
     var phoneNumbers = [];
     var phoneNumber = new ContactField('home', phoneContactFormat(reading.phoneInput), false);    
     phoneNumbers.push(phoneNumber);
     contact.phoneNumbers=phoneNumbers;
+    var emails = [];
+    var email = new ContactField('home', reading.emailInput, false);    
+    emails.push(email);
+    contact.emails=emails;
     }
   contact.displayName = titleCase(reading.currentNameInput);
   contact.nickname = titleCase(reading.currentNameInput);
