@@ -2223,14 +2223,14 @@ var menuKeys=["dashboard", "search", "system", "context"];
     //stack:0 = auto collapse
 var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "align":"left", "panes":[
     {"width":10, "height":23, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"wand", "label":"main"},
-       {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"pdfdoc", "label":"pdf"},
-       {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"profile", "label":"contacts"},
-       {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"venn", "label":"relationships"},
-       {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"www", "label":"website"},
-       {"x":0, "y":15, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"w", "label":"about"},
-       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"questionmark", "label":"help"},
-       {"x":0, "y":21, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"email", "label":"email"}
+       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"wand", "label":"main"},
+       {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"pdfdoc", "label":"pdf"},
+       {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"profile", "label":"contacts"},
+       {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"venn", "label":"relationships"},
+       {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"www", "label":"website"},
+       {"x":0, "y":15, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"w", "label":"about"},
+       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"questionmark", "label":"help"},
+       {"x":0, "y":21, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"email", "label":"email"}
       ]}
     ]
   },
@@ -2244,11 +2244,11 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
   },
   "search":{"selected":false, "stack":5, "buttonName":"searchToggle", "align":"right", "panes":[
     {"width":16, "height":2, "left":-17, "top":4, "selection":-1, "barColor":"", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":16, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"heading", "text":"Search in Contacts"}
+       {"x":0, "y":0, "w":16, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"searchContacts()", "icon":"magnifier", "label":"Search Contacts"}
       ]
     },
     {"width":16, "height":2, "left":1, "top":4, "selection":0, "barColor":"", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":16, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"input", "value":"search input"}
+       {"x":0, "y":0, "w":16, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"input", "func":"focusArea()", "value":"search input"}
       ]},
     {"width":34, "height":-1, "left":-17, "top":7, "selection":-1, "barColor":"", "barPad":.5, "contents":[
        {"x":0, "y":0, "w":34, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"template", "text":"a default result", "id":-1, "func":"selectResult"}
@@ -2257,9 +2257,9 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
   },
   "context":{"selected":false,  "stack":0, "buttonName":"contextToggle", "align":"right", "panes":[
     {"width":8, "height":8, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"questionmark", "label":"help"},
-       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"share", "label":"share"},
-       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "icon":"refresh", "label":"refresh"}
+       {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"questionmark", "label":"help"},
+       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"share", "label":"share"},
+       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"refresh", "label":"refresh"}
       ]}
     ]
   }
@@ -2275,8 +2275,9 @@ function selectResult(id){
 function devent(e){
   //alert(e.target.id)
   }
-
-
+function searchContacts(){
+  dbuga('searchContacts() fired');
+  }
 </script>
 <link rel = "stylesheet" type = "text/css" href = "reset.css">
 <style>

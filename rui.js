@@ -476,6 +476,10 @@ menuEvent:function(type, touches){
         var junk=eval(jString);
         console.log(obj);
         }
+      if(obj.type=="icon"){
+        var junk=eval(obj.func);
+        console.log(obj);
+        }
       }
     }// end of touchend
   },
