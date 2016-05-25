@@ -2133,7 +2133,7 @@ function hideTextarea(){
     if(uiObj[uiFocus].id.indexOf("Input")>-1){
       //dbuga(' -- dont hide');
       blurring=false;
-      return false;
+      return false;t
       }
     }
   blurring=true;
@@ -2271,13 +2271,42 @@ function selectResult(id){
   barButtons[2].selected=false;
   rui.drawUx();
   }
-
+var contactsArray=[];
 function devent(e){
   //alert(e.target.id)
   }
 function searchContacts(){
+  menus["search"].panes[0].selection=-1;
+  rui.drawUx();
   dbuga('searchContacts() fired');
+var options      = new ContactFindOptions();
+options.filter   = menus["search"].panes[1].contents[0].value;
+options.multiple = true;
+options.desiredFields = [
+navigator.contacts.fieldType.name, 
+navigator.contacts.fieldType.emails, 
+navigator.contacts.fieldType.phoneNumbers, 
+navigator.contacts.fieldType.birthday, 
+];
+var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options);
   }
+function contactsFindSuccess(contacts) {
+  dbug('Found ' + contacts.length + ' contacts.');
+  contactsArray=contacts;
+  var results=[];
+  for (var c=0; c<contactsArray.length ; c++){
+    var name=JSON.stringify(contactsArray[c].name);
+    name=name.replace(/\,/g, "<br>");
+    dbuga(name);
+    results.push(contactsArray[c].name.givenName+" "+contactsArray[c].name.middleName+" "+contactsArray[c].name.familyName)
+    }
+  rui.insertResultsMenuPane(results, "search", 2)
+};
+function contactsFindError(contactError) {
+    alert('onError!');
+};
+
 </script>
 <link rel = "stylesheet" type = "text/css" href = "reset.css">
 <style>
