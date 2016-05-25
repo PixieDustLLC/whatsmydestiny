@@ -2266,14 +2266,14 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
   }
 }
 // end of menu configs
-
+var selectedContactId=-1;
 function selectResult(id){
   console.log("selectResult "+id);
   menus["search"].selected=false;
   barButtons[2].selected=false;
   rui.drawUx();
   var contact=contactsArray[id];
-
+  selectedContactId=contact.id;
   updateIdValue("firstNameInput", contact.name.givenName);
 
   updateIdValue("firstNameInput", contact.name.givenName);
@@ -2355,9 +2355,14 @@ function contactsFindSuccess(contacts){
 function saveContact(){   
   // create a new contact object
   var contact = navigator.contacts.create();
+
   contact.displayName = reading.firstNameInput+" "+reading.lastNameInput;
-  contact.nickname = reading.currentNameInput
+  contact.nickname = reading.currentNameInput;
   //specify both to support all devices // uhoh androids
+
+  if(selectedContactId>-1){
+    contact.id=selectedContactId;
+    }
 
   // populate some fields
   var name = new ContactName();
