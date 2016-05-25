@@ -2409,7 +2409,9 @@ function contactsFindError(contactError) {
     alert('onError!');
 };
 function contactsSaveSuccess(contact) {
-    dbuga("contactsSaveSuccess");
+  dbuga("contactsSaveSuccess");
+  clearReading();// prevents double save
+
 };
 
 function contactsSaveError(contactError) {
