@@ -2266,6 +2266,8 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
   }
 }
 // end of menu configs
+
+
 function selectResult(id){
   console.log("selectResult "+id);
   menus["search"].selected=false;
@@ -2273,17 +2275,15 @@ function selectResult(id){
   rui.drawUx();
   var contact=contactsArray[id];
 
-  if(contact.name.givenName===null){contact.name.givenName="";}
   updateIdValue("firstNameInput", contact.name.givenName);
 
-  if(contact.name.middleName===null){contact.name.middleName="";}
+  updateIdValue("firstNameInput", contact.name.givenName);
+
   updateIdValue("middleNameInput", contact.name.middleName);
 
-  if(contact.name.familyName===null){contact.name.familyName="";}
   updateIdValue("lastNameInput", contact.name.familyName);
 
-  if(contact.birthday===null){contact.birthday="";}
-  else{
+  if(contact.birthday != ""){
     dbuga("contact.birthday "+contact.birthday);
     var birthdayObj=new Date(Number(contact.birthday));
     var dd=birthdayObj.getDate();
@@ -2296,10 +2296,8 @@ function selectResult(id){
   updateIdValue("birthdayInput", contact.birthday);
   // convert to mmddyyyy
 
-  if(contact.emails===null){contact.emails=[];}
   if(contact.emails.length>0){updateIdValue("emailInput", contact.emails[0].value);}
-
-  if(contact.phoneNumbers===null){contact.phoneNumbers=[];}
+  else{updateIdValue("emailInput", "");}
   var cleaned="";
   if(contact.phoneNumbers.length>0){
     var value=contact.phoneNumbers[0].value;
@@ -2311,9 +2309,7 @@ function selectResult(id){
       }
     }
   updateIdValue("phoneInput", cleaned);
-
   updateIdValue("currentNameInput", contact.nickname);
-
   userInput();
   }
 var contactsArray=[];
@@ -2337,6 +2333,16 @@ function contactsFindSuccess(contacts){
   contactsArray=contacts;
   var results=[];
   for (var c=0; c<contactsArray.length ; c++){
+
+    if(contactsArray[c].nickname===null){contactsArray[c].nickname="";}
+    if(contactsArray[c].name.givenName===null){contactsArray[c].name.givenName="";}
+    if(contactsArray[c].name.middleName===null){contactsArray[c].name.middleName="";}
+    if(contactsArray[c].name.familyName===null){contactsArray[c].name.familyName="";}
+    if(contactsArray[c].birthday===null){contactsArray[c].birthday="";}
+    if(contactsArray[c].emails===null){contactsArray[c].emails=[];}
+    if(contactsArray[c].phoneNumbers===null){contactsArray[c].phoneNumbers=[];}
+
+
     var name=JSON.stringify(contactsArray[c]);
     name=name.replace(/\,/g, "<br>");
     dbuga(name);
@@ -2380,7 +2386,7 @@ function contactsFindError(contactError) {
 ></canvas>
 <div id="menuHolder" style="position:absolute;" ></div>
 <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
-<div id="debugDiv" style="font-family:avantbook; position:absolute;  z-index:5; top:50px;"></div>
+<div id="debugDiv" style="font-family:avantbook; position:absolute;  z-index:5; top:50px; background-color:white;"></div>
 <canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
 <div id="spinner" style="display:none;"><img class="dialogimage" src="nav/please_wait.png"/></div>
 <div id="downloadpdf" style="display:none;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
