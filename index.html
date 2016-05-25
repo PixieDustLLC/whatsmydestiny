@@ -2190,11 +2190,23 @@ function updateClientLayout(){
 //ctx, bar, bg, text, iconset , circle
 //include in touch events   
 //if(target=="menu"){rui.menuEvent(type, touches);}
-
+function searchToggled(){
+  if(menus["search"].selected){
+    typed=false;
+    focusTextarea();
+    }
+  else{
+    if(uiFocus>-1){
+      if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
+      else{hideTextarea();}
+      }
+    else{hideTextarea();}
+    }
+  }
 var barButtons=[
 {"name":"systemToggle", "func":"rui.toggleMenu('system')", "selected":false, "float":"left", "labelOn":"menu.png", "labelOff":"menu.png"},
 {"name":"contextToggle", "func":"rui.toggleMenu('context')", "selected":false, "float":"right", "labelOn":"shortmenu.png", "labelOff":"shortmenu.png"},
-{"name":"searchToggle", "func":"rui.toggleMenu('search')", "selected":false, "float":"right", "labelOn":"magnifier.png", "labelOff":"magnifier.png"},
+{"name":"searchToggle", "func":"rui.toggleMenu('search'); searchToggled();", "selected":false, "float":"right", "labelOn":"magnifier.png", "labelOff":"magnifier.png"},
 {"name":"dashboardToggle", "func":"rui.toggleMenu('dashboard')", "selected":false, "float":"center", "labelOn":"panes.png", "labelOff":"panes.png"}
 ];
 var buttonNumByName={};
