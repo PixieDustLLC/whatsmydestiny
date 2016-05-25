@@ -740,11 +740,89 @@ function init(){
 
 
   $(document.body).on('keypress', function(e) {
-    var found=false;
+    e.preventDefault(); 
     lastPress=e.keyCode;
     if(lastPress==0){return false;}
-    //dbug("<b>keypress</b> lastDown:"+lastDown +" lastPress:"+lastPress+" "+String.fromCharCode(lastPress));
-    if(lastPress==13){//return
+    if(menus["search"].selected){
+      searchTyped(lastPress);
+      }
+    else{
+      appTyped(lastPress);
+      }
+    });
+
+  $(document.body).on('keydown', function(e) {
+    
+    lastDown=e.keyCode;
+    if(menus["search"].selected){
+      searchDown(e);
+      }
+    else{
+      appDown(e);
+      }
+    });
+
+
+  setupLocalStorage();
+  ////focusTextarea();
+  rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgb(255,255,255)", "icons/", "white", "red", 0.25, "rgba(255,255,0,.5)", "avantbook", "avantbold");
+  }
+function searchDown(e){
+    if(e.keyCode==8){// delete
+      e.preventDefault();
+      if(searchTyping==false){
+        menus["search"].panes[1].contents[0].value="";
+        searchTyping=true;
+        }
+      else{
+        var str=menus["search"].panes[1].contents[0].value;
+        var parts=str.split("");
+        if(parts.length>0){
+          var junk=parts.pop();
+          }
+        menus["search"].panes[1].contents[0].value=parts.join('');
+        }
+      rui.drawUx();
+      }
+    if(e.keyCode==9){//tab?
+      e.preventDefault();
+      //setUiFocus((uiFocus+1)%uiObj.length);
+      }
+
+  }
+function appDown(e){
+    if(e.keyCode==8){// delete
+      e.preventDefault();
+      found=true;
+      if(uiFocus>-1){
+        if(uiObj[uiFocus].type != "label"){
+          if(typed==false){
+            uiObj[uiFocus].value="";
+            typed=true;
+            }
+          else{
+            var str=uiObj[uiFocus].value;
+            var parts=str.split("");
+            if(parts.length>0){
+              var junk=parts.pop();
+              }
+            uiObj[uiFocus].value=parts.join('');
+            }
+          userInput();
+          }
+        }
+      }
+    if(e.keyCode==9){
+      e.preventDefault();
+      setUiFocus((uiFocus+1)%uiObj.length);
+      }
+  }
+
+function appTyped(keyCode){
+    var found=false;
+
+    //dbuga("<b>keypress</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
+    if(keyCode==13){//return
       found=true;
       e.preventDefault(); 
       setUiFocus((uiFocus+1)%uiObj.length);
@@ -753,7 +831,7 @@ function init(){
       //dbuga("found="+found);
       return false;
       }
-    var char=String.fromCharCode(lastPress);
+    var char=String.fromCharCode(keyCode);
     var type="";
     if("abcdefghijklmnopqrstuvwxyz -".indexOf(char)>-1){
       type="alpha";
@@ -787,43 +865,48 @@ function init(){
         userInput();
         }
       } 
-    });
-  $(document.body).on('keydown', function(e) {
-    lastDown=e.keyCode;
-    if(lastDown==8){// delete
-      found=true;
-      e.preventDefault(); 
-      if(uiFocus>-1){
-        if(uiObj[uiFocus].type != "label"){
-          if(typed==false){
-            uiObj[uiFocus].value="";
-            typed=true;
-            }
-          else{
-            var str=uiObj[uiFocus].value;
-            var parts=str.split("");
-            if(parts.length>0){
-              var junk=parts.pop();
-              }
-            uiObj[uiFocus].value=parts.join('');
-            }
-          userInput();
-          }
-        }
-      }
-    if(lastDown==9){
-      e.preventDefault();
-      setUiFocus((uiFocus+1)%uiObj.length);
-      }
-
-    //dbug("<b>keydown</b> lastDown:"+lastDown +" lastPress:"+lastPress+" "+String.fromCharCode(lastPress));
-    });
-  //userInput();
-
-  setupLocalStorage();
-  ////focusTextarea();
-  rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgb(255,255,255)", "icons/", "white", "red", 0.25, "avantbook", "avantbold");
   }
+var searchTyping=false;
+function searchTyped(keyCode){
+    if(searchTyping==false){
+      searchTyping=true;
+      menus["search"].panes[1].contents[0].value="";
+      }
+    var found=false;
+
+    //dbug("<b>searchTyped</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
+    if(keyCode==13){//return
+      searchTyping=false;
+      found=true;
+      console.log('return');
+      }
+    if(found){
+      //dbuga("found="+found);
+      return false;
+      }
+    var char=String.fromCharCode(keyCode);
+    var type="";
+    if("abcdefghijklmnopqrstuvwxyz -".indexOf(char)>-1){
+      type="alpha";
+      }
+    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(char)>-1){
+      type="alpha";
+      char=char.toLowerCase();
+      }
+    if("0123456789".indexOf(char)>-1){
+      type="numeric";
+      }
+    if("'./=`!@#$%^&*+?_{|}~".indexOf(char)>-1){
+      type="char";
+      }
+    if(type=="alpha"){
+      menus["search"].panes[1].contents[0].value+=char;
+      }
+  
+    rui.drawUx();
+    //dbuga("searchTyped "+type+" "+char);
+  }
+
 var lastDown=0;
 var lastPress=0;
 function roundRect(ctx, x, y, w, h, rad, lineWidth, strokeStyle, fillStyle, label, labelColor, font, iconAlpha){
@@ -2112,7 +2195,7 @@ var barButtons=[
 {"name":"systemToggle", "func":"rui.toggleMenu('system')", "selected":false, "float":"left", "labelOn":"menu.png", "labelOff":"menu.png"},
 {"name":"contextToggle", "func":"rui.toggleMenu('context')", "selected":false, "float":"right", "labelOn":"shortmenu.png", "labelOff":"shortmenu.png"},
 {"name":"searchToggle", "func":"rui.toggleMenu('search')", "selected":false, "float":"right", "labelOn":"magnifier.png", "labelOff":"magnifier.png"},
-{"name":"dashboardToggle", "func":"rui.toggleMenu('dashboard')", "selected":false, "float":"center", "labelOn":"arrowup.png", "labelOff":"arrowdown.png"}
+{"name":"dashboardToggle", "func":"rui.toggleMenu('dashboard')", "selected":false, "float":"center", "labelOn":"panes.png", "labelOff":"panes.png"}
 ];
 var buttonNumByName={};
 for(var b=0; b<barButtons.length; b++){
@@ -2142,15 +2225,22 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
   "dashboard":{
     "selected":false,  "stack":2, "buttonName":"dashboardToggle", "align":"center", "panes":[
     {"width":42, "height":8, "left":-21, "top":4, "selection":-1, "barColor":"", "barPad":.5, "contents":[
-       {"x":21, "y":0, "w":42, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"heading", "text":"Click a field for more info"},
+       {"x":0, "y":0, "w":42, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"heading", "text":"Click a field for more info"},
        {"x":0, "y":0, "w":42, "h":6, "l":0, "r":0, "t":0, "b":0, "type":"paragraph", "text":""}
       ]}
     ]
   },
-  "search":{"selected":false, "stack":0, "buttonName":"searchToggle", "align":"right", "panes":[
-    {"width":16, "height":2, "left":-17, "top":4, "selection":-1, "barColor":"", "barPad":.5, "contents":[]},
-    {"width":16, "height":2, "left":1, "top":4, "selection":-1, "barColor":"", "barPad":.5, "contents":[]},
-    {"width":34, "height":-1, "left":-17, "top":7, "selection":-1, "barColor":"", "barPad":.5, "contents":[]}
+  "search":{"selected":false, "stack":5, "buttonName":"searchToggle", "align":"right", "panes":[
+    {"width":16, "height":2, "left":-17, "top":4, "selection":-1, "barColor":"", "barPad":.5, "contents":[
+       {"x":0, "y":0, "w":16, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"heading", "text":"Search in Contacts"}
+      ]
+    },
+    {"width":16, "height":2, "left":1, "top":4, "selection":0, "barColor":"", "barPad":.5, "contents":[
+       {"x":0, "y":0, "w":16, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"input", "value":"search input"}
+      ]},
+    {"width":34, "height":-1, "left":-17, "top":7, "selection":-1, "barColor":"", "barPad":.5, "contents":[
+       {"x":0, "y":0, "w":34, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"template", "text":"a default result", "id":-1, "func":"selectResult"}
+      ]}
     ]
   },
   "context":{"selected":false,  "stack":0, "buttonName":"contextToggle", "align":"right", "panes":[
@@ -2163,7 +2253,12 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
   }
 }
 // end of menu configs
-
+function selectResult(id){
+  console.log("selectResult "+id);
+  menus["search"].selected=false;
+  barButtons[2].selected=false;
+  rui.drawUx();
+  }
 
 function devent(e){
   //alert(e.target.id)

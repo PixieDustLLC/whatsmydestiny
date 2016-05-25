@@ -1,5 +1,8 @@
 var rui = {
   found:-1,
+  menuFound:-1,
+  paneFound:-1,
+  contentFound:-1,
   touching:false,
   iconPath:"",
   paraFont:"Arial",
@@ -10,6 +13,7 @@ var rui = {
   widePx:0,
   barPad:.75,
   iconPad:0,
+  selectColor:"#888",
   barColor:"green",
   bgColor:"yellow",
   textColor:"black",
@@ -21,9 +25,9 @@ var rui = {
   mcanv:"",
   mctx:"",
   preloaded:0,
-  preloadArray:["arrowdown.png", "arrowup.png", "art.png", "back.png", "cart.png", "droparrowbox.png", "duplicate.png", "email.png", "embedcode.png", "folder.png", "home.png", "i.png", "imagefile.png", "magnifier.png", "menu.png", "mic.png", "moviefile.png", "next.png", "palette.png", "pause.png", "pdfdoc.png", "pencil.png", "play.png", "power.png", "profile.png", "questionmark.png", "refresh.png", "reticule.png", "rocket.png", "roundplus.png", "roundx.png", "share.png", "shortmenu.png", "speaker.png", "star.png", "trash.png", "venn.png", "w.png", "wand.png", "www.png"],
+  preloadArray:["arrowdown.png", "arrowup.png", "art.png", "back.png", "cart.png", "droparrowbox.png", "duplicate.png", "email.png", "embedcode.png", "folder.png", "home.png", "i.png", "imagefile.png", "magnifier.png", "menu.png", "mic.png", "moviefile.png", "next.png", "palette.png", "panes.png", "pause.png", "pdfdoc.png", "pencil.png", "play.png", "power.png", "profile.png", "questionmark.png", "refresh.png", "reticule.png", "rocket.png", "roundplus.png", "roundx.png", "share.png", "shortmenu.png", "speaker.png", "star.png", "trash.png", "venn.png", "w.png", "wand.png", "www.png"],
 
-  createRui:function(containerRef, barColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, iconPad, paraFont, headFont){
+  createRui:function(containerRef, barColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, iconPad, selectColor, paraFont, headFont){
   rui.ruiCreated=true;
   rui.barColor=barColor;
   rui.surroundColor=surroundColor;
@@ -32,6 +36,7 @@ var rui = {
   rui.circleColor=circleColor;
   rui.iconPath=iconPath;
   rui.iconPad=iconPad;
+  rui.selectColor=selectColor;
   rui.paraFont=paraFont;
   rui.headFont=headFont;
   var htmlString="";
@@ -143,12 +148,27 @@ var rui = {
   rui.mcanv.height=Math.floor(maxHeight*rui.g);
   },
 
-  drawMenus:function(){
-    rui.mctx.fillStyle=rui.surroundColor;
+insertResultsMenuPane:function(results, menuName, paneNum){
+  var template=menus[menuName].panes[paneNum].contents[0];
+  var pane=menus[menuName].panes[paneNum];
+  menus[menuName].panes[paneNum].contents=[];
+  menus[menuName].panes[paneNum].contents.push(template);
+  for (var r=0; r<results.length; r++){
+    var newResult=JSON.parse(JSON.stringify(template));
+    newResult.y=template.h*r;
+    newResult.text=results[r];
+    newResult.type="result";
+    newResult.id=r;
+    menus[menuName].panes[paneNum].contents.push(newResult);
+    }
+  rui.drawMenus();
+  //console.log(template);
+  },
+
+drawMenus:function(){
+  rui.mctx.fillStyle=rui.surroundColor;
  
-    for(var m=0; m<menuKeys.length; m++){
-
-
+  for(var m=0; m<menuKeys.length; m++){
     var panes=menus[menuKeys[m]].panes;
     //dbuga(panes.length);
     if((menus[menuKeys[m]].selected)&&(panes.length>0)){
@@ -198,17 +218,17 @@ var rui = {
 
 
         for (var c=0; c<contents.length; c++){
-          menus[menuKeys[m]].panes[p].contents[c].l=px+rui.g*contents[c].x;
-          menus[menuKeys[m]].panes[p].contents[c].r=px+rui.g*contents[c].x+rui.g*contents[c].w;
-          menus[menuKeys[m]].panes[p].contents[c].t=py+rui.g*contents[c].y;
-          menus[menuKeys[m]].panes[p].contents[c].b=py+rui.g*contents[c].y+rui.g*contents[c].h;
-          if(panes[p].selection==c){
-            rui.mctx.fillStyle="rgba(0,0,0,.2)";
-        rui.mctx.shadowColor = '#888';
-        rui.mctx.shadowBlur = rui.g/2;
-
-            rui.mctx.fillRect(px+rui.g*contents[c].x, py+rui.g*contents[c].y, rui.g*contents[c].w, rui.g*contents[c].h);
-
+          if(contents[c].type != "template"){// ignore template
+            menus[menuKeys[m]].panes[p].contents[c].l=px+rui.g*contents[c].x;
+            menus[menuKeys[m]].panes[p].contents[c].r=px+rui.g*contents[c].x+rui.g*contents[c].w;
+            menus[menuKeys[m]].panes[p].contents[c].t=py+rui.g*contents[c].y;
+            menus[menuKeys[m]].panes[p].contents[c].b=py+rui.g*contents[c].y+rui.g*contents[c].h;
+            if(panes[p].selection==c){
+              rui.mctx.fillStyle=rui.selectColor;
+              rui.mctx.shadowColor = '#888';
+              rui.mctx.shadowBlur = rui.g/2;
+              rui.mctx.fillRect(px+rui.g*contents[c].x, py+rui.g*contents[c].y, rui.g*contents[c].w, rui.g*contents[c].h);
+              }
             }
           if(contents[c].type=="color"){
             rui.mctx.shadowBlur = 0;
@@ -226,6 +246,7 @@ var rui = {
 
             rui.roundRect(rui.mctx, px+rui.g*contents[c].x+pad, py+rui.g*contents[c].y+pad, rui.g*contents[c].w-pad*2, rui.g*contents[c].h-pad*2, rui.g/4, true, true);
             }// end of type color
+
           if(contents[c].type=="icon"){
             var cPad=rui.g*rui.iconPad;
             rui.mctx.shadowBlur = 0;
@@ -251,16 +272,37 @@ var rui = {
               }
             }// end of type icon
 
-          if(contents[c].type=="heading"){
+          if(contents[c].type=="input"){
             var cPad=rui.g/2;
-    rui.mctx.shadowColor = 'rgba(255,255,255,.5)';
-    rui.mctx.shadowBlur = rui.g;
+            rui.mctx.shadowColor = 'rgba(255,255,255,.5)';
+            rui.mctx.shadowBlur = rui.g;
+            rui.mctx.fillStyle=rui.textColor;
+            rui.mctx.textBaseline="middle";
+            rui.mctx.textAlign="right";
+            rui.mctx.font=rui.g*1.2+"px "+rui.headFont;
+            rui.mctx.fillText(contents[c].value, px+rui.g*(contents[c].x+contents[c].w), py+rui.g*(contents[c].y+contents[c].h/2));
+            }// end of type heading
 
+          if(contents[c].type=="result"){
+            var cPad=rui.g/2;
+            rui.mctx.shadowColor = 'rgba(255,255,255,.5)';
+            rui.mctx.shadowBlur = rui.g;
             rui.mctx.fillStyle=rui.textColor;
             rui.mctx.textBaseline="middle";
             rui.mctx.textAlign="center";
             rui.mctx.font=rui.g*1.2+"px "+rui.headFont;
-            rui.mctx.fillText(contents[c].text, px+rui.g*(contents[c].x), py+rui.g*(contents[c].y+contents[c].h/2));
+            rui.mctx.fillText(contents[c].text, px+rui.g*(contents[c].x+contents[c].w/2), py+rui.g*(contents[c].y+contents[c].h/2));
+            }// end of type result
+
+          if(contents[c].type=="heading"){
+            var cPad=rui.g/2;
+            rui.mctx.shadowColor = 'rgba(255,255,255,.5)';
+            rui.mctx.shadowBlur = rui.g;
+            rui.mctx.fillStyle=rui.textColor;
+            rui.mctx.textBaseline="middle";
+            rui.mctx.textAlign="center";
+            rui.mctx.font=rui.g*1.2+"px "+rui.headFont;
+            rui.mctx.fillText(contents[c].text, px+rui.g*(contents[c].x+contents[c].w/2), py+rui.g*(contents[c].y+contents[c].h/2));
             }// end of type heading
 
           if(contents[c].type=="paragraph"){
@@ -359,19 +401,20 @@ roundRect:function(ctx, x, y, width, height, radius, fill, stroke) {
   },
 
   geometryInterval:"",
+
   geometryTick:function(){
     rui.geometry();
   },
-  menuEvent:function(type, touches){
-  //dbuga('menuEvent');
-  if(touches.length>2){dbug('');}
 
+
+menuEvent:function(type, touches){
+  if(touches.length>2){dbug('');}
+  if(type=="touchstart"){dbug('');}
   if(((type=="touchstart")||(type=="touchmove"))&&(touches.length==1)){
-    //console.log(type);
     rui.touching=true;
     var x=touches[0].pageX;
     var y=touches[0].pageY;
-    //dbuga(x+" "+y);
+    //dbuga('menuEvent' +type+" x:"+x+" y:"+y);
     
     var found=-1;
     for (var b=0; b<barButtons.length; b++){
@@ -384,23 +427,25 @@ roundRect:function(ctx, x, y, width, height, radius, fill, stroke) {
       var junk=eval(barButtons[found].func);
       //dbuga(barButtons[found].func);
       }
-    var menuFound=-1;
-    var paneFound=-1;
-    var contentFound=-1;
+    rui.menuFound=-1;
+    rui.paneFound=-1;
+    rui.contentFound=-1;
     for (var m=0; m<menuKeys.length; m++){
-
-      var panes=menus[menuKeys[m]].panes;
-      for (var p=0; p<panes.length; p++){
-        var contents=panes[p].contents;
-        for (var c=0; c<contents.length; c++){
+      if(menus[menuKeys[m]].selected){
+        var panes=menus[menuKeys[m]].panes;
+        for (var p=0; p<panes.length; p++){
+          var contents=panes[p].contents;
+          for (var c=0; c<contents.length; c++){
           
-          if((x>contents[c].l)&&(x<contents[c].r)&&(y>contents[c].t)&&(y<contents[c].b)){
-            if((contents[c].type != "heading")&&(contents[c].type != "paragraph")){
-              menuFound=m;
-              paneFound=p;
-              contentFound=c;
-              menus[menuKeys[m]].panes[p].selection=c;
-              rui.drawUx();
+            if((x>contents[c].l)&&(x<contents[c].r)&&(y>contents[c].t)&&(y<contents[c].b)){
+              if((contents[c].type != "heading")&&(contents[c].type != "paragraph")){
+                rui.menuFound=m;
+                rui.paneFound=p;
+                rui.contentFound=c;
+                menus[menuKeys[rui.menuFound]].panes[rui.paneFound].selection=rui.contentFound;
+                rui.drawUx();
+                //dbuga("menuFound:"+rui.menuFound+" paneFound:"+rui.paneFound+" contentFound:"+rui.contentFound);
+                }
               }
             }
           }
@@ -410,21 +455,26 @@ roundRect:function(ctx, x, y, width, height, radius, fill, stroke) {
     }// end of touchstart
   if((type=="touchend")||(type=="mouseup")){  
     rui.touching=false;
- 
     //console.log('touchend');
     for (var m=0; m<menuKeys.length; m++){// hide exclusive menus
       if(menus[menuKeys[m]].stack==0){
         var buttonNum=buttonNumByName[menus[menuKeys[m]].buttonName];
         if(rui.found != buttonNum){// dont close if it's this menus button
-          //dbuga('FORCE CLOSE buttonName='+menus[menuKeys[m]].buttonName + 'buttonNum='+buttonNum);
+          //dbuga('FORCE CLOSE buttonName='+menus[menuKeys[m]].buttonName + ' buttonNum='+buttonNum);
           menus[menuKeys[m]].selected=false;
           barButtons[buttonNum].selected=false;
           rui.drawUx();
           }
         }
       }
-    
-
+    if((rui.menuFound>-1)&&(rui.paneFound>-1)&&(rui.contentFound>-1)){
+      var obj=menus[menuKeys[rui.menuFound]].panes[rui.paneFound].contents[rui.contentFound];
+      if(obj.type=="result"){
+        var jString=obj.func+'('+obj.id+')';
+        var junk=eval(jString);
+        console.log(obj);
+        }
+      }
     }// end of touchend
   },
   loadedImg:function(id){
@@ -437,7 +487,4 @@ roundRect:function(ctx, x, y, width, height, radius, fill, stroke) {
       window.requestAnimationFrame(tick);
     }
   }
-
-
-
 };
