@@ -2192,6 +2192,7 @@ function updateClientLayout(){
 //if(target=="menu"){rui.menuEvent(type, touches);}
 function searchToggled(){
   if(menus["search"].selected){
+    searchTyping=false;
     typed=false;
     focusTextarea();
     }
@@ -2248,7 +2249,7 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
       ]
     },
     {"width":16, "height":2, "left":1, "top":4, "selection":0, "barColor":"", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":16, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"input", "func":"focusTextarea(); searchTyping=false;", "value":"search input"}
+       {"x":0, "y":0, "w":16, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"input", "func":"focusTextarea(); searchTyping=false; menus['search'].panes[1].contents[0].value='';", "value":"search input"}
       ]},
     {"width":34, "height":-1, "left":-17, "top":7, "selection":-1, "barColor":"", "barPad":.5, "contents":[
        {"x":0, "y":0, "w":34, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"template", "text":"a default result", "id":-1, "func":"selectResult"}
