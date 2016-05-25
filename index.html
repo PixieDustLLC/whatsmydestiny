@@ -2326,13 +2326,8 @@ function searchContacts(){
 var options      = new ContactFindOptions();
 options.filter   = menus["search"].panes[1].contents[0].value;
 options.multiple = true;
-options.desiredFields = [
-navigator.contacts.fieldType.name, 
-navigator.contacts.fieldType.emails, 
-navigator.contacts.fieldType.phoneNumbers, 
-navigator.contacts.fieldType.birthday, 
-];
-var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+options.desiredFields = [];
+var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.nickname];
 navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options);
   }
 function contactsFindSuccess(contacts) {
@@ -2340,10 +2335,12 @@ function contactsFindSuccess(contacts) {
   contactsArray=contacts;
   var results=[];
   for (var c=0; c<contactsArray.length ; c++){
-    var name=JSON.stringify(contactsArray[c].name);
+    var name=JSON.stringify(contactsArray[c]);
     name=name.replace(/\,/g, "<br>");
     dbuga(name);
-    results.push(contactsArray[c].name.givenName+" "+contactsArray[c].name.middleName+" "+contactsArray[c].name.familyName)
+    var nameLabel=contactsArray[c].name.givenName+" "+contactsArray[c].name.middleName+" "+contactsArray[c].name.familyName;
+    if(contactsArray[c].nickname !=""){nameLabel+=" - "+contactsArray[c].nickname;}
+    results.push(nameLabel);
     }
   rui.insertResultsMenuPane(results, "search", 2)
 };
