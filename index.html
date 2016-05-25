@@ -2259,14 +2259,13 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
   "context":{"selected":false,  "stack":0, "buttonName":"contextToggle", "align":"right", "panes":[
     {"width":8, "height":8, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "contents":[
        {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"questionmark", "label":"help"},
-       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"share", "label":"share"},
+       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"saveContact()", "icon":"share", "label":"save"},
        {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"refresh", "label":"refresh"}
       ]}
     ]
   }
 }
 // end of menu configs
-
 
 function selectResult(id){
   console.log("selectResult "+id);
@@ -2284,7 +2283,7 @@ function selectResult(id){
   updateIdValue("lastNameInput", contact.name.familyName);
 
   if(contact.birthday != ""){
-    dbuga("contact.birthday "+contact.birthday);
+    //dbuga("contact.birthday "+contact.birthday);
     var birthdayObj=new Date(Number(contact.birthday));
     var dd=birthdayObj.getDate();
     if(dd<10){dd="0"+dd;}
@@ -2319,7 +2318,7 @@ function devent(e){
 function searchContacts(){
   menus["search"].panes[0].selection=-1;
   rui.drawUx();
-  dbuga('searchContacts() fired');
+  //dbuga('searchContacts() fired');
 var options      = new ContactFindOptions();
 options.filter   = menus["search"].panes[1].contents[0].value;
 options.multiple = true;
@@ -2329,7 +2328,7 @@ navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options)
   }
 function contactsFindSuccess(contacts){
   menus['search'].panes[2].selection=-1;
-  dbug('Found ' + contacts.length + ' contacts.');
+  //dbug('Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var results=[];
   for (var c=0; c<contactsArray.length ; c++){
@@ -2343,19 +2342,45 @@ function contactsFindSuccess(contacts){
     if(contactsArray[c].phoneNumbers===null){contactsArray[c].phoneNumbers=[];}
 
 
-    var name=JSON.stringify(contactsArray[c]);
-    name=name.replace(/\,/g, "<br>");
-    dbuga(name);
+    //var name=JSON.stringify(contactsArray[c]);
+    //name=name.replace(/\,/g, "<br>");
+    //dbuga(name);
     var nameLabel=contactsArray[c].name.givenName+" "+contactsArray[c].name.middleName+" "+contactsArray[c].name.familyName;
     if(contactsArray[c].nickname !=""){nameLabel+=" - "+contactsArray[c].nickname;}
     results.push(nameLabel);
     }
   rui.insertResultsMenuPane(results, "search", 2)
 };
+
+function saveContact(){   
+  // create a new contact object
+  var contact = navigator.contacts.create();
+  contact.displayName = reading.firstNameInput+" "+reading.lastNameInput;
+  contact.nickname = reading.currentNameInput
+  //specify both to support all devices // uhoh androids
+
+  // populate some fields
+  var name = new ContactName();
+  name.givenName =  reading.firstNameInput;
+  name.middleName = reading.middleNameInput;
+  name.familyName = reading.lastNameInput;
+  contact.name = name;
+
+  // save to device
+  contact.save(contactsSaveSuccess,contactsSaveError);
+  }
+
+
 function contactsFindError(contactError) {
     alert('onError!');
 };
+function contactsSaveSuccess(contact) {
+    dbuga("contactsSaveSuccess");
+};
 
+function contactsSaveError(contactError) {
+    alert("Error = " + contactError.code);
+};
 </script>
 <link rel = "stylesheet" type = "text/css" href = "reset.css">
 <style>
