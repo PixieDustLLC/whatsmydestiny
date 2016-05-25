@@ -2127,6 +2127,16 @@ function phoneFormat(num){
     var formatted="("+parts[0]+parts[1]+parts[2]+") "+parts[3]+parts[4]+parts[5]+"-"+parts[6]+parts[7]+parts[8]+parts[9];
     return formatted;
   }
+function phoneContactFormat(num){
+    if(typeof num=="undefined"){num="";}
+    var parts=num.split('');
+    var pLen=parts.length;
+    for (var p=pLen; p<10; p++){
+      parts.push(" ");
+      }
+    var formatted=""+parts[0]+parts[1]+parts[2]+"-"+parts[3]+parts[4]+parts[5]+"-"+parts[6]+parts[7]+parts[8]+parts[9];
+    return formatted;
+  }
 var blurring=false;
 function hideTextarea(){
   //dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
@@ -2361,9 +2371,14 @@ function saveContact(){
   if(selectedContactId>-1){
     contact.phoneNumbers=selectedContact.phoneNumbers;
     if(contact.phoneNumbers.length>0){
-      contact.phoneNumbers[0].value=phoneFormat(reading.phoneInput);
+      contact.phoneNumbers[0].value=phoneContactFormat(reading.phoneInput);
       }
-   }
+    }
+  else{
+    var phoneNumbers = [];
+    phoneNumbers[0] = new ContactField('home', phoneContactFormat(reading.phoneInput), false);    
+    contact.phoneNumbers=phoneNumbers;
+    }
   contact.displayName = reading.firstNameInput+" "+reading.lastNameInput;
   contact.nickname = reading.currentNameInput;
   //specify both to support all devices // uhoh androids
@@ -2371,7 +2386,6 @@ function saveContact(){
   if(selectedContactId>-1){
     contact.id=selectedContactId;
     }
-  contact.phoneNumbers=phoneFormat(reading.phoneInput)
   // populate some fields
   var name = new ContactName();
   name.givenName =  reading.firstNameInput;
