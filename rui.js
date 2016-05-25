@@ -476,7 +476,7 @@ menuEvent:function(type, touches){
         var junk=eval(jString);
         console.log(obj);
         }
-      if(obj.type=="icon"){
+      if((obj.type=="icon")||(obj.type=="input")){
         var junk=eval(obj.func);
         console.log(obj);
         }
