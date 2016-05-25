@@ -2384,18 +2384,24 @@ function saveContact(){
     phoneNumbers.push(phoneNumber);
     contact.phoneNumbers=phoneNumbers;
     }
-  contact.displayName = reading.currentNameInput;
-  contact.nickname = reading.currentNameInput;
+  contact.displayName = titleCase(reading.currentNameInput);
+  contact.nickname = titleCase(reading.currentNameInput);
   //specify both to support all devices // uhoh androids
 
   if(selectedContactId>-1){
     contact.id=selectedContactId;
     }
+  if(reading.birthdayInput.length==8){
+    var bd=reading.birthdayInput;
+    var birthDate=new Date(bd.substring(4,8), Number(bd.substring(0,2)) - 1, bd.substring(2,4));
+    contact.birthday=birthDate;
+    }
+  
   // populate some fields
   var name = new ContactName();
-  name.givenName =  reading.firstNameInput;
-  name.middleName = reading.middleNameInput;
-  name.familyName = reading.lastNameInput;
+  name.givenName =  titleCase(reading.firstNameInput);
+  name.middleName = titleCase(reading.middleNameInput);
+  name.familyName = titleCase(reading.lastNameInput);
   contact.name = name;
   var cString=JSON.stringify(contact);
   cString=cString.replace(/\,/g, "<br>");
