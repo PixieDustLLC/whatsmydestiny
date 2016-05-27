@@ -2239,7 +2239,7 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
        {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"pdfdoc", "label":"pdf"},
        {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"profile", "label":"contacts"},
        {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"venn", "label":"relationships"},
-       {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"www", "label":"website"},
+       {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openWebsite()", "icon":"www", "label":"website"},
        {"x":0, "y":15, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"w", "label":"about"},
        {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"questionmark", "label":"help"},
        {"x":0, "y":21, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"email", "label":"email"}
@@ -2279,6 +2279,10 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
 // end of menu configs
 var selectedContactId=-1;
 var selectedContact={};
+
+function openWebsite(){
+  var ref = window.open("http://www.whatsmydestiny.com", "_system");
+  }
 function selectResult(id){
   console.log("selectResult "+id);
   menus["search"].selected=false;
