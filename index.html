@@ -70,29 +70,6 @@ function init(){
         "label":"",
         "value":"",
         "focus":0}
-        ,{
-        "id":"currentNameInput", "focusable":true,
-        "limit":40, "type":"alpha", 
-        "w":12, "h":rowCells, 
-        "l":19, "t":1, 
-        "r":31, "b":2, 
-        "down":1, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
-        "label":"Current Name",
-        "value":"",
-        "focus":0}
-        ,{
-        "id":"phoneInput", "focusable":true,
-        "limit":20, "type":"numericphone", 
-        "w":12, "h":rowCells, 
-        "l":19, "t":3, 
-        "r":31, "b":4, 
-        "down":1, "up":-1,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
-        "label":"Phone",
-        "value":"",
-        "focus":0}
-
          ,{
         "id":"firstNameInput", "focusable":true,
         "limit":20, "type":"alpha", 
@@ -137,17 +114,42 @@ function init(){
         "label":"Email",
         "value":"",
         "focus":0}
+
+        ,{
+        "id":"currentNameInput", "focusable":true,
+        "limit":40, "type":"alpha", 
+        "w":12, "h":rowCells, 
+        "l":19, "t":1, 
+        "r":31, "b":2, 
+        "down":1, "up":-2,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Current Name",
+        "value":"",
+        "focus":0}
+        ,{
+        "id":"phoneInput", "focusable":true,
+        "limit":20, "type":"numericphone", 
+        "w":12, "h":rowCells, 
+        "l":19, "t":2, 
+        "r":31, "b":3, 
+        "down":1, "up":-1,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Phone",
+        "value":"",
+        "focus":0}
         ,{
         "id":"birthdayInput", "focusable":true,
         "limit":8, "type":"numericslash", 
-        "w":11, "h":rowCells, 
-        "l":2, "t":5, 
-        "r":13, "b":6, 
-        "down":3, "up":-1,
+        "w":12, "h":rowCells, 
+        "l":19, "t":3, 
+        "r":31, "b":4, 
+        "down":1, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Birthday",
         "value":"",
         "focus":0}
+
+
         ,{
         "id":"dayOfWeek", "focusable":false,
         "limit":10, "type":"label", 
@@ -768,6 +770,7 @@ function init(){
   rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgb(255,255,255)", "icons/", "white", "red", 0.25, "rgba(255,255,0,.5)", "avantbook", "avantbold");
   }
 function searchDown(e){
+  dbuga('searchDown '+e.keyCode);
     if(e.keyCode==8){// delete
       e.preventDefault();
       if(searchTyping==false){
@@ -787,6 +790,10 @@ function searchDown(e){
     if(e.keyCode==9){//tab?
       e.preventDefault();
       //setUiFocus((uiFocus+1)%uiObj.length);
+      }
+    if(e.keyCode==13){//cr
+      e.preventDefault();
+      searchContacts();
       }
 
   }
