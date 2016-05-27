@@ -1372,7 +1372,7 @@ function tick(timestamp){
   
   //canv.width=viewportWidth;
   drawGrid();
-  
+  drawUi();
 
   frames++;
   window.requestAnimationFrame(tick);
@@ -1444,9 +1444,11 @@ function drawGrid(){
     ctx.lineTo(cellsAcross*g, y*g);
     }
   ctx.stroke();
+  }
+
+function drawUi(){
   var focusPad=.1*g;
   var blurPad=.05*g;
-
   for (var u=0; u<uiObj.length; u++){
     //console.log(u+" "+uiObj[u]['id']);
     //if((uiObj[u]['id']=="findInput")&&(hideButtons)){u++;}
