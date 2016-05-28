@@ -143,7 +143,7 @@ function init(){
         "w":12, "h":rowCells, 
         "l":19, "t":3, 
         "r":31, "b":4, 
-        "down":-6, "up":-1,
+        "down":-5, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Birthday",
         "value":"",
@@ -770,7 +770,7 @@ function init(){
   rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgb(255,255,255)", "icons/", "white", "red", 0.25, "rgba(255,255,0,.5)", "avantbook", "avantbold");
   }
 function searchDown(e){
-  dbuga('searchDown '+e.keyCode);
+  //dbuga('searchDown '+e.keyCode);
     if(e.keyCode==8){// delete
       e.preventDefault();
       if(searchTyping==false){
@@ -2250,7 +2250,7 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
        {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"venn", "label":"relationships"},
        {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openWebsite()", "icon":"www", "label":"website"},
        {"x":0, "y":15, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"w", "label":"about"},
-       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"questionmark", "label":"help"},
+       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openHelp()", "icon":"questionmark", "label":"help"},
        {"x":0, "y":21, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"email", "label":"email"}
       ]}
     ]
@@ -2278,7 +2278,7 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
   },
   "context":{"selected":false,  "stack":0, "buttonName":"contextToggle", "align":"right", "panes":[
     {"width":8, "height":8, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"questionmark", "label":"help"},
+       {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openHelp()", "icon":"questionmark", "label":"help"},
        {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"saveContact()", "icon":"disk", "label":"save"},
        {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"clearReading(); menus['context'].panes[0].selection=-1;", "icon":"blank", "label":"clear"}
       ]}
@@ -2289,6 +2289,9 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
 var selectedContactId=-1;
 var selectedContact={};
 
+function openHelp(){
+  var ref = window.open("http://www.whatsmydestiny.com/2016/05/28/support/", "_system");
+  }
 function openWebsite(){
   var ref = window.open("http://www.whatsmydestiny.com", "_system");
   }
