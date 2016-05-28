@@ -461,6 +461,7 @@ menuEvent:function(type, touches){
     for (var m=0; m<menuKeys.length; m++){// hide exclusive menus
       if(menus[menuKeys[m]].stack==0){
         var buttonNum=buttonNumByName[menus[menuKeys[m]].buttonName];
+        menus[menuKeys[m]].panes[0].selection=-1;
         if(rui.found != buttonNum){// dont close if it's this menus button
           //dbuga('FORCE CLOSE buttonName='+menus[menuKeys[m]].buttonName + ' buttonNum='+buttonNum);
           menus[menuKeys[m]].selected=false;
