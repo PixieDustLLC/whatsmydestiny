@@ -1669,7 +1669,7 @@ function blankContext(ctx, color, grid, across, down){
   ctx.stroke();  
 */
   }
-function detailReport(){
+function metadataReport(){
   rCtx.fillStyle="white";
   rCtx.fillRect(0,0,reportWidth, reportHeight);
   var pdfGrid=7.5;
@@ -1779,10 +1779,7 @@ function datasheetReport(){
   pdfToMethod(doc, cleaned+'_'+'reading');
   }
 function summaryReport(){
-  
-  }
-function metadataReport(){
-          
+  //sample code from datasheet report
   var data = canv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
   // Convert the data to binary form
   var imgData = atob(data);
@@ -1801,7 +1798,7 @@ function metadataReport(){
   }
 function pdfToMethod(doc, reportName){
   //var defaultMethod=pdfMethod[platform][browser];
-  var usePdfMethod="server";
+  var usePdfMethod="div"; 
   //if(user.pdfMethod != "default"){usePdfMethod=user.pdfMethod;}
   if(usePdfMethod=="server"){pdfToServer(doc, reportName);}
   if(usePdfMethod=="save"){pdfToSave(doc, reportName);}
