@@ -1384,6 +1384,9 @@ function setUiFocus(toNum){
   if(uiFocus != -1){setMetaFocus(toNum); }
   }
 function setMetaFocus(toNum){
+  if(menus["dashboard"].selected==false){
+    rui.toggleMenu('dashboard');
+    }
   if(inArray(uiObj[toNum]['id'], Object.keys(metaByFieldValue))){
     metaFocus=toNum;
     updateMeta();
@@ -2313,15 +2316,14 @@ var menuKeys=["dashboard", "search", "system", "context"];
     //sorts stackers, 
     //stack:0 = auto collapse
 var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "align":"left", "panes":[
-    {"width":10, "height":23, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "contents":[
+    {"width":10, "height":20, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "contents":[
        {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"wand", "label":"main"},
        {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"pdfdoc", "label":"pdf"},
        {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"profile", "label":"contacts"},
-       {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"venn", "label":"relationships"},
-       {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openWebsite()", "icon":"www", "label":"website"},
-       {"x":0, "y":15, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"w", "label":"about"},
-       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openHelp()", "icon":"questionmark", "label":"help"},
-       {"x":0, "y":21, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"email", "label":"email"}
+       {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openWebsite()", "icon":"www", "label":"website"},
+       {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openAbout()", "icon":"i", "label":"about"},
+       {"x":0, "y":15, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openHelp()", "icon":"questionmark", "label":"help"},
+       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"email", "label":"email"}
       ]}
     ]
   },
@@ -2359,6 +2361,9 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
 var selectedContactId=-1;
 var selectedContact={};
 
+function openAbout(){
+  // show modal link panel
+  }
 function openHelp(){
   var ref = window.open("http://www.whatsmydestiny.com/2016/05/28/support/", "_system");
   }
