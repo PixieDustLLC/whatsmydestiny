@@ -1051,23 +1051,23 @@ function userInput(){
     reading.birthpath=reduceNumStr(""+reading.birthSum, "reading.birthSum");
 
 
-  reading.firstNameSum=sumArray(strToNums(valueOfId("firstNameInput")));
-  reading.firstNameVal=reduceNumStr(""+reading.firstNameSum, "reading.firstNameSum");
-  reading.middleNameSum=sumArray(strToNums(valueOfId("middleNameInput")));
-  reading.middleNameVal=reduceNumStr(""+reading.middleNameSum, "reading.middleNameSum");
-  reading.lastNameSum=sumArray(strToNums(valueOfId("lastNameInput")));
-  reading.lastNameVal=reduceNumStr(""+reading.lastNameSum, "reading.lastNameSum");
-  reading.destiny=reduceNumStr(""+sumArray([master(reading.firstNameVal), master(reading.middleNameVal), master(reading.lastNameVal)]), "destiny");
-  //console.log(reading);
-  reading.nameStr=valueOfId("firstNameInput")+valueOfId("middleNameInput")+valueOfId("lastNameInput");
-  reading.nameVowelArray=vowels(reading.nameStr);
-  reading.heartsDesire=reduceNumStr(""+sumLetterArray(reading.nameVowelArray), "heartsDesire");
-  reading.nameConsonantArray=consonants(reading.nameStr);
-  reading.personality=reduceNumStr(""+sumLetterArray(reading.nameConsonantArray), "personality");
+    reading.firstNameSum=sumArray(strToNums(valueOfId("firstNameInput")));
+    reading.firstNameVal=reduceNumStr(""+reading.firstNameSum, "reading.firstNameSum");
+    reading.middleNameSum=sumArray(strToNums(valueOfId("middleNameInput")));
+    reading.middleNameVal=reduceNumStr(""+reading.middleNameSum, "reading.middleNameSum");
+    reading.lastNameSum=sumArray(strToNums(valueOfId("lastNameInput")));
+    reading.lastNameVal=reduceNumStr(""+reading.lastNameSum, "reading.lastNameSum");
+    reading.destiny=reduceNumStr(""+sumArray([master(reading.firstNameVal), master(reading.middleNameVal), master(reading.lastNameVal)]), "destiny");
+    //console.log(reading);
+    reading.nameStr=valueOfId("firstNameInput")+valueOfId("middleNameInput")+valueOfId("lastNameInput");
+    reading.nameVowelArray=vowels(reading.nameStr);
+    reading.heartsDesire=reduceNumStr(""+sumLetterArray(reading.nameVowelArray), "heartsDesire");
+    reading.nameConsonantArray=consonants(reading.nameStr);
+    reading.personality=reduceNumStr(""+sumLetterArray(reading.nameConsonantArray), "personality");
     reading.realization=reduceNumStr(""+sumArray([reading.destiny, reading.birthpath]), "realization");
     
-  reading.habitChallenge=reduceNumStr(""+reading.nameStr.length, "habitChallenge");
-  reading.counts=[-1,
+    reading.habitChallenge=reduceNumStr(""+reading.nameStr.length, "habitChallenge");
+    reading.counts=[-1,
     numberCount(1,reading.nameStr), 
     numberCount(2,reading.nameStr), 
     numberCount(3,reading.nameStr), 
@@ -1078,67 +1078,58 @@ function userInput(){
     numberCount(8,reading.nameStr), 
     numberCount(9,reading.nameStr)
     ];
-  reading.karmicArray=[];
-  for(var n=1; n<=9; n++){
-    if(reading.counts[n]==0){reading.karmicArray.push(""+n);}
-    }
-  reading.physicalPlane=reduceNumStr(""+(reading.counts[4]+reading.counts[5]));
-  reading.mentalPlane=reduceNumStr(""+(reading.counts[1]+reading.counts[8]));
-  reading.emotionalPlane=reduceNumStr(""+(reading.counts[2]+reading.counts[3]+reading.counts[6]));
-  reading.intuitivePlane=reduceNumStr(""+(reading.counts[7]+reading.counts[9]));
+    reading.karmicArray=[];
+    for(var n=1; n<=9; n++){
+      if(reading.counts[n]==0){reading.karmicArray.push(""+n);}
+      }
+    reading.physicalPlane=reduceNumStr(""+(reading.counts[4]+reading.counts[5]));
+    reading.mentalPlane=reduceNumStr(""+(reading.counts[1]+reading.counts[8]));
+    reading.emotionalPlane=reduceNumStr(""+(reading.counts[2]+reading.counts[3]+reading.counts[6]));
+    reading.intuitivePlane=reduceNumStr(""+(reading.counts[7]+reading.counts[9]));
 
   //personal
-  reading.globalYear=nowDate.getFullYear();
-  reading.globalYearVal=reduceNumStr(""+reading.globalYear, "globalyear");
-  var personalYearNum=Number(reading.birthMM)+Number(reading.birthDD)+Number(reading.globalYear);
-  reading.personalYear=reduceNumStr(""+personalYearNum, "personalYear");
+    reading.globalYear=nowDate.getFullYear();
+    reading.globalYearVal=reduceNumStr(""+reading.globalYear, "globalyear");
+    var personalYearNum=Number(reading.birthMM)+Number(reading.birthDD)+Number(reading.globalYear);
+    reading.personalYear=reduceNumStr(""+personalYearNum, "personalYear");
   
-  reading.globalMonth=nowDate.getMonth()+1;
-  reading.globalMonthVal=reduceNumStr(""+reading.globalMonth, "globalMonth");
-  //console.log("");
-  //console.log("reading.globalYear="+reading.personalYear);
-  //console.log("reading.globalMonth="+reading.globalMonth);
-  //console.log("reading.personalYear="+reading.personalYear);
-  //console.log("reading.personalMonth="+reading.personalMonth);
-  //console.log("reading.personalDay="+reading.personalDay);
-  
-  reading.personalMonthNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal);
-  reading.personalMonth=reduceNumStr(""+reading.personalMonthNum, "personalMonth");
+    reading.globalMonth=nowDate.getMonth()+1;
+    reading.globalMonthVal=reduceNumStr(""+reading.globalMonth, "globalMonth");
+    reading.personalMonthNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal);
+    reading.personalMonth=reduceNumStr(""+reading.personalMonthNum, "personalMonth");
 
+    reading.globalDay=nowDate.getDate();
+    reading.globalDayVal=reduceNumStr(""+reading.globalDay, "globalDay");
+    reading.personalDayNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal)+Number(reading.globalDay);
+    reading.personalDay=reduceNumStr(reading.personalDayNum+"");
 
+    var m=Number(unmaster(reduceNumStr(reading.birthMM)), "m");
+    var d=Number(unmaster(reduceNumStr(reading.birthDD)), "d");
+    var y=Number(unmaster(reduceNumStr(reading.birthYYYY)), "y");
+      //console.log(m+" "+d+" "+y);
+    reading.firstPinnacle=reduceNumStr(""+(m+d), "firstPinnacle");
+    reading.secondPinnacle=reduceNumStr(""+(d+y), "secondPinnacle");
+    reading.thirdPinnacle=reduceNumStr(""+sumArray([reading.firstPinnacle,reading.secondPinnacle]), "thirdPinnacle");
+    reading.fourthPinnacle=reduceNumStr(""+(m+y), "fourthPinnacle");
 
-  reading.globalDay=nowDate.getDate();
-  reading.globalDayVal=reduceNumStr(""+reading.globalDay, "globalDay");
-  reading.personalDayNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal)+Number(reading.globalDay);
-  reading.personalDay=reduceNumStr(reading.personalDayNum+"");
+    reading.firstChallenge=reduceNumStr(""+Math.abs(m-d), "firstChallenge");
+    //console.log("reading.firstChallenge "+reading.firstChallenge);
 
-  var m=Number(unmaster(reduceNumStr(reading.birthMM)), "m");
-  var d=Number(unmaster(reduceNumStr(reading.birthDD)), "d");
-  var y=Number(unmaster(reduceNumStr(reading.birthYYYY)), "y");
-  //console.log(m+" "+d+" "+y);
-  reading.firstPinnacle=reduceNumStr(""+(m+d), "firstPinnacle");
-  reading.secondPinnacle=reduceNumStr(""+(d+y), "secondPinnacle");
-  reading.thirdPinnacle=reduceNumStr(""+sumArray([reading.firstPinnacle,reading.secondPinnacle]), "thirdPinnacle");
-  reading.fourthPinnacle=reduceNumStr(""+(m+y), "fourthPinnacle");
+    reading.secondChallenge=reduceNumStr(""+Math.abs(d-y), "secondChallenge");
+    //console.log("reading.secondChallenge "+reading.secondChallenge);
 
-  reading.firstChallenge=reduceNumStr(""+Math.abs(m-d), "firstChallenge");
-  //console.log("reading.firstChallenge "+reading.firstChallenge);
+    reading.thirdChallenge=reduceNumStr(""+Math.abs(Number(unmaster(reading.firstChallenge))-Number(unmaster(reading.secondChallenge))), "thirdChallenge");
+    //console.log("reading.thirdChallenge "+reading.thirdChallenge);
 
-  reading.secondChallenge=reduceNumStr(""+Math.abs(d-y), "secondChallenge");
-  //console.log("reading.secondChallenge "+reading.secondChallenge);
-
-  reading.thirdChallenge=reduceNumStr(""+Math.abs(Number(unmaster(reading.firstChallenge))-Number(unmaster(reading.secondChallenge))), "thirdChallenge");
-  //console.log("reading.thirdChallenge "+reading.thirdChallenge);
-
-  reading.fourthChallenge=reduceNumStr(""+Math.abs(m-y), "fourthChallenge");
-  //console.log("reading.fourthChallenge "+reading.fourthChallenge);
+    reading.fourthChallenge=reduceNumStr(""+Math.abs(m-y), "fourthChallenge");
+    //console.log("reading.fourthChallenge "+reading.fourthChallenge);
  
-  localStorage.setItem("reading", JSON.stringify(reading));
-  }
+    localStorage.setItem("reading", JSON.stringify(reading));
+    }
   updateResultButtons();
 
   if(metaFocus != -1){updateMeta();}
-  if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0)){
+  if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.lastNameInput.length>0)){
     reading.valid=true;
     updateValues();
     }
