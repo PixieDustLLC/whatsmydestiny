@@ -1830,6 +1830,7 @@ function pdfToOpen(doc, reportName){
 var totalChunks=0;
 var chunkBytes=300000;
 var reportName="";
+var reportFile="";
 function pdfToServer(doc, calling){
   reportName=calling;
   reportFile="http://whatsmydestiny.com/destinyapp/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
@@ -1855,10 +1856,10 @@ function pdfToServer(doc, calling){
   }
 function saveChunk(){
   var chunkNum=totalChunks-chunks.length;
-  //console.log("saveChunk chunks.length="+chunks.length+" chunkNum="+chunkNum);
+  console.log("saveChunk chunks.length="+chunks.length+" chunkNum="+chunkNum);
   var chunk=chunks.shift();
   var aChunk=btoa(chunk);
-  //console.log("aChunk.length="+aChunk.length);
+  console.log("aChunk.length="+aChunk.length);
   var data = new FormData();
   data.append("chunkNum", chunkNum);
   data.append("reportName", reportName);
