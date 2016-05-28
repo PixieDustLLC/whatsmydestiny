@@ -1816,6 +1816,8 @@ function pdfToDiv(doc, reportName){
   var element = document.getElementById('pdfData');
   element.href = "iospdf.html#" + pdfData;
   element.target = "reportName";
+//may need  var ref = window.open("http://www.whatsmydestiny.com/2016/05/28/support/", "_system");
+
   }
 function pdfToSave(doc, reportName){
   
@@ -2600,9 +2602,9 @@ function contactsSaveError(contactError) {
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
   <div id="debugDiv" style="font-family:avantbook; position:absolute;  z-index:5; top:50px; Zbackground-color:white;"></div>
   <canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
-  <div id="spinner" style="display:none;"><img class="dialogimage" src="nav/please_wait.png"/></div>
-  <div id="downloadpdf" style="display:none;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
-  <div id="uploadingpdf" style="display:none;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
+  <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
+  <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
+  <div id="uploadingpdf" style="display:none; z-index:8;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
   <textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
   <textarea id="dummyArea" onblur="focusBounce();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
 <div id="aboutDiv" style="background-color:rgba(255,255,255,.5); width:100%; height:100%; position:absolute;  z-index:6; background-image:url('nav/aboutwes.jpg'); background-size:contain; background-repeat:no-repeat; background-position:50% 50%;    -webkit-backdrop-filter: blur(10px);
