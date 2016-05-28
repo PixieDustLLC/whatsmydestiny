@@ -2352,7 +2352,7 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
   "context":{"selected":false,  "stack":0, "buttonName":"contextToggle", "align":"right", "panes":[
     {"width":8, "height":8, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "contents":[
        {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openHelp()", "icon":"questionmark", "label":"help"},
-       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"saveContact()", "icon":"disk", "label":"save"},
+       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"attemptSaveContact()", "icon":"disk", "label":"save"},
        {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"clearReading(); menus['context'].panes[0].selection=-1;", "icon":"blank", "label":"clear"}
       ]}
     ]
@@ -2467,7 +2467,17 @@ function contactsFindError(contactError) {
     alert('onError!');
 };
 
+function attemptSaveContact(){
+  dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
+  if(selectedContactId==-1){
+    testDuplicate();
+    }
+  else{saveContact();}
+  }
+
+var duplicateContact={};
 function testDuplicate(){
+  dbuga('testDuplicate()');
   var options      = new ContactFindOptions();
   options.filter   = reading.firstNameInput;
   options.multiple = true;
@@ -2476,61 +2486,61 @@ function testDuplicate(){
   navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
   }
 function contactsTestSuccess(contacts){
-  dbug('Found ' + contacts.length + ' contacts.');
+  dbug('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
 
   for (var c=0; c<contactsArray.length ; c++){
     if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
       matchedId=contactsArray[c].id;
+      duplicateContact=contactsArray[c];
       }
     }
   dbuga('matchedId='+matchedId);
-  
+  if(matchedId>-1){
+    var r = confirm("Duplicate found, Update?");
+    if (r == true) {
+      selectedContact=duplicateContact;
+      selectedContactId=matchedId;
+      saveContact();
+      }
+    }
+      
 };
 
 function contactsTestError(contactError) {
     alert('onError!');
 };
 
-function saveContact(){   
-  // create a new contact object
-  var contact = navigator.contacts.create();
-  if(selectedContactId>-1){
-    contact.phoneNumbers=selectedContact.phoneNumbers;
-    if(contact.phoneNumbers.length>0){
-      contact.phoneNumbers[0].value=phoneContactFormat(reading.phoneInput);
-      }
-    else{
-      var phoneNumber = new ContactField('home', phoneContactFormat(reading.phoneInput), false);    
-      contact.phoneNumbers.push(phoneNumber);
-      }
-    contact.emails=selectedContact.emails;
-    if(contact.emails.length>0){
-      contact.emails[0].value=reading.emailInput;
-      }
-    else{
-      var email = new ContactField('home', reading.emailInput, false);    
-      contact.emails.push(email);
-      }
+function saveContact(){
+  var contact;
+  if(selectedContactId==-1){
+    // create a new contact object
+    contact = navigator.contacts.create();
+    contact.phoneNumbers=[];
+    contact.emails=[];
     }
   else{
-    var phoneNumbers = [];
-    var phoneNumber = new ContactField('home', phoneContactFormat(reading.phoneInput), false);    
-    phoneNumbers.push(phoneNumber);
-    contact.phoneNumbers=phoneNumbers;
-    var emails = [];
+    contact=selectedContact;
+    }
+  if(contact.phoneNumbers.length>0){
+    contact.phoneNumbers[0].value=phoneContactFormat(reading.phoneInput);
+    }
+  else{
+    var phoneNumber = new ContactField('home', phoneContactFormat(reading.phoneInput), false);  
+    contact.phoneNumbers.push(phoneNumber);
+    }
+  if(contact.emails.length>0){
+    contact.emails[0].value=reading.emailInput;
+    }
+  else{
     var email = new ContactField('home', reading.emailInput, false);    
-    emails.push(email);
-    contact.emails=emails;
+    contact.emails.push(email);
     }
   contact.displayName = titleCase(reading.currentNameInput);
   contact.nickname = titleCase(reading.currentNameInput);
   //specify both to support all devices // uhoh androids
 
-  if(selectedContactId>-1){
-    contact.id=selectedContactId;
-    }
   if(reading.birthdayInput.length==8){
     var bd=reading.birthdayInput;
     var birthDate=new Date(bd.substring(4,8), Number(bd.substring(0,2)) - 1, bd.substring(2,4));
@@ -2543,10 +2553,6 @@ function saveContact(){
   name.middleName = titleCase(reading.middleNameInput);
   name.familyName = titleCase(reading.lastNameInput);
   contact.name = name;
-  //var cString=JSON.stringify(contact);
-  //cString=cString.replace(/\,/g, "<br>");
-  //dbuga("save contact "+cString);
-  // save to device
   contact.save(contactsSaveSuccess,contactsSaveError);
   }
 function contactsSaveSuccess(contact) {
