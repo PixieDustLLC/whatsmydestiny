@@ -1034,7 +1034,7 @@ function userInput(){
 
   var birthdayValue=valueOfId("birthdayInput");
   //dbug("birthdayValue.length "+birthdayValue.length); 
-  if((reading.firstNameInput != "")&&(reading.middleNameInput != "")&&(reading.lastNameInput != "")&&(birthdayValue.length==8)){
+  if((reading.firstNameInput != "")&&(reading.lastNameInput != "")&&(birthdayValue.length==8)){
     //console.log(birthdayValue);
     reading.birthMMDDYYYY=birthdayValue;
     var parts=birthdayValue.split('');
@@ -1142,7 +1142,80 @@ function userInput(){
     reading.valid=true;
     updateValues();
     }
+  else{
+    clearCalcs();
+    }
   testReadingSaved();
+  }
+function clearCalcs(){
+    reading.birthMMDDYYYY="";
+    reading.birthYYYY='';
+    reading.birthDD='';
+    reading.birthMM='';
+    reading.dayOfWeekNum="";
+    reading.dayOfBirth="";
+    reading.ageInYears="";
+
+    reading.birthSum="";
+    reading.birthpath="";
+
+
+  reading.firstNameSum="";
+  reading.firstNameVal="";
+  reading.middleNameSum="";
+  reading.middleNameVal="";
+  reading.lastNameSum="";
+  reading.lastNameVal="";
+  reading.destiny="";
+  reading.nameStr="";
+  reading.nameVowelArray=[];
+  reading.heartsDesire="";
+  reading.nameConsonantArray=[];
+  reading.personality="";
+  reading.realization="";
+    
+  reading.habitChallenge="";
+  reading.karmicArray=[];
+  for(var n=1; n<=9; n++){
+    reading.counts[n]="";
+    }
+  reading.physicalPlane="";
+  reading.mentalPlane="";
+  reading.emotionalPlane="";
+  reading.intuitivePlane="";
+
+  //personal
+  reading.globalYear="";
+  reading.globalYearVal="";
+  var personalYearNum="";
+  reading.personalYear="";
+  
+  reading.globalMonth="";
+  reading.globalMonthVal="";
+  
+  reading.personalMonthNum="";
+  reading.personalMonth="";
+
+
+
+  reading.globalDay="";
+  reading.globalDayVal="";
+  reading.personalDayNum="";
+  reading.personalDay="";
+
+  reading.firstPinnacle="";
+  reading.secondPinnacle="";
+  reading.thirdPinnacle="";
+  reading.fourthPinnacle="";
+
+  reading.firstChallenge="";
+
+  reading.secondChallenge="";
+
+  reading.thirdChallenge="";
+  
+  reading.fourthChallenge="";
+  updateValues();
   }
 
 function updateValues(){
@@ -1921,14 +1994,16 @@ function handleEvent(evt){
   }
 function clearReading(){
   selectedContactId=-1;
-        updateIdValue("firstNameInput", "");
-        updateIdValue("middleNameInput", "");
-        updateIdValue("lastNameInput", "");
-        updateIdValue("birthdayInput", "");
-        updateIdValue("currentNameInput", "");
-        updateIdValue("emailInput", "");
-        updateIdValue("phoneInput", "");
-        //updateIdValue("findInput", "");
+  updateIdValue("firstNameInput", "");
+  updateIdValue("middleNameInput", "");
+  updateIdValue("lastNameInput", "");
+  updateIdValue("birthdayInput", "");
+  updateIdValue("currentNameInput", "");
+  updateIdValue("emailInput", "");
+  updateIdValue("phoneInput", "");
+  //updateIdValue("findInput", "");
+  clearCalcs();
+/*
 reading.dayOfWeekNum=0;
 reading.dayOfBirth=0;
 reading.ageInYears=0; 
@@ -1960,7 +2035,7 @@ reading.firstChallenge=0;
 reading.secondChallenge=0;
 reading.thirdChallenge=0;
 reading.fourthChallenge=0;
-
+*/
   }
 function saveInputs(){
   //console.log('saveInputs()');
