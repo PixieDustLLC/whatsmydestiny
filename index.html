@@ -1797,6 +1797,7 @@ function summaryReport(){
   pdfToMethod(doc, cleaned+'_'+'reading');
   }
 function pdfToMethod(doc, reportName){
+  dbuga("pdfToMethod "+reportName);
   //var defaultMethod=pdfMethod[platform][browser];
   var usePdfMethod="server"; 
   //if(user.pdfMethod != "default"){usePdfMethod=user.pdfMethod;}
@@ -1816,11 +1817,11 @@ function pdfToDiv(doc, reportName){
   var element = document.getElementById('pdfData');
   element.href = "iospdf.html#" + pdfData;
   element.target = "reportName";
-  element.href="javascript:var ref=window.open('data:application/pdf;base64," + pdfData+"', '_system');";
+  //element.href="javascript:var ref=window.open('data:application/pdf;base64," + pdfData+"', '_system');";
 
   }
 function pdfToSave(doc, reportName){
-  
+  dbuga("pdfToSave "+reportName);
   doc.save(reportName+'.pdf');
   }
 function pdfToOpen(doc, reportName){
@@ -1832,7 +1833,8 @@ var reportName="";
 function pdfToServer(doc, calling){
   reportName=calling;
   reportFile="http://whatsmydestiny.com/destinyapp/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
-  //console.log('pdfToServer '+calling+ '');
+  
+  console.log('pdfToServer '+calling+ ' '+reportFile);
   var pdf=doc.output();
   chunks=[];
   while (pdf) {
