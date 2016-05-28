@@ -1798,7 +1798,7 @@ function summaryReport(){
   }
 function pdfToMethod(doc, reportName){
   //var defaultMethod=pdfMethod[platform][browser];
-  var usePdfMethod="div"; 
+  var usePdfMethod="server"; 
   //if(user.pdfMethod != "default"){usePdfMethod=user.pdfMethod;}
   if(usePdfMethod=="server"){pdfToServer(doc, reportName);}
   if(usePdfMethod=="save"){pdfToSave(doc, reportName);}
@@ -1816,7 +1816,7 @@ function pdfToDiv(doc, reportName){
   var element = document.getElementById('pdfData');
   element.href = "iospdf.html#" + pdfData;
   element.target = "reportName";
-//may need  var ref = window.open("http://www.whatsmydestiny.com/2016/05/28/support/", "_system");
+  element.href="javascript:var ref=window.open('data:application/pdf;base64," + pdfData+"', '_system');";
 
   }
 function pdfToSave(doc, reportName){
@@ -1831,7 +1831,7 @@ var chunkBytes=300000;
 var reportName="";
 function pdfToServer(doc, calling){
   reportName=calling;
-  reportFile="reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
+  reportFile="http://whatsmydestiny.com/destinyapp/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
   //console.log('pdfToServer '+calling+ '');
   var pdf=doc.output();
   chunks=[];
@@ -1864,7 +1864,7 @@ function saveChunk(){
     
   var xhr = new XMLHttpRequest();
   xhr.onload = ajaxSuccess;
-  xhr.open( 'post', '/destinyapp/uploadpdf.php', true );
+  xhr.open( 'post', 'http://whatsmydestiny.com/destinyapp/uploadpdf.php', true );
   xhr.send(data);
   }
 function ajaxSuccess(){
@@ -1895,7 +1895,7 @@ function openPdfFile(){
 function resumeOpenPdfFile(){
   //console.log('resumeOpenPdfFile() ');
   //console.log(""+reportFile);
-  window.open(""+reportFile);
+  window.open(""+reportFile, "_system");
   //console.log('resumeOpenPdfFile() done');
   }
 function hidePreview(){
