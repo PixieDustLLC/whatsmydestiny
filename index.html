@@ -2319,11 +2319,11 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
     {"width":10, "height":20, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "contents":[
        {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"wand", "label":"main"},
        {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"pdfdoc", "label":"pdf"},
-       {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"profile", "label":"contacts"},
+       {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"rui.toggleMenu('search');", "icon":"profile", "label":"contacts"},
        {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openWebsite()", "icon":"www", "label":"website"},
        {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openAbout()", "icon":"i", "label":"about"},
        {"x":0, "y":15, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openHelp()", "icon":"questionmark", "label":"help"},
-       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"email", "label":"email"}
+       {"x":0, "y":18, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"emailWes()", "icon":"email", "label":"email"}
       ]}
     ]
   },
@@ -2369,6 +2369,9 @@ function openHelp(){
   }
 function openWebsite(){
   var ref = window.open("http://www.whatsmydestiny.com", "_system");
+  }
+function emailWes(){
+  window.setTimeout("window.open('mailto:wes@weshamilton.com?subject=Request from Whats My Destiny app', '_system')", 100);
   }
 function selectResult(id){
   console.log("selectResult "+id);
