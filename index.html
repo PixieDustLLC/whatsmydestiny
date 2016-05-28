@@ -1760,7 +1760,8 @@ function detailReport(){
   
   pdfToMethod(doc, cleaned+'_'+'reading');
   }
-function reportForm(){
+
+function datasheetReport(){
   var data = canv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
   // Convert the data to binary form
   var imgData = atob(data);
@@ -1778,6 +1779,9 @@ function reportForm(){
   pdfToMethod(doc, cleaned+'_'+'reading');
   }
 function summaryReport(){
+  
+  }
+function metadataReport(){
           
   var data = canv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
   // Convert the data to binary form
@@ -2318,7 +2322,7 @@ var menuKeys=["dashboard", "search", "system", "context"];
     //stack:0 = auto collapse
 var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "align":"left", "panes":[
     {"width":10, "height":20, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"testDuplicate()", "icon":"wand", "label":"testDuplicate()"},
+       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"wand", "label":"main"},
        {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"pdfdoc", "label":"pdf"},
        {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"rui.toggleMenu('search'); searchToggled();", "icon":"profile", "label":"contacts"},
        {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openWebsite()", "icon":"www", "label":"website"},
@@ -2350,10 +2354,13 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
     ]
   },
   "context":{"selected":false,  "stack":0, "buttonName":"contextToggle", "align":"right", "panes":[
-    {"width":8, "height":8, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "contents":[
+    {"width":8, "height":17, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "contents":[
        {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openHelp()", "icon":"questionmark", "label":"help"},
        {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"attemptSaveContact()", "icon":"disk", "label":"save"},
-       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"clearReading(); menus['context'].panes[0].selection=-1;", "icon":"blank", "label":"clear"}
+       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"clearReading(); menus['context'].panes[0].selection=-1;", "icon":"blank", "label":"clear"},
+       {"x":0, "y":9, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"datasheetReport()", "icon":"pdfdoc", "label":"datasheet"},
+       {"x":0, "y":12, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"metadataReport()", "icon":"pdfdoc", "label":"metadata"},
+       {"x":0, "y":15, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"summaryReport()", "icon":"pdfdoc", "label":"summary"}
       ]}
     ]
   }
@@ -2468,7 +2475,7 @@ function contactsFindError(contactError) {
 };
 
 function attemptSaveContact(){
-  dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
+  //dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
   if(selectedContactId==-1){
     testDuplicate();
     }
@@ -2477,7 +2484,7 @@ function attemptSaveContact(){
 
 var duplicateContact={};
 function testDuplicate(){
-  dbuga('testDuplicate()');
+  //dbuga('testDuplicate()');
   var options      = new ContactFindOptions();
   options.filter   = reading.firstNameInput;
   options.multiple = true;
@@ -2486,7 +2493,7 @@ function testDuplicate(){
   navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
   }
 function contactsTestSuccess(contacts){
-  dbug('testSuccess Found ' + contacts.length + ' contacts.');
+  //dbug('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
 
@@ -2496,7 +2503,7 @@ function contactsTestSuccess(contacts){
       duplicateContact=contactsArray[c];
       }
     }
-  dbuga('matchedId='+matchedId);
+  //dbuga('matchedId='+matchedId);
   if(matchedId>-1){
     var r = confirm("Duplicate found, Update?");
     if (r == true) {
@@ -2556,7 +2563,7 @@ function saveContact(){
   contact.save(contactsSaveSuccess,contactsSaveError);
   }
 function contactsSaveSuccess(contact) {
-  dbuga("contactsSaveSuccess");
+  //dbuga("contactsSaveSuccess");
   clearReading();// prevents double save
 
 };
