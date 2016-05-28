@@ -46,7 +46,6 @@ var rCanv;
 var rCtx;
 function init(){
   canv=document.getElementById('mainCanvas');
-
   ctx=canv.getContext('2d');
   rCanv=document.getElementById('reportCanvas');
   rCtx=rCanv.getContext('2d');
@@ -763,6 +762,7 @@ function init(){
       appDown(e);
       }
     });
+  document.body.style.backgroundImage="";
 
 
   setupLocalStorage();
@@ -2113,6 +2113,7 @@ function dbug(msg){
   document.getElementById('debugDiv').innerHTML=""+msg;
   }
 function mouseDown(e){
+  dbuga('mouseDown');
   e.preventDefault();
   var evt={"source":"mousedown", "type":"start", "x":e.clientX, "y":e.clientY};
   handleEvent(evt);
@@ -2360,9 +2361,12 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
 // end of menu configs
 var selectedContactId=-1;
 var selectedContact={};
-
+function closeAbout(){
+  document.getElementById('aboutDiv').style.display="none";
+  }
 function openAbout(){
   // show modal link panel
+  document.getElementById('aboutDiv').style.display="block";
   }
 function openHelp(){
   var ref = window.open("http://www.whatsmydestiny.com/2016/05/28/support/", "_system");
@@ -2550,20 +2554,23 @@ function contactsSaveError(contactError) {
 </style>
 </head>
 <body onload="init()" ontouchstart="devent(event)" onmousedown="devent(event)" style="background-image:url('res/Default-Landscape.png'); width:100%; height:100%;">
-<div id="preloadHolder" style="position:absolute; ">
-  <div style="font-family:avantbook; position:absolute; top:100px; color:white;">avantbold 1234567890</div>
-  <div style="font-family:avantbold; position:absolute; top:300px; color:white;">aventbook 1234567890</div>
-</div>
-<canvas id="mainCanvas" style="position:absolute;" ontouchstart="touchStart(event)" onmousedown="mouseDown(event)"
+  <div id="preloadHolder" style="position:absolute; ">
+    <img src="nav/coversheet.jpg" id="coversheet" width=1 height=1 />
+    <div style="font-family:avantbook; position:absolute; top:100px; color:white;">avantbold 1234567890</div>
+    <div style="font-family:avantbold; position:absolute; top:300px; color:white;">aventbook 1234567890</div>
+  </div>
+  <canvas id="mainCanvas" style="position:absolute;" ontouchstart="touchStart(event)" onmousedown="mouseDown(event)"
 ></canvas>
-<div id="menuHolder" style="position:absolute;" ></div>
-<canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
-<div id="debugDiv" style="font-family:avantbook; position:absolute;  z-index:5; top:50px; background-color:white;"></div>
-<canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
-<div id="spinner" style="display:none;"><img class="dialogimage" src="nav/please_wait.png"/></div>
-<div id="downloadpdf" style="display:none;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
-<div id="uploadingpdf" style="display:none;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
-<textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;"></textarea>
-<textarea id="dummyArea" onblur="focusBounce();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:40px; height:40px; position:absolute; right:0; opacity:1;"></textarea>
+  <div id="menuHolder" style="position:absolute;" ></div>
+  <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
+  <div id="debugDiv" style="font-family:avantbook; position:absolute;  z-index:5; top:50px; Zbackground-color:white;"></div>
+  <canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
+  <div id="spinner" style="display:none;"><img class="dialogimage" src="nav/please_wait.png"/></div>
+  <div id="downloadpdf" style="display:none;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
+  <div id="uploadingpdf" style="display:none;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
+  <textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
+  <textarea id="dummyArea" onblur="focusBounce();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
+<div id="aboutDiv" style="background-color:rgba(255,255,255,.5); width:100%; height:100%; position:absolute;  z-index:6; background-image:url('nav/aboutwes.jpg'); background-size:contain; background-repeat:no-repeat; background-position:50% 50%;    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); display:none;" ontouchstart="closeAbout();" onmousedown="closeAbout();">
 </body>
 </html>
