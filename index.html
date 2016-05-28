@@ -2318,7 +2318,7 @@ var menuKeys=["dashboard", "search", "system", "context"];
     //stack:0 = auto collapse
 var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "align":"left", "panes":[
     {"width":10, "height":20, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "contents":[
-       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"wand", "label":"main"},
+       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"testDuplicate()", "icon":"wand", "label":"testDuplicate()"},
        {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"", "icon":"pdfdoc", "label":"pdf"},
        {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"rui.toggleMenu('search'); searchToggled();", "icon":"profile", "label":"contacts"},
        {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openWebsite()", "icon":"www", "label":"website"},
@@ -2463,6 +2463,36 @@ function contactsFindSuccess(contacts){
   rui.insertResultsMenuPane(results, "search", 2)
 };
 
+function contactsFindError(contactError) {
+    alert('onError!');
+};
+
+function testDuplicate(){
+  var options      = new ContactFindOptions();
+  options.filter   = reading.firstNameInput;
+  options.multiple = true;
+  options.desiredFields = [];
+  var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.nickname];
+  navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
+  }
+function contactsTestSuccess(contacts){
+  dbug('Found ' + contacts.length + ' contacts.');
+  contactsArray=contacts;
+  var matchedId=-1;
+
+  for (var c=0; c<contactsArray.length ; c++){
+    if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
+      matchedId=contactsArray[c].id;
+      }
+    }
+  dbuga('matchedId='+matchedId);
+  
+};
+
+function contactsTestError(contactError) {
+    alert('onError!');
+};
+
 function saveContact(){   
   // create a new contact object
   var contact = navigator.contacts.create();
@@ -2519,20 +2549,15 @@ function saveContact(){
   // save to device
   contact.save(contactsSaveSuccess,contactsSaveError);
   }
-
-
-function contactsFindError(contactError) {
-    alert('onError!');
-};
 function contactsSaveSuccess(contact) {
   dbuga("contactsSaveSuccess");
   clearReading();// prevents double save
 
 };
-
 function contactsSaveError(contactError) {
     alert("Error = " + contactError.code);
 };
+
 </script>
 <link rel = "stylesheet" type = "text/css" href = "reset.css">
 <style>
