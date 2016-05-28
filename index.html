@@ -1210,8 +1210,12 @@ function clearCalcs(){
   }
 
 function updateValues(){
+  if(reading.dayOfWeekNum==""){
+    updateIdValue("dayOfWeek", "");
+    }
+  else{
     updateIdValue("dayOfWeek", daysOfWeek[reading.dayOfWeekNum]);
-
+    }
     updateIdValue("dayOfBirth", reading.dayOfBirth);
 
     updateIdValue("ageInYears", reading.ageInYears); 
