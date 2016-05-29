@@ -11,6 +11,7 @@
 <script src="jquery.min.js"></script>
 
 <script type="text/javascript" src="rui.js"></script>
+<script type="text/javascript" src="summaryfields.js"></script>
 <script type="text/javascript" src="jsPDF/jspdf.js"></script>
 <script type="text/javascript" src="jsPDF/libs/Deflate/adler32cs.js"></script>
 <!--
@@ -24,6 +25,7 @@
 <script type="text/javascript" src="jsPDF/jspdf.plugin.from_html.js"></script>
 
 <script src="metabyfieldvalue.js"></script>
+<script src="summarybyfieldvalue.js"></script>
 <script>
 var web=true;
 var viewportWidth=1;
@@ -49,8 +51,6 @@ function init(){
   ctx=canv.getContext('2d');
   rCanv=document.getElementById('reportCanvas');
   rCtx=rCanv.getContext('2d');
-  rCanv.height=reportHeight;
-  rCanv.width=reportWidth;
   //console.log('init()');
   document.getElementById('preloadHolder').style.display="none";
   geometry();
@@ -1015,6 +1015,15 @@ var reading={"valid":false};
 var savedObj={};
 var readingSaved=false;
 var daysOfWeek=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+function nowMMDDYYYY(){
+  var nowDate=new Date();
+  var dd=nowDate.getDate();
+  if(dd<10){dd="0"+dd;}
+  var mm=nowDate.getMonth()+1;
+  if(mm<10){mm="0"+mm;}
+  var yyyy=nowDate.getFullYear();
+  return mm+""+dd+""+yyyy;
+  }
 function userInput(){
   var nowDate=new Date();
   reading.valid=false;
@@ -1638,6 +1647,13 @@ var lorem="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusm
 var imageDensity=1;
 var jpgQuality=1;
 
+var summaryGrid=40;//px
+var summaryDown=30;
+var summaryAcross=24;
+var summaryWidth=summaryAcross*summaryGrid;
+var summaryHeight=summaryDown*summaryGrid;
+var summaryAspect=summaryAcross/summaryDown;
+
 var reportGrid=20;//px
 var reportDown=50;
 var reportAcross=40;
@@ -1654,7 +1670,7 @@ var metaWidth=reportGrid*22;
 function blankContext(ctx, color, grid, across, down){
   ctx.fillStyle="white";
   ctx.fillRect(0,0,grid*across, grid*down);
-/*
+
   ctx.strokeStyle=color;
   ctx.lineWidth=grid/24;
   ctx.beginPath();
@@ -1667,9 +1683,12 @@ function blankContext(ctx, color, grid, across, down){
     ctx.lineTo(across*grid, y*grid);
     }
   ctx.stroke();  
-*/
+
   }
 function metadataReport(){
+  rCanv.height=reportHeight;
+  rCanv.width=reportWidth;
+
   rCtx.fillStyle="white";
   rCtx.fillRect(0,0,reportWidth, reportHeight);
   var firstCell=2.5;
@@ -1677,6 +1696,7 @@ function metadataReport(){
   var pdfAcross=26;
   var pdfDown=pdfAcross/reportAspect;
   var pdfPad=1.25;
+  
   var doc = new jsPDF('p', 'mm', [198,254]);
   rCanv.style.display="block";
   blankContext(rCtx, "#ccf", reportGrid, reportAcross, reportDown);
@@ -1787,7 +1807,7 @@ function datasheetReport(){
   var pdfDown=24;
   var pdfPad=1.25;
   doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
-  hideButtons=false;
+  //hideButtons=false;
   var cleaned=""+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput;
   cleaned=cleaned.replace(/([^a-z0-9]+)/gi, '-');
   document.getElementById('spinner').style.display="none";
@@ -1795,27 +1815,181 @@ function datasheetReport(){
   pdfToMethod(doc, cleaned+'_'+'datasheet');
   }
 function summaryReport(){
-  //sample code from datasheet report
-  var data = canv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
+  rCanv.height=summaryHeight;
+  rCanv.width=summaryWidth;
+  var s=summaryGrid;
+  rCtx.fillStyle="yellow";
+  rCtx.fillRect(0,0,summaryWidth, summaryHeight);
+  var firstCell=2.5;
+  var pdfGrid=7.5;
+  var pdfAcross=26;
+  var pdfDown=pdfAcross/summaryAspect;
+  var pdfPad=1.25;
+  var doc = new jsPDF('p', 'mm', [198,254]);
+  rCanv.style.display="block";
+  blankContext(rCtx, "#ddf", summaryGrid, summaryAcross, summaryDown);
+  for (var f=0; f<summaryFields.length; f++){    
+    field=summaryFields[f];
+    var h=.5;
+    var fontPx=s/2.25;
+    var fontFace="avantbook";
+    if(field.type.indexOf("bold")>-1){fontFace="avantbold";}
+    if(field.type=="heading"){
+      h=1;
+      fontPx=s;
+      }
+
+    rCtx.fillStyle="rgba(0,0,0,.1)";
+    if(field.type=="value"){rCtx.fillStyle="rgba(0,0,255,.2)";}
+    if(field.type=="valueCount"){rCtx.fillStyle="rgba(0,0,255,.4)";}
+    if(field.type.indexOf("calc")>-1){rCtx.fillStyle="rgba(255,255,0,.2)";}
+    if(field.type=="boldcalc"){rCtx.fillStyle="rgba(255,255,0,.2)";}
+    if(field.type=="meta"){rCtx.fillStyle="rgba(255,0,0,.2)";}
+    rCtx.fillRect(field.x*s, field.y*s, field.w*s, h*s);
+    rCtx.strokeStyle="rgba(0,0,0,.2)";
+    rCtx.strokeRect(field.x*s, field.y*s, field.w*s, h*s);
+
+    var content=field.content;
+    if(field.type=="value"){
+      //console.log(field.type+" "+field.content);
+      content=reading[field.content];
+      }
+    if(field.type=="valueCount"){
+      //console.log(field.type+" "+field.content);
+      content=reading.counts[field.content];
+      }
+    if(field.type.indexOf("calc")>-1){
+      console.log(field.type+" "+field.content);
+      if(field.content=="karmicArray"){content=reading.karmicArray.join(", ");}
+      if(field.content=="fullName"){content=reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput;}
+      if(field.content=="bornOn"){content="born on "+dateFormat(reading.birthdayInput);}
+      if(field.content=="printedOn"){content="printed on "+dateFormat(nowMMDDYYYY());} 
+      }
+    if(field.type.indexOf("meta")>-1){
+      console.log("field.content="+field.content+" summaryByFieldValue[field.content]=");
+      console.log(summaryByFieldValue[field.content]);
+      var metas=summaryByFieldValue[field.content];
+      var val=reading[field.content];
+      content=metas[""+val];
+      var parts=content.split(" ");
+      content="";
+      for (var p=0; (p<field.w/2 )&&(p<parts.length); p++){
+        content=content+" "+parts[p];
+        }
+      content+="...";
+      }
+    rCtx.fillStyle="black";
+    rCtx.textAlign=field.align;
+    rCtx.textBaseline="hanging";
+    var offset=0;
+    if(field.align=="center"){offset=s*field.w/2;}
+    if(field.align=="right"){offset=s*field.w;}
+    rCtx.font=fontPx+"px "+fontFace;
+    rCtx.fillText(content, field.x*s+offset, field.y*s);
+
+    }
+/*
+  var coverAspect=2044/1534;
+  var img=document.getElementById("coversheet");
+  rCtx.drawImage(img,0,reportGrid*firstCell,reportWidth, reportWidth/coverAspect);
+  var textTop=reportGrid*firstCell*2+reportWidth/coverAspect
+  rCtx.fillStyle="black";
+  rCtx.font=reportGrid*1.2+"px avantbold";
+  rCtx.textAlign="center";
+  var subject=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);
+  wrapText(rCtx, subject, reportWidth/2, textTop+reportGrid*3.5, reportWidth, reportGrid*2, false);
+
+  rCtx.font=reportGrid*1+"px avantbook";
+  var birthday="Birthday: "+Number(reading.birthMM)+"-"+Number(reading.birthDD)+"-"+Number(reading.birthYYYY);
+  wrapText(rCtx, birthday, reportWidth/2, textTop+reportGrid*5.5, reportWidth, reportGrid*2, false);
+  var dateString="Prepared: "+reading.globalMonth+"-"+reading.globalDay+"-"+reading.globalYear;
+  wrapText(rCtx, dateString, reportWidth/2, textTop+reportGrid*7.5, reportWidth, reportGrid*2, false);
+
+
+
+  var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
   // Convert the data to binary form
   var imgData = atob(data);
-  var doc = new jsPDF('l', 'mm', [198,254]);
-  var pdfGrid=8;
-  var pdfAcross=32;
-  var pdfDown=24;
-  var pdfPad=1.25;
   doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
-  hideButtons=false;
+  doc.addPage();
+  blankContext(rCtx, "#ccf", reportGrid, reportAcross, reportDown);
+
+
+
+
+  rCtx.textBaseline="middle";
+  var atY=reportGrid*firstCell;// start at first cell
+  var uArray=[];
+  var metaKeys=Object.keys(metaByFieldValue);
+  for(var m=0; m<metaKeys.length; m++){
+    rCtx.fillStyle="black";
+    var thisKey=metaKeys[m];
+    var thisMeta=metaByFieldValue[thisKey];
+    var thisUi=-1;
+    for (var u=0; u<uiObj.length; u++){
+      if(uiObj[u]['id']==metaKeys[m]){thisUi=u;}
+      }
+    if(thisUi>-1){
+      //console.log('uiObj[thisUi][label]='+uiObj[thisUi]['label']);
+
+      rCtx.font=reportGrid*.7+"px avantbold";
+      var labelHeight=wrapTest(rCtx, thisMeta['label'], 0, 0, labelWidth, reportGrid, false);
+      var maxHeight=labelHeight;
+      var metaHeight=0;
+      var value=uiObj[thisUi]['value'];
+      if(inArray(value, Object.keys(thisMeta))){
+        var metaString=thisMeta[value];
+        if((value.indexOf("/")>0)&&(metaString=="")){
+          var value=unmaster(value);
+          if(inArray(value, Object.keys(thisMeta))){
+            metaString=thisMeta[value];
+            }
+          }
+        rCtx.font=reportGrid*.8+"px avantbook";
+        metaHeight=wrapTest(rCtx, metaString, 0, 0, metaWidth, reportGrid, false);
+        if(metaHeight>maxHeight){maxHeight=metaHeight;}
+        console.log("maxHeight "+maxHeight +" metaHeight: " +metaHeight +" labelHeight="+labelHeight);
+        if(((maxHeight+atY)>reportHeight)||(thisKey=="physicalPlane")||(thisKey=="firstPinnacle")||(thisKey=="count1")){
+          atY=reportGrid*firstCell;
+          var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
+          // Convert the data to binary form
+          var imgData = atob(data);
+          doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
+          doc.addPage();
+          blankContext(rCtx, "#ccf", reportGrid, reportAcross, reportDown);
+
+          }
+        rCtx.fillStyle="black";
+        rCtx.font=reportGrid*.8+"px avantbold";
+        rCtx.textAlign="left";
+        wrapText(rCtx, thisMeta['label'], labelX, atY, labelWidth, reportGrid, false);
+        rCtx.textAlign="right";
+        wrapText(rCtx, uiObj[thisUi]['value'], valueX, atY, valueWidth, reportGrid, false);
+        rCtx.textAlign="left";
+        rCtx.font=reportGrid*.8+"px avantbook";
+        console.log(m+ "atY="+atY+" "+thisMeta['label']);
+        wrapText(rCtx, metaString, metaX, atY, metaWidth, reportGrid, false);
+        console.log(" then atY="+atY+" "+thisMeta['label']);
+        atY+=maxHeight+reportGrid;
+        console.log(" and then atY="+atY+" "+thisMeta['label']);
+        }
+      }
+    }
+*/
+          var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
+          // Convert the data to binary form
+          var imgData = atob(data);
+          doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
+
   var cleaned=""+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput;
   cleaned=cleaned.replace(/([^a-z0-9]+)/gi, '-');
   document.getElementById('spinner').style.display="none";
-  
   pdfToMethod(doc, cleaned+'_'+'summary');
   }
+var usePdfMethod="server"; 
 function pdfToMethod(doc, reportName){
-  dbuga("pdfToMethod "+reportName);
+  //dbuga("pdfToMethod "+reportName);
   //var defaultMethod=pdfMethod[platform][browser];
-  var usePdfMethod="server"; 
   //if(user.pdfMethod != "default"){usePdfMethod=user.pdfMethod;}
   if(usePdfMethod=="server"){pdfToServer(doc, reportName);}
   if(usePdfMethod=="save"){pdfToSave(doc, reportName);}
@@ -1837,7 +2011,7 @@ function pdfToDiv(doc, reportName){
 
   }
 function pdfToSave(doc, reportName){
-  dbuga("pdfToSave "+reportName);
+  //dbuga("pdfToSave "+reportName);
   doc.save(reportName+'.pdf');
   }
 function pdfToOpen(doc, reportName){
