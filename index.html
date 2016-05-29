@@ -1687,13 +1687,13 @@ function metadataReport(){
   rCtx.font=reportGrid*1.2+"px avantbold";
   rCtx.textAlign="center";
   var subject=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);
-  wrapText(rCtx, subject, reportWidth/2, reportGrid*3.5, reportWidth, reportWidth/coverAspect+reportGrid*2, false);
+  wrapText(rCtx, subject, reportWidth/2, reportWidth/coverAspect+reportGrid*3.5, reportWidth, reportGrid*2, false);
 
   rCtx.font=reportGrid*1+"px avantbook";
   var birthday="Birthday: "+Number(reading.birthMM)+"-"+Number(reading.birthDD)+"-"+Number(reading.birthYYYY);
-  wrapText(rCtx, birthday, reportWidth/2, reportGrid*5.5, reportWidth, reportWidth/coverAspect+reportGrid*2, false);
+  wrapText(rCtx, birthday, reportWidth/2, reportWidth/coverAspect+reportGrid*5.5, reportWidth, reportGrid*2, false);
   var dateString="Prepared: "+reading.globalMonth+"-"+reading.globalDay+"-"+reading.globalYear;
-  wrapText(rCtx, dateString, reportWidth/2, reportGrid*7.5, reportWidth, reportWidth/coverAspect+reportGrid*2, false);
+  wrapText(rCtx, dateString, reportWidth/2, reportWidth/coverAspect+reportGrid*7.5, reportWidth, reportGrid*2, false);
 
 
 
@@ -1708,7 +1708,7 @@ function metadataReport(){
 
 
   rCtx.textBaseline="middle";
-  var atY=reportGrid*0;// start at first cell
+  var atY=reportGrid*3.5;// start at first cell
   var uArray=[];
   var metaKeys=Object.keys(metaByFieldValue);
   for(var m=0; m<metaKeys.length; m++){
