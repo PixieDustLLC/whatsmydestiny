@@ -1672,6 +1672,7 @@ function blankContext(ctx, color, grid, across, down){
 function metadataReport(){
   rCtx.fillStyle="white";
   rCtx.fillRect(0,0,reportWidth, reportHeight);
+  var firstCell=2.5;
   var pdfGrid=7.5;
   var pdfAcross=26;
   var pdfDown=pdfAcross/reportAspect;
@@ -1708,7 +1709,7 @@ function metadataReport(){
 
 
   rCtx.textBaseline="middle";
-  var atY=reportGrid*3.5;// start at first cell
+  var atY=reportGrid*firstCell;// start at first cell
   var uArray=[];
   var metaKeys=Object.keys(metaByFieldValue);
   for(var m=0; m<metaKeys.length; m++){
@@ -1740,7 +1741,7 @@ function metadataReport(){
         if(metaHeight>maxHeight){maxHeight=metaHeight;}
         console.log("maxHeight "+maxHeight +" metaHeight: " +metaHeight +" labelHeight="+labelHeight);
         if(((maxHeight+atY)>reportHeight-reportGrid*2)||(thisMeta['label']=="1")||(thisKey=="firstPinnacle")){
-          atY=reportGrid*3.5;
+          atY=reportGrid*firstCell;
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
           // Convert the data to binary form
           var imgData = atob(data);
