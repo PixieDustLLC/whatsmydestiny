@@ -1870,13 +1870,15 @@ function summaryReport(){
       console.log(summaryByFieldValue[field.content]);
       var metas=summaryByFieldValue[field.content];
       var val=reading[field.content];
-      content=metas[""+val];
-      var parts=content.split(" ");
-      content="";
-      for (var p=0; (p<field.w/2 )&&(p<parts.length); p++){
-        content=content+" "+parts[p];
+      if(val != "0"){
+        content=metas[""+val];
+        var parts=content.split(" ");
+        content="";
+        for (var p=0; (p<field.w/2 )&&(p<parts.length); p++){
+          content=content+" "+parts[p];
+          }
+        content+="...";
         }
-      content+="...";
       }
     rCtx.fillStyle="black";
     rCtx.textAlign=field.align;
