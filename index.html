@@ -1682,19 +1682,19 @@ function metadataReport(){
   blankContext(rCtx, "#ccf", reportGrid, reportAcross, reportDown);
   var coverAspect=2044/1534;
   var img=document.getElementById("coversheet");
-  rCtx.drawImage(img,0,0,reportWidth, reportWidth/coverAspect);
-
+  rCtx.drawImage(img,0,reportGrid*firstCell,reportWidth, reportWidth/coverAspect);
+  var textTop=reportGrid*firstCell*2+reportWidth/coverAspect
   rCtx.fillStyle="black";
   rCtx.font=reportGrid*1.2+"px avantbold";
   rCtx.textAlign="center";
   var subject=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);
-  wrapText(rCtx, subject, reportWidth/2, reportWidth/coverAspect+reportGrid*3.5, reportWidth, reportGrid*2, false);
+  wrapText(rCtx, subject, reportWidth/2, textTop+reportGrid*3.5, reportWidth, reportGrid*2, false);
 
   rCtx.font=reportGrid*1+"px avantbook";
   var birthday="Birthday: "+Number(reading.birthMM)+"-"+Number(reading.birthDD)+"-"+Number(reading.birthYYYY);
-  wrapText(rCtx, birthday, reportWidth/2, reportWidth/coverAspect+reportGrid*5.5, reportWidth, reportGrid*2, false);
+  wrapText(rCtx, birthday, reportWidth/2, textTop+reportGrid*5.5, reportWidth, reportGrid*2, false);
   var dateString="Prepared: "+reading.globalMonth+"-"+reading.globalDay+"-"+reading.globalYear;
-  wrapText(rCtx, dateString, reportWidth/2, reportWidth/coverAspect+reportGrid*7.5, reportWidth, reportGrid*2, false);
+  wrapText(rCtx, dateString, reportWidth/2, textTop+reportGrid*7.5, reportWidth, reportGrid*2, false);
 
 
 
