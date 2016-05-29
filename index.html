@@ -1682,28 +1682,33 @@ function metadataReport(){
   var coverAspect=2044/1534;
   var img=document.getElementById("coversheet");
   rCtx.drawImage(img,0,0,reportWidth, reportWidth/coverAspect);
-  var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
-  // Convert the data to binary form
-  var imgData = atob(data);
-  doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
-  doc.addPage();
-
-
 
   rCtx.fillStyle="black";
   rCtx.font=reportGrid*1.2+"px avantbold";
   rCtx.textAlign="center";
   var subject=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);
-  wrapText(rCtx, subject, reportWidth/2, reportGrid*3.5, reportWidth, reportGrid*2, false);
+  wrapText(rCtx, subject, reportWidth/2, reportGrid*3.5, reportWidth, reportWidth/coverAspect+reportGrid*2, false);
 
   rCtx.font=reportGrid*1+"px avantbook";
   var birthday="Birthday: "+Number(reading.birthMM)+"-"+Number(reading.birthDD)+"-"+Number(reading.birthYYYY);
-  wrapText(rCtx, birthday, reportWidth/2, reportGrid*5.5, reportWidth, reportGrid*2, false);
+  wrapText(rCtx, birthday, reportWidth/2, reportGrid*5.5, reportWidth, reportWidth/coverAspect+reportGrid*2, false);
   var dateString="Prepared: "+reading.globalMonth+"-"+reading.globalDay+"-"+reading.globalYear;
-  wrapText(rCtx, dateString, reportWidth/2, reportGrid*7.5, reportWidth, reportGrid*2, false);
+  wrapText(rCtx, dateString, reportWidth/2, reportGrid*7.5, reportWidth, reportWidth/coverAspect+reportGrid*2, false);
+
+
+
+  var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
+  // Convert the data to binary form
+  var imgData = atob(data);
+  doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
+  doc.addPage();
+  blankContext(rCtx, "#ccf", reportGrid, reportAcross, reportDown);
+
+
+
 
   rCtx.textBaseline="middle";
-  var atY=reportGrid*10.5;// start at first cell
+  var atY=reportGrid*0;// start at first cell
   var uArray=[];
   var metaKeys=Object.keys(metaByFieldValue);
   for(var m=0; m<metaKeys.length; m++){
