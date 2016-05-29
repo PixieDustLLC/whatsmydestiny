@@ -123,7 +123,7 @@ var summaryFields=[
 
 
 
-{"type":"boldtext", "align":"center", "x":6, "y":29, "w":12, "content":"What's My Destiny app by PixiedustApps.com"}
+{"type":"boldtext", "align":"center", "x":6, "y":29, "w":12, "content":"Powered by PixieDustApps.com"}
 ];
 
 

@@ -1872,7 +1872,7 @@ function summaryReport(){
     if(field.type.indexOf("calc")>-1){
       console.log(field.type+" "+field.content);
       if(field.content=="karmicArray"){content=reading.karmicArray.join(", ");}
-      if(field.content=="fullName"){content=reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput;}
+      if(field.content=="fullName"){content=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);}
       if(field.content=="bornOn"){content="born on "+dateFormat(reading.birthdayInput);}
       if(field.content=="printedOn"){content="printed on "+dateFormat(nowMMDDYYYY());} 
       }
@@ -2551,7 +2551,7 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
       ]
     },
     {"width":2, "height":2, "left":15, "top":4, "selection":-1, "barColor":"", "barPad":.5, "contents":[
-       {"x":-.5, "y":-.5, "w":3, "h":3, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"searchContacts()", "icon":"maginverted", "label":""}
+       {"x":-.67, "y":-.67, "w":3.36, "h":3.36, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"searchContacts()", "icon":"maginverted", "label":""}
       ]
     },
     {"width":34, "height":-1, "left":-17, "top":7, "selection":-1, "barColor":"", "barPad":.5, "contents":[
