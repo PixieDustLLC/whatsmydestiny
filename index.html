@@ -2571,6 +2571,7 @@ var selectedContactId=-1;
 var selectedContact={};
 function closeAbout(){
   document.getElementById('aboutDiv').style.display="none";
+  rui.menuFound=-1;
   }
 function openAbout(){
   // show modal link panel
@@ -2678,7 +2679,7 @@ function contactsFindError(contactError) {
 };
 
 function attemptSaveContact(){
-  //dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
+  dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
   if(selectedContactId==-1){
     testDuplicate();
     }
@@ -2687,7 +2688,7 @@ function attemptSaveContact(){
 
 var duplicateContact={};
 function testDuplicate(){
-  //dbuga('testDuplicate()');
+  dbuga('testDuplicate()');
   var options      = new ContactFindOptions();
   options.filter   = reading.firstNameInput;
   options.multiple = true;
@@ -2696,7 +2697,7 @@ function testDuplicate(){
   navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
   }
 function contactsTestSuccess(contacts){
-  //dbug('testSuccess Found ' + contacts.length + ' contacts.');
+  dbug('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
 
@@ -2706,7 +2707,7 @@ function contactsTestSuccess(contacts){
       duplicateContact=contactsArray[c];
       }
     }
-  //dbuga('matchedId='+matchedId);
+  dbuga('matchedId='+matchedId);
   if(matchedId>-1){
     var r = confirm("Duplicate found, Update?");
     if (r == true) {
@@ -2723,6 +2724,7 @@ function contactsTestError(contactError) {
 };
 
 function saveContact(){
+  dbuga("saveContact() "+selectedContactId);
   var contact;
   if(selectedContactId==-1){
     // create a new contact object
@@ -2764,9 +2766,11 @@ function saveContact(){
   name.familyName = titleCase(reading.lastNameInput);
   contact.name = name;
   contact.save(contactsSaveSuccess,contactsSaveError);
+  dbuga("contactsSave completed");
+
   }
 function contactsSaveSuccess(contact) {
-  //dbuga("contactsSaveSuccess");
+  dbuga("contactsSaveSuccess");
   clearReading();// prevents double save
 
 };
