@@ -279,9 +279,9 @@ drawMenus:function(){
             rui.mctx.shadowBlur = rui.g;
             rui.mctx.fillStyle=rui.textColor;
             rui.mctx.textBaseline="middle";
-            rui.mctx.textAlign="right";
+            rui.mctx.textAlign="left";
             rui.mctx.font=rui.g*1.2+"px "+rui.headFont;
-            rui.mctx.fillText(contents[c].value, px+rui.g*(contents[c].x+contents[c].w), py+rui.g*(contents[c].y+contents[c].h/2));
+            rui.mctx.fillText(contents[c].value, px+rui.g*(contents[c].x), py+rui.g*(contents[c].y+contents[c].h/2));
             }// end of type heading
 
           if(contents[c].type=="result"){
