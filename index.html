@@ -1849,7 +1849,7 @@ function summaryReport(){
       h=1;
       fontPx=s;
       }
-
+/*
     rCtx.fillStyle="rgba(0,0,0,.1)";
     if(field.type=="value"){rCtx.fillStyle="rgba(0,0,255,.2)";}
     if(field.type=="valueCount"){rCtx.fillStyle="rgba(0,0,255,.4)";}
@@ -1859,7 +1859,7 @@ function summaryReport(){
     rCtx.fillRect(field.x*s, field.y*s, field.w*s, h*s);
     rCtx.strokeStyle="rgba(0,0,0,.2)";
     rCtx.strokeRect(field.x*s, field.y*s, field.w*s, h*s);
-
+*/
     var content=field.content;
     if(field.type=="value"){
       //console.log(field.type+" "+field.content);
@@ -2316,9 +2316,11 @@ function inArray(needle, haystack) {
   }
 
 function dbuga(msg){
+  document.getElementById('debugDiv').style.display="block";
   document.getElementById('debugDiv').innerHTML+="<br />"+msg;
   }
 function dbug(msg){
+  document.getElementById('debugDiv').style.display="block";
   document.getElementById('debugDiv').innerHTML=""+msg;
   }
 function mouseDown(e){
@@ -2814,7 +2816,7 @@ function contactsSaveError(contactError) {
 ></canvas>
   <div id="menuHolder" style="position:absolute;" ></div>
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
-  <div id="debugDiv" style="font-family:avantbook; position:absolute;  z-index:5; top:50px; Zbackground-color:white;"></div>
+  <div id="debugDiv" style="font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; Zbackground-color:white;"></div>
   <canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
   <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
   <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
