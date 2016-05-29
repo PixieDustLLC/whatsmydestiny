@@ -2298,15 +2298,15 @@ function geometry(){
   }
 function secondTick(){
   //dbug("fps:"+frames);
+  dbuga(viewportWidth +' != '+window.innerWidth+' or '+viewportHeight +' != '+window.innerHeight);
   frames=0;
   if((viewportWidth == window.innerWidth)&&(viewportHeight > window.innerHeight)){
-    //dbuga(' geometry false resize cancelled.');
+    dbuga(' geometry false resize cancelled.');
     return false;
     }
   if((viewportWidth != window.innerWidth)||(viewportHeight != window.innerHeight)){
     geometry();
     }
-  drawGrid();
   }
 function inArray(needle, haystack) {
   for(var i = 0; i < haystack.length; i++) {
