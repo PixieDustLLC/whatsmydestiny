@@ -1678,8 +1678,18 @@ function metadataReport(){
   var pdfPad=1.25;
   var doc = new jsPDF('p', 'mm', [198,254]);
   rCanv.style.display="block";
-
   blankContext(rCtx, "#ccf", reportGrid, reportAcross, reportDown);
+  var coverAspect=2044/1534;
+  var img=document.getElementById("coversheet");
+  rCtx.drawImage(img,0,0,reportWidth, reportWidth/coverAspect);
+  var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
+  // Convert the data to binary form
+  var imgData = atob(data);
+  doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
+  doc.addPage();
+
+
+
   rCtx.fillStyle="black";
   rCtx.font=reportGrid*1.2+"px avantbold";
   rCtx.textAlign="center";
@@ -1758,7 +1768,7 @@ function metadataReport(){
   cleaned=cleaned.replace(/([^a-z0-9]+)/gi, '-');
   document.getElementById('spinner').style.display="none";
   
-  pdfToMethod(doc, cleaned+'_'+'reading');
+  pdfToMethod(doc, cleaned+'_'+'metadata');
   }
 
 function datasheetReport(){
@@ -1776,7 +1786,7 @@ function datasheetReport(){
   cleaned=cleaned.replace(/([^a-z0-9]+)/gi, '-');
   document.getElementById('spinner').style.display="none";
   
-  pdfToMethod(doc, cleaned+'_'+'reading');
+  pdfToMethod(doc, cleaned+'_'+'datasheet');
   }
 function summaryReport(){
   //sample code from datasheet report
@@ -1794,7 +1804,7 @@ function summaryReport(){
   cleaned=cleaned.replace(/([^a-z0-9]+)/gi, '-');
   document.getElementById('spinner').style.display="none";
   
-  pdfToMethod(doc, cleaned+'_'+'reading');
+  pdfToMethod(doc, cleaned+'_'+'summary');
   }
 function pdfToMethod(doc, reportName){
   dbuga("pdfToMethod "+reportName);
@@ -1856,7 +1866,7 @@ function pdfToServer(doc, calling){
   }
 function saveChunk(){
   var chunkNum=totalChunks-chunks.length;
-  console.log("saveChunk chunks.length="+chunks.length+" chunkNum="+chunkNum);
+  console.log("saveChunk chunks.length="+chunks.length+" chunkNum="+chunkNum+" reportName="+reportName);
   var chunk=chunks.shift();
   var aChunk=btoa(chunk);
   console.log("aChunk.length="+aChunk.length);
@@ -1867,7 +1877,7 @@ function saveChunk(){
     
   var xhr = new XMLHttpRequest();
   xhr.onload = ajaxSuccess;
-  xhr.open( 'post', 'http://whatsmydestiny.com/destinyapp/uploadpdf.php', true );
+  xhr.open( 'post', 'http://www.whatsmydestiny.com/destinyapp/uploadpdf.php', true );
   xhr.send(data);
   }
 function ajaxSuccess(){
