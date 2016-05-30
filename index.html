@@ -1873,8 +1873,8 @@ function summaryReport(){
       console.log(field.type+" "+field.content);
       if(field.content=="karmicArray"){content=reading.karmicArray.join(", ");}
       if(field.content=="fullName"){content=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);}
-      if(field.content=="bornOn"){content="born on "+dateFormat(reading.birthdayInput);}
-      if(field.content=="printedOn"){content="printed on "+dateFormat(nowMMDDYYYY());} 
+      if(field.content=="bornOn"){content="born on "+readableFormat(reading.birthdayInput);}
+      if(field.content=="printedOn"){content="printed on "+dateFormat(nowMMDDYYYY())+" - Age "+reading.ageInYears;} 
       }
     if(field.type.indexOf("meta")>-1){
       console.log("field.content="+field.content+" summaryByFieldValue[field.content]=");
@@ -2411,16 +2411,18 @@ function dateFormat(num){
     var formatted=parts[0]+parts[1]+"/"+parts[2]+parts[3]+"/"+parts[4]+parts[5]+parts[6]+parts[7];
     return formatted;
   }
-function phoneFormat(num){
-    if(typeof num=="undefined"){num="";}
+function readableFormat(num){
+    if(typeof num=="undefined"){return "";}
+
     var parts=num.split('');
     var pLen=parts.length;
-    for (var p=pLen; p<10; p++){
+    for (var p=pLen; p<8; p++){
       parts.push(" ");
       }
-    var formatted="("+parts[0]+parts[1]+parts[2]+") "+parts[3]+parts[4]+parts[5]+"-"+parts[6]+parts[7]+parts[8]+parts[9];
+    var formatted=monthByMM[parts[0]+parts[1]]+" "+Number(parts[2]+parts[3])+", "+parts[4]+parts[5]+parts[6]+parts[7];
     return formatted;
   }
+var monthByMM={"01":"January", "02":"February", "03":"March","04":"April","05":"May", "06":"June", "07":"July","08":"August", "09":"September", "10":"October", "11":"November", "12":"December"};
 function phoneContactFormat(num){
     if(typeof num=="undefined"){num="";}
     var parts=num.split('');
