@@ -1883,12 +1883,6 @@ function summaryReport(){
       var val=reading[field.content];
       if(val != "0"){
         content=metas[""+val];
-        var parts=content.split(" ");
-        content="";
-        for (var p=0; (p<field.w/2 )&&(p<parts.length); p++){
-          content=content+" "+parts[p];
-          }
-        content+="...";
         }
       }
     rCtx.fillStyle="black";
