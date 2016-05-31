@@ -423,7 +423,7 @@ menuEvent:function(type, touches){
         found=b;
         }
       }
-    if(type=="touchmove"){found=-1;}g
+    if(type=="touchmove"){found=-1;}
     if(found>-1){
       //dbuga("found: "+found);
       var junk=eval(barButtons[found].func);
