@@ -41,7 +41,7 @@ var rui = {
   rui.paraFont=paraFont;
   rui.headFont=headFont;
   var htmlString="";
-    htmlString+='<canvas id="menuCanvas" style="position:absolute; Zbackground-color:rgba(255,127,127,.25);" width='+rui.ww+' height='+rui.g*3.5+'></canvas>';
+    htmlString+='<canvas id="menuCanvas" style="position:absolute; Zbackground-color:rgba(127,127,127,.25);" width='+rui.ww+' height='+rui.g*3.5+'></canvas>';
     rui.preloaded=0;
     for (var p=0; p<rui.preloadArray.length; p++){      
       var preload=rui.preloadArray[p];
@@ -201,24 +201,33 @@ drawMenus:function(){
       for(var p=0; p<panes.length; p++){
         var height=panes[p].height;
         if(height==-1){height=rui.cellsDown-panes[p].top-1;}
+
         rui.mctx.fillStyle=rui.bgColor;
         rui.mctx.shadowColor = '#888';
         rui.mctx.shadowBlur = 0;
         var edge=2.75/7;
         rui.mctx.fillRect(rui.ww/2+cx+rui.g*(panes[p].left-edge), rui.g*(panes[p].top-edge), rui.g*(panes[p].width+edge*2), rui.g*(height+edge*2));
 
-        //surround for example
-        rui.mctx.strokeStyle="#aaa";
         var px=rui.ww/2+cx+rui.g*(panes[p].left);
         var py=rui.g*(panes[p].top);
-        //rui.mctx.lineWidth=1;
-        //rui.mctx.strokeRect(px, py, rui.g*(panes[p].width), rui.g*(height));
+
+        menus[menuKeys[m]].panes[p].l=px;
+        menus[menuKeys[m]].panes[p].r=px+rui.g*panes[p].width;
+        menus[menuKeys[m]].panes[p].t=py;
+        menus[menuKeys[m]].panes[p].b=py+rui.g*height;
+
+/*
+        //surround for example
+        rui.mctx.strokeStyle="#f00";
+        rui.mctx.lineWidth=1;
+        rui.mctx.strokeRect(px, py, rui.g*(panes[p].width), rui.g*(height));
+*/
+
         var contents=panes[p].contents;
-        var pad=rui.g/3;
         rui.mctx.shadowBlur = 0;
-
-
         for (var c=0; c<contents.length; c++){
+          var pad=rui.g/3;
+          var grow=1;
           if(contents[c].type != "template"){// ignore template
             menus[menuKeys[m]].panes[p].contents[c].l=px+rui.g*contents[c].x;
             menus[menuKeys[m]].panes[p].contents[c].r=px+rui.g*contents[c].x+rui.g*contents[c].w;
@@ -229,8 +238,10 @@ drawMenus:function(){
               rui.mctx.shadowColor = '#888';
               rui.mctx.shadowBlur = rui.g/2;
               rui.mctx.fillRect(px+rui.g*contents[c].x, py+rui.g*contents[c].y, rui.g*contents[c].w, rui.g*contents[c].h);
+              grow=menus[menuKeys[m]].panes[p].grow;
               }
             }
+          pad=pad/grow;
           if(contents[c].type=="color"){
             rui.mctx.shadowBlur = 0;
             rui.mctx.lineWidth=rui.g/3;
@@ -249,12 +260,12 @@ drawMenus:function(){
             }// end of type color
 
           if(contents[c].type=="icon"){
-            var cPad=rui.g*rui.iconPad;
+            var cPad=rui.g*rui.iconPad/grow;
             rui.mctx.shadowBlur = 0;
             var image=document.getElementById("menu_"+contents[c].icon+".png");
             rui.mctx.fillStyle=rui.circleColor;
             rui.mctx.beginPath();
-            rui.mctx.arc(px+rui.g*contents[c].x+rui.g*contents[c].h/2, py+rui.g*contents[c].y+rui.g*contents[c].h/2, rui.g*contents[c].h/2-cPad/4, 0,pi*2, true);
+            rui.mctx.arc(px+rui.g*contents[c].x+rui.g*contents[c].h/2, py+rui.g*contents[c].y+rui.g*contents[c].h/2, rui.g*contents[c].h/2*grow-cPad/4, 0,pi*2, true);
             rui.mctx.closePath();
             rui.mctx.fill();
             rui.mctx.drawImage(image, px+rui.g*contents[c].x+cPad, py+rui.g*contents[c].y+cPad, rui.g*contents[c].h-cPad*2, rui.g*contents[c].h-cPad*2);
@@ -429,6 +440,9 @@ menuEvent:function(type, touches){
       var junk=eval(barButtons[found].func);
       //dbuga(barButtons[found].func);
       }
+    var prevMenu=rui.menuFound;
+    var prevPane=rui.paneFound;
+    var prevContent=rui.contentFound;
     rui.menuFound=-1;
     rui.paneFound=-1;
     rui.contentFound=-1;
@@ -436,25 +450,49 @@ menuEvent:function(type, touches){
       if(menus[menuKeys[m]].selected){
         var panes=menus[menuKeys[m]].panes;
         for (var p=0; p<panes.length; p++){
-          var contents=panes[p].contents;
-          for (var c=0; c<contents.length; c++){
-          
-            if((x>contents[c].l)&&(x<contents[c].r)&&(y>contents[c].t)&&(y<contents[c].b)){
-              if((contents[c].type != "heading")&&(contents[c].type != "paragraph")){
-                rui.menuFound=m;
-                rui.paneFound=p;
-                rui.contentFound=c;
-                menus[menuKeys[rui.menuFound]].panes[rui.paneFound].selection=rui.contentFound;
-                rui.drawUx();
-                //dbuga("menuFound:"+rui.menuFound+" paneFound:"+rui.paneFound+" contentFound:"+rui.contentFound);
+          if((x>panes[p].l)&&(x<panes[p].r)&&(y>panes[p].t)&&(y<panes[p].b)){
+            rui.menuFound=m;
+            rui.paneFound=p;
+            var contents=panes[p].contents;
+            for (var c=0; c<contents.length; c++){
+              if((x>contents[c].l)&&(x<contents[c].r)&&(y>contents[c].t)&&(y<contents[c].b)){
+                if((contents[c].type != "heading")&&(contents[c].type != "paragraph")){
+                  rui.contentFound=c;
+                  }
                 }
               }
             }
           }
         }
       }
+    if((rui.menuFound>-1)&&(rui.paneFound>-1)&&(rui.contentFound>-1)){// touch is on content
+      if(menus[menuKeys[rui.menuFound]].panes[rui.paneFound].selection==rui.contentFound){
+        // no change
+        }
+      else{// set to found
+        menus[menuKeys[rui.menuFound]].panes[rui.paneFound].selection = rui.contentFound;
+        rui.drawUx();
+        }
+      }
+    else{// touch is off content
+      if((rui.menuFound>-1)&&(rui.paneFound>-1)){// on pane
+        if(menus[menuKeys[rui.menuFound]].panes[rui.paneFound].selection==-1){
+         //no change
+         }
+        else{// moved off content
+          // deselects
+          //menus[menuKeys[rui.menuFound]].panes[rui.paneFound].selection=-1;
+          //rui.drawUx();
+
+          // instead, revert founds to prev
+          rui.menuFound=prevMenu;
+          rui.paneFound=prevPane;
+         rui.contentFound=prevContent;         
+          }
+        }
+      }
     rui.found=found;
-    }// end of touchstart
+    }// end of touchstart touchend
   if((type=="touchend")||(type=="mouseup")){  
     rui.touching=false;
     //console.log('touchend');
