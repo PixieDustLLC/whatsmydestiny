@@ -153,7 +153,7 @@ function init(){
         "id":"ageInYears", "focusable":false,
         "limit":10, "type":"label", 
         "w":6, "h":rowCells, 
-        "l":19, "t":4, 
+        "l":22, "t":7, 
         "r":25, "b":5, 
         "down":2, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -164,7 +164,7 @@ function init(){
         "id":"dayOfWeek", "focusable":false,
         "limit":10, "type":"label", 
         "w":6, "h":rowCells, 
-        "l":25, "t":4, 
+        "l":25, "t":9, 
         "r":31, "b":5, 
         "down":2, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -190,7 +190,7 @@ function init(){
         "id":"physicalPlane", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":15, "t":7, 
+        "l":12, "t":7, 
         "r":24, "b":8, 
         "down":2, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -212,7 +212,7 @@ function init(){
         "id":"mentalPlane", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":15, "t":8, 
+        "l":12, "t":8, 
         "r":24, "b":9, 
         "down":2, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -234,7 +234,7 @@ function init(){
         "id":"emotionalPlane", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":15, "t":9, 
+        "l":12, "t":9, 
         "r":24, "b":10, 
         "down":1, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -245,7 +245,7 @@ function init(){
         "id":"intuitivePlane", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":15, "t":10, 
+        "l":12, "t":10, 
         "r":24, "b":11, 
         "down":3, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -279,7 +279,7 @@ function init(){
         "id":"personalYear", "focusable":true,
         "limit":5, "type":"label", 
         "w":7, "h":rowCells, 
-        "l":15, "t":12, 
+        "l":12, "t":12, 
         "r":22, "b":13, 
         "down":4, "up":-3,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -290,7 +290,7 @@ function init(){
         "id":"personalMonth", "focusable":true,
         "limit":5, "type":"label", 
         "w":5, "h":rowCells, 
-        "l":22, "t":12, 
+        "l":19, "t":12, 
         "r":27, "b":13, 
         "down":4, "up":-4,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -301,7 +301,7 @@ function init(){
         "id":"personalDay", "focusable":true,
         "limit":5, "type":"label", 
         "w":4, "h":rowCells, 
-        "l":27, "t":12, 
+        "l":24, "t":12, 
         "r":31, "b":13, 
         "down":4, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -1528,7 +1528,7 @@ function wrapTest(context, text, x, y, maxWidth, lineHeight, stroke) {
 function drawGrid(){
   ctx.fillStyle="white";
   ctx.fillRect(0,0,canv.width, canv.height);
-/*
+
   ctx.strokeStyle="rgba(0,0,0,.05)";
   ctx.lineWidth=g/32;
   ctx.beginPath();
@@ -1541,7 +1541,7 @@ function drawGrid(){
     ctx.lineTo(cellsAcross*g, y*g);
     }
   ctx.stroke();
-*/
+
   }
 
 function drawUi(){
