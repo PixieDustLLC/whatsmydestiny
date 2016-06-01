@@ -1440,18 +1440,18 @@ function updateMeta(){
           }
         else{// val not found, is karma?
           if(uiObj[metaFocus]['id']=="karmicLesson"){
+            var str="";
             //console.log('karmicLesson '+uiObj[metaFocus].value)
             var glom=uiObj[metaFocus].value;
             if(glom !=""){
               var parts=glom.split(" ");
-              var str="";
               for(var p=0; p<parts.length; p++){
                 //console.log(parts[p]);
                 str+=fieldMeta[parts[p]]+" ";
                 }
               //updateIdValue("metaDisplay", str)
-              menus["dashboard"].panes[0].contents[1].text=str;
               }
+            menus["dashboard"].panes[0].contents[1].text=str;
             }
           }
         }
