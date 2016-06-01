@@ -152,9 +152,9 @@ function init(){
         ,{
         "id":"ageInYears", "focusable":false,
         "limit":10, "type":"label", 
-        "w":6, "h":2, 
+        "w":9, "h":1, 
         "l":22, "t":7, 
-        "r":25, "b":9, 
+        "r":31, "b":8, 
         "down":2, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Age",
@@ -163,9 +163,9 @@ function init(){
         ,{
         "id":"dayOfWeek", "focusable":false,
         "limit":10, "type":"label", 
-        "w":6, "h":2, 
-        "l":25, "t":9, 
-        "r":31, "b":11, 
+        "w":9, "h":1, 
+        "l":22, "t":9, 
+        "r":31, "b":10, 
         "down":2, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Weekday",
@@ -1478,7 +1478,7 @@ function rnd(range){
   return Math.floor(Math.random()*range);
   }
 function wrapText(context, text, x, y, maxWidth, lineHeight, stroke) {
-        //console.log('wrap ' +text+' '+y);
+        console.log('wrap ' +text+' '+y);
         var height = lineHeight;
         var words = text.split(' ');
         var line = '';
@@ -1624,7 +1624,7 @@ function drawUi(){
         drawResultButtons();
         }
       else{
-        wrapText(ctx, value, c*g, uiObj[u]['t']*g+g*1.5, uiObj[u]['w']*g, valueLinePx, false);
+        wrapText(ctx, ""+value, c*g, uiObj[u]['t']*g+g*1.5, uiObj[u]['w']*g, valueLinePx, false);
         if(prog>0){//embolden
           ctx.lineWidth=prog*g/32;
           wrapText(ctx, value, c*g, uiObj[u]['t']*g+g*1.5, uiObj[u]['w']*g, valueLinePx, true);
