@@ -925,6 +925,12 @@ function searchTyped(keyCode){
 
 var lastDown=0;
 var lastPress=0;
+var linkedSources={
+  "firstName":"firstNameInput",
+  "middleName":"middleNameInput",
+  "lastName":"lastNameInput",
+  };
+
 function roundRect(ctx, x, y, w, h, rad, lineWidth, strokeStyle, fillStyle, label, labelColor, font, iconAlpha){
   var inset=rad+lineWidth/2;
   if(lineWidth>0){
@@ -1414,13 +1420,19 @@ function updateMeta(){
 
   //updateIdLabel("metaDisplay", "");
   //updateIdValue("metaDisplay", "");
+  menus["dashboard"].panes[0].contents[0].text="";
+  menus["dashboard"].panes[0].contents[1].text="";
   if(inArray(uiObj[metaFocus]['id'], Object.keys(metaByFieldValue))){// should be true anyways
     var fields=Object.keys(metaByFieldValue);
     for (var f=0; f<fields.length; f++){
       if(fields[f]==uiObj[metaFocus]['id']){
         var fieldMeta=metaByFieldValue[fields[f]];
         //updateIdLabel("metaDisplay", ""+fieldMeta['label']);
-        menus["dashboard"].panes[0].contents[0].text=fieldMeta['label'];
+        var label=fieldMeta['label'];
+        if(inArray(fields[f], Object.keys(linkedSources))){
+          label=label+" - "+titleCase(reading[linkedSources[fields[f]]]);
+          }
+        menus["dashboard"].panes[0].contents[0].text=label;
 
         if(inArray(uiObj[metaFocus]['value'], Object.keys(fieldMeta))){
           var values=Object.keys(fieldMeta);
@@ -1478,7 +1490,7 @@ function rnd(range){
   return Math.floor(Math.random()*range);
   }
 function wrapText(context, text, x, y, maxWidth, lineHeight, stroke) {
-        console.log('wrap ' +text+' '+y);
+        //console.log('wrap ' +text+' '+y);
         var height = lineHeight;
         var words = text.split(' ');
         var line = '';
@@ -1575,7 +1587,7 @@ function drawUi(){
       }
     if(uiObj[u].type.indexOf("alpha")>-1){
       if (typeof value == 'undefined'){value="";}
-      titleCase(value)
+      //titleCase(value);
       value=titleCase(value);
       }
 
@@ -1770,7 +1782,7 @@ function metadataReport(){
         rCtx.font=reportGrid*.8+"px avantbook";
         metaHeight=wrapTest(rCtx, metaString, 0, 0, metaWidth, reportGrid, false);
         if(metaHeight>maxHeight){maxHeight=metaHeight;}
-        console.log("maxHeight "+maxHeight +" metaHeight: " +metaHeight +" labelHeight="+labelHeight);
+        //console.log("maxHeight "+maxHeight +" metaHeight: " +metaHeight +" labelHeight="+labelHeight);
         if(((maxHeight+atY)>reportHeight)||(thisKey=="physicalPlane")||(thisKey=="firstPinnacle")||(thisKey=="count1")){
           atY=reportGrid*firstCell;
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
@@ -1779,7 +1791,18 @@ function metadataReport(){
           doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
           doc.addPage();
           blankContext(rCtx, "#fff", reportGrid, reportAcross, reportDown);
-
+          if(thisKey=="count1"){
+        rCtx.fillStyle="black";
+        rCtx.font=reportGrid*.8+"px avantbold";
+        rCtx.textAlign="left";
+        wrapText(rCtx, "Number", labelX, atY, labelWidth, reportGrid, false);
+        rCtx.textAlign="right";
+        wrapText(rCtx, "Occurances", valueX, atY, valueWidth, reportGrid, false);
+        rCtx.textAlign="left";
+        rCtx.font=reportGrid*.8+"px avantbook";
+        wrapText(rCtx, "Measurement", metaX, atY, metaWidth, reportGrid, false);
+        atY+=maxHeight+reportGrid;
+            }
           }
         rCtx.fillStyle="black";
         rCtx.font=reportGrid*.8+"px avantbold";
@@ -1789,11 +1812,11 @@ function metadataReport(){
         wrapText(rCtx, uiObj[thisUi]['value'], valueX, atY, valueWidth, reportGrid, false);
         rCtx.textAlign="left";
         rCtx.font=reportGrid*.8+"px avantbook";
-        console.log(m+ "atY="+atY+" "+thisMeta['label']);
+        //console.log(m+ "atY="+atY+" "+thisMeta['label']);
         wrapText(rCtx, metaString, metaX, atY, metaWidth, reportGrid, false);
-        console.log(" then atY="+atY+" "+thisMeta['label']);
+        //console.log(" then atY="+atY+" "+thisMeta['label']);
         atY+=maxHeight+reportGrid;
-        console.log(" and then atY="+atY+" "+thisMeta['label']);
+        //console.log(" and then atY="+atY+" "+thisMeta['label']);
         }
       }
     }
@@ -1870,15 +1893,15 @@ function summaryReport(){
       content=reading.counts[field.content];
       }
     if(field.type.indexOf("calc")>-1){
-      console.log(field.type+" "+field.content);
+      //console.log(field.type+" "+field.content);
       if(field.content=="karmicArray"){content=reading.karmicArray.join(", ");}
       if(field.content=="fullName"){content=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);}
       if(field.content=="bornOn"){content="born on "+readableFormat(reading.birthdayInput);}
       if(field.content=="printedOn"){content="printed on "+dateFormat(nowMMDDYYYY())+" - Age "+reading.ageInYears;} 
       }
     if(field.type.indexOf("meta")>-1){
-      console.log("field.content="+field.content+" summaryByFieldValue[field.content]=");
-      console.log(summaryByFieldValue[field.content]);
+      //console.log("field.content="+field.content+" summaryByFieldValue[field.content]=");
+      //console.log(summaryByFieldValue[field.content]);
       var metas=summaryByFieldValue[field.content];
       var val=reading[field.content];
       if(val != "0"){
