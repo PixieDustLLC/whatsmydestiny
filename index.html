@@ -1795,12 +1795,15 @@ function metadataReport(){
         rCtx.fillStyle="black";
         rCtx.font=reportGrid*.8+"px avantbold";
         rCtx.textAlign="left";
+        wrapText(rCtx, "Distribution of Numbers in Name", labelX, atY, labelWidth*5, reportGrid, false);
+        atY+=maxHeight+reportGrid;
+
         wrapText(rCtx, "Number", labelX, atY, labelWidth, reportGrid, false);
         rCtx.textAlign="right";
         wrapText(rCtx, "Occurences", valueX, atY, valueWidth, reportGrid, false);
         rCtx.textAlign="left";
         rCtx.font=reportGrid*.8+"px avantbold";
-        wrapText(rCtx, "Measurement", metaX, atY, metaWidth, reportGrid, false);
+        wrapText(rCtx, "Insight", metaX, atY, metaWidth, reportGrid, false);
         atY+=maxHeight+reportGrid;
             }
           }
