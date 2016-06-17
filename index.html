@@ -59,7 +59,7 @@ function init(){
   var defaultValueSize=.85; 
   var defaultLabelSize=.75; 
   uiObj=[{
-        "id":"metaDisplay", "focusable":true,
+        "id":"metaDisplay", "focusable":false,
         "limit":2, "type":"label", 
         "w":12, "h":6.5, 
         "l":19, "t":1, 
@@ -72,9 +72,9 @@ function init(){
          ,{
         "id":"firstNameInput", "focusable":true,
         "limit":20, "type":"alpha", 
-        "w":16, "h":rowCells, 
-        "l":2, "t":1, 
-        "r":18, "b":2, 
+        "w":20, "h":rowCells, 
+        "l":1, "t":1, 
+        "r":21, "b":2, 
         "down":1, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"First Name",
@@ -83,9 +83,9 @@ function init(){
         ,{
         "id":"middleNameInput", "focusable":true,
         "limit":20, "type":"alpha", 
-        "w":16, "h":rowCells, 
-        "l":2, "t":2, 
-        "r":18, "b":3, 
+        "w":20, "h":rowCells, 
+        "l":1, "t":2, 
+        "r":21, "b":3, 
         "down":1, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Middle Name",
@@ -94,20 +94,31 @@ function init(){
         ,{
         "id":"lastNameInput", "focusable":true,
         "limit":20, "type":"alpha", 
-        "w":16, "h":rowCells, 
-        "l":2, "t":3, 
-        "r":18, "b":4, 
+        "w":20, "h":rowCells, 
+        "l":1, "t":3, 
+        "r":21, "b":4, 
         "down":1, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Last Name",
         "value":"",
         "focus":0}
         ,{
+        "id":"currentNameInput", "focusable":true,
+        "limit":40, "type":"alpha", 
+        "w":20, "h":rowCells, 
+        "l":1, "t":4, 
+        "r":21, "b":5, 
+        "down":1, "up":-1,
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "label":"Current Name",
+        "value":"",
+        "focus":0}
+        ,{
         "id":"emailInput", "focusable":true,
         "limit":40, "type":"alphacharnumeric", 
-        "w":16, "h":rowCells, 
-        "l":2, "t":4, 
-        "r":18, "b":5, 
+        "w":20, "h":rowCells, 
+        "l":1, "t":5, 
+        "r":21, "b":6, 
         "down":1, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Email",
@@ -115,21 +126,10 @@ function init(){
         "focus":0}
 
         ,{
-        "id":"currentNameInput", "focusable":true,
-        "limit":40, "type":"alpha", 
-        "w":12, "h":rowCells, 
-        "l":19, "t":1, 
-        "r":31, "b":2, 
-        "down":1, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
-        "label":"Current Name",
-        "value":"",
-        "focus":0}
-        ,{
         "id":"phoneInput", "focusable":true,
         "limit":20, "type":"numericphone", 
-        "w":12, "h":rowCells, 
-        "l":19, "t":2, 
+        "w":9, "h":2, 
+        "l":22, "t":1, 
         "r":31, "b":3, 
         "down":1, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -139,9 +139,9 @@ function init(){
         ,{
         "id":"birthdayInput", "focusable":true,
         "limit":8, "type":"numericslash", 
-        "w":12, "h":rowCells, 
-        "l":19, "t":3, 
-        "r":31, "b":4, 
+        "w":9, "h":2, 
+        "l":22, "t":4, 
+        "r":31, "b":6, 
         "down":-5, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Birthday",
@@ -179,8 +179,8 @@ function init(){
         "id":"firstName", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":7, 
-        "r":9, "b":8, 
+        "l":1, "t":7, 
+        "r":10, "b":8, 
         "down":2, "up":-3,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"First Name",
@@ -201,8 +201,8 @@ function init(){
         "id":"middleName", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":8, 
-        "r":9, "b":9, 
+        "l":1, "t":8, 
+        "r":10, "b":9, 
         "down":2, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Middle Name",
@@ -223,8 +223,8 @@ function init(){
         "id":"lastName", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":9, 
-        "r":9, "b":10, 
+        "l":1, "t":9, 
+        "r":10, "b":10, 
         "down":3, "up":-2,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Last Name",
@@ -257,8 +257,8 @@ function init(){
         "id":"dayOfBirth", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":11, 
-        "r":9, "b":12, 
+        "l":1, "t":11, 
+        "r":10, "b":12, 
         "down":1, "up":-3,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Day of Birth",
@@ -268,8 +268,8 @@ function init(){
         "id":"birthpath", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":12, 
-        "r":9, "b":13, 
+        "l":1, "t":12, 
+        "r":10, "b":13, 
         "down":4, "up":-1,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Birthpath",
@@ -278,9 +278,9 @@ function init(){
         ,{
         "id":"personalYear", "focusable":true,
         "limit":5, "type":"label", 
-        "w":7, "h":rowCells, 
+        "w":8, "h":rowCells, 
         "l":12, "t":12, 
-        "r":19, "b":13, 
+        "r":20, "b":13, 
         "down":4, "up":-3,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Personal Year:",
@@ -290,8 +290,8 @@ function init(){
         "id":"personalMonth", "focusable":true,
         "limit":5, "type":"label", 
         "w":5, "h":rowCells, 
-        "l":19, "t":12, 
-        "r":24, "b":13, 
+        "l":20, "t":12, 
+        "r":25, "b":13, 
         "down":4, "up":-4,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Month:",
@@ -301,8 +301,8 @@ function init(){
         "id":"personalDay", "focusable":true,
         "limit":5, "type":"label", 
         "w":4, "h":rowCells, 
-        "l":24, "t":12, 
-        "r":28, "b":13, 
+        "l":25, "t":12, 
+        "r":29, "b":13, 
         "down":4, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Day:",
@@ -314,8 +314,8 @@ function init(){
         "id":"destiny", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":14, 
-        "r":9, "b":15, 
+        "l":1, "t":14, 
+        "r":10, "b":15, 
         "down":4, "up":-4,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Destiny",
@@ -358,8 +358,8 @@ function init(){
         "id":"realization", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":15, 
-        "r":9, "b":16, 
+        "l":1, "t":15, 
+        "r":10, "b":16, 
         "down":5, "up":-4,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Realization",
@@ -414,8 +414,8 @@ function init(){
         "id":"heartsDesire", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":16, 
-        "r":9, "b":17, 
+        "l":1, "t":16, 
+        "r":10, "b":17, 
         "down":5, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Heart's Desire",
@@ -470,8 +470,8 @@ function init(){
         "id":"personality", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":17, 
-        "r":9, "b":18, 
+        "l":1, "t":17, 
+        "r":10, "b":18, 
         "down":5, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Personality",
@@ -526,8 +526,8 @@ function init(){
         "id":"habitChallenge", "focusable":true,
         "limit":5, "type":"label", 
         "w":9, "h":rowCells, 
-        "l":0, "t":18, 
-        "r":9, "b":19, 
+        "l":1, "t":18, 
+        "r":10, "b":19, 
         "down":5, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
         "label":"Habit Challenge",
@@ -581,8 +581,8 @@ function init(){
         ,{
         "id":"~", "focusable":false,
         "limit":5, "type":"label", 
-        "w":9, "h":rowCells*2, 
-        "l":0, "t":20, 
+        "w":8, "h":rowCells*2, 
+        "l":1, "t":20, 
         "r":9, "b":22, 
         "down":11, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
@@ -1395,7 +1395,7 @@ var uiFocus=-1;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
-  //dbuga('setUiFocus('+toNum+')');
+  console.log('setUiFocus('+toNum+') is '+uiObj[toNum].id);
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
@@ -1404,8 +1404,11 @@ function setUiFocus(toNum){
     else{hideTextarea();}
     }
   else{hideTextarea();}
-  
-  if(uiFocus != -1){setMetaFocus(toNum); }
+  if(uiFocus != -1){
+    if(uiObj[uiFocus]['focusable']){
+      setMetaFocus(toNum);
+      }
+    }
   }
 function setMetaFocus(toNum){
   if((menus["dashboard"].selected==false)&&(uiObj[toNum].id.indexOf("Input")==-1)){
@@ -2202,7 +2205,7 @@ function handleEvent(evt){
       return false;
       }
     }
-  for (var u=0; u<uiObj.length; u++){
+  for (var u=1; u<uiObj.length; u++){// skip stupid meta area
     if((evt.x>uiObj[u]['l']*g)&&(evt.x<uiObj[u]['r']*g)&&(evt.y>uiObj[u]['t']*g)&&(evt.y<uiObj[u]['b']*g)){
       found=u;
       }
