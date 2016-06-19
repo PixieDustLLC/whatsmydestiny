@@ -345,6 +345,18 @@ var metaByFieldValue={
     "30":"Three: Happy Outgoing, Optimistic. Has high energy and infectious enthusiasm. Outspoken, psychic, serious, intense, flirtatious. Motivates and persuades others. Knack for just the right word or fact to win an argument. Does well as a teacher, speaker, lawyer, actor or musician.",
     "31":"Four: Builder, Manager, Traditionalist. Does well working hands-on as a sculptor or painter. Ambitious, traditional, and loves to travel and socialize. Works long hours when motivated.  Expects people to be interested in stories about self and plans.  Likes to live with someone and pays close attention to them."
     },
+  "firstLabel":{"label":"First Age",
+    "":"First: In your first age, you are creating your identity."
+    },
+  "secondLabel":{"label":"Second Age",
+    "":"Second: In your second age, you are building your life skills."
+    },
+  "thirdLabel":{"label":"Third Age",
+    "":"Third: In your third age, you are seeking purpose and fulfillment."
+    },
+  "fourthLabel":{"label":"Fourth Age",
+    "":"Fourth: In your fourth age, you are looking for ways to give back and to leave a legacy."
+    },
   "firstPinnacle":{"label":"Pinnacles: Events and Environments",
     "0":"",
     "1":"One:  You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance.",

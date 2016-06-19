@@ -366,7 +366,7 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"~", "focusable":false,
+        "id":"firstLabel", "focusable":true,
         "limit":5, "type":"label", 
         "w":4, "h":rowCells, 
         "l":12, "t":15, 
@@ -399,7 +399,7 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"firstAge", "focusable":true,
+        "id":"firstAge", "focusable":false,
         "limit":5, "type":"label", 
         "w":6, "h":rowCells, 
         "l":25, "t":15, 
@@ -422,7 +422,7 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"~", "focusable":false,
+        "id":"secondLabel", "focusable":true,
         "limit":5, "type":"label", 
         "w":4, "h":rowCells, 
         "l":12, "t":16, 
@@ -455,7 +455,7 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"secondAge", "focusable":true,
+        "id":"secondAge", "focusable":false,
         "limit":5, "type":"label", 
         "w":6, "h":rowCells, 
         "l":25, "t":16, 
@@ -478,7 +478,7 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"~", "focusable":false,
+        "id":"thirdLabel", "focusable":true,
         "limit":5, "type":"label", 
         "w":4, "h":rowCells, 
         "l":12, "t":17, 
@@ -511,7 +511,7 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"thirdAge", "focusable":true,
+        "id":"thirdAge", "focusable":false,
         "limit":5, "type":"label", 
         "w":6, "h":rowCells, 
         "l":25, "t":17, 
@@ -534,7 +534,7 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"~", "focusable":false,
+        "id":"fourthLabel", "focusable":true,
         "limit":5, "type":"label", 
         "w":4, "h":rowCells, 
         "l":12, "t":18, 
@@ -567,7 +567,7 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"fourthAge", "focusable":true,
+        "id":"fourthAge", "focusable":false,
         "limit":5, "type":"label", 
         "w":6, "h":rowCells, 
         "l":25, "t":18, 
@@ -767,7 +767,11 @@ function init(){
 
   setupLocalStorage();
   ////focusTextarea();
-  rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgba(255,255,255,0)", "icons/", "white", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
+  //createRui:function(containerRef, barColor, barTextColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, squareIcons, iconPad, selectColor, paraFont, headFont)
+
+  //old rui.createRui(document.getElementById('menuHolder'), "#be792b", "yellow", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgba(255,255,255,0)", "icons/", "white", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
+
+rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "#ffffff", "icons/", "white", "red", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
   }
 function clearSearch(){
   focusTextarea(); 
@@ -1427,11 +1431,12 @@ var uiFocus=-1;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
-  console.log('setUiFocus('+toNum+') is '+uiObj[toNum].id);
+  console.log('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
   if(uiFocus>-1){
+    console.log('setUiFocus('+toNum+') is '+uiObj[toNum].id);
     if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
     else{hideTextarea();}
     }
@@ -2595,11 +2600,12 @@ var menuKeys=["dashboard", "search", "system", "context"];
     //sorts stackers, 
     //stack:0 = auto collapse
 var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "align":"left", "panes":[
-    {"width":10, "height":11, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "grow":1.1, "contents":[
+    {"width":10, "height":14, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "grow":1.1, "contents":[
        {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"rui.toggleMenu('search'); searchToggled();", "icon":"profile", "label":"contacts"},
        {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openWebsite()", "icon":"www", "label":"website"},
        {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openAbout()", "icon":"i", "label":"about"},
-       {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openHelp()", "icon":"questionmark", "label":"help"}
+       {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openSupport()", "icon":"questionmark", "label":"support"},
+       {"x":0, "y":12, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openTutorial()", "icon":"book", "label":"tutorial"}
       ]}
     ]
   },
@@ -2607,7 +2613,7 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
     "selected":false,  "stack":2, "buttonName":"dashboardToggle", "align":"center", "panes":[
     {"width":42, "height":8, "left":-21, "top":4, "selection":-1, "barColor":"", "barPad":.5, "grow":1.1, "contents":[
        {"x":0, "y":0, "w":42, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"heading", "text":"Click a field for more info"},
-       {"x":0, "y":0, "w":42, "h":6, "l":0, "r":0, "t":0, "b":0, "type":"paragraph", "text":""}
+       {"x":0, "y":2, "w":42, "h":6, "l":0, "r":0, "t":0, "b":0, "type":"paragraph", "text":""}
       ]}
     ]
   },
@@ -2627,12 +2633,11 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
     ]
   },
   "context":{"selected":false,  "stack":0, "buttonName":"contextToggle", "align":"right", "panes":[
-    {"width":8, "height":14, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "grow":1.1, "contents":[
+    {"width":8, "height":11, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "grow":1.1, "contents":[
        {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"attemptSaveContact()", "icon":"disk", "label":"save"},
        {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"clearReading(); menus['context'].panes[0].selection=-1;", "icon":"blank", "label":"clear"},
-       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openHelp()", "icon":"questionmark", "label":"help"},
-       {"x":0, "y":9, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"metadataReport()", "icon":"pdfdoc", "label":"metadata"},
-       {"x":0, "y":12, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"summaryReport()", "icon":"pdfdoc", "label":"summary"}
+       {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"metadataReport()", "icon":"pdfdoc", "label":"report"},
+       {"x":0, "y":9, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"summaryReport()", "icon":"pdfdoc", "label":"summary"}
       ]}
     ]
   }
