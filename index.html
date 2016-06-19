@@ -399,14 +399,14 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"~", "focusable":false,
+        "id":"firstAge", "focusable":true,
         "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":26, "t":15, 
-        "r":30, "b":16, 
+        "w":6, "h":rowCells, 
+        "l":25, "t":15, 
+        "r":31, "b":16, 
         "down":5, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
-        "label":"  0 to 30",
+        "label":"",
         "value":"",
         "focus":0}
 
@@ -455,14 +455,14 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"~", "focusable":false,
+        "id":"secondAge", "focusable":true,
         "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":26, "t":16, 
-        "r":30, "b":17, 
+        "w":6, "h":rowCells, 
+        "l":25, "t":16, 
+        "r":31, "b":17, 
         "down":5, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
-        "label":"31 to 39",
+        "label":"",
         "value":"",
         "focus":0}
 
@@ -511,14 +511,14 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"~", "focusable":false,
+        "id":"thirdAge", "focusable":true,
         "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":26, "t":17, 
-        "r":30, "b":18, 
+        "w":6, "h":rowCells, 
+        "l":25, "t":17, 
+        "r":31, "b":18, 
         "down":5, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
-        "label":"40 to 48",
+        "label":"",
         "value":"",
         "focus":0}
 
@@ -567,14 +567,14 @@ function init(){
         "value":"",
         "focus":0}
         ,{
-        "id":"~", "focusable":false,
+        "id":"fourthAge", "focusable":true,
         "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":26, "t":18, 
-        "r":30, "b":19, 
+        "w":6, "h":rowCells, 
+        "l":25, "t":18, 
+        "r":31, "b":19, 
         "down":11, "up":-5,
         "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
-        "label":"49 to   *",
+        "label":"",
         "value":"",
         "focus":0}
 
@@ -1147,6 +1147,26 @@ function userInput(){
 
     reading.fourthChallenge=reduceNumStr(""+Math.abs(m-y), "fourthChallenge");
     //console.log("reading.fourthChallenge "+reading.fourthChallenge);
+
+// june 17 new ages
+    reading.firstAgeStart=0;
+    reading.firstAgeEnd=36-Number(unmaster(reading.birthpath));
+    reading.firstAgeLabel=reading.firstAgeStart+" to "+reading.firstAgeEnd;
+    reading.firstAgeValue=reading.firstAgeEnd+Number(reading.birthYYYY);
+    reading.secondAgeStart=reading.firstAgeEnd+1;
+    reading.secondAgeEnd=reading.secondAgeStart+8;
+    reading.secondAgeLabel=reading.secondAgeStart+" to "+reading.secondAgeEnd;
+    reading.secondAgeValue=reading.secondAgeEnd+Number(reading.birthYYYY);
+    reading.thirdAgeStart=reading.secondAgeEnd+1;
+    reading.thirdAgeEnd=reading.thirdAgeStart+8;
+    reading.thirdAgeLabel=reading.thirdAgeStart+" to "+reading.thirdAgeEnd;
+    reading.thirdAgeValue=reading.thirdAgeEnd+Number(reading.birthYYYY);
+    reading.fourthAgeStart=reading.thirdAgeEnd+1;
+    reading.fourthAgeEnd="*";
+    reading.fourthAgeLabel=reading.fourthAgeStart+" to "+reading.fourthAgeEnd;
+    reading.fourthAgeValue="";
+
+
  
     localStorage.setItem("reading", JSON.stringify(reading));
     }
@@ -1224,12 +1244,19 @@ function clearCalcs(){
   reading.fourthPinnacle="";
 
   reading.firstChallenge="";
-
   reading.secondChallenge="";
-
-  reading.thirdChallenge="";
-  
+  reading.thirdChallenge="";  
   reading.fourthChallenge="";
+
+  reading.firstAgeLabel="";
+  reading.secondAgeLabel="";
+  reading.thirdAgeLabel="";  
+  reading.fourthAgeLabel="";
+  reading.firstAgeValue="";
+  reading.secondAgeValue="";
+  reading.thirdAgeValue="";  
+  reading.fourthAgeValue="";
+
   updateValues();
   }
 
@@ -1274,9 +1301,14 @@ for(var n=1; n<=9; n++){
   updateIdValue("thirdChallenge", ""+reading.thirdChallenge);
   updateIdValue("fourthChallenge", ""+reading.fourthChallenge);
 
-
-
-
+  updateIdLabel("firstAge", reading.firstAgeLabel);
+  updateIdValue("firstAge", reading.firstAgeValue);
+  updateIdLabel("secondAge", reading.secondAgeLabel);
+  updateIdValue("secondAge", reading.secondAgeValue);
+  updateIdLabel("thirdAge", reading.thirdAgeLabel);
+  updateIdValue("thirdAge", reading.thirdAgeValue);
+  updateIdLabel("fourthAge", reading.fourthAgeLabel);
+  updateIdValue("fourthAge", reading.fourthAgeValue);
 
   }
 function testReadingSaved(){
