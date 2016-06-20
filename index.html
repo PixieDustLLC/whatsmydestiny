@@ -1160,25 +1160,32 @@ function showSave(){
 */
 
 function setupLocalStorage(){
+  dbuga('setupLocalStorage()');
   if(localStorage.getItem("savedObj") === null) {
     localStorage.setItem("savedObj", JSON.stringify(savedObj));
     }
   else{
     savedObj=JSON.parse(localStorage.getItem("savedObj"));
     }
+  dbuga('setupLocalStorage() 2');
 
   if(localStorage.getItem("reading") === null) {
+    dbuga('setupLocalStorage()3 reading null');
     localStorage.setItem("reading", JSON.stringify(reading));
     }
   else{
+    dbuga('setupLocalStorage() 4');
     reading=JSON.parse(localStorage.getItem("reading"));
     updateIdValue("firstNameInput", reading.firstNameInput);
     updateIdValue("middleNameInput", reading.middleNameInput);
     updateIdValue("lastNameInput", reading.lastNameInput);
     updateIdValue("birthdayInput", reading.birthdayInput);
+    dbuga('setupLocalStorage() 5');
     userInput();
+    dbuga('setupLocalStorage() 6');
     testReadingSaved();
     }
+  dbuga('setupLocalStorage() completed');
   }
 
 
