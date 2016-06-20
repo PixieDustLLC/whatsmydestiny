@@ -123,8 +123,8 @@ function loadArticle(filename, lineNum){
 
 
 var colorMap={
-        "bg":{"focus":{"r":0, "g":0, "b":0}, "highlight":{"r":200, "g":200, "b":200}, "blur":{"r":240, "g":240, "b":"240"}},
-        "color":{"focus":{"r":255, "g":255, "b":255}, "highlight":{"r":0, "g":0, "b":0}, "blur":{"r":100, "g":100, "b":"100"}}
+        "bg":{"focus":{"r":0, "g":0, "b":0}, "blur":{"r":240, "g":240, "b":"240"}},
+        "color":{"focus":{"r":255, "g":255, "b":255}, "blur":{"r":100, "g":100, "b":"100"}}
   };
 var rCanv;
 var rCtx;
@@ -153,18 +153,6 @@ function init(){
         "focus":0}
          ,{
         "id":"firstNameInput", "focusable":true,
-        "highlights":[
-         "firstName",
-         "physicalPlane",
-         "mentalPlane",
-         "emotionalPlane",
-         "intuitivePlane",
-         "destiny",
-         "realization",
-         "heartsDesire",
-         "personality",
-         "habitChallenge"
-         ], 
         "limit":20, "type":"alpha", 
         "w":20, "h":rowCells, 
         "l":1, "t":1, 
@@ -176,18 +164,6 @@ function init(){
         "focus":0}
         ,{
         "id":"middleNameInput", "focusable":true,
-        "highlights":[
-         "middleName",
-         "physicalPlane",
-         "mentalPlane",
-         "emotionalPlane",
-         "intuitivePlane",
-         "destiny",
-         "realization",
-         "heartsDesire",
-         "personality",
-         "habitChallenge"
-         ],
         "limit":20, "type":"alpha", 
         "w":20, "h":rowCells, 
         "l":1, "t":2, 
@@ -199,18 +175,6 @@ function init(){
         "focus":0}
         ,{
         "id":"lastNameInput", "focusable":true,
-        "highlights":[
-         "lastName",
-         "physicalPlane",
-         "mentalPlane",
-         "emotionalPlane",
-         "intuitivePlane",
-         "destiny",
-         "realization",
-         "heartsDesire",
-         "personality",
-         "habitChallenge"
-         ],
         "limit":20, "type":"alpha", 
         "w":20, "h":rowCells, 
         "l":1, "t":3, 
@@ -222,8 +186,6 @@ function init(){
         "focus":0}
         ,{
         "id":"currentNameInput", "focusable":true,
-        "highlights":[
-         ],
         "limit":40, "type":"alpha", 
         "w":20, "h":rowCells, 
         "l":1, "t":4, 
@@ -235,8 +197,6 @@ function init(){
         "focus":0}
         ,{
         "id":"emailInput", "focusable":true,
-        "highlights":[
-         ],
         "limit":40, "type":"alphacharnumeric", 
         "w":20, "h":rowCells, 
         "l":1, "t":5, 
@@ -249,8 +209,6 @@ function init(){
 
         ,{
         "id":"phoneInput", "focusable":true,
-        "highlights":[
-         ],
         "limit":20, "type":"numericphone", 
         "w":9, "h":2, 
         "l":22, "t":1, 
@@ -262,28 +220,6 @@ function init(){
         "focus":0}
         ,{
         "id":"birthdayInput", "focusable":true,
-        "highlights":[
-         "ageInYears",
-         "dayOfWeek",
-         "dayOfBirth",
-         "birthpath",
-         "personalYear",
-         "personalMonth",
-         "personalDay",
-         "realization",
-         "firstPinnacle",
-         "secondPinnacle",
-         "thirdPinnacle",
-         "fourthPinnacle",
-         "firstChallenge",
-         "secondChallenge",
-         "thirdChallenge",
-         "fourthChallenge",
-         "firstAge",
-         "secondAge",
-         "thirdAge",
-         "fourthAge",
-         ],
         "limit":8, "type":"numericslash", 
         "w":9, "h":2, 
         "l":22, "t":4, 
@@ -1045,7 +981,7 @@ function searchTyped(keyCode){
     if(keyCode==13){//return
       searchTyping=false;
       found=true;
-      //console.log('return');
+      console.log('return');
       }
     if(found){
       //dbuga("found="+found);
@@ -1180,7 +1116,7 @@ function setupLocalStorage(){
 var reading={"valid":false};
 var savedObj={};
 var readingSaved=false;
-var daysOfWeek=["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var daysOfWeek=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 function nowMMDDYYYY(){
   var nowDate=new Date();
   var dd=nowDate.getDate();
@@ -1193,9 +1129,11 @@ function nowMMDDYYYY(){
 function userInput(){
   var nowDate=new Date();
   reading.valid=false;
-  // needed? use clearCalcs here instead
-  //console.log('userInput so clearCalcs first');
-  clearCalcs();
+  reading.birthYYYY="";
+  reading.birthMM="";
+  reading.birthDD="";
+  reading.birthMMDDYYYY="";
+
   reading.firstNameInput=valueOfId("firstNameInput").toLowerCase();
   reading.middleNameInput=valueOfId("middleNameInput").toLowerCase();
   reading.lastNameInput=valueOfId("lastNameInput").toLowerCase();
@@ -1203,22 +1141,63 @@ function userInput(){
   reading.emailInput=valueOfId("emailInput").toLowerCase();
   reading.phoneInput=valueOfId("phoneInput");
   reading.birthdayInput=valueOfId("birthdayInput");
-  
-  if(reading.birthdayInput.length==8){ 
-    reading.birthMMDDYYYY=reading.birthdayInput;
-    var parts=reading.birthdayInput.split('');
+  //reading.findInput=valueOfId("findInput").toLowerCase();
+
+  var birthdayValue=valueOfId("birthdayInput");
+  //dbug("birthdayValue.length "+birthdayValue.length); 
+  if((reading.firstNameInput != "")&&(reading.lastNameInput != "")&&(birthdayValue.length==8)){
+    //console.log(birthdayValue);
+    reading.birthMMDDYYYY=birthdayValue;
+    var parts=birthdayValue.split('');
     reading.birthYYYY=parts.slice(4,8).join('');
     reading.birthDD=parts.slice(2,4).join('');
     reading.birthMM=parts.slice(0,2).join('');
     //dbuga(uiObj[uiFocus].id+ " " +uiObj[uiFocus].value);
     reading.birthdateDate=new Date(Number(reading.birthYYYY), Number(reading.birthMM)-1, Number(reading.birthDD));
     reading.dayOfWeekNum=reading.birthdateDate.getDay();
-    reading.dayOfWeekStr=daysOfWeek[reading.dayOfWeekNum];
     reading.dayOfBirth=specialize(reading.birthDD);//1-31 including 11/2...
     reading.ageInYears=getAge(reading.birthdateDate);
 
     reading.birthSum=Number(unmaster(reduceNumStr(reading.birthMM)))+Number(unmaster(reduceNumStr(reading.birthDD)))+Number(unmaster(reduceNumStr(reading.birthYYYY)));
     reading.birthpath=reduceNumStr(""+reading.birthSum, "reading.birthSum");
+
+
+    reading.firstNameSum=sumArray(strToNums(valueOfId("firstNameInput")));
+    reading.firstNameVal=reduceNumStr(""+reading.firstNameSum, "reading.firstNameSum");
+    reading.middleNameSum=sumArray(strToNums(valueOfId("middleNameInput")));
+    reading.middleNameVal=reduceNumStr(""+reading.middleNameSum, "reading.middleNameSum");
+    reading.lastNameSum=sumArray(strToNums(valueOfId("lastNameInput")));
+    reading.lastNameVal=reduceNumStr(""+reading.lastNameSum, "reading.lastNameSum");
+    reading.destiny=reduceNumStr(""+sumArray([master(reading.firstNameVal), master(reading.middleNameVal), master(reading.lastNameVal)]), "destiny");
+    //console.log(reading);
+    reading.nameStr=valueOfId("firstNameInput")+valueOfId("middleNameInput")+valueOfId("lastNameInput");
+    reading.nameVowelArray=vowels(reading.nameStr);
+    reading.heartsDesire=reduceNumStr(""+sumLetterArray(reading.nameVowelArray), "heartsDesire");
+    reading.nameConsonantArray=consonants(reading.nameStr);
+    reading.personality=reduceNumStr(""+sumLetterArray(reading.nameConsonantArray), "personality");
+    reading.realization=reduceNumStr(""+sumArray([reading.destiny, reading.birthpath]), "realization");
+    
+    reading.habitChallenge=reduceNumStr(""+reading.nameStr.length, "habitChallenge");
+    reading.counts=[-1,
+    numberCount(1,reading.nameStr), 
+    numberCount(2,reading.nameStr), 
+    numberCount(3,reading.nameStr), 
+    numberCount(4,reading.nameStr), 
+    numberCount(5,reading.nameStr), 
+    numberCount(6,reading.nameStr), 
+    numberCount(7,reading.nameStr), 
+    numberCount(8,reading.nameStr), 
+    numberCount(9,reading.nameStr)
+    ];
+    reading.karmicArray=[];
+    for(var n=1; n<=9; n++){
+      if(reading.counts[n]==0){reading.karmicArray.push(""+n);}
+      }
+    reading.physicalPlane=reduceNumStr(""+(reading.counts[4]+reading.counts[5]));
+    reading.mentalPlane=reduceNumStr(""+(reading.counts[1]+reading.counts[8]));
+    reading.emotionalPlane=reduceNumStr(""+(reading.counts[2]+reading.counts[3]+reading.counts[6]));
+    reading.intuitivePlane=reduceNumStr(""+(reading.counts[7]+reading.counts[9]));
+
   //personal
     reading.globalYear=nowDate.getFullYear();
     reading.globalYearVal=reduceNumStr(""+reading.globalYear, "globalyear");
@@ -1274,57 +1253,6 @@ function userInput(){
     reading.fourthAgeLabel=reading.fourthAgeStart+" to "+reading.fourthAgeEnd;
     reading.fourthAgeValue="";
 
-    }
-  //dbug("reading.birthdayInput.length "+reading.birthdayInput.length); 
-  if(reading.firstNameInput != ""){
-    reading.firstNameSum=sumArray(strToNums(valueOfId("firstNameInput")));
-    reading.firstNameVal=reduceNumStr(""+reading.firstNameSum, "reading.firstNameSum");
-    //console.log('reading.firstNameVal '+reading.firstNameVal);
-    }
-  if(reading.middleNameInput != ""){
-    reading.middleNameSum=sumArray(strToNums(valueOfId("middleNameInput")));
-    reading.middleNameVal=reduceNumStr(""+reading.middleNameSum, "reading.middleNameSum");
-    }
-  if(reading.lastNameInput != ""){
-    reading.lastNameSum=sumArray(strToNums(valueOfId("lastNameInput")));
-    reading.lastNameVal=reduceNumStr(""+reading.lastNameSum, "reading.lastNameSum");
-    }
-  if((reading.firstNameInput != "")&&(reading.lastNameInput != "")){
-    reading.destiny=reduceNumStr(""+sumArray([master(reading.firstNameVal), master(reading.middleNameVal), master(reading.lastNameVal)]), "destiny");
-    //console.log(reading);
-    reading.nameStr=valueOfId("firstNameInput")+valueOfId("middleNameInput")+valueOfId("lastNameInput");
-    reading.nameVowelArray=vowels(reading.nameStr);
-    reading.heartsDesire=reduceNumStr(""+sumLetterArray(reading.nameVowelArray), "heartsDesire");
-    reading.nameConsonantArray=consonants(reading.nameStr);
-    reading.personality=reduceNumStr(""+sumLetterArray(reading.nameConsonantArray), "personality");
-    reading.habitChallenge=reduceNumStr(""+reading.nameStr.length, "habitChallenge");
-    reading.counts=[-1,
-    numberCount(1,reading.nameStr), 
-    numberCount(2,reading.nameStr), 
-    numberCount(3,reading.nameStr), 
-    numberCount(4,reading.nameStr), 
-    numberCount(5,reading.nameStr), 
-    numberCount(6,reading.nameStr), 
-    numberCount(7,reading.nameStr), 
-    numberCount(8,reading.nameStr), 
-    numberCount(9,reading.nameStr)
-    ];
-    reading.karmicArray=[];
-    for(var n=1; n<=9; n++){
-      if(reading.counts[n]==0){reading.karmicArray.push(""+n);}
-      }
-    reading.physicalPlane=reduceNumStr(""+(reading.counts[4]+reading.counts[5]));
-    reading.mentalPlane=reduceNumStr(""+(reading.counts[1]+reading.counts[8]));
-    reading.emotionalPlane=reduceNumStr(""+(reading.counts[2]+reading.counts[3]+reading.counts[6]));
-    reading.intuitivePlane=reduceNumStr(""+(reading.counts[7]+reading.counts[9]));
-
-  
-  if((reading.birthdayInput.length==8)&&(reading.firstNameInput != "")&&(reading.lastNameInput != "")){
-    // fully valid
-    reading.realization=reduceNumStr(""+sumArray([reading.destiny, reading.birthpath]), "realization");
-    }
-
-
 
  
     localStorage.setItem("reading", JSON.stringify(reading));
@@ -1334,18 +1262,19 @@ function userInput(){
   if(metaFocus != -1){updateMeta();}
   if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.lastNameInput.length>0)){
     reading.valid=true;
+    updateValues();
     }
-  updateValues();
+  else{
+    clearCalcs();
+    }
   testReadingSaved();
   }
 function clearCalcs(){
-  //console.log('clearCalcs()');
     reading.birthMMDDYYYY="";
     reading.birthYYYY='';
     reading.birthDD='';
     reading.birthMM='';
-    reading.dayOfWeekNum=0;
-    reading.dayOfWeekStr="";
+    reading.dayOfWeekNum="";
     reading.dayOfBirth="";
     reading.ageInYears="";
 
@@ -1419,9 +1348,13 @@ function clearCalcs(){
   }
 
 function updateValues(){
-  updateIdValue("dayOfWeek", reading.dayOfWeekStr);
-
-  updateIdValue("dayOfBirth", reading.dayOfBirth);
+  if(reading.dayOfWeekNum==""){
+    updateIdValue("dayOfWeek", "");
+    }
+  else{
+    updateIdValue("dayOfWeek", daysOfWeek[reading.dayOfWeekNum]);
+    }
+    updateIdValue("dayOfBirth", reading.dayOfBirth);
 
     updateIdValue("ageInYears", reading.ageInYears); 
     updateIdValue("birthpath", reading.birthpath);
@@ -1581,12 +1514,12 @@ var uiFocus=-1;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
-  //console.log('setUiFocus('+toNum+')');
+  console.log('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
   if(uiFocus>-1){
-    //console.log('setUiFocus('+toNum+') is '+uiObj[toNum].id);
+    console.log('setUiFocus('+toNum+') is '+uiObj[toNum].id);
     if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
     else{hideTextarea();}
     }
@@ -1749,13 +1682,6 @@ function drawGrid(){
 function drawUi(){
   var focusPad=.1*g;
   var blurPad=.05*g;
-  var highlights=[];
-  if(uiFocus>-1){
-    if(uiObj[uiFocus].id.indexOf("Input")>-1){
-      highlights=uiObj[uiFocus].highlights;
-      }
-    }
-  //dbug("+highlights "+highlights.length);
   for (var u=0; u<uiObj.length; u++){
     //console.log(u+" "+uiObj[u]['id']);
     //if((uiObj[u]['id']=="findInput")&&(hideButtons)){u++;}
@@ -1772,15 +1698,7 @@ function drawUi(){
     var bgR=Math.floor(prog*colorMap['bg']['focus'].r+(1-prog)*colorMap['bg']['blur'].r);
     var bgG=Math.floor(prog*colorMap['bg']['focus'].g+(1-prog)*colorMap['bg']['blur'].g);
     var bgB=Math.floor(prog*colorMap['bg']['focus'].b+(1-prog)*colorMap['bg']['blur'].b);
-    if(inArray(uiObj[u]['id'],highlights)){
-      //dbuga('highlight '+uiObj[u]['id']);
-      colorR=Math.floor(prog*colorMap['color']['blur'].r+(1-prog)*colorMap['color']['highlight'].r);
-      colorG=Math.floor(prog*colorMap['color']['blur'].g+(1-prog)*colorMap['color']['highlight'].g);
-      colorB=Math.floor(prog*colorMap['color']['blur'].b+(1-prog)*colorMap['color']['highlight'].b);
-      bgR=Math.floor(prog*colorMap['bg']['blur'].r+(1-prog)*colorMap['bg']['highlight'].r);
-      bgG=Math.floor(prog*colorMap['bg']['blur'].g+(1-prog)*colorMap['bg']['highlight'].g);
-      bgB=Math.floor(prog*colorMap['bg']['blur'].b+(1-prog)*colorMap['bg']['highlight'].b);
-      }
+
 
     var pad=blurPad-focusPad*uiObj[u]['focus'];
     var value=uiObj[u].value;
@@ -1800,10 +1718,7 @@ function drawUi(){
     var labelFontPx=uiObj[u].labelSize*g-pad*0;
     var valueLinePx=uiObj[u].valueSize*g*1.2;
     var labelLinePx=uiObj[u].labelSize*g*1.2;
-    if(inArray(uiObj[u]['id'], highlights)){
-      ctx.fillStyle="rgb("+bgR+","+bgG+","+bgB+")";
-      ctx.fillRect(uiObj[u]['l']*g+pad, uiObj[u]['t']*g+pad, uiObj[u]['w']*g-pad*2, uiObj[u]['h']*g-pad*2);
-      }
+
     if((uiObj[u].type != "label")||(prog>0)){
       ctx.fillStyle="rgb("+bgR+","+bgG+","+bgB+")";
       ctx.fillRect(uiObj[u]['l']*g+pad, uiObj[u]['t']*g+pad, uiObj[u]['w']*g-pad*2, uiObj[u]['h']*g-pad*2);
@@ -2189,7 +2104,7 @@ function summaryReport(){
         rCtx.font=reportGrid*.8+"px avantbook";
         metaHeight=wrapTest(rCtx, metaString, 0, 0, metaWidth, reportGrid, false);
         if(metaHeight>maxHeight){maxHeight=metaHeight;}
-        //console.log("maxHeight "+maxHeight +" metaHeight: " +metaHeight +" labelHeight="+labelHeight);
+        console.log("maxHeight "+maxHeight +" metaHeight: " +metaHeight +" labelHeight="+labelHeight);
         if(((maxHeight+atY)>reportHeight)||(thisKey=="physicalPlane")||(thisKey=="firstPinnacle")||(thisKey=="count1")){
           atY=reportGrid*firstCell;
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
@@ -2208,11 +2123,11 @@ function summaryReport(){
         wrapText(rCtx, uiObj[thisUi]['value'], valueX, atY, valueWidth, reportGrid, false);
         rCtx.textAlign="left";
         rCtx.font=reportGrid*.8+"px avantbook";
-        //console.log(m+ "atY="+atY+" "+thisMeta['label']);
+        console.log(m+ "atY="+atY+" "+thisMeta['label']);
         wrapText(rCtx, metaString, metaX, atY, metaWidth, reportGrid, false);
-        //console.log(" then atY="+atY+" "+thisMeta['label']);
+        console.log(" then atY="+atY+" "+thisMeta['label']);
         atY+=maxHeight+reportGrid;
-        //console.log(" and then atY="+atY+" "+thisMeta['label']);
+        console.log(" and then atY="+atY+" "+thisMeta['label']);
         }
       }
     }
@@ -2266,7 +2181,7 @@ function pdfToServer(doc, calling){
   reportName=calling;
   reportFile="http://whatsmydestiny.com/destinyapp/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
   
-  //console.log('pdfToServer '+calling+ ' '+reportFile);
+  console.log('pdfToServer '+calling+ ' '+reportFile);
   var pdf=doc.output();
   chunks=[];
   while (pdf) {
@@ -2287,10 +2202,10 @@ function pdfToServer(doc, calling){
   }
 function saveChunk(){
   var chunkNum=totalChunks-chunks.length;
-  //console.log("saveChunk chunks.length="+chunks.length+" chunkNum="+chunkNum+" reportName="+reportName);
+  console.log("saveChunk chunks.length="+chunks.length+" chunkNum="+chunkNum+" reportName="+reportName);
   var chunk=chunks.shift();
   var aChunk=btoa(chunk);
-  //console.log("aChunk.length="+aChunk.length);
+  console.log("aChunk.length="+aChunk.length);
   var data = new FormData();
   data.append("chunkNum", chunkNum);
   data.append("reportName", reportName);
@@ -2378,7 +2293,7 @@ function selectSaved(savedKey){
   //dbuga('selectSaved('+savedKey+')');
   var savedItem=savedObj[savedKey];
   if(typeof(savedItem)=="string"){
-    //console.log(savedItem+" = string");
+    console.log(savedItem+" = string");
     updateIdValue('birthdayInput',savedItem);
     updateIdValue('currentNameInput',"");
     updateIdValue('emailInput',"");
@@ -2402,7 +2317,7 @@ function selectSaved(savedKey){
   }
 function handleEvent(evt){
   if(aboutUp){
-    //console.log('about up so ignore event')
+    console.log('about up so ignore event')
     return false;
     }
   //dbuga(evt.type+" "+evt.source);
@@ -2431,9 +2346,7 @@ function handleEvent(evt){
     else{setUiFocus(found);}
     }
   }
-
 function clearReading(){
-  //console.log('clearReading() so clearCalcs');
   selectedContactId=-1;
   updateIdValue("firstNameInput", "");
   updateIdValue("middleNameInput", "");
@@ -2444,6 +2357,39 @@ function clearReading(){
   updateIdValue("phoneInput", "");
   //updateIdValue("findInput", "");
   clearCalcs();
+/*
+reading.dayOfWeekNum=0;
+reading.dayOfBirth=0;
+reading.ageInYears=0; 
+reading.birthpath=0;
+reading.firstNameVal=0;
+reading.middleNameVal=0;
+reading.lastNameVal=0;
+reading.destiny=0;
+reading.heartsDesire=0;
+reading.personality=0;
+reading.realization=0;
+reading.habitChallenge=0;
+for(var n=1; n<=9; n++){
+  reading.counts[n]=0;
+  }
+reading.karmicArray=[];
+reading.physicalPlane=0;
+reading.mentalPlane=0;
+reading.emotionalPlane=0;
+reading.intuitivePlane=0;
+reading.personalYear=0;
+reading.personalMonth=0;
+reading.personalDay=0;
+reading.firstPinnacle=0;
+reading.secondPinnacle=0;
+reading.thirdPinnacle=0;
+reading.fourthPinnacle=0;
+reading.firstChallenge=0;
+reading.secondChallenge=0;
+reading.thirdChallenge=0;
+reading.fourthChallenge=0;
+*/
   }
 function saveInputs(){
   //console.log('saveInputs()');
@@ -2457,13 +2403,13 @@ function saveInputs(){
   readingSaved=true;
   localStorage.setItem("savedObj", JSON.stringify(savedObj));
   }
-var focusStep=.01;
+var focusStep=.1;
 var listLeft=0;
 var listRight=0;
 var listTop=0
 var listWidth=0;
 function geometry(){
-  //console.log('geometry()');
+  console.log('geometry()');
     viewportWidth = window.innerWidth;
     viewportHeight = window.innerHeight;    
     canv.width=viewportWidth;
@@ -2491,7 +2437,7 @@ function geometry(){
 
 
     style.innerHTML += '.closer{background-image:url(icons/red/x.png); background-size:contain; background-repeat:no-repeat; background-position: 50% 50%; width:'+viewportWidth*3/64+'px; top:'+viewportHeight*0/64+'px; height:'+viewportWidth*3/64+'px; border-radius:'+viewportWidth*1.5/64+'px; background-color:#f1f1f1; position:fixed; right:'+viewportHeight*1/64+'px; display:block;}';
-    //console.log('updating style '+viewportWidth/32*15);
+    console.log('updating style '+viewportWidth/32*15);
     
 //#pdfData
     document.getElementsByTagName('head')[0].appendChild(style);
@@ -2705,7 +2651,7 @@ function updateClientLayout(){
 
   yOffset=rui.g*2.5;
   // called by rui.geometry();
-  //console.log('updateClientLayout()');
+  console.log('updateClientLayout()');
   canv.width=rui.ww;
   canv.height=rui.wh-yOffset;
   canv.style.top=yOffset+"px";
@@ -2824,7 +2770,7 @@ function emailWes(){
   window.setTimeout("window.open('mailto:wes@weshamilton.com?subject=Request from Whats My Destiny app', '_system')", 100);
   }
 function selectResult(id){
-  //console.log("selectResult "+id);
+  console.log("selectResult "+id);
   menus["search"].selected=false;
   barButtons[2].selected=false;
   rui.drawUx();
