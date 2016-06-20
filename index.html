@@ -129,7 +129,7 @@ var colorMap={
 var rCanv;
 var rCtx;
 function init(){
-  dbuga('init()');
+  //dbuga('init()');
   canv=document.getElementById('mainCanvas');
   ctx=canv.getContext('2d');
   rCanv=document.getElementById('reportCanvas');
@@ -911,18 +911,18 @@ function init(){
     });
   document.body.style.backgroundImage="";
 
-  dbuga('init() 6' );
+  //dbuga('init() 6' );
 
   setupLocalStorage();
-  dbuga('init() 7' );
+  //dbuga('init() 7' );
   ////focusTextarea();
   //createRui:function(containerRef, barColor, barTextColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, squareIcons, iconPad, selectColor, paraFont, headFont)
 
 
 rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "#ffffff", "icons/", "white", "red", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
-  dbuga('init() 8');
+  //dbuga('init() 8');
   openTutorial();
-  dbuga('init() completed');
+  //dbuga('init() completed');
 
   }
 function clearSearch(){
@@ -1160,32 +1160,32 @@ function showSave(){
 */
 
 function setupLocalStorage(){
-  dbuga('setupLocalStorage()');
+  //dbuga('setupLocalStorage()');
   if(localStorage.getItem("savedObj") === null) {
     localStorage.setItem("savedObj", JSON.stringify(savedObj));
     }
   else{
     savedObj=JSON.parse(localStorage.getItem("savedObj"));
     }
-  dbuga('setupLocalStorage() 2');
+  //dbuga('setupLocalStorage() 2');
 
   if(localStorage.getItem("reading") === null) {
-    dbuga('setupLocalStorage()3 reading null');
+    //dbuga('setupLocalStorage()3 reading null');
     localStorage.setItem("reading", JSON.stringify(reading));
     }
   else{
-    dbuga('setupLocalStorage() 4');
+    //dbuga('setupLocalStorage() 4');
     reading=JSON.parse(localStorage.getItem("reading"));
     updateIdValue("firstNameInput", reading.firstNameInput);
     updateIdValue("middleNameInput", reading.middleNameInput);
     updateIdValue("lastNameInput", reading.lastNameInput);
     updateIdValue("birthdayInput", reading.birthdayInput);
-    dbuga('setupLocalStorage() 5');
+    //dbuga('setupLocalStorage() 5');
     userInput();
-    dbuga('setupLocalStorage() 6');
+    //dbuga('setupLocalStorage() 6');
     testReadingSaved();
     }
-  dbuga('setupLocalStorage() completed');
+  //dbuga('setupLocalStorage() completed');
   }
 
 
@@ -1322,7 +1322,7 @@ function userInput(){
     numberCount(9,reading.nameStr)
     ];
     reading.karmicArray=[];
-  dbuga("userInput counts "+reading.counts.length);
+  //dbuga("userInput counts "+reading.counts.length);
 
     for(var n=1; n<=9; n++){
       if(reading.counts[n]==0){reading.karmicArray.push(""+n);}
@@ -1383,7 +1383,7 @@ function clearCalcs(){
     
   reading.habitChallenge="";
   reading.karmicArray=[];
-  dbuga("clearCalcs counts "+reading.counts.length);
+  //dbuga("clearCalcs counts "+reading.counts.length);
   for(var n=1; n<=9; n++){
     reading.counts[n]="";
     }
@@ -1447,7 +1447,7 @@ updateIdValue("destiny", reading.destiny);
     updateIdValue("personality", reading.personality);
     updateIdValue("realization", reading.realization);
   updateIdValue("habitChallenge", reading.habitChallenge);
-  dbuga("update counts "+reading.counts.length);
+  //dbuga("update counts "+reading.counts.length);
 
 for(var n=1; n<=9; n++){
     updateIdValue("count"+n, ""+reading.counts[n]);
@@ -2473,13 +2473,13 @@ function saveInputs(){
   readingSaved=true;
   localStorage.setItem("savedObj", JSON.stringify(savedObj));
   }
-var focusStep=.01;
+var focusStep=.1;
 var listLeft=0;
 var listRight=0;
 var listTop=0
 var listWidth=0;
 function geometry(){
-  dbuga('geometry()');
+  //dbuga('geometry()');
     viewportWidth = window.innerWidth;
     viewportHeight = window.innerHeight;    
     canv.width=viewportWidth;
@@ -2718,7 +2718,7 @@ var pi=Math.PI;
 //menu funcs and configs
 var yOffset=0;
 function updateClientLayout(){
-  dbuga('updateClientLayout()');
+  //dbuga('updateClientLayout()');
   yOffset=rui.g*2.5;
   // called by rui.geometry();
   //console.log('updateClientLayout()');
