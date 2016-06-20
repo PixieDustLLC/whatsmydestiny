@@ -2740,6 +2740,7 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
 var selectedContactId=-1;
 var selectedContact={};
 function closeAbout(){
+  document.getElementById('aboutDiv').scrollTop=0;
   document.getElementById('aboutDiv').style.display="none";
   rui.menuFound=-1;
   aboutUp=false;
