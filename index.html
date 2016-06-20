@@ -2315,6 +2315,10 @@ function selectSaved(savedKey){
 
   }
 function handleEvent(evt){
+  if(aboutUp){
+    console.log('about up so ignore event')
+    return false;
+    }
   //dbuga(evt.type+" "+evt.source);
   evt.y-=yOffset;
   var found=-1;
@@ -2735,13 +2739,17 @@ var selectedContact={};
 function closeAbout(){
   document.getElementById('aboutDiv').style.display="none";
   rui.menuFound=-1;
+  aboutUp=false;
   }
+var aboutUp=false;
 function openAbout(){
+  aboutUp=true;
   // show modal link panel
   document.getElementById('aboutDiv').style.display="block";
   document.getElementById('aboutDiv').innerHTML=aboutCode;
   }
 function openTutorial(){
+  aboutUp=true;
   // show modal link panel
   document.getElementById('aboutDiv').style.display="block";
   document.getElementById('aboutDiv').innerHTML=tutorialCode;
@@ -2989,6 +2997,6 @@ function contactsSaveError(contactError) {
   <textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
   <textarea id="dummyArea" onblur="focusBounce();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
 <div id="aboutDiv" style="overflow:auto; background-color:rgba(255,255,255,.75); width:100%; height:100%; position:absolute;  z-index:6;  -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px); display:none;" ontouchstart="closeAbout();" onmousedown="closeAbout();">
+    backdrop-filter: blur(10px); display:none;">
 </body>
 </html>
