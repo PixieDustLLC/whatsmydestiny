@@ -129,6 +129,7 @@ var colorMap={
 var rCanv;
 var rCtx;
 function init(){
+  dbuga('init()');
   canv=document.getElementById('mainCanvas');
   ctx=canv.getContext('2d');
   rCanv=document.getElementById('reportCanvas');
@@ -910,6 +911,7 @@ function init(){
     });
   document.body.style.backgroundImage="";
 
+  dbuga('init() 7' );
 
   setupLocalStorage();
   ////focusTextarea();
@@ -919,6 +921,8 @@ function init(){
 
 rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "#ffffff", "icons/", "white", "red", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
   openTutorial();
+  dbuga('init() completed');
+
   }
 function clearSearch(){
   focusTextarea(); 
@@ -1177,7 +1181,7 @@ function setupLocalStorage(){
   }
 
 
-var reading={"valid":false, "counts":[]};
+var reading={"valid":false, "counts":[-1,0,0,0,0,0,0,0,0,0]};
 var savedObj={};
 var readingSaved=false;
 var daysOfWeek=["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
