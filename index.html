@@ -1177,7 +1177,7 @@ function setupLocalStorage(){
   }
 
 
-var reading={"valid":false};
+var reading={"valid":false, "counts":[]};
 var savedObj={};
 var readingSaved=false;
 var daysOfWeek=["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -1376,7 +1376,6 @@ function clearCalcs(){
   reading.mentalPlane="";
   reading.emotionalPlane="";
   reading.intuitivePlane="";
-
   //personal
   reading.globalYear="";
   reading.globalYearVal="";
