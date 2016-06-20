@@ -129,6 +129,8 @@ agents, or licensors have been advised of the possibility of such loss or
 damages, and whether or not such loss or damages is or are foreseeable.The entire cumulative liability of Company, and its affiliates, resellers, agents, or licensors for any reason arising from or relating to this Agreement shall be limited to the amount paid by you to Company for the Products in the twelve (12) month period immediately preceding the event giving rise to such claim.</p>
 <p><b>GOVERNING LAW</b></p>
 <p>This Agreement shall for all purposes be governed by and interpreted in accordance with the laws of the State of MN as those laws are applied to contracts entered into, and to be performed entirely in MN by MN residents.</p>
+</div>
+<div class="col">
 <p><b>ATTORNEY FEES</b></p>
 <p>If any legal action or proceeding is
 brought for the enforcement of this Agreement or arises from the alleged
@@ -136,8 +138,6 @@ breach, dispute, default or misrepresentation in connection with any of the
 provisions of this Agreement, the prevailing party or parties shall be entitled
 to recover reasonable attorneys' fees and other costs incurred as a result of
 such legal action or proceeding.</p>
-</div>
-<div class="col">
 <p><b>AMENDMENTS</b></p>
 <p>It is recommended that User review the Company's website periodically for new or additional terms and changes to this Agreement. Company has the right to change or add to the terms of this Agreement, and to change, delete, discontinue, or impose conditions on any feature or aspect of the Products, including but not
 limited to, terms, technical support options, and other product-related policies and features, at any time and upon notice by any means Company determines in its discretion to be reasonable. Your continued use of the Products after Company's publication of any such changes shall constitute your acceptance of this Agreement as modified.</span></p>

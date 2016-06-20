@@ -2430,9 +2430,12 @@ function geometry(){
     style.innerHTML += '.dialogimage, #downloadpdfimg {padding:0px; width:'+dialogW+'px; height:'+dialogH+'px; left:'+0+'px; top:'+0+'px; position:absolute; }';
     style.innerHTML += '#uploadingpercent{padding:0px; width:'+dialogW+'px; height:'+dialogH+'px; left:'+0+'px; top:'+0+g*3+'px; text-align:center; position:absolute; font-size:'+g+'+px; font-family:avantbold;}';
     style.innerHTML += 'h1{padding:'+viewportWidth*1/64+'px; width:'+viewportWidth*14/32+'px; background-color:#be792b; text-align:center; font-size:'+viewportWidth*1/32+'+px; font-family:avantbold;}';
-    style.innerHTML += 'p{padding:'+viewportWidth*1/64+'px; width:'+viewportWidth*14/32+'px; text-align:left; font-size:'+viewportWidth*1/32+'+px; font-family:avantbook;}';
+    style.innerHTML += 'p{padding:'+viewportWidth*1/64+'px; width:'+viewportWidth*27/64+'px; text-align:left; font-size:'+viewportWidth*1/32+'+px; font-family:avantbook;}';
     style.innerHTML += '.col{margin-left:'+viewportWidth*1/64+'px; margin-top:'+viewportHeight*1/64+'px; width:'+viewportWidth/32*15+'px; height:'+Math.floor(viewportHeight*60/64)+'px; background-color:#e8e8e8; float:left;}';
     style.innerHTML += '.landscape{margin-top:'+viewportWidth*1/64+'px;width:'+viewportWidth/32*15+'px;}';
+
+
+    style.innerHTML += '.closer{background-image:url(icons/red/x.png); background-size:contain; background-repeat:no-repeat; background-position: 50% 50%; width:'+viewportWidth*3/64+'px; top:'+viewportHeight*0/64+'px; height:'+viewportWidth*3/64+'px; border-radius:'+viewportWidth*1.5/64+'px; background-color:#f1f1f1; position:fixed; right:'+viewportHeight*1/64+'px; display:block;}';
     console.log('updating style '+viewportWidth/32*15);
     
 //#pdfData
@@ -2742,17 +2745,18 @@ function closeAbout(){
   aboutUp=false;
   }
 var aboutUp=false;
+var closeCode='<div class="closer" ontouchstart="closeAbout()" onmousedown="closeAbout()"></div>';
 function openAbout(){
   aboutUp=true;
   // show modal link panel
   document.getElementById('aboutDiv').style.display="block";
-  document.getElementById('aboutDiv').innerHTML=aboutCode;
+  document.getElementById('aboutDiv').innerHTML=aboutCode+closeCode;
   }
 function openTutorial(){
   aboutUp=true;
   // show modal link panel
   document.getElementById('aboutDiv').style.display="block";
-  document.getElementById('aboutDiv').innerHTML=tutorialCode;
+  document.getElementById('aboutDiv').innerHTML=tutorialCode+closeCode;
   }
 function openHelp(){
   var ref = window.open("http://www.whatsmydestiny.com/2016/05/28/support/", "_system");
@@ -2996,7 +3000,7 @@ function contactsSaveError(contactError) {
   <div id="uploadingpdf" style="display:none; z-index:8;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
   <textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
   <textarea id="dummyArea" onblur="focusBounce();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
-<div id="aboutDiv" style="overflow:auto; background-color:rgba(255,255,255,.75); width:100%; height:100%; position:absolute;  z-index:6;  -webkit-backdrop-filter: blur(10px);
+<div id="aboutDiv" style="overflow:auto; background-color:rgba(200,200,200,.75); width:100%; height:100%; position:absolute;  z-index:6;  -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px); display:none;">
 </body>
 </html>
