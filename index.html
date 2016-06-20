@@ -10,6 +10,8 @@
 <script src="phonegap.js"></script>
 <script src="jquery.min.js"></script>
 
+<script type="text/javascript" src="about.js"></script>
+<script type="text/javascript" src="tutorial.js"></script>
 <script type="text/javascript" src="rui.js"></script>
 <script type="text/javascript" src="summaryfields.js"></script>
 <script type="text/javascript" src="jsPDF/jspdf.js"></script>
@@ -40,6 +42,86 @@ var g=1;
 var uiObj=[];
 var rowCount=0;
 var shifted=false;
+// begin article functions and vars
+
+
+var searchData=[];
+var articleWidth=100;
+var searchPhrase="";
+var articleHeight=100;
+var articleUp=false;
+function closeArticle(){
+
+  document.getElementById('articleDiv').innerHTML="";
+  articleUp=false;
+
+  if((currentPage=="toolSplash")||(currentPage=="login")){
+    if((currentPage=="login")&&(profileReturnPage=="appcorepassioncareer")){
+      currentPage="login";
+    }
+    else{
+      currentPage="toolbox";
+    }
+  }
+  geometry();
+
+}
+var articleFilename="";
+function loadArticle(filename, lineNum){
+  stopSplash();
+  articleFilename=filename;
+  //dbug('loadArticle('+filename+', '+lineNum+')');
+  headerText.innerHTML="Career Seeker";
+  var htmlString="";
+
+  htmlString+='<div id="articleHolder" class="container">';
+  var fileId="not found";
+  var lines=[];
+  var lcSearchPhrase=searchPhrase.toLowerCase();
+  for (var s=0; s<searchData.length; s++){
+    //dbuga(searchData[s].filename +'??'+ filename);
+    if(searchData[s].filename==filename){
+      fileId=searchData[s].id;
+      for (var l=0; l<searchData[s].lines.length; l++){
+        var line=searchData[s].lines[l];
+        if(searchPhrase != ""){line=highlightLine(line,searchPhrase);}
+        line=line.replace('src="', 'src="pdf/');
+        lines.push(line);
+      }
+    }
+  }
+  //dbuga("lines.length="+lines.length);
+  if(filename != "glossary.html"){
+    lines=glossarize(lines);
+    }
+
+  htmlString+=lines.join("\n");
+  htmlString+='<div class="closeBlackIcon" style="float:right; width:44px; height:44px;" ontouchend="javascript:event.preventDefault(); closeArticle()"></div>';
+  htmlString+='</div>';
+
+  htmlString+='<div class="closeBlackIconTop" ontouchend="javascript:event.preventDefault(); closeArticle()"></div>';
+  
+  articleDiv.innerHTML="";
+  //document.getElementById('articleDiv').scrollTop=0
+  articleDiv.innerHTML=htmlString;
+  if(lineNum>0){
+    //dbuga(fileId+""+lineNum);
+    $('#articleHolder').scrollTop(($('#'+fileId+lineNum).offset().top-50));
+  }
+  else{// this refuses to work.
+    window.setTimeout('articleTop()', 1);
+  }
+
+  articleUp=true;
+  geometry();
+}
+
+
+
+
+
+
+
 var colorMap={
         "bg":{"focus":{"r":0, "g":0, "b":0}, "blur":{"r":240, "g":240, "b":"240"}},
         "color":{"focus":{"r":255, "g":255, "b":255}, "blur":{"r":100, "g":100, "b":"100"}}
@@ -2322,6 +2404,7 @@ var listRight=0;
 var listTop=0
 var listWidth=0;
 function geometry(){
+  console.log('geometry()');
     viewportWidth = window.innerWidth;
     viewportHeight = window.innerHeight;    
     canv.width=viewportWidth;
@@ -2336,13 +2419,17 @@ function geometry(){
     var dialogT=9*g;
 
 
-    
     var style = document.createElement('style');
     style.type = 'text/css';
     style.innerHTML ='';
     style.innerHTML += '#uploadingpercent, #uploadingpdf, #downloadpdf, #spinner{padding:0px; width:'+dialogW+'px; height:'+dialogH+'px; left:'+dialogL+'px; top:'+dialogT+'px; position:absolute; }';
     style.innerHTML += '.dialogimage, #downloadpdfimg {padding:0px; width:'+dialogW+'px; height:'+dialogH+'px; left:'+0+'px; top:'+0+'px; position:absolute; }';
     style.innerHTML += '#uploadingpercent{padding:0px; width:'+dialogW+'px; height:'+dialogH+'px; left:'+0+'px; top:'+0+g*3+'px; text-align:center; position:absolute; font-size:'+g+'+px; font-family:avantbold;}';
+    style.innerHTML += 'h1{padding:'+viewportWidth*1/64+'px; width:'+viewportWidth*14/32+'px; background-color:#be792b; text-align:center; font-size:'+viewportWidth*1/32+'+px; font-family:avantbold;}';
+    style.innerHTML += 'p{padding:'+viewportWidth*1/64+'px; width:'+viewportWidth*14/32+'px; text-align:left; font-size:'+viewportWidth*1/32+'+px; font-family:avantbook;}';
+    style.innerHTML += '.col{margin-left:'+viewportWidth*1/64+'px; margin-top:'+viewportHeight*1/64+'px; width:'+viewportWidth/32*15+'px; height:'+Math.floor(viewportHeight*60/64)+'px; background-color:#e8e8e8; float:left;}';
+    style.innerHTML += '.landscape{margin-top:'+viewportWidth*1/64+'px;width:'+viewportWidth/32*15+'px;}';
+    console.log('updating style '+viewportWidth/32*15);
     
 //#pdfData
     document.getElementsByTagName('head')[0].appendChild(style);
@@ -2652,6 +2739,12 @@ function closeAbout(){
 function openAbout(){
   // show modal link panel
   document.getElementById('aboutDiv').style.display="block";
+  document.getElementById('aboutDiv').innerHTML=aboutCode;
+  }
+function openTutorial(){
+  // show modal link panel
+  document.getElementById('aboutDiv').style.display="block";
+  document.getElementById('aboutDiv').innerHTML=tutorialCode;
   }
 function openHelp(){
   var ref = window.open("http://www.whatsmydestiny.com/2016/05/28/support/", "_system");
@@ -2895,7 +2988,7 @@ function contactsSaveError(contactError) {
   <div id="uploadingpdf" style="display:none; z-index:8;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
   <textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
   <textarea id="dummyArea" onblur="focusBounce();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
-<div id="aboutDiv" style="background-color:rgba(255,255,255,.5); width:100%; height:100%; position:absolute;  z-index:6; background-image:url('nav/aboutwes.png'); background-size:contain; background-repeat:no-repeat; background-position:50% 50%;    -webkit-backdrop-filter: blur(10px);
+<div id="aboutDiv" style="overflow:auto; background-color:rgba(255,255,255,.75); width:100%; height:100%; position:absolute;  z-index:6;  -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px); display:none;" ontouchstart="closeAbout();" onmousedown="closeAbout();">
 </body>
 </html>
