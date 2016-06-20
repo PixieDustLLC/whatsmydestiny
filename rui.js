@@ -28,6 +28,7 @@ var rui = {
   preloadArray:["arrowdown.png", "arrowup.png", "art.png", "back.png", "blank.png", "book.png", "cart.png", "disk.png", "droparrowbox.png", "duplicate.png", "email.png", "embedcode.png", "eraser.png", "folder.png", "home.png", "i.png", "imagefile.png", "magnifier.png", "maginverted.png", "menu.png", "mic.png", "moviefile.png", "next.png", "palette.png", "panes.png", "pause.png", "pdfdoc.png", "pencil.png", "play.png", "power.png", "profile.png", "questionmark.png", "refresh.png", "reticule.png", "rocket.png", "roundplus.png", "roundx.png", "share.png", "shortmenu.png", "speaker.png", "star.png", "trash.png", "venn.png", "w.png", "wand.png", "www.png", "x.png"],
 
   createRui:function(containerRef, barColor, barTextColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, squareIcons, iconPad, selectColor, paraFont, headFont){
+  dbuga('createRui');
   rui.ruiCreated=true;
   rui.barColor=barColor;
   rui.barTextColor=barTextColor;
@@ -81,6 +82,7 @@ var rui = {
     }, false);
   window.clearInterval(rui.geometryInterval);
   rui.geometryInterval=window.setInterval('rui.geometryTick()', 100);
+  dbuga('createRui completed');
 
   },
   toggleMenu:function(menuName){
