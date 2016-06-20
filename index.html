@@ -920,6 +920,7 @@ function init(){
   //old rui.createRui(document.getElementById('menuHolder'), "#be792b", "yellow", "#be792b", "rgb(255,255,255)", "#b91c1b", "rgba(255,255,255,0)", "icons/", "white", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
 
 rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "#ffffff", "icons/", "white", "red", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
+  dbuga('init() 8');
   openTutorial();
   dbuga('init() completed');
 
@@ -1314,6 +1315,8 @@ function userInput(){
     numberCount(9,reading.nameStr)
     ];
     reading.karmicArray=[];
+  dbuga("userInput counts "+reading.counts.length);
+
     for(var n=1; n<=9; n++){
       if(reading.counts[n]==0){reading.karmicArray.push(""+n);}
       }
@@ -1373,6 +1376,7 @@ function clearCalcs(){
     
   reading.habitChallenge="";
   reading.karmicArray=[];
+  dbuga("clearCalcs counts "+reading.counts.length);
   for(var n=1; n<=9; n++){
     reading.counts[n]="";
     }
@@ -1436,6 +1440,8 @@ updateIdValue("destiny", reading.destiny);
     updateIdValue("personality", reading.personality);
     updateIdValue("realization", reading.realization);
   updateIdValue("habitChallenge", reading.habitChallenge);
+  dbuga("update counts "+reading.counts.length);
+
 for(var n=1; n<=9; n++){
     updateIdValue("count"+n, ""+reading.counts[n]);
  }
@@ -2466,7 +2472,7 @@ var listRight=0;
 var listTop=0
 var listWidth=0;
 function geometry(){
-  //console.log('geometry()');
+  dbuga('geometry()');
     viewportWidth = window.innerWidth;
     viewportHeight = window.innerHeight;    
     canv.width=viewportWidth;
@@ -2705,7 +2711,7 @@ var pi=Math.PI;
 //menu funcs and configs
 var yOffset=0;
 function updateClientLayout(){
-
+  dbuga('updateClientLayout()');
   yOffset=rui.g*2.5;
   // called by rui.geometry();
   //console.log('updateClientLayout()');
