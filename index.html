@@ -2810,14 +2810,15 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
 // end of menu configs
 var selectedContactId=-1;
 var selectedContact={};
-function closeAbout(){
+function closeAbout(e){
+  e.preventDefault();
   document.getElementById('aboutDiv').scrollTop=0;
   document.getElementById('aboutDiv').style.display="none";
   rui.menuFound=-1;
   aboutUp=false;
   }
 var aboutUp=false;
-var closeCode='<div class="closer" ontouchend="closeAbout()" onmouseup="closeAbout()"></div>';
+var closeCode='<div class="closer" ontouchend="closeAbout(event)" onmouseup="closeAbout()"></div>';
 function openAbout(){
   aboutUp=true;
   // show modal link panel
