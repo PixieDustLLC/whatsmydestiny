@@ -2418,7 +2418,7 @@ function selectSaved(savedKey){
   }
 function handleEvent(evt){
   if(aboutUp){
-    //console.log('about up so ignore event')
+    console.log('about up so ignore event')
     return false;
     }
   //dbuga(evt.type+" "+evt.source);
@@ -2817,7 +2817,7 @@ function closeAbout(){
   aboutUp=false;
   }
 var aboutUp=false;
-var closeCode='<div class="closer" ontouchstart="closeAbout()" onmousedown="closeAbout()"></div>';
+var closeCode='<div class="closer" ontouchend="closeAbout()" onmouseup="closeAbout()"></div>';
 function openAbout(){
   aboutUp=true;
   // show modal link panel
