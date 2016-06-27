@@ -2009,7 +2009,7 @@ function metadataReport(){
         metaHeight=wrapTest(rCtx, metaString, 0, 0, metaWidth, reportGrid, false);
         if(metaHeight>maxHeight){maxHeight=metaHeight;}
         //console.log("maxHeight "+maxHeight +" metaHeight: " +metaHeight +" labelHeight="+labelHeight);
-        if(((maxHeight+atY)>reportHeight)||(thisKey=="physicalPlane")||(thisKey=="firstPinnacle")||(thisKey=="count1")){
+        if(((maxHeight+atY)>reportHeight)||(thisKey=="physicalPlane")||(thisKey=="firstAge")||(thisKey=="thirdAge")||(thisKey=="count1")){
           atY=reportGrid*firstCell;
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
           // Convert the data to binary form
