@@ -348,15 +348,6 @@ var metaByFieldValue={
   "firstLabel":{"label":"First Age",
     "":"First: In your first age, you are creating your identity."
     },
-  "secondLabel":{"label":"Second Age",
-    "":"Second: In your second age, you are building your life skills."
-    },
-  "thirdLabel":{"label":"Third Age",
-    "":"Third: In your third age, you are seeking purpose and fulfillment."
-    },
-  "fourthLabel":{"label":"Fourth Age",
-    "":"Fourth: In your fourth age, you are looking for ways to give back and to leave a legacy."
-    },
   "firstPinnacle":{"label":"Pinnacles: Events and Environments",
     "0":"",
     "1":"One:  You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance.",
@@ -375,6 +366,9 @@ var metaByFieldValue={
     "14/5":"14/5 Karmic Number. You are flying by the seat of your pants, you love to travel and explore, and your curious mind draws you into unusual experiences. You may find yourself being drawn into a career where you are selling and or promoting yourself or products.",
     "16/7":"16/7 Karmic Number.You will find yourself wanting to spend more time alone. You have a strong curiosity to study information about the unseen world. You may find yourself so interested in a subject that you may become an expert in that field of interest. ",
     "19/1":"19/1 Karmic Number. You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance."
+    },
+  "secondLabel":{"label":"Second Age",
+    "":"Second: In your second age, you are building your life skills."
     },
   "secondPinnacle":{"label":"Pinnacles: Events and Environments",
     "0":"",
@@ -395,6 +389,9 @@ var metaByFieldValue={
     "16/7":"16/7 Karmic Number. You will find yourself wanting to spend more time alone. You have a strong curiosity to study information about the unseen world. You may find yourself so interested in a subject that you may become an expert in that field of interest.",
     "19/1":"19/1 Karmic Number. You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance."
     },
+  "thirdLabel":{"label":"Third Age",
+    "":"Third: In your third age, you are seeking purpose and fulfillment."
+    },
   "thirdPinnacle":{"label":"Pinnacles: Events and Environments",
     "0":"",
     "1":"One:  You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance.",
@@ -413,6 +410,9 @@ var metaByFieldValue={
     "14/5":"14/5 Karmic Number. You are flying by the seat of your pants, you love to travel and explore, and your curious mind draws you into unusual experiences. You may find yourself being drawn into a career where you are selling and or promoting yourself or products",
     "16/7":"16/7 Karmic Number. You will find yourself wanting to spend more time alone. You have a strong curiosity to study information about the unseen world. You may find yourself so interested in a subject that you may become an expert in that field of interest.",
     "19/1":"19/1 Karmic Number. You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance."
+    },
+  "fourthLabel":{"label":"Fourth Age",
+    "":"Fourth: In your fourth age, you are looking for ways to give back and to leave a legacy."
     },
   "fourthPinnacle":{"label":"Pinnacles: Events and Environments",
     "0":"",

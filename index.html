@@ -1226,7 +1226,9 @@ function userInput(){
     reading.birthdateDate=new Date(Number(reading.birthYYYY), Number(reading.birthMM)-1, Number(reading.birthDD));
     reading.dayOfWeekNum=reading.birthdateDate.getDay();
     reading.dayOfWeekStr=daysOfWeek[reading.dayOfWeekNum];
-    reading.dayOfBirth=specialize(reading.birthDD);//1-31 including 11/2...
+    //reading.dayOfBirth=specialize(reading.birthDD);//1-31 including 11/2...
+    reading.dayOfBirth=reduceNumStr(""+reading.birthDD);//1-31 including 11/2...
+    
     reading.ageInYears=getAge(reading.birthdateDate);
 
     reading.birthSum=Number(unmaster(reduceNumStr(reading.birthMM)))+Number(unmaster(reduceNumStr(reading.birthDD)))+Number(unmaster(reduceNumStr(reading.birthYYYY)));
@@ -2810,15 +2812,14 @@ var menus={"system":{"selected":false, "stack":0, "buttonName":"systemToggle", "
 // end of menu configs
 var selectedContactId=-1;
 var selectedContact={};
-function closeAbout(e){
-  e.preventDefault();
+function closeAbout(){
   document.getElementById('aboutDiv').scrollTop=0;
   document.getElementById('aboutDiv').style.display="none";
   rui.menuFound=-1;
   aboutUp=false;
   }
 var aboutUp=false;
-var closeCode='<div class="closer" ontouchend="closeAbout(event)" onmouseup="closeAbout()"></div>';
+var closeCode='<div class="closer" ontouchend="event.preventDefault(); closeAbout();" onmouseup="closeAbout()"></div>';
 function openAbout(){
   aboutUp=true;
   // show modal link panel
