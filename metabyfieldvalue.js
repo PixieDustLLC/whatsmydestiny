@@ -367,6 +367,19 @@ var metaByFieldValue={
     "16/7":"16/7 Karmic Number.You will find yourself wanting to spend more time alone. You have a strong curiosity to study information about the unseen world. You may find yourself so interested in a subject that you may become an expert in that field of interest. ",
     "19/1":"19/1 Karmic Number. You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance."
     },
+  "firstChallenge":{"label":"Challenges: Inner Limitations",
+    "0":"Zero:  Metaphysics teach that you create your own challenges. If you have a zero challenge at this time, it tells you that you have no outside challenges at this time in your life. If you find challenges, you need to own up to the source. . . YOU!",
+    "1":"One:  You are learning survival skills. You may have a strong dominate parent that challenges you. You are learning to trust yourself. You may be dealing with handling some issues around your anger and quick temper.",
+    "2":"Two:  Relationships are your teachers; you may be challenged to understand how to be in a happy, healthy relationship. You may find yourself frustrated with having to wait for others. You may not understand how to be a good partner.",
+    "3":"Three:  You may not feel it is important to express yourself. You are challenged to communicate your feelings. You have a difficult time believing you have any creative abilities.",
+    "4":"Four:  You feel trapped and restricted with routines and systems you are involved with. You have a difficult time following the rules; you don’t seem to be able to get out of the ruts you may have created.",
+    "5":"Five:  You are restless and have a difficult time staying focused and completing tasks and projects. Your avant-guard attitude gets you into trouble. You feel trapped and crave freedom.",
+    "6":"Six:  You may find that your commitments have caused you to become over loaded with responsibility. Your friends and family responsibilities may seem to consume too much of your personal time.",
+    "7":"Seven:  You may find you have trust issues with people. You will be drawn to spend time alone with your thoughts. You may find yourself becoming isolated and or lonely. Superficial conversations bore you.",
+    "8":"Eight:  You may find yourself spending lots of time at work. You are driven to accomplish and produce. You have a passion to create wealth at all costs. You may find yourself dominating your fellow workers if they can’t keep up the pace.",
+    "9":""
+    },
+
   "secondLabel":{"label":"Second Age",
     "":"Second: In your second age, you are building your life skills."
     },
@@ -388,6 +401,18 @@ var metaByFieldValue={
     "14/5":"14/5 Karmic Number. You are flying by the seat of your pants, you love to travel and explore, and your curious mind draws you into unusual experiences. You may find yourself being drawn into a career where you are selling and or promoting yourself or products",
     "16/7":"16/7 Karmic Number. You will find yourself wanting to spend more time alone. You have a strong curiosity to study information about the unseen world. You may find yourself so interested in a subject that you may become an expert in that field of interest.",
     "19/1":"19/1 Karmic Number. You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance."
+    },
+  "secondChallenge":{"label":"Challenges: Inner Limitations",
+    "0":"Zero:  Metaphysics teach that you create your own challenges. If you have a zero challenge at this time, it tells you that you have no outside challenges at this time in your life. If you find challenges, you need to own up to the source. . . YOU!",
+    "1":"One:  You are learning survival skills. You may have a strong dominate parent that challenges you. You are learning to trust yourself. You may be dealing with handling some issues around your anger and quick temper.",
+    "2":"Two:  Relationships are your teachers; you may be challenged to understand how to be in a happy, healthy relationship. You may find yourself frustrated with having to wait for others. You may not understand how to be a good partner.",
+    "3":"Three:  You may not feel it is important to express yourself. You are challenged to communicate your feelings. You have a difficult time believing you have any creative abilities.",
+    "4":"Four:  You feel trapped and restricted with routines and systems you are involved with. You have a difficult time following the rules; you don’t seem to be able to get out of the ruts you may have created.",
+    "5":"Five:  You are restless and have a difficult time staying focused and completing tasks and projects. Your avant-guard attitude gets you into trouble. You feel trapped and crave freedom.",
+    "6":"Six:  You may find that your commitments have caused you to become over loaded with responsibility. Your friends and family responsibilities may seem to consume too much of your personal time.",
+    "7":"Seven:  You may find you have trust issues with people. You will be drawn to spend time alone with your thoughts. You may find yourself becoming isolated and or lonely. Superficial conversations bore you.",
+    "8":"Eight:  You may find yourself spending lots of time at work. You are driven to accomplish and produce. You have a passion to create wealth at all costs. You may find yourself dominating your fellow workers if they can’t keep up the pace.",
+    "9":""
     },
   "thirdLabel":{"label":"Third Age",
     "":"Third: In your third age, you are seeking purpose and fulfillment."
@@ -411,6 +436,18 @@ var metaByFieldValue={
     "16/7":"16/7 Karmic Number. You will find yourself wanting to spend more time alone. You have a strong curiosity to study information about the unseen world. You may find yourself so interested in a subject that you may become an expert in that field of interest.",
     "19/1":"19/1 Karmic Number. You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance."
     },
+  "thirdChallenge":{"label":"Challenges: Inner Limitations",
+    "0":"Zero:  Metaphysics teach that you create your own challenges. If you have a zero challenge at this time, it tells you that you have no outside challenges at this time in your life. If you find challenges, you need to own up to the source. . . YOU!",
+    "1":"One:  You are learning survival skills. You may have a strong dominate parent that challenges you. You are learning to trust yourself. You may be dealing with handling some issues around your anger and quick temper.",
+    "2":"Two:  Relationships are your teachers; you may be challenged to understand how to be in a happy, healthy relationship. You may find yourself frustrated with having to wait for others. You may not understand how to be a good partner.",
+    "3":"Three:  You may not feel it is important to express yourself. You are challenged to communicate your feelings. You have a difficult time believing you have any creative abilities.",
+    "4":"Four:  You feel trapped and restricted with routines and systems you are involved with. You have a difficult time following the rules; you don’t seem to be able to get out of the ruts you may have created.",
+    "5":"Five:  You are restless and have a difficult time staying focused and completing tasks and projects. Your avant-guard attitude gets you into trouble. You feel trapped and crave freedom.",
+    "6":"Six:  You may find that your commitments have caused you to become over loaded with responsibility. Your friends and family responsibilities may seem to consume too much of your personal time.",
+    "7":"Seven:  You may find you have trust issues with people. You will be drawn to spend time alone with your thoughts. You may find yourself becoming isolated and or lonely. Superficial conversations bore you.",
+    "8":"Eight:  You may find yourself spending lots of time at work. You are driven to accomplish and produce. You have a passion to create wealth at all costs. You may find yourself dominating your fellow workers if they can’t keep up the pace.",
+    "9":""
+    },
   "fourthLabel":{"label":"Fourth Age",
     "":"Fourth: In your fourth age, you are looking for ways to give back and to leave a legacy."
     },
@@ -433,43 +470,6 @@ var metaByFieldValue={
     "16/7":"16/7 Karmic Number. You will find yourself wanting to spend more time alone. You have a strong curiosity to study information about the unseen world. You may find yourself so interested in a subject that you may become an expert in that field of interest.",
     "19/1":"19/1 Karmic Number. You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance."
     },
-
-  "firstChallenge":{"label":"Challenges: Inner Limitations",
-    "0":"Zero:  Metaphysics teach that you create your own challenges. If you have a zero challenge at this time, it tells you that you have no outside challenges at this time in your life. If you find challenges, you need to own up to the source. . . YOU!",
-    "1":"One:  You are learning survival skills. You may have a strong dominate parent that challenges you. You are learning to trust yourself. You may be dealing with handling some issues around your anger and quick temper.",
-    "2":"Two:  Relationships are your teachers; you may be challenged to understand how to be in a happy, healthy relationship. You may find yourself frustrated with having to wait for others. You may not understand how to be a good partner.",
-    "3":"Three:  You may not feel it is important to express yourself. You are challenged to communicate your feelings. You have a difficult time believing you have any creative abilities.",
-    "4":"Four:  You feel trapped and restricted with routines and systems you are involved with. You have a difficult time following the rules; you don’t seem to be able to get out of the ruts you may have created.",
-    "5":"Five:  You are restless and have a difficult time staying focused and completing tasks and projects. Your avant-guard attitude gets you into trouble. You feel trapped and crave freedom.",
-    "6":"Six:  You may find that your commitments have caused you to become over loaded with responsibility. Your friends and family responsibilities may seem to consume too much of your personal time.",
-    "7":"Seven:  You may find you have trust issues with people. You will be drawn to spend time alone with your thoughts. You may find yourself becoming isolated and or lonely. Superficial conversations bore you.",
-    "8":"Eight:  You may find yourself spending lots of time at work. You are driven to accomplish and produce. You have a passion to create wealth at all costs. You may find yourself dominating your fellow workers if they can’t keep up the pace.",
-    "9":""
-    },
-  "secondChallenge":{"label":"Challenges: Inner Limitations",
-    "0":"Zero:  Metaphysics teach that you create your own challenges. If you have a zero challenge at this time, it tells you that you have no outside challenges at this time in your life. If you find challenges, you need to own up to the source. . . YOU!",
-    "1":"One:  You are learning survival skills. You may have a strong dominate parent that challenges you. You are learning to trust yourself. You may be dealing with handling some issues around your anger and quick temper.",
-    "2":"Two:  Relationships are your teachers; you may be challenged to understand how to be in a happy, healthy relationship. You may find yourself frustrated with having to wait for others. You may not understand how to be a good partner.",
-    "3":"Three:  You may not feel it is important to express yourself. You are challenged to communicate your feelings. You have a difficult time believing you have any creative abilities.",
-    "4":"Four:  You feel trapped and restricted with routines and systems you are involved with. You have a difficult time following the rules; you don’t seem to be able to get out of the ruts you may have created.",
-    "5":"Five:  You are restless and have a difficult time staying focused and completing tasks and projects. Your avant-guard attitude gets you into trouble. You feel trapped and crave freedom.",
-    "6":"Six:  You may find that your commitments have caused you to become over loaded with responsibility. Your friends and family responsibilities may seem to consume too much of your personal time.",
-    "7":"Seven:  You may find you have trust issues with people. You will be drawn to spend time alone with your thoughts. You may find yourself becoming isolated and or lonely. Superficial conversations bore you.",
-    "8":"Eight:  You may find yourself spending lots of time at work. You are driven to accomplish and produce. You have a passion to create wealth at all costs. You may find yourself dominating your fellow workers if they can’t keep up the pace.",
-    "9":""
-    },
-  "thirdChallenge":{"label":"Challenges: Inner Limitations",
-    "0":"Zero:  Metaphysics teach that you create your own challenges. If you have a zero challenge at this time, it tells you that you have no outside challenges at this time in your life. If you find challenges, you need to own up to the source. . . YOU!",
-    "1":"One:  You are learning survival skills. You may have a strong dominate parent that challenges you. You are learning to trust yourself. You may be dealing with handling some issues around your anger and quick temper.",
-    "2":"Two:  Relationships are your teachers; you may be challenged to understand how to be in a happy, healthy relationship. You may find yourself frustrated with having to wait for others. You may not understand how to be a good partner.",
-    "3":"Three:  You may not feel it is important to express yourself. You are challenged to communicate your feelings. You have a difficult time believing you have any creative abilities.",
-    "4":"Four:  You feel trapped and restricted with routines and systems you are involved with. You have a difficult time following the rules; you don’t seem to be able to get out of the ruts you may have created.",
-    "5":"Five:  You are restless and have a difficult time staying focused and completing tasks and projects. Your avant-guard attitude gets you into trouble. You feel trapped and crave freedom.",
-    "6":"Six:  You may find that your commitments have caused you to become over loaded with responsibility. Your friends and family responsibilities may seem to consume too much of your personal time.",
-    "7":"Seven:  You may find you have trust issues with people. You will be drawn to spend time alone with your thoughts. You may find yourself becoming isolated and or lonely. Superficial conversations bore you.",
-    "8":"Eight:  You may find yourself spending lots of time at work. You are driven to accomplish and produce. You have a passion to create wealth at all costs. You may find yourself dominating your fellow workers if they can’t keep up the pace.",
-    "9":""
-    },
   "fourthChallenge":{"label":"Challenges: Inner Limitations",
     "0":"Zero:  Metaphysics teach that you create your own challenges. If you have a zero challenge at this time, it tells you that you have no outside challenges at this time in your life. If you find challenges, you need to own up to the source. . . YOU!",
     "1":"One:  You are learning survival skills. You may have a strong dominate parent that challenges you. You are learning to trust yourself. You may be dealing with handling some issues around your anger and quick temper.",
@@ -482,7 +482,6 @@ var metaByFieldValue={
     "8":"Eight:  You may find yourself spending lots of time at work. You are driven to accomplish and produce. You have a passion to create wealth at all costs. You may find yourself dominating your fellow workers if they can’t keep up the pace.",
     "9":""
     },
-
 
   "count1":{"label":"1",
     "0":"You are not confident.",
