@@ -2000,7 +2000,7 @@ function metadataReport(){
       var maxHeight=labelHeight;
       var metaHeight=0;
       var valueString=uiObj[thisUi]['value'];
-
+      if(thisKey=="firstAge"){valueString="";}
       if(inArray(valueString, Object.keys(thisMeta))){
         var metaString=thisMeta[valueString];
         if((valueString.indexOf("/")>0)&&(metaString=="")){
