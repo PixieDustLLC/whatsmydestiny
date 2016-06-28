@@ -1936,14 +1936,14 @@ function blankContext(ctx, color, grid, across, down){
   }
 function footerToContext(ctx, page){
           ctx.fillStyle="black";
-          ctx.font=reportGrid*.6+"px avantbolditalic";
+          ctx.font=reportGrid*.6+"px avantbook";
           ctx.textAlign="left";
           wrapText(ctx, "© 2016 Wes Hamilton wes@weshamilton.com", reportGrid*1, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
           ctx.textAlign="right";
           wrapText(ctx, "whatsmydestiny.com", reportWidth-reportGrid*1, reportHeight-reportGrid*2, reportGrid*12, reportGrid, false);
           wrapText(ctx, "Powered by pixiedustapps.com", reportWidth-reportGrid*1, reportHeight-reportGrid*1, reportGrid*12, reportGrid, false);
           rCtx.textAlign="center";
-          wrapText(ctx, page+"", reportWidth/2, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
+          wrapText(ctx, page+"", reportWidth/2, reportHeight-reportGrid*1, reportGrid*8, reportGrid, false);
 
   }
 
@@ -2214,106 +2214,10 @@ function summaryReport(){
     rCtx.fillText(content, field.x*s+offset, field.y*s);
 
     }
-/*wtf?
-  var coverAspect=2044/1534;
-  var img=document.getElementById("coversheet");
-  rCtx.drawImage(img,0,reportGrid*firstCell,reportWidth, reportWidth/coverAspect);
-  var textTop=reportGrid*firstCell*2+reportWidth/coverAspect
-  rCtx.fillStyle="black";
-  rCtx.font=reportGrid*1.2+"px avantbold";
-  rCtx.textAlign="center";
-  var subject=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);
-  wrapText(rCtx, subject, reportWidth/2, textTop+reportGrid*3.5, reportWidth, reportGrid*2, false);
-
-  rCtx.font=reportGrid*1+"px avantbook";
-  var birthday="Birthday: "+Number(reading.birthMM)+"-"+Number(reading.birthDD)+"-"+Number(reading.birthYYYY);
-  wrapText(rCtx, birthday, reportWidth/2, textTop+reportGrid*5.5, reportWidth, reportGrid*2, false);
-  var dateString="Prepared: "+reading.globalMonth+"-"+reading.globalDay+"-"+reading.globalYear;
-  wrapText(rCtx, dateString, reportWidth/2, textTop+reportGrid*7.5, reportWidth, reportGrid*2, false);
 
 
 
-  var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
-  // Convert the data to binary form
-  var imgData = atob(data);
-  doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
-  doc.addPage();
-  blankContext(rCtx, "#fff", reportGrid, reportAcross, reportDown);
-
-
-
-
-  rCtx.textBaseline="middle";
-  var atY=reportGrid*firstCell;// start at first cell
-  var uArray=[];
-  var metaKeys=Object.keys(metaByFieldValue);
-  for(var m=0; m<metaKeys.length; m++){
-    rCtx.fillStyle="black";
-    var thisKey=metaKeys[m];
-    var thisMeta=metaByFieldValue[thisKey];
-    var thisUi=-1;
-    for (var u=0; u<uiObj.length; u++){
-      if(uiObj[u]['id']==metaKeys[m]){thisUi=u;}
-      }
-    if(thisUi>-1){
-      //console.log('uiObj[thisUi][label]='+uiObj[thisUi]['label']);
-
-      rCtx.font=reportGrid*.7+"px avantbold";
-      var labelHeight=wrapTest(rCtx, thisMeta['label'], 0, 0, labelWidth, reportGrid, false);
-      var maxHeight=labelHeight;
-      var metaHeight=0;
-      var value=uiObj[thisUi]['value'];
-      if(inArray(value, Object.keys(thisMeta))){
-        var metaString=thisMeta[value];
-        if((value.indexOf("/")>0)&&(metaString=="")){
-          var value=unmaster(value);
-          if(inArray(value, Object.keys(thisMeta))){
-            metaString=thisMeta[value];
-            }
-          }
-        rCtx.font=reportGrid*.8+"px avantbook";
-        metaHeight=wrapTest(rCtx, metaString, 0, 0, metaWidth, reportGrid, false);
-        if(metaHeight>maxHeight){maxHeight=metaHeight;}
-        //console.log("maxHeight "+maxHeight +" metaHeight: " +metaHeight +" labelHeight="+labelHeight);
-        if(((maxHeight+atY)>reportHeight)||(thisKey=="physicalPlane")||(thisKey=="firstPinnacle")||(thisKey=="count1")){
-          atY=reportGrid*firstCell;
-          var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
-          // Convert the data to binary form
-          var imgData = atob(data);
-          doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
-          doc.addPage();
-          blankContext(rCtx, "#fff", reportGrid, reportAcross, reportDown);
-
-          }
-        rCtx.fillStyle="black";
-        rCtx.font=reportGrid*.8+"px avantbold";
-        rCtx.textAlign="left";
-        wrapText(rCtx, thisMeta['label'], labelX, atY, labelWidth, reportGrid, false);
-        rCtx.textAlign="right";
-        wrapText(rCtx, uiObj[thisUi]['value'], valueX, atY, valueWidth, reportGrid, false);
-        rCtx.textAlign="left";
-        rCtx.font=reportGrid*.8+"px avantbook";
-        //console.log(m+ "atY="+atY+" "+thisMeta['label']);
-        wrapText(rCtx, metaString, metaX, atY, metaWidth, reportGrid, false);
-        //console.log(" then atY="+atY+" "+thisMeta['label']);
-        atY+=maxHeight+reportGrid;
-        //console.log(" and then atY="+atY+" "+thisMeta['label']);
-        }
-      }
-    }
-end wtf?
-*/
-
-// footer
-          rCtx.fillStyle="black";
-          rCtx.font=reportGrid*.6+"px avantbolditalic";
-          rCtx.textAlign="left";
-          wrapText(rCtx, "© 2016 Wes Hamilton wes@weshamilton.com", reportGrid*1, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
-          rCtx.textAlign="right";
-          wrapText(rCtx, "whatsmydestiny.com", reportWidth-reportGrid*1, reportHeight-reportGrid*2, reportGrid*12, reportGrid, false);
-          wrapText(rCtx, "Powered by pixiedustapps.com", reportWidth-reportGrid*1, reportHeight-reportGrid*1, reportGrid*12, reportGrid, false);
-
-
+         
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
           // Convert the data to binary form
           var imgData = atob(data);

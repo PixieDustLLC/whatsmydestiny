@@ -121,9 +121,10 @@ var summaryFields=[
 {"type":"text", "align":"right", "x":6.5, "y":26, "w":2, "content":"Month"},
 {"type":"value", "align":"right", "x":9, "y":26, "w":1, "content":"personalMonth"},
 
-
-
-{"type":"boldtext", "align":"center", "x":6, "y":29, "w":12, "content":"Powered by PixieDustApps.com"}
+{"type":"text", "align":"right", "x":0, "y":28.25, "w":12, "content":"© 2016 Wes Hamilton"},
+{"type":"text", "align":"right", "x":0, "y":29, "w":12, "content":"wes@weshamilton.com"},
+{"type":"text", "align":"right", "x":12, "y":28.25, "w":12, "content":"whatsmydestiny.com"},
+{"type":"text", "align":"right", "x":12, "y":29, "w":12, "content":"Powered by pixiedustapps.com"}
 ];
 
 
