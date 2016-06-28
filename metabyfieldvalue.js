@@ -348,9 +348,6 @@ var metaByFieldValue={
   "firstLabel":{"label":"Age of Identity",
     "":"First: In your first age, you are creating your identity."
     },
-  "firstAge":{"label":"First Age label",
-    "":"First Age lbl: In your first age, you are creating your label."
-    },
   "firstPinnacle":{"label":"Pinnacles: Events and Environments",
     "0":"",
     "1":"One:  You are developing your confidence, you are involved in new experiences and ideas, and you tend to go your own way in life. You are learning self-reliance.",

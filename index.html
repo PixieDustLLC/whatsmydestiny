@@ -2041,10 +2041,10 @@ function metadataReport(){
         rCtx.fillStyle="black";
         rCtx.font=reportGrid*.8+"px avantbold";
         rCtx.textAlign="left";
-        if(thisKey=="firstAge"){
-          dbuga('first age found');
+        if(thisKey=="firstLabel"){
+          dbuga('first label found');
           for (var u=0; u<uiObj.length; u++){
-            if(uiObj[u]['id']==thisKey){
+            if(uiObj[u]['id']==firstAge){
               dbuga('first age label= '+uiObj[u].label);
               valueString=uiObj[u].label;
               }
