@@ -1989,7 +1989,7 @@ function metadataReport(){
     for (var u=0; u<uiObj.length; u++){
       if(uiObj[u]['id']==metaKeys[m]){thisUi=u;}
       }
-    if(thisKey=="firstAge"){
+    if((thisKey=="firstAge")||(thisKey=="firstLabel")){
       dbuga(thisKey+"  "+thisUi);
       }
     if(thisUi>-1){
@@ -2022,24 +2022,28 @@ function metadataReport(){
           doc.addPage();
           blankContext(rCtx, "#fff", reportGrid, reportAcross, reportDown);
           if(thisKey=="count1"){
-        rCtx.fillStyle="black";
-        rCtx.font=reportGrid*.8+"px avantbold";
-        rCtx.textAlign="left";
-        wrapText(rCtx, "Distribution of Numbers in Name", labelX, atY, labelWidth*5, reportGrid, false);
-        atY+=maxHeight+reportGrid;
+            rCtx.fillStyle="black";
+            rCtx.font=reportGrid*.8+"px avantbold";
+            rCtx.textAlign="left";
+            wrapText(rCtx, "Distribution of Numbers in Name", labelX, atY, labelWidth*5, reportGrid, false);
+            atY+=maxHeight+reportGrid;
 
-        wrapText(rCtx, "Number", labelX, atY, labelWidth, reportGrid, false);
-        rCtx.textAlign="right";
-        wrapText(rCtx, "Occurences", valueX, atY, valueWidth, reportGrid, false);
-        rCtx.textAlign="left";
-        rCtx.font=reportGrid*.8+"px avantbold";
-        wrapText(rCtx, "Insight", metaX, atY, metaWidth, reportGrid, false);
-        atY+=maxHeight+reportGrid;
+            wrapText(rCtx, "Number", labelX, atY, labelWidth, reportGrid, false);
+            rCtx.textAlign="right";
+            wrapText(rCtx, "Occurences", valueX, atY, valueWidth, reportGrid, false);
+            rCtx.textAlign="left";
+            rCtx.font=reportGrid*.8+"px avantbold";
+            wrapText(rCtx, "Insight", metaX, atY, metaWidth, reportGrid, false);
+            atY+=maxHeight+reportGrid;
             }
           }
         rCtx.fillStyle="black";
         rCtx.font=reportGrid*.8+"px avantbold";
         rCtx.textAlign="left";
+        if((thisKey=="firstAge")||(thisKey=="firstLabel")){
+          dbuga(thisMeta['label']+"  "+ uiObj[thisUi]['value']+" "+metaString);
+          }
+
         wrapText(rCtx, thisMeta['label'], labelX, atY, labelWidth, reportGrid, false);
         rCtx.textAlign="right";
         wrapText(rCtx, uiObj[thisUi]['value'], valueX, atY, valueWidth, reportGrid, false);
