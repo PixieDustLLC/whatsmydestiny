@@ -1935,6 +1935,8 @@ function blankContext(ctx, color, grid, across, down){
 
   }
 function metadataReport(){
+  var atPage=1
+
   rCanv.height=reportHeight;
   rCanv.width=reportWidth;
 
@@ -1970,8 +1972,8 @@ function metadataReport(){
           rCtx.textAlign="left";
           wrapText(rCtx, "© 2016 Wes Hamilton wes@weshamilton.com", reportGrid*1, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
           rCtx.textAlign="right";
-          wrapText(rCtx, "whatsmydestiny.com", reportWidth-reportGrid*1, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
-          wrapText(rCtx, "Powered by pixiedustapps.com", reportWidth-reportGrid*1, reportHeight-reportGrid*1, reportGrid*8, reportGrid, false);
+          wrapText(rCtx, "whatsmydestiny.com", reportWidth-reportGrid*1, reportHeight-reportGrid*2, reportGrid*12, reportGrid, false);
+          wrapText(rCtx, "Powered by pixiedustapps.com", reportWidth-reportGrid*1, reportHeight-reportGrid*1, reportGrid*12, reportGrid, false);
 
   var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
   // Convert the data to binary form
@@ -2022,14 +2024,16 @@ function metadataReport(){
         if(((maxHeight+atY)>reportHeight)||(thisKey=="physicalPlane")||(thisKey=="firstLabel")||(thisKey=="thirdLabel")||(thisKey=="count1")){
           atY=reportGrid*firstCell;
 
-//reportHeight
-
+//reportHeight metadatareport footer
+          atPage++;
           rCtx.fillStyle="black";
           rCtx.font=reportGrid*.6+"px avantbolditalic";
           rCtx.textAlign="left";
           wrapText(rCtx, "© 2016 Wes Hamilton wes@weshamilton.com", reportGrid*1, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
           rCtx.textAlign="right";
           wrapText(rCtx, "whatsmydestiny.com", reportWidth-reportGrid*1, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
+          rCtx.textAlign="center";
+          wrapText(rCtx, atPage, reportWidth-reportGrid*1, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
           wrapText(rCtx, "Powered by pixiedustapps.com", reportWidth-reportGrid*1, reportHeight-reportGrid*1, reportGrid*8, reportGrid, false);
 
 
@@ -2298,6 +2302,17 @@ function summaryReport(){
     }
 end wtf?
 */
+
+// footer
+          rCtx.fillStyle="black";
+          rCtx.font=reportGrid*.6+"px avantbolditalic";
+          rCtx.textAlign="left";
+          wrapText(rCtx, "© 2016 Wes Hamilton wes@weshamilton.com", reportGrid*1, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
+          rCtx.textAlign="right";
+          wrapText(rCtx, "whatsmydestiny.com", reportWidth-reportGrid*1, reportHeight-reportGrid*2, reportGrid*12, reportGrid, false);
+          wrapText(rCtx, "Powered by pixiedustapps.com", reportWidth-reportGrid*1, reportHeight-reportGrid*1, reportGrid*12, reportGrid, false);
+
+
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
           // Convert the data to binary form
           var imgData = atob(data);
