@@ -2041,17 +2041,42 @@ function metadataReport(){
         rCtx.fillStyle="black";
         rCtx.font=reportGrid*.8+"px avantbold";
         rCtx.textAlign="left";
+        var labelString=thisMeta['label'];
         if(thisKey=="firstLabel"){
-          dbuga('first label found');
           for (var u=0; u<uiObj.length; u++){
-            if(uiObj[u]['id']==firstAge){
+            if(uiObj[u]['id']=="firstAge"){
               dbuga('first age label= '+uiObj[u].label);
+              valueString=uiObj[u].label;
+              labelString+=" - ends "+uiObj[u].value;
+              }
+            }          
+          }
+        if(thisKey=="secondLabel"){
+          for (var u=0; u<uiObj.length; u++){
+            if(uiObj[u]['id']==secondAge"){
+              dbuga('first age label= '+uiObj[u].label);
+              valueString=uiObj[u].label;
+              labelString+=" - ends "+uiObj[u].value;
+              }
+            }          
+          }
+        if(thisKey=="thirdLabel"){
+          for (var u=0; u<uiObj.length; u++){
+            if(uiObj[u]['id']=="thirdAge"){
+              valueString=uiObj[u].label;
+              labelString+=" - ends "+uiObj[u].value;
+              }
+            }          
+          }
+        if(thisKey=="fourthLabel"){
+          for (var u=0; u<uiObj.length; u++){
+            if(uiObj[u]['id']=="fourthAge"){
               valueString=uiObj[u].label;
               }
             }          
           }
 
-        wrapText(rCtx, thisMeta['label'], labelX, atY, labelWidth, reportGrid, false);
+        wrapText(rCtx, labelString, labelX, atY, labelWidth, reportGrid, false);
         rCtx.textAlign="right";
         wrapText(rCtx, valueString, valueX, atY, valueWidth, reportGrid, false);
         rCtx.textAlign="left";
