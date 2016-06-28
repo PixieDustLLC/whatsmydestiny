@@ -1979,7 +1979,7 @@ function metadataReport(){
   rCtx.font=reportGrid*1+"px avantbook";
   var birthday="Birthday: "+Number(reading.birthMM)+"-"+Number(reading.birthDD)+"-"+Number(reading.birthYYYY);
   wrapText(rCtx, birthday, reportWidth/2, textTop+reportGrid*5.5, reportWidth, reportGrid*2, false);
-  var dateString="Printed: "+reading.globalMonth+"-"+reading.globalDay+"-"+reading.globalYear+" Age "+reading.ageInYears;
+  var dateString="Printed: "+reading.globalMonth+"/"+reading.globalDay+"/"+reading.globalYear+" - Age "+reading.ageInYears;
   wrapText(rCtx, dateString, reportWidth/2, textTop+reportGrid*7.5, reportWidth, reportGrid*2, false);
 
   footerToContext(rCtx, "");
