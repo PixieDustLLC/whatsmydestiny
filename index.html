@@ -2006,7 +2006,7 @@ function metadataReport(){
       if(uiObj[u]['id']==metaKeys[m]){thisUi=u;}
       }
     if((thisKey=="firstAge")||(thisKey=="firstLabel")){
-      dbuga("key:"+thisKey+"  ui:"+thisUi+" value:"+uiObj[thisUi]['value']);
+      //dbuga("key:"+thisKey+"  ui:"+thisUi+" value:"+uiObj[thisUi]['value']);
       }
     if(thisUi>-1){
       //console.log('uiObj[thisUi][label]='+uiObj[thisUi]['label']);
@@ -2063,7 +2063,7 @@ function metadataReport(){
         if(thisKey=="firstLabel"){
           for (var u=0; u<uiObj.length; u++){
             if(uiObj[u]['id']=="firstAge"){
-              dbuga('first age label= '+uiObj[u].label);
+              //dbuga('first age label= '+uiObj[u].label);
               valueString=uiObj[u].label;
               //labelString+=" - ends "+uiObj[u].value;
               }
@@ -2072,7 +2072,7 @@ function metadataReport(){
         if(thisKey=="secondLabel"){
           for (var u=0; u<uiObj.length; u++){
             if(uiObj[u]['id']=="secondAge"){
-              dbuga('first age label= '+uiObj[u].label);
+              //dbuga('first age label= '+uiObj[u].label);
               valueString=uiObj[u].label;
               //labelString+=" - ends "+uiObj[u].value;
               }
