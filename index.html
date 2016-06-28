@@ -1999,11 +1999,12 @@ function metadataReport(){
       var labelHeight=wrapTest(rCtx, thisMeta['label'], 0, 0, labelWidth, reportGrid, false);
       var maxHeight=labelHeight;
       var metaHeight=0;
-      var value=uiObj[thisUi]['value'];
-      if(inArray(value, Object.keys(thisMeta))){
-        var metaString=thisMeta[value];
-        if((value.indexOf("/")>0)&&(metaString=="")){
-          var value=unmaster(value);
+      var valueString=uiObj[thisUi]['value'];
+
+      if(inArray(valueString, Object.keys(thisMeta))){
+        var metaString=thisMeta[valueString];
+        if((valueString.indexOf("/")>0)&&(metaString=="")){
+          var value=unmaster(valueString);
           if(inArray(value, Object.keys(thisMeta))){
             metaString=thisMeta[value];
             }
@@ -2040,13 +2041,15 @@ function metadataReport(){
         rCtx.fillStyle="black";
         rCtx.font=reportGrid*.8+"px avantbold";
         rCtx.textAlign="left";
-        if((thisKey=="firstAge")||(thisKey=="firstLabel")){
-          dbuga(thisMeta['label']+"  "+ uiObj[thisUi]['value']+" "+metaString);
+        if(thisKey=="firstAge"){
+          for (var u=0; u<uiObj.length; u++){
+            if(uiObj[u]['id']==thisKey){valueString=uiObj[u].label;}
+            }          
           }
 
         wrapText(rCtx, thisMeta['label'], labelX, atY, labelWidth, reportGrid, false);
         rCtx.textAlign="right";
-        wrapText(rCtx, uiObj[thisUi]['value'], valueX, atY, valueWidth, reportGrid, false);
+        wrapText(rCtx, valueString, valueX, atY, valueWidth, reportGrid, false);
         rCtx.textAlign="left";
         rCtx.font=reportGrid*.8+"px avantbook";
         //console.log(m+ "atY="+atY+" "+thisMeta['label']);
