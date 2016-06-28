@@ -2038,16 +2038,13 @@ function metadataReport(){
             atY+=maxHeight+reportGrid;
             }
           }
-        rCtx.fillStyle="black";
-        rCtx.font=reportGrid*.8+"px avantbold";
-        rCtx.textAlign="left";
         var labelString=thisMeta['label'];
         if(thisKey=="firstLabel"){
           for (var u=0; u<uiObj.length; u++){
             if(uiObj[u]['id']=="firstAge"){
               dbuga('first age label= '+uiObj[u].label);
               valueString=uiObj[u].label;
-              labelString+=" - ends "+uiObj[u].value;
+              //labelString+=" - ends "+uiObj[u].value;
               }
             }          
           }
@@ -2056,7 +2053,7 @@ function metadataReport(){
             if(uiObj[u]['id']=="secondAge"){
               dbuga('first age label= '+uiObj[u].label);
               valueString=uiObj[u].label;
-              labelString+=" - ends "+uiObj[u].value;
+              //labelString+=" - ends "+uiObj[u].value;
               }
             }          
           }
@@ -2064,7 +2061,7 @@ function metadataReport(){
           for (var u=0; u<uiObj.length; u++){
             if(uiObj[u]['id']=="thirdAge"){
               valueString=uiObj[u].label;
-              labelString+=" - ends "+uiObj[u].value;
+              //labelString+=" - ends "+uiObj[u].value;
               }
             }          
           }
@@ -2075,7 +2072,12 @@ function metadataReport(){
               }
             }          
           }
-
+        rCtx.fillStyle="black";
+        rCtx.font=reportGrid*.8+"px avantbold";
+        if((thisKey=="firstLabel")||(thisKey=="secondLabel")||(thisKey=="thirdLabel")||(thisKey=="fourthLabel")){
+          rCtx.font=reportGrid*.8+"px avantbolditalic";
+          }
+        rCtx.textAlign="left";
         wrapText(rCtx, labelString, labelX, atY, labelWidth, reportGrid, false);
         rCtx.textAlign="right";
         wrapText(rCtx, valueString, valueX, atY, valueWidth, reportGrid, false);
@@ -3094,6 +3096,12 @@ function contactsSaveError(contactError) {
 @font-face {
     font-family: 'avantbold';
     src: url('avantgarde-bold.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+@font-face {
+    font-family: 'avantbolditalic';
+    src: url('avantgarde-demi-oblique.ttf') format('truetype');
     font-weight:normal;
     font-style:normal;
 }
