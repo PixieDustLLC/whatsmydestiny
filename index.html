@@ -1936,12 +1936,13 @@ function blankContext(ctx, color, grid, across, down){
   }
 function footerToContext(ctx, page){
           ctx.fillStyle="black";
-          ctx.font=reportGrid*.6+"px avantbook";
+          ctx.font=reportGrid*.8+"px avantbook";
           ctx.textAlign="left";
-          wrapText(ctx, "© 2016 Wes Hamilton wes@weshamilton.com", reportGrid*1, reportHeight-reportGrid*2, reportGrid*8, reportGrid, false);
+          wrapText(ctx, "© 2016 Wes Hamilton", reportGrid*1, reportHeight-reportGrid*2, reportGrid*16, reportGrid, false);
+          wrapText(ctx, "wes@weshamilton.com", reportGrid*1, reportHeight-reportGrid*1, reportGrid*16, reportGrid, false);
           ctx.textAlign="right";
-          wrapText(ctx, "whatsmydestiny.com", reportWidth-reportGrid*1, reportHeight-reportGrid*2, reportGrid*12, reportGrid, false);
-          wrapText(ctx, "Powered by pixiedustapps.com", reportWidth-reportGrid*1, reportHeight-reportGrid*1, reportGrid*12, reportGrid, false);
+          wrapText(ctx, "whatsmydestiny.com", reportWidth-reportGrid*1, reportHeight-reportGrid*2, reportGrid*16, reportGrid, false);
+          wrapText(ctx, "Powered by pixiedustapps.com", reportWidth-reportGrid*1, reportHeight-reportGrid*1, reportGrid*16, reportGrid, false);
           rCtx.textAlign="center";
           wrapText(ctx, page+"", reportWidth/2, reportHeight-reportGrid*1, reportGrid*8, reportGrid, false);
 
