@@ -850,6 +850,7 @@ function init(){
         
 
   ];
+/*
   for(var u=0; u<uiObj.length; u++){
     if(uiObj[u].id=="metaDisplay"){
       listLeft=uiObj[u].l;
@@ -858,6 +859,7 @@ function init(){
       listWidth=uiObj[u].w;
       }
     }
+*/
   //hideSave();
   window.setInterval('secondTick()', 1000);
   window.requestAnimationFrame(tick); 
@@ -2339,10 +2341,11 @@ function hidePreview(){
 
 
 
+/*
 var results=[];
 function updateResultButtons(){
   dbuga('OBSOLETE updateResultButtons()');
-/*
+
   results=[];
   if(reading.findInput.length==0){
     return false;
@@ -2353,7 +2356,6 @@ function updateResultButtons(){
       results.push(keys[k]);
       }
     }
-*/
   }
 function drawResultButtons(){
   if(results.length>0){
@@ -2366,11 +2368,9 @@ function drawResultButtons(){
     var bgColor="#888";
     roundRect(ctx, listLeft*g+bm, (listTop+1+r)*g+bm, listWidth*g-2*bm, g-2*bm, g/10, g/32, "#888", bgColor, titleCase(results[r]), "#ddd", buttonFontPx+"px avantbold", 1);
     }
-
   }
 function selectSaved(savedKey){
   dbuga('OBSOLETE? selectSaved('+savedKey+')');
-/* july 2
   var savedItem=savedObj[savedKey];
   if(typeof(savedItem)=="string"){
     //console.log(savedItem+" = string");
@@ -2393,8 +2393,8 @@ function selectSaved(savedKey){
   //updateIdValue('findInput',"");
   userInput();
   uiFocus=-1;
-*/
   }
+*/
 function handleEvent(evt){
   if(aboutUp){
     console.log('about up so ignore event')
@@ -2403,17 +2403,21 @@ function handleEvent(evt){
   //dbuga(evt.type+" "+evt.source);
   evt.y-=yOffset;
   var found=-1;
+/*
   for (var r=0; r<results.length; r++){
     if((evt.x>listLeft*g)&&(evt.x<listRight*g)&&(evt.y>(listTop+1+r)*g)&&(evt.y<(listTop+2+r)*g)){
       selectSaved(results[r]);
       return false;
       }
     }
+*/
+
   for (var u=1; u<uiObj.length; u++){// skip stupid meta area
     if((evt.x>uiObj[u]['l']*g)&&(evt.x<uiObj[u]['r']*g)&&(evt.y>uiObj[u]['t']*g)&&(evt.y<uiObj[u]['b']*g)){
       found=u;
       }
     }
+
   if(found>-1){
     if(found>3){
       //hideSave()
@@ -2441,12 +2445,12 @@ function clearReading(){
   clearCalcs();
   localStorage.setItem("reading", JSON.stringify(reading));
 
-  dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
-  dbuga(localStorage.reading);
+  //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
+  //dbuga(localStorage.reading);
   }
+/* july 2
 function saveInputs(){
   dbuga(' OBSOLETE? saveInputs()');
-/* july 2
   var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.currentNameInput;
   savedObj[newKey]={
     "birthday":reading.birthdayInput, 
@@ -2456,13 +2460,15 @@ function saveInputs(){
     };
   readingSaved=true;
   ////localStorage.setItem("savedObj", JSON.stringify(savedObj));
-*/
   }
+*/
 var focusStep=.1;
+/*
 var listLeft=0;
 var listRight=0;
 var listTop=0
 var listWidth=0;
+*/
 function geometry(){
   //dbuga('geometry()');
     viewportWidth = window.innerWidth;
