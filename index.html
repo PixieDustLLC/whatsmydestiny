@@ -129,7 +129,7 @@ var colorMap={
 var rCanv;
 var rCtx;
 function init(){
-  dbuga('init()');
+  //dbuga('init()');
   canv=document.getElementById('mainCanvas');
   ctx=canv.getContext('2d');
   rCanv=document.getElementById('reportCanvas');
@@ -847,19 +847,7 @@ function init(){
         "label":"Karmic Lesson",
         "value":"",
         "focus":0}
-        
-
   ];
-/*
-  for(var u=0; u<uiObj.length; u++){
-    if(uiObj[u].id=="metaDisplay"){
-      listLeft=uiObj[u].l;
-      listRight=uiObj[u].r;
-      listTop=uiObj[u].t;
-      listWidth=uiObj[u].w;
-      }
-    }
-*/
   //hideSave();
   window.setInterval('secondTick()', 1000);
   window.requestAnimationFrame(tick); 
@@ -896,7 +884,6 @@ function init(){
 
   setupLocalStorage();
   //dbuga('init() 7' );
-  ////focusTextarea();
   //createRui:function(containerRef, barColor, barTextColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, squareIcons, iconPad, selectColor, paraFont, headFont)
 
 
@@ -1110,48 +1097,9 @@ var unhideLeft=19;
 var hideTop=-2;
 var unhideTop=5;
 
-/*
-function hideSave(){
-  uiObj[0]["l"]=unhideLeft;
-  uiObj[1]["l"]=hideLeft;
-  uiObj[2]["l"]=hideLeft;
-  uiObj[3]["l"]=hideLeft;
-  uiObj[0]["r"]=unhideLeft+12;
-  uiObj[1]["r"]=hideLeft+12;
-  uiObj[2]["r"]=hideLeft+12;
-  uiObj[3]["r"]=hideLeft+12;
-  }
-function showSave(){
-
-  uiFocus=1;
-  saving=true;
-  //buttons[0]["t"]=unhideTop;
-  //buttons[1]["t"]=unhideTop;
-
-  uiObj[0]["l"]=hideLeft;
-  uiObj[1]["l"]=unhideLeft;
-  uiObj[2]["l"]=unhideLeft;
-  uiObj[3]["l"]=unhideLeft;
-  uiObj[0]["r"]=hideLeft+12;
-  uiObj[1]["r"]=unhideLeft+12;
-  uiObj[2]["r"]=unhideLeft+12;
-  uiObj[3]["r"]=unhideLeft+12;
-
-  }
-*/
 
 function setupLocalStorage(){
   //dbuga('setupLocalStorage()');
-/*
-  if(localStorage.getItem("savedObj") === null) {
-    localStorage.setItem("savedObj", JSON.stringify(savedObj));
-    }
-  else{
-    savedObj=JSON.parse(localStorage.getItem("savedObj"));
-    }
-  dbuga('setupLocalStorage() july 2');
-*/
-
   if(localStorage.getItem("reading") === null) {
     //dbuga('setupLocalStorage()3 reading null');
     localStorage.setItem("reading", JSON.stringify(reading));
@@ -1166,15 +1114,12 @@ function setupLocalStorage(){
     //dbuga('setupLocalStorage() 5');
     userInput();
     //dbuga('setupLocalStorage() 6');
-    ////testReadingSaved();
     }
   //dbuga('setupLocalStorage() completed');
   }
 
 
 var reading={"valid":false, "counts":[-1,0,0,0,0,0,0,0,0,0]};
-////var savedObj={};
-////var readingSaved=false;
 var daysOfWeek=["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 function nowMMDDYYYY(){
   var nowDate=new Date();
@@ -1328,14 +1273,12 @@ function userInput(){
  
     localStorage.setItem("reading", JSON.stringify(reading));
     }
-  ////updateResultButtons();
 
   if(metaFocus != -1){updateMeta();}
   if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.lastNameInput.length>0)){
     reading.valid=true;
     }
   updateValues();
-  ////testReadingSaved();
   }
 function clearCalcs(){
   //dbuga('clearCalcs()');
@@ -1473,19 +1416,6 @@ for(var n=1; n<=9; n++){
   updateIdLabel("fourthAge", reading.fourthAgeLabel);
   updateIdValue("fourthAge", reading.fourthAgeValue);
 
-  }
-function testReadingSaved(){
-/* july 2
-  readingSaved=false;
-  if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0)){
-    var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput;
-    if(inArray(newKey, Object.keys(savedObj))){
-      if(savedObj[newKey]==reading.birthdayInput){
-        readingSaved=true;
-        }
-      }
-    }
-*/
   }
 function getAge(birthDate) {
     var today = new Date();
@@ -1865,23 +1795,6 @@ function drawUi(){
         }
       }
     }
-/*
-  var bm=g*.1;
-  var buttonFontPx=labelFontPx-bm
-  for(var b=0; b<buttons.length; b++){
-    var but=buttons[b];
-    var bgColor="#888";
-    if(buttons[b]['id']=="save"){
-      if((readingSaved==true)||(reading.valid==false)){bgColor="#ccc";}
-      }
-    if(buttons[b]['id']=="delete"){
-      if(readingSaved==false){bgColor="#ccc";}
-      }
-    if(hideButtons==false){
-      roundRect(ctx, but.l*g+bm, but.t*g+bm, but.w*g-2*bm, but.h*g-2*bm, g/10, g/32, "#888", bgColor, but.label, "#ddd", buttonFontPx+"px avantbold", 1);
-      }
-    }
-*/
   }
 var lorem="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -2162,17 +2075,6 @@ function summaryReport(){
       h=1;
       fontPx=s;
       }
-/*
-    rCtx.fillStyle="rgba(0,0,0,.1)";
-    if(field.type=="value"){rCtx.fillStyle="rgba(0,0,255,.2)";}
-    if(field.type=="valueCount"){rCtx.fillStyle="rgba(0,0,255,.4)";}
-    if(field.type.indexOf("calc")>-1){rCtx.fillStyle="rgba(255,255,0,.2)";}
-    if(field.type=="boldcalc"){rCtx.fillStyle="rgba(255,255,0,.2)";}
-    if(field.type=="meta"){rCtx.fillStyle="rgba(255,0,0,.2)";}
-    rCtx.fillRect(field.x*s, field.y*s, field.w*s, h*s);
-    rCtx.strokeStyle="rgba(0,0,0,.2)";
-    rCtx.strokeRect(field.x*s, field.y*s, field.w*s, h*s);
-*/
     var content=field.content;
     if(field.type=="value"){
       //console.log(field.type+" "+field.content);
@@ -2335,66 +2237,6 @@ function hidePreview(){
   document.getElementById('previewCanvas').style.display="none";
   }
 
-
-
-
-
-
-
-/*
-var results=[];
-function updateResultButtons(){
-  dbuga('OBSOLETE updateResultButtons()');
-
-  results=[];
-  if(reading.findInput.length==0){
-    return false;
-    }
-  var keys=Object.keys(savedObj);
-  for(var k=0; k<keys.length; k++){
-    if(keys[k].indexOf(reading.findInput)>-1){
-      results.push(keys[k]);
-      }
-    }
-  }
-function drawResultButtons(){
-  if(results.length>0){
-    updateIdLabel("metaDisplay", "Find '"+reading.findInput +"' Showing: " +results.length);
-    }
-  var bm=g*.1;
-  var buttonFontPx=g*.7;
-  for(var r=0; r<results.length; r++){
-    //dbuga(results[r]);
-    var bgColor="#888";
-    roundRect(ctx, listLeft*g+bm, (listTop+1+r)*g+bm, listWidth*g-2*bm, g-2*bm, g/10, g/32, "#888", bgColor, titleCase(results[r]), "#ddd", buttonFontPx+"px avantbold", 1);
-    }
-  }
-function selectSaved(savedKey){
-  dbuga('OBSOLETE? selectSaved('+savedKey+')');
-  var savedItem=savedObj[savedKey];
-  if(typeof(savedItem)=="string"){
-    //console.log(savedItem+" = string");
-    updateIdValue('birthdayInput',savedItem);
-    updateIdValue('currentNameInput',"");
-    updateIdValue('emailInput',"");
-    updateIdValue('phoneInput',"");
-    }
-  else{
-    updateIdValue('birthdayInput',savedItem.birthday);
-    updateIdValue('currentNameInput', savedItem.currentName);
-    updateIdValue('emailInput',savedItem.email);
-    updateIdValue('phoneInput',savedItem.phone);
-    }
-  var lastFirstMiddle=savedKey.replace(',', '');
-  var parts=lastFirstMiddle.split(' ');
-  updateIdValue('firstNameInput',parts[1]);
-  updateIdValue('middleNameInput',parts[2]);
-  updateIdValue('lastNameInput',parts[0]);
-  //updateIdValue('findInput',"");
-  userInput();
-  uiFocus=-1;
-  }
-*/
 function handleEvent(evt){
   if(aboutUp){
     console.log('about up so ignore event')
@@ -2403,14 +2245,6 @@ function handleEvent(evt){
   //dbuga(evt.type+" "+evt.source);
   evt.y-=yOffset;
   var found=-1;
-/*
-  for (var r=0; r<results.length; r++){
-    if((evt.x>listLeft*g)&&(evt.x<listRight*g)&&(evt.y>(listTop+1+r)*g)&&(evt.y<(listTop+2+r)*g)){
-      selectSaved(results[r]);
-      return false;
-      }
-    }
-*/
 
   for (var u=1; u<uiObj.length; u++){// skip stupid meta area
     if((evt.x>uiObj[u]['l']*g)&&(evt.x<uiObj[u]['r']*g)&&(evt.y>uiObj[u]['t']*g)&&(evt.y<uiObj[u]['b']*g)){
@@ -2448,27 +2282,7 @@ function clearReading(){
   //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
   //dbuga(localStorage.reading);
   }
-/* july 2
-function saveInputs(){
-  dbuga(' OBSOLETE? saveInputs()');
-  var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.currentNameInput;
-  savedObj[newKey]={
-    "birthday":reading.birthdayInput, 
-    "phone":reading.phoneInput,
-    "email":reading.emailInput,
-    "currentName":reading.currentNameInput
-    };
-  readingSaved=true;
-  ////localStorage.setItem("savedObj", JSON.stringify(savedObj));
-  }
-*/
 var focusStep=.1;
-/*
-var listLeft=0;
-var listRight=0;
-var listTop=0
-var listWidth=0;
-*/
 function geometry(){
   //dbuga('geometry()');
     viewportWidth = window.innerWidth;
@@ -2507,10 +2321,6 @@ function geometry(){
 
 
     //cellsAcross=Math.floor(viewportWidth/g);
-/*
-    g=viewportWidth/cellsAcross;
-    cellsDown=Math.floor(viewportHeight/g);
-*/
   }
 function secondTick(){
   //dbug("fps:"+frames);
@@ -2860,7 +2670,7 @@ function selectResult(id){
   updateIdValue("birthdayInput", contact.birthday);
   // convert to mmddyyyy
   if(contact.emails===null){
-    dbuga('CAUGHT no emails in selectContact('+id+')');
+    //dbuga('CAUGHT no emails in selectContact('+id+')');
     contact.emails=[];
     }
   if(contact.emails.length>0){updateIdValue("emailInput", contact.emails[0].value);}
@@ -2998,7 +2808,7 @@ function saveContact(){
     contact.phoneNumbers.push(phoneNumber);
     }
   if(contact.emails===null){
-    dbuga('CAUGHT no emails in saveContact()');
+    //dbuga('CAUGHT no emails in saveContact()');
     contact.emails=[];
     }
   if(contact.emails.length>0){
