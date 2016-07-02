@@ -2441,7 +2441,7 @@ function clearReading(){
   updateIdValue("middleNameInput", "");
   updateIdValue("lastNameInput", "");
   updateIdValue("birthdayInput", "");
-  updateIdValue("currentNameInput", "");ƒfamily
+  updateIdValue("currentNameInput", "");
   updateIdValue("emailInput", "");
   updateIdValue("phoneInput", "");
   //updateIdValue("findInput", "");
@@ -2834,6 +2834,7 @@ function selectResult(id){
   var contact=contactsArray[id];
   selectedContactId=contact.id;
   selectedContact=contact;
+  dbuga("contact = '=JSON.stringify(contact));
   updateIdValue("firstNameInput", contact.name.givenName);
 
   updateIdValue("firstNameInput", contact.name.givenName);
