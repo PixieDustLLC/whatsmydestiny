@@ -250,7 +250,8 @@ drawMenus:function(){
               }
             }
           pad=pad-rui.g*(grow-1)*contents[c].h;
-          var radFrac=1;
+
+
           if((contents[c].type=="color")||(contents[c].type=="usercolor")){
             rui.mctx.shadowBlur = 0;
             rui.mctx.lineWidth=rui.g/3;
@@ -279,7 +280,6 @@ drawMenus:function(){
 
             rui.roundRect(rui.mctx, px+rui.g*contents[c].x+pad, py+rui.g*contents[c].y+pad, rui.g*contents[c].w-pad*2, rui.g*contents[c].h-pad*2, rui.g*(contents[c].h/16), true, true);
             if(palette){
-              radFrac=.8;
               var image=document.getElementById("square_palette.png");
               var cPad=rui.g*rui.iconPad-rui.g*(grow-1)*contents[c].h;
               rui.mctx.drawImage(image, px+rui.g*contents[c].x+cPad, py+rui.g*contents[c].y+cPad, rui.g*contents[c].h-cPad*2, rui.g*contents[c].h-cPad*2);
@@ -303,7 +303,9 @@ drawMenus:function(){
             rui.mctx.drawImage(image, px+rui.g*contents[c].x+cPad, py+rui.g*contents[c].y+cPad, rui.g*contents[c].h-cPad*2, rui.g*contents[c].h-cPad*2);
             }// end of type squaretool
 
-          if(contents[c].type=="icon"){
+          if((contents[c].type=="icon")||(contents[c].type=="iconInvert")){
+            var radFrac=1;
+            if(contents[c].type=="iconInvert"){radFrac=.8;}
             var cPad=rui.g*rui.iconPad-rui.g*(grow-1)*contents[c].h;
             rui.mctx.shadowBlur = 0;
             var image=document.getElementById("menu_"+contents[c].icon+".png");
@@ -587,7 +589,7 @@ menuEvent:function(type, touches){
         //console.log(rui.contentFound+" "+obj);
         }
 
-      if((obj.type=="icon")||(obj.type=="input")||(obj.type=="squaretool")){
+      if((obj.type=="icon")||(obj.type=="iconInvert")||(obj.type=="input")||(obj.type=="squaretool")){
         var junk=eval(obj.func);
         //console.log(obj);
         }
