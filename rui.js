@@ -305,7 +305,7 @@ drawMenus:function(){
 
           if((contents[c].type=="icon")||(contents[c].type=="iconInvert")){
             var radFrac=1;
-            if(contents[c].type=="iconInvert"){radFrac=.8;}
+            if(contents[c].type=="iconInvert"){radFrac=.9;}
             var cPad=rui.g*rui.iconPad-rui.g*(grow-1)*contents[c].h;
             rui.mctx.shadowBlur = 0;
             var image=document.getElementById("menu_"+contents[c].icon+".png");
