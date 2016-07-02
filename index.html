@@ -3020,7 +3020,11 @@ function saveContact(){
 function contactsSaveSuccess(contact) {
   //dbuga("contactsSaveSuccess");
   clearReading();// prevents double save
-  searchContacts(); //added july 2nd to prevent out of date search results
+
+  //added july 2nd to prevent out of date search results
+  localStorage.setItem("reading", JSON.stringify(reading));
+  searchContacts(); 
+  // end of july 2 edits
 };
 function contactsSaveError(contactError) {
     alert("Error = " + contactError.code);
