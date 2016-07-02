@@ -2834,7 +2834,7 @@ function selectResult(id){
   var contact=contactsArray[id];
   selectedContactId=contact.id;
   selectedContact=contact;
-  dbuga("contact = '=JSON.stringify(contact));
+  dbuga("contact = "+JSON.stringify(contact));
   updateIdValue("firstNameInput", contact.name.givenName);
 
   updateIdValue("firstNameInput", contact.name.givenName);
