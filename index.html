@@ -129,7 +129,7 @@ var colorMap={
 var rCanv;
 var rCtx;
 function init(){
-  //dbuga('init()');
+  dbuga('init()');
   canv=document.getElementById('mainCanvas');
   ctx=canv.getContext('2d');
   rCanv=document.getElementById('reportCanvas');
@@ -850,27 +850,6 @@ function init(){
         
 
   ];
-/*
-        ,{
-        "id":"findInput", "focusable":true,
-        "limit":20, "type":"alpha", 
-        "w":8, "h":1, 
-        "l":1, "t":23, 
-        "r":9, "b":24, 
-        "down":2, "up":-11,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
-        "label":"Find",
-        "value":"",
-        "focus":0}
-
-        ,{
-        "id":"load", 
-        "w":6, "h":1, 
-        "l":10, "t":0, 
-        "r":16, "b":1, 
-        "label":"Search",
-        "value":""}
-*/
   for(var u=0; u<uiObj.length; u++){
     if(uiObj[u].id=="metaDisplay"){
       listLeft=uiObj[u].l;
@@ -911,10 +890,10 @@ function init(){
     });
   document.body.style.backgroundImage="";
 
-  //dbuga('init() 6' );
+  dbuga('init() 6' );
 
   setupLocalStorage();
-  //dbuga('init() 7' );
+  dbuga('init() 7' );
   ////focusTextarea();
   //createRui:function(containerRef, barColor, barTextColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, squareIcons, iconPad, selectColor, paraFont, headFont)
 
@@ -1160,32 +1139,32 @@ function showSave(){
 */
 
 function setupLocalStorage(){
-  //dbuga('setupLocalStorage()');
+  dbuga('setupLocalStorage()');
   if(localStorage.getItem("savedObj") === null) {
     localStorage.setItem("savedObj", JSON.stringify(savedObj));
     }
   else{
     savedObj=JSON.parse(localStorage.getItem("savedObj"));
     }
-  //dbuga('setupLocalStorage() 2');
+  dbuga('setupLocalStorage() 2');
 
   if(localStorage.getItem("reading") === null) {
-    //dbuga('setupLocalStorage()3 reading null');
+    dbuga('setupLocalStorage()3 reading null');
     localStorage.setItem("reading", JSON.stringify(reading));
     }
   else{
-    //dbuga('setupLocalStorage() 4');
+    dbuga('setupLocalStorage() 4');
     reading=JSON.parse(localStorage.getItem("reading"));
     updateIdValue("firstNameInput", reading.firstNameInput);
     updateIdValue("middleNameInput", reading.middleNameInput);
     updateIdValue("lastNameInput", reading.lastNameInput);
     updateIdValue("birthdayInput", reading.birthdayInput);
-    //dbuga('setupLocalStorage() 5');
+    dbuga('setupLocalStorage() 5');
     userInput();
-    //dbuga('setupLocalStorage() 6');
+    dbuga('setupLocalStorage() 6');
     testReadingSaved();
     }
-  //dbuga('setupLocalStorage() completed');
+  dbuga('setupLocalStorage() completed');
   }
 
 
@@ -2350,6 +2329,7 @@ function hidePreview(){
 
 var results=[];
 function updateResultButtons(){
+  dbuga('OBSOLETE updateResultButtons()');
 /*
   results=[];
   if(reading.findInput.length==0){
@@ -2377,7 +2357,7 @@ function drawResultButtons(){
 
   }
 function selectSaved(savedKey){
-  //dbuga('selectSaved('+savedKey+')');
+  dbuga('OBSOLETE? selectSaved('+savedKey+')');
   var savedItem=savedObj[savedKey];
   if(typeof(savedItem)=="string"){
     //console.log(savedItem+" = string");
@@ -2448,10 +2428,11 @@ function clearReading(){
   clearCalcs();
   localStorage.setItem("reading", JSON.stringify(reading));
 
-  //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
+  dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
+  dbuga(localStorage.reading);
   }
 function saveInputs(){
-  //console.log('saveInputs()');
+  dbuga(' OBSOLETE? saveInputs()');
   var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.currentNameInput;
   savedObj[newKey]={
     "birthday":reading.birthdayInput, 
