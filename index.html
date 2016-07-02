@@ -2435,7 +2435,7 @@ function handleEvent(evt){
   }
 
 function clearReading(){
-  //console.log('clearReading() so clearCalcs');
+  dbuga('clearReading() so clearCalcs');
   selectedContactId=-1;
   updateIdValue("firstNameInput", "");
   updateIdValue("middleNameInput", "");
@@ -2446,6 +2446,7 @@ function clearReading(){
   updateIdValue("phoneInput", "");
   //updateIdValue("findInput", "");
   clearCalcs();
+  dbuga(" reading keys length: "+Object.keys(reading).length)
   }
 function saveInputs(){
   //console.log('saveInputs()');
@@ -2889,11 +2890,11 @@ navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options)
   }
 function contactsFindSuccess(contacts){
   menus['search'].panes[2].selection=-1;
-  //dbug('Found ' + contacts.length + ' contacts.');
+  dbuga('Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var results=[];
   for (var c=0; c<contactsArray.length ; c++){
-
+    dbuga(" c="+c);
     if(contactsArray[c].nickname===null){contactsArray[c].nickname="";}
     if(contactsArray[c].name.givenName===null){contactsArray[c].name.givenName="";}
     if(contactsArray[c].name.middleName===null){contactsArray[c].name.middleName="";}
@@ -2901,6 +2902,7 @@ function contactsFindSuccess(contacts){
     if(contactsArray[c].birthday===null){contactsArray[c].birthday="";}
     if(contactsArray[c].emails===null){contactsArray[c].emails=[];}
     if(contactsArray[c].phoneNumbers===null){contactsArray[c].phoneNumbers=[];}
+    dbuga(" - "+c+" OKAY "+contactsArray[c].name.familyName);
 
 
     //var name=JSON.stringify(contactsArray[c]);
@@ -2936,15 +2938,17 @@ function testDuplicate(){
   navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
   }
 function contactsTestSuccess(contacts){
-  //dbuga('testSuccess Found ' + contacts.length + ' contacts.');
+  dbuga('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
 
   for (var c=0; c<contactsArray.length ; c++){
+    dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
     if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
       matchedId=contactsArray[c].id;
       duplicateContact=contactsArray[c];
       }
+    dbuga('contact Okay');
     }
   //dbuga('matchedId='+matchedId);
   if(matchedId>-1){
