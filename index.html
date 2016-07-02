@@ -1140,13 +1140,15 @@ function showSave(){
 
 function setupLocalStorage(){
   dbuga('setupLocalStorage()');
+/*
   if(localStorage.getItem("savedObj") === null) {
     localStorage.setItem("savedObj", JSON.stringify(savedObj));
     }
   else{
     savedObj=JSON.parse(localStorage.getItem("savedObj"));
     }
-  dbuga('setupLocalStorage() 2');
+  dbuga('setupLocalStorage() july 2');
+*/
 
   if(localStorage.getItem("reading") === null) {
     dbuga('setupLocalStorage()3 reading null');
@@ -1162,15 +1164,15 @@ function setupLocalStorage(){
     dbuga('setupLocalStorage() 5');
     userInput();
     dbuga('setupLocalStorage() 6');
-    testReadingSaved();
+    ////testReadingSaved();
     }
   dbuga('setupLocalStorage() completed');
   }
 
 
 var reading={"valid":false, "counts":[-1,0,0,0,0,0,0,0,0,0]};
-var savedObj={};
-var readingSaved=false;
+////var savedObj={};
+////var readingSaved=false;
 var daysOfWeek=["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 function nowMMDDYYYY(){
   var nowDate=new Date();
@@ -1324,14 +1326,14 @@ function userInput(){
  
     localStorage.setItem("reading", JSON.stringify(reading));
     }
-  updateResultButtons();
+  ////updateResultButtons();
 
   if(metaFocus != -1){updateMeta();}
   if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.lastNameInput.length>0)){
     reading.valid=true;
     }
   updateValues();
-  testReadingSaved();
+  ////testReadingSaved();
   }
 function clearCalcs(){
   //dbuga('clearCalcs()');
@@ -1463,6 +1465,7 @@ for(var n=1; n<=9; n++){
 
   }
 function testReadingSaved(){
+/* july 2
   readingSaved=false;
   if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0) && (reading.firstNameInput.length>0)){
     var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput;
@@ -1472,6 +1475,7 @@ function testReadingSaved(){
         }
       }
     }
+*/
   }
 function getAge(birthDate) {
     var today = new Date();
@@ -2358,6 +2362,7 @@ function drawResultButtons(){
   }
 function selectSaved(savedKey){
   dbuga('OBSOLETE? selectSaved('+savedKey+')');
+/* july 2
   var savedItem=savedObj[savedKey];
   if(typeof(savedItem)=="string"){
     //console.log(savedItem+" = string");
@@ -2380,7 +2385,7 @@ function selectSaved(savedKey){
   //updateIdValue('findInput',"");
   userInput();
   uiFocus=-1;
-
+*/
   }
 function handleEvent(evt){
   if(aboutUp){
@@ -2433,6 +2438,7 @@ function clearReading(){
   }
 function saveInputs(){
   dbuga(' OBSOLETE? saveInputs()');
+/* july 2
   var newKey=reading.lastNameInput+", "+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.currentNameInput;
   savedObj[newKey]={
     "birthday":reading.birthdayInput, 
@@ -2441,7 +2447,8 @@ function saveInputs(){
     "currentName":reading.currentNameInput
     };
   readingSaved=true;
-  localStorage.setItem("savedObj", JSON.stringify(savedObj));
+  ////localStorage.setItem("savedObj", JSON.stringify(savedObj));
+*/
   }
 var focusStep=.1;
 var listLeft=0;
