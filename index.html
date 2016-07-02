@@ -2676,6 +2676,10 @@ function selectResult(id){
   if(contact.emails.length>0){updateIdValue("emailInput", contact.emails[0].value);}
   else{updateIdValue("emailInput", "");}
   var cleaned="";
+  if(contact.phoneNumbers===null){
+    //dbuga('CAUGHT no emails in selectContact('+id+')');
+    contact.phoneNumbers=[];
+    }
   if(contact.phoneNumbers.length>0){
     var value=contact.phoneNumbers[0].value;
     var parts=value.split('');
@@ -2799,6 +2803,11 @@ function saveContact(){
     }
   else{
     contact=selectedContact;
+    }
+
+  if(contact.phoneNumbers===null){
+    //dbuga('CAUGHT no emails in selectContact('+id+')');
+    contact.phoneNumbers=[];
     }
   if(contact.phoneNumbers.length>0){
     contact.phoneNumbers[0].value=phoneContactFormat(reading.phoneInput);
