@@ -2446,6 +2446,8 @@ function clearReading(){
   updateIdValue("phoneInput", "");
   //updateIdValue("findInput", "");
   clearCalcs();
+  localStorage.setItem("reading", JSON.stringify(reading));
+
   //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
   }
 function saveInputs(){
@@ -3022,7 +3024,6 @@ function contactsSaveSuccess(contact) {
   clearReading();// prevents double save
 
   //added july 2nd to prevent out of date search results
-  localStorage.setItem("reading", JSON.stringify(reading));
   searchContacts(); 
   // end of july 2 edits
 };
