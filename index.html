@@ -2441,7 +2441,7 @@ function clearReading(){
   updateIdValue("middleNameInput", "");
   updateIdValue("lastNameInput", "");
   updateIdValue("birthdayInput", "");
-  updateIdValue("currentNameInput", "");
+  updateIdValue("currentNameInput", "");ƒfamily
   updateIdValue("emailInput", "");
   updateIdValue("phoneInput", "");
   //updateIdValue("findInput", "");
@@ -3013,11 +3013,11 @@ function saveContact(){
   name.familyName = titleCase(reading.lastNameInput);
   contact.name = name;
   contact.save(contactsSaveSuccess,contactsSaveError);
-  //dbuga("contactsSave completed");
+  dbuga("contactsSave completed");
 
   }
 function contactsSaveSuccess(contact) {
-  //dbuga("contactsSaveSuccess");
+  dbuga("contactsSaveSuccess");
   clearReading();// prevents double save
 
 };
@@ -3062,7 +3062,7 @@ function contactsSaveError(contactError) {
 ></canvas>
   <div id="menuHolder" style="position:absolute;" ></div>
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
-  <div id="debugDiv" style="font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; Zbackground-color:white;"></div>
+  <div id="debugDiv" style="font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; background-color:white;"></div>
   <canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
   <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
   <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
