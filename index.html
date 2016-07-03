@@ -2160,7 +2160,7 @@ var chunkBytes=300000;
 var reportName="";
 var reportFile="";
 function pdfToServer(doc, calling){
-  checkInternet();
+  window.setTimeout("checkInternet()", 1000);
   reportName=calling;
   reportFile="http://whatsmydestiny.com/destinyapp/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
   
