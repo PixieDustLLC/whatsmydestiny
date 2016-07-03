@@ -2177,7 +2177,7 @@ function pdfToServer(doc, calling){
       pdf = pdf.substr(chunkBytes);
       }
     }
-  //console.log("chunks.length="+chunks.length);
+  dbuga("pdfToServer *** chunks.length="+chunks.length);
   document.getElementById('uploadingpercent').innerHTML="0%";  
   document.getElementById('uploadingpdf').style.display="block";
   totalChunks=chunks.length;
@@ -2196,6 +2196,7 @@ function checkInternet(){
     document.getElementById('uploadingpdf').style.display="none";
     document.getElementById('previewCanvas').style.display="none";
     chunks=[];
+    dbuga('checkInternet() error completed');
   }
 }
 function ajaxError(){
