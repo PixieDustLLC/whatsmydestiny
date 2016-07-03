@@ -2191,9 +2191,12 @@ function checkInternet(){
     xhr.send();
     dbuga('checkInternet() passed');
   } catch (error) {
-    dbuga('checkInternet() Unable to reach server. Please check your connection and try agin.');
+    dbuga('checkInternet() error');
+    alert('Unable to reach internet. Please check your connection and try agin.');
     document.getElementById('uploadingpdf').style.display="none";
-    chunks=[];  }
+    document.getElementById('previewCanvas').style.display="none";
+    chunks=[];
+  }
 }
 function ajaxError(){
  
@@ -2219,14 +2222,14 @@ function saveChunk(){
   xhr.send(data);
   }
 function ajaxSuccess(){
-  //console.log('ajaxSuccess()');
+  dbuga('ajaxSuccess()');
   if(chunks.length>0){
     var prog=(totalChunks-chunks.length)/totalChunks;
     document.getElementById('uploadingpercent').innerHTML=Math.floor(prog*100)+"%";
     window.setTimeout("saveChunk()", 200);
     }
   else{
-    //console.log('pdfToServer completed '+reportFile);
+    dbuga('pdfToServer completed '+reportFile);
     document.getElementById('downloadpdf').style.display="block";
     document.getElementById('uploadingpdf').style.display="none";
     var element = document.getElementById('pdfData');
@@ -2249,10 +2252,6 @@ function resumeOpenPdfFile(){
   window.open(""+reportFile, "_system");
   //console.log('resumeOpenPdfFile() done');
   }
-function hidePreview(){
-  document.getElementById('previewCanvas').style.display="none";
-  }
-
 function hidePreview(){
   document.getElementById('previewCanvas').style.display="none";
   }
