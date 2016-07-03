@@ -1,5 +1,5 @@
 var rui = {
-  found:-1,
+  barFound:-1,
   menuFound:-1,
   paneFound:-1,
   contentFound:-1,
@@ -490,17 +490,17 @@ menuEvent:function(type, touches){
     var y=touches[0].pageY;
     //dbuga('menuEvent' +type+" x:"+x+" y:"+y);
     
-    var found=-1;
+    rui.barFound=-1;
     for (var b=0; b<barButtons.length; b++){
       if((x>barButtons[b].l)&&(x<barButtons[b].r)&&(y>barButtons[b].t)&&(y<barButtons[b].b)){
-        found=b;
+        rui.barFound=b;
         }
       }
-    if(type=="touchmove"){found=-1;}
-    if(found>-1){
-      //dbuga("found: "+found);
-      var junk=eval(barButtons[found].func);
-      //dbuga(barButtons[found].func);
+    if(type=="touchmove"){rui.barFound=-1;}
+    if(rui.barFound>-1){
+      dbuga("rui.barFound: "+rui.barFound);
+      var junk=eval(barButtons[rui.barFound].func);
+      //dbuga(barButtons[rui.barFound].func);
       }
     var prevMenu=rui.menuFound;
     var prevPane=rui.paneFound;
@@ -559,7 +559,6 @@ menuEvent:function(type, touches){
           }
         }
       }
-    rui.found=found;
     }// end of touchstart touchend
   if(type=="touchend"){  
     rui.touching=false;
@@ -568,7 +567,7 @@ menuEvent:function(type, touches){
       if(menus[menuKeys[m]].stack==0){
         var buttonNum=buttonNumByName[menus[menuKeys[m]].buttonName];
         menus[menuKeys[m]].panes[0].selection=-1;
-        if(rui.found != buttonNum){// dont close if it's this menus button
+        if(rui.barFound != buttonNum){// dont close if it's this menus button
           //dbuga('FORCE CLOSE buttonName='+menus[menuKeys[m]].buttonName + ' buttonNum='+buttonNum);
           menus[menuKeys[m]].selected=false;
           barButtons[buttonNum].selected=false;
