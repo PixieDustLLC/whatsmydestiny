@@ -2160,6 +2160,7 @@ var chunkBytes=300000;
 var reportName="";
 var reportFile="";
 function pdfToServer(doc, calling){
+  checkInternet();
   reportName=calling;
   reportFile="http://whatsmydestiny.com/destinyapp/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
   
@@ -2182,6 +2183,12 @@ function pdfToServer(doc, calling){
   totalChunks=chunks.length;
   saveChunk();
   }
+function ajaxError(){
+
+    alert('Unable to reach server. Please check your connection and try agin.');
+    document.getElementById('uploadingpdf').style.display="none";
+    chunks=[];
+}
 function saveChunk(){
   var chunkNum=totalChunks-chunks.length;
   //console.log("saveChunk chunks.length="+chunks.length+" chunkNum="+chunkNum+" reportName="+reportName);
