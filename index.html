@@ -2177,7 +2177,7 @@ function pdfToServer(doc, calling){
       pdf = pdf.substr(chunkBytes);
       }
     }
-  dbuga("pdfToServer *** chunks.length="+chunks.length);
+  //dbuga("pdfToServer *** chunks.length="+chunks.length);
   document.getElementById('uploadingpercent').innerHTML="0%";  
   document.getElementById('uploadingpdf').style.display="block";
   totalChunks=chunks.length;
@@ -2189,19 +2189,19 @@ function checkInternet(){
   xhr.open( "HEAD", 'http://www.google-analytics.com/__utm.gif', false );
   try {
     xhr.send();
-    dbuga('checkInternet() passed');
+    //dbuga('checkInternet() passed');
   } catch (error) {
-    dbuga('checkInternet() error');
+    //dbuga('checkInternet() error');
     alert('Unable to reach internet. Please check your connection and try agin.');
     document.getElementById('uploadingpdf').style.display="none";
-    document.getElementById('previewCanvas').style.display="none";
+    rCanv.style.display="none";
     chunks=[];
-    dbuga('checkInternet() error completed');
+    //dbuga('checkInternet() error completed');
   }
 }
 function ajaxError(){
  
-    dbuga('ajaxError()');
+    //dbuga('ajaxError()');
     alert('ajaxError() Unable to reach server. Please check your connection and try agin.');
     document.getElementById('uploadingpdf').style.display="none";
     chunks=[];
@@ -2223,20 +2223,20 @@ function saveChunk(){
   xhr.send(data);
   }
 function ajaxSuccess(){
-  dbuga('ajaxSuccess()');
+  //dbuga('ajaxSuccess()');
   if(chunks.length>0){
     var prog=(totalChunks-chunks.length)/totalChunks;
     document.getElementById('uploadingpercent').innerHTML=Math.floor(prog*100)+"%";
     window.setTimeout("saveChunk()", 200);
     }
   else{
-    dbuga('pdfToServer completed '+reportFile);
+    //dbuga('pdfToServer completed '+reportFile);
     document.getElementById('downloadpdf').style.display="block";
     document.getElementById('uploadingpdf').style.display="none";
     var element = document.getElementById('pdfData');
     element.href = "javascript:openPdfFile(); ";
     element.target = "";
-  rCanv.style.display="none";
+    rCanv.style.display="none";
 
     }
   }
