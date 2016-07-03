@@ -90,7 +90,7 @@ var rui = {
     if(barButtons[b].selected){barButtons[b].selected=false;}
     else{barButtons[b].selected=true;}
     menus[menuName].selected=barButtons[b].selected;
-    //dbuga(menuName+" barButtons["+b+"].selected="+barButtons[b].selected);
+    dbuga("toggleMenu) "+menuName+" barButtons["+b+"].selected="+barButtons[b].selected);
     rui.drawUx();
     return "toggleMenu("+menuName+") return";
   },
