@@ -90,7 +90,7 @@ var rui = {
     if(barButtons[b].selected){barButtons[b].selected=false;}
     else{barButtons[b].selected=true;}
     menus[menuName].selected=barButtons[b].selected;
-    dbuga("toggleMenu) "+menuName+" barButtons["+b+"].selected="+barButtons[b].selected);
+    //dbuga("toggleMenu) "+menuName+" barButtons["+b+"].selected="+barButtons[b].selected);
     rui.drawUx();
     return "toggleMenu("+menuName+") return";
   },
@@ -498,7 +498,7 @@ menuEvent:function(type, touches){
       }
     if(type=="touchmove"){rui.barFound=-1;}
     if(rui.barFound>-1){
-      dbuga("rui.barFound: "+rui.barFound);
+      //dbuga("rui.barFound: "+rui.barFound);
       var junk=eval(barButtons[rui.barFound].func);
       //dbuga(barButtons[rui.barFound].func);
       }
