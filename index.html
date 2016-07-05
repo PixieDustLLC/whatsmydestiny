@@ -129,13 +129,14 @@ var colorMap={
 var rCanv;
 var rCtx;
 function init(){
+  return false;
   //dbuga('init()');
   canv=document.getElementById('mainCanvas');
   ctx=canv.getContext('2d');
   rCanv=document.getElementById('reportCanvas');
   rCtx=rCanv.getContext('2d');
   //console.log('init()');
-  document.getElementById('preloadHolder').style.display="none";
+  ////document.getElementById('preloadHolder').style.display="none";
   geometry();
   labelObj=[
   ];
@@ -2906,7 +2907,7 @@ function contactsSaveError(contactError) {
 </style>
 </head>
 <body onload="init()" ontouchstart="devent(event)" onmousedown="devent(event)" style="background-image:url('res/Default-Landscape.png'); width:100%; height:100%;">
-  <div id="preloadHolder" style="position:absolute; ">
+  <div id="preloadHolder" style="position:absolute; background-color:red;">
     <img src="nav/coversheet.jpg" id="coversheet" width=1 height=1 />
     <div style="font-family:avantbolditalic; position:absolute; top:100px; color:white;">avantbolditalic 1234567890</div>
     <div style="font-family:avantbook; position:absolute; top:100px; color:white;">avantbold 1234567890</div>
