@@ -129,14 +129,13 @@ var colorMap={
 var rCanv;
 var rCtx;
 function init(){
-  return false;
   //dbuga('init()');
   canv=document.getElementById('mainCanvas');
   ctx=canv.getContext('2d');
   rCanv=document.getElementById('reportCanvas');
   rCtx=rCanv.getContext('2d');
   //console.log('init()');
-  ////document.getElementById('preloadHolder').style.display="none";
+  document.getElementById('preloadHolder').style.display="none";
   geometry();
   labelObj=[
   ];
@@ -883,14 +882,14 @@ function init(){
 
   //dbuga('init() 6' );
 
-  ////setupLocalStorage();
+  setupLocalStorage();
   //dbuga('init() 7' );
   //createRui:function(containerRef, barColor, barTextColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, squareIcons, iconPad, selectColor, paraFont, headFont)
 
 
-////rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "#ffffff", "icons/", "white", "red", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
+  rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "#ffffff", "icons/", "white", "red", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
   //dbuga('init() 8');
-  ////openTutorial();
+  openTutorial();
   //dbuga('init() completed');
 
   }
@@ -2310,6 +2309,7 @@ function geometry(){
     viewportHeight = window.innerHeight;    
     canv.width=viewportWidth;
     canv.height=viewportHeight;
+    canv.style.display="block";
     rCanv.style.height=viewportHeight+"px";
     rCanv.style.width=viewportHeight*reportAspect+"px";
     g=viewportHeight/cellsDown;
@@ -2883,7 +2883,7 @@ function contactsSaveError(contactError) {
 </script>
 <link rel = "stylesheet" type = "text/css" href = "reset.css">
 <style>
-#mainCanvas{background-color:#eeeeee; z-index:2;}
+#mainCanvas{background-color:#eeeeee; z-index:2; display:none;}
 #reportCanvas{background-color:#ee9966; z-index:3;}
 #menuHolder{background-color:#ee99ff; z-index:4;}
 @font-face {
@@ -2913,7 +2913,7 @@ function contactsSaveError(contactError) {
     <div style="font-family:avantbook; position:absolute; top:100px; color:white;">avantbold 1234567890</div>
     <div style="font-family:avantbold; position:absolute; top:300px; color:white;">aventbook 1234567890</div>
   </div>
-  <canvas id="mainCanvas" style="position:absolute;" ontouchstart="touchStart(event)" onmousedown="mouseDown(event)"
+  <canvas id="mainCanvas" style="position:absolute;" width="1" height="1" ontouchstart="touchStart(event)" onmousedown="mouseDown(event)"
 ></canvas>
   <div id="menuHolder" style="position:absolute;" ></div>
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
