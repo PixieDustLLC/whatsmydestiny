@@ -1,6 +1,6 @@
 var summaryFields=[
 
-{"type":"heading", "align":"center", "x":6, "y":0, "w":12, "content":"What's Your Destiny?"},
+{"type":"heading", "align":"center", "x":6, "y":0, "w":12, "content":"What's My Destiny?"},
 {"type":"text", "align":"center", "x":6, "y":1.5, "w":12, "content":"Numerology Delineation For"},
 {"type":"boldcalc", "align":"center", "x":6, "y":2.5, "w":12, "content":"fullName"},
 {"type":"calc", "align":"center", "x":6, "y":3.5, "w":12, "content":"bornOn"},
