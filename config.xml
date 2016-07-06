@@ -27,6 +27,7 @@
 <gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" version="1.2.0" />
 <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 <preference name="orientation" value="landscape" />
+<preference name="target-device" value="tablet" />
 <preference name="fullscreen" value="true" /> 
 <!-- all nulls but id
 <gap:plugin name="org.apache.cordova.contacts" spec="0.2.16" source="pgb" />
