@@ -2672,7 +2672,7 @@ function selectResult(id){
   selectedContact=contact;
   var contactString=JSON.stringify(contact);
   var parts=contactString.split(",");
-  contactsString=parts.join(",<br>");
+  contactString=parts.join(",<br>");
   dbuga("contact = "+contactString);
   updateIdValue("firstNameInput", contact.name.givenName);
 
@@ -2921,7 +2921,7 @@ function contactsSaveError(contactError) {
 ></canvas>
   <div id="menuHolder" style="position:absolute;" ></div>
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
-  <div id="debugDiv" style="font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; Zbackground-color:yellow;"></div>
+  <div id="debugDiv" style="font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; background-color:rgba(255,255,255,.5);"></div>
   <canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
   <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
   <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
