@@ -2670,17 +2670,39 @@ function selectResult(id){
   var contact=contactsArray[id];
   selectedContactId=contact.id;
   selectedContact=contact;
-  var contactString=JSON.stringify(contact);
-  var parts=contactString.split(",");
-  contactString=parts.join(",<br>");
-  //dbuga("contact = "+contactString);
-  updateIdValue("firstNameInput", contact.name.givenName);
+  var contactFirst="";
+  var contactMiddle="";
+  var contactLast="";
+  var contactNickname="";
+  var validParts=[];
+  if(contact.nickname===null){}
+  else{
+    contactNickname=contact.nickname;
+    var nicknameParts=contactNickname.split(" ");
+    for (var p=0; p<nicknameParts.length; p++){
+      if(nicknameParts[p].length>0){validParts.push(nicknameParts[p]);}
+      }
+    }
+  if(contact.name===null){}
+  else{
+    var nameFields=Object.keys(contact.name);
+    if(inArray("givenName", nameFields)){contactFirst=contact.name.givenName;}
+    if(inArray("middleName", nameFields)){contactMiddle=contact.name.middleName;}
+    if(inArray("familyName", nameFields)){contactLast=contact.name.familyName;}
+    }
 
-  updateIdValue("firstNameInput", contact.name.givenName);
-
-  updateIdValue("middleNameInput", contact.name.middleName);
-
-  updateIdValue("lastNameInput", contact.name.familyName);
+  if(validParts.length==3){// valid 3 part nickname
+    updateIdValue("currentNameInput", contactFirst+" "+contactMiddle+" "+contactLast);
+    updateIdValue("firstNameInput", validParts[0]);
+    updateIdValue("middleNameInput", validParts[1]);
+    updateIdValue("lastNameInput", validParts[2]);
+    }
+  else{
+    updateIdValue("currentNameInput", validParts.join(" "));
+    updateIdValue("firstNameInput", contactFirst);
+    updateIdValue("middleNameInput", contactMiddle);
+    updateIdValue("lastNameInput", contactLast);
+    }
 
   if(contact.birthday != ""){
     //dbuga("contact.birthday "+contact.birthday);
@@ -2715,7 +2737,6 @@ function selectResult(id){
       }
     }
   updateIdValue("phoneInput", cleaned);
-  updateIdValue("currentNameInput", contact.nickname);
   userInput();
   }
 var contactsArray=[];
