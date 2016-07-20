@@ -13,8 +13,8 @@
 <name>What's My Destiny?</name>
 <description>Wes Hamilton Numerology</description>
 <gap:platform name="ios" />
-<!--
 <gap:platform name="android" />
+<!--
 -->
 <!--
 <gap:config-file platform="android" parent="/manifest/application">
