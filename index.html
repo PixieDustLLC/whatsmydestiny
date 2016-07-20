@@ -2873,8 +2873,32 @@ function saveContact(){
     var email = new ContactField('home', reading.emailInput, false);    
     contact.emails.push(email);
     }
-  contact.displayName = titleCase(reading.currentNameInput);
-  contact.nickname = titleCase(reading.currentNameInput);
+  // branch if valid 3  part current name
+
+  var validParts=[];
+  
+  var nicknameParts=reading.currentNameInput.split(" ");
+  for (var p=0; p<nicknameParts.length; p++){
+    if(nicknameParts[p].length>0){validParts.push(nicknameParts[p]);}
+    }
+  var name = new ContactName();  
+  if(validParts.length==3){// valid 3 part current name, put into contact name f, m, l
+    name.givenName =  titleCase(validParts[0]);
+    name.middleName = titleCase(validParts[1]);
+    name.familyName = titleCase(validParts[2]);
+    var n=titleCase(reading.firstNameInput)+" "+titleCase(reading.middleNameInput)+" "+titleCase(reading.lastNameInput);
+    contact.displayName = n;
+    contact.nickname = n;
+    }
+  else{
+    name.givenName =  titleCase(reading.firstNameInput);
+    name.middleName = titleCase(reading.middleNameInput);
+    name.familyName = titleCase(reading.lastNameInput);
+    var n=titleCase(validParts.join(" "));
+    contact.displayName = n;
+    contact.nickname = n;
+    }
+  contact.name = name;
   //specify both to support all devices // uhoh androids
 
   if(reading.birthdayInput.length==8){
@@ -2883,14 +2907,9 @@ function saveContact(){
     contact.birthday=birthDate;
     }
   
-  // populate some fields
-  var name = new ContactName();
-  name.givenName =  titleCase(reading.firstNameInput);
-  name.middleName = titleCase(reading.middleNameInput);
-  name.familyName = titleCase(reading.lastNameInput);
-  contact.name = name;
+
   contact.save(contactsSaveSuccess,contactsSaveError);
-  //dbuga("contactsSave completed");
+  dbuga("contactsSave completed "+validParts.length);
 
   }
 function contactsSaveSuccess(contact) {
