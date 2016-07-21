@@ -2860,11 +2860,11 @@ var lastChanged=false;
 var currentChanged=false;
 
 function saveContact(){
-  dbuga("saveContact() "+selectedContactId);
+  //dbuga("saveContact() "+selectedContactId);
   var contact;
   if(selectedContactId!=-1){
     if((firstChanged)&&(middleChanged)&&(lastChanged)&&(currentChanged)){
-          dbuga('changed all 4 names so save new contact');
+          //dbuga('changed all 4 names so save new contact');
           selectedContactId=-1;
       }
     }
@@ -2936,7 +2936,7 @@ function saveContact(){
   
 
   contact.save(contactsSaveSuccess,contactsSaveError);
-  dbuga("contactsSave completed "+validParts.length);
+  //dbuga("contactsSave completed "+validParts.length);
 
   }
 function contactsSaveSuccess(contact) {
