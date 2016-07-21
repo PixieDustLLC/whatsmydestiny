@@ -989,6 +989,10 @@ function appTyped(keyCode){
     //dbuga(type+" "+char);
     if((char != "")&&(uiFocus>-1)){// valid entry
       //dbuga(type+" "+char);
+      if(uiFocus==1){firstChanged=true;}
+      if(uiFocus==2){middleChanged=true;}
+      if(uiFocus==3){lastChanged=true;}
+      if(uiFocus==4){currentChanged=true;}
       if(uiObj[uiFocus].type != "label"){
         var fieldType=uiObj[uiFocus].type;
         if(fieldType.indexOf(type)>-1){
@@ -2747,6 +2751,10 @@ function selectResult(id){
     }
   updateIdValue("phoneInput", cleaned);
   userInput();
+  firstChanged=false;
+  middleChanged=false;
+  lastChanged=false;
+  currentChanged=false;
   }
 var contactsArray=[];
 function devent(e){
@@ -2846,18 +2854,18 @@ function contactsTestSuccess(contacts){
 function contactsTestError(contactError) {
     alert('onError!');
 };
+var firstChanged=false;
+var middleChanged=false;
+var lastChanged=false;
+var currentChanged=false;
 
 function saveContact(){
-  //dbuga("saveContact() "+selectedContactId);
+  dbuga("saveContact() "+selectedContactId);
   var contact;
   if(selectedContactId!=-1){
-    if(selectedContact.name.givenName !=  titleCase(reading.firstNameInput)){
-      if(selectedContact.name.middleName != titleCase(reading.middleNameInput)){
-        if(selectedContact.name.familyName != titleCase(reading.lastNameInput)){
-          dbuga('changed all 3 names so save new contact');
+    if((firstChanged)&&(middleChanged)&&(lastChanged)&&(currentChanged)){
+          dbuga('changed all 4 names so save new contact');
           selectedContactId=-1;
-          }
-        }
       }
     }
   if(selectedContactId==-1){
