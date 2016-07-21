@@ -993,6 +993,9 @@ function appTyped(keyCode){
       if(uiFocus==2){middleChanged=true;}
       if(uiFocus==3){lastChanged=true;}
       if(uiFocus==4){currentChanged=true;}
+      if((uiFocus==1)||(uiFocus==2)||(uiFocus==3)){
+        if(char==" "){char="-";}// replace spaces with hyphen in birth name fields
+        }
       if(uiObj[uiFocus].type != "label"){
         var fieldType=uiObj[uiFocus].type;
         if(fieldType.indexOf(type)>-1){
@@ -2299,6 +2302,12 @@ function handleEvent(evt){
 
 function clearReading(){
   //dbuga('clearReading() so clearCalcs');
+  firstChanged=false;
+  middleChanged=false;
+  lastChanged=false;
+  currentChanged=false;
+
+
   selectedContactId=-1;
   updateIdValue("firstNameInput", "");
   updateIdValue("middleNameInput", "");
@@ -2544,6 +2553,14 @@ function focusTextarea(){
   }, 100);
 }
 function titleCase(str){
+  var returnParts=[];
+  var parts=str.split("-");
+  for(var p=0; p<parts.length; p++){
+    returnParts.push(titleCaseOnce(parts[p]));
+    }
+  return returnParts.join("-");
+  }
+function titleCaseOnce(str){
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
 var pi=Math.PI;
@@ -2699,9 +2716,9 @@ function selectResult(id){
   if(contact.name===null){}
   else{
     var nameFields=Object.keys(contact.name);
-    if(inArray("givenName", nameFields)){contactFirst=contact.name.givenName;}
-    if(inArray("middleName", nameFields)){contactMiddle=contact.name.middleName;}
-    if(inArray("familyName", nameFields)){contactLast=contact.name.familyName;}
+    if(inArray("givenName", nameFields)){contactFirst=contact.name.givenName.replace(/ /g, "-");}
+    if(inArray("middleName", nameFields)){contactMiddle=contact.name.middleName.replace(/ /g, "-");}
+    if(inArray("familyName", nameFields)){contactLast=contact.name.familyName.replace(/ /g, "-");}
     }
 
   if(validParts.length==3){// valid 3 part nickname
@@ -2716,7 +2733,7 @@ function selectResult(id){
     updateIdValue("middleNameInput", contactMiddle);
     updateIdValue("lastNameInput", contactLast);
     }
-
+  
   if(contact.birthday != ""){
     //dbuga("contact.birthday "+contact.birthday);
     var birthdayObj=new Date(Number(contact.birthday));
