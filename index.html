@@ -1297,13 +1297,18 @@ function clearCalcs(){
     reading.birthSum="";
     reading.birthpath="";
 
-  //added juy 2
+  //added july 2
   reading.firstNameInput="";
   reading.middleNameInput="";
   reading.lastNameInput="";
   reading.birthdayInput="";
   reading.birthdateDate="";
   reading.valid=false;
+
+  //added july 2
+  reading.currentNameInput="";
+  reading.emailInput="";
+  reading.phoneInput="";
 
 
   reading.firstNameSum="";
@@ -2300,6 +2305,7 @@ function clearReading(){
   updateIdValue("phoneInput", "");
   //updateIdValue("findInput", "");
   clearCalcs();
+
   localStorage.setItem("reading", JSON.stringify(reading));
 
   //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
