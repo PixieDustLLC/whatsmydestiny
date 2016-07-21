@@ -2850,6 +2850,16 @@ function contactsTestError(contactError) {
 function saveContact(){
   //dbuga("saveContact() "+selectedContactId);
   var contact;
+  if(selectedContactId!=-1){
+    if(selectedContact.name.givenName !=  titleCase(reading.firstNameInput)){
+      if(selectedContact.name.middleName != titleCase(reading.middleNameInput)){
+        if(selectedContact.name.familyName != titleCase(reading.lastNameInput)){
+          dbuga('changed all 3 names so save new contact');
+          selectedContactId=-1;
+          }
+        }
+      }
+    }
   if(selectedContactId==-1){
     // create a new contact object
     contact = navigator.contacts.create();
