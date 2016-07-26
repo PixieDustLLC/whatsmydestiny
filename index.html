@@ -2400,12 +2400,13 @@ function dbug(msg){
   document.getElementById('debugDiv').innerHTML=""+msg;
   }
 function mouseDown(e){
-  //dbuga('mouseDown');
+  dbuga('mouseDown');
   e.preventDefault();
   var evt={"source":"mousedown", "type":"start", "x":e.clientX, "y":e.clientY};
   handleEvent(evt);
   }
 function touchStart(e){
+  dbuga('touchStart()')
   e.preventDefault();
   var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
   handleEvent(evt);
@@ -2676,7 +2677,7 @@ function closeAbout(){
   aboutUp=false;
   }
 var aboutUp=false;
-var closeCode='<div class="closer" ontouchend="event.preventDefault(); closeAbout();" onmouseup="closeAbout()"></div>';
+var closeCode='<div class="closer" ontouchend="event.preventDefault(); closeAbout();" onmouseup="dbuga('mouseUp'); closeAbout();"></div>';
 function openAbout(){
   aboutUp=true;
   // show modal link panel
@@ -2781,7 +2782,7 @@ function selectResult(id){
   }
 var contactsArray=[];
 function devent(e){
-  //alert(e.target.id)
+  dbuga("devent "+e.target.id)
   }
 function searchContacts(){
   menus["search"].panes[0].selection=-1;
