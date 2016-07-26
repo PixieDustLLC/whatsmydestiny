@@ -859,6 +859,7 @@ function init(){
   $(document.body).on('keypress', function(e) {
     e.preventDefault(); 
     lastPress=e.keyCode;
+    dbuga('lastPress='+lastPress);
     if(lastPress==0){return false;}
     if(menus["search"].selected){
       searchTyped(lastPress);
@@ -871,6 +872,7 @@ function init(){
   $(document.body).on('keydown', function(e) {
     
     lastDown=e.keyCode;
+    dbuga('lastDown='+lastDown);
     if(menus["search"].selected){
       searchDown(e);
       }
@@ -2547,7 +2549,7 @@ function focusTextarea(){
   if(lastArea== "inputArea"){
     lastArea="dummyArea";
   }
-  if(lastArea== "dummyArea"){
+  else if(lastArea== "dummyArea"){
     lastArea="inputArea";
   }
 
