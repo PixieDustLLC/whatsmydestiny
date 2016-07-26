@@ -2279,7 +2279,7 @@ function handleEvent(evt){
     console.log('about up so ignore event')
     return false;
     }
-  dbuga(evt.type+" "+evt.source);
+  dbuga("handleEvent()" +evt.type+" "+evt.source);
   evt.y-=yOffset;
   var found=-1;
 
@@ -2539,25 +2539,25 @@ function focusBounce(){
   dbuga('focusBounce() '+lastArea+" "+blurring);
   if(blurring==false){
     document.getElementById(lastArea).focus();
-    setUiFocus((uiFocus+1)%uiObj.length);
+    //setUiFocus((uiFocus+1)%uiObj.length);
     }
   else{
     blurring=false;
     }
   }
 function focusTextarea(){
-  dbuga('focusTextarea() ' +document.activeElement.id);
+  dbuga('focusTextarea() lastArea='+lastArea+' active:' +document.activeElement.id);
   if(lastArea== "inputArea"){
     lastArea="dummyArea";
   }
-  else if(lastArea== "dummyArea"){
+  else{
     lastArea="inputArea";
   }
-
   window.setTimeout(function () { 
+    dbuga('focusTextarea() timeout fired lastArea:' +lastArea+" active:"+document.activeElement.id);
     document.getElementById(lastArea).focus();
-    //dbuga('focusTextarea() timeout fired last:' +lastArea+" active:"+document.activeElement.id);
   }, 100);
+
 }
 function titleCase(str){
   var returnParts=[];
