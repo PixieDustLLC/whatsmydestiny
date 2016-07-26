@@ -1539,7 +1539,7 @@ var uiFocus=-1;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
-  //console.log('setUiFocus('+toNum+')');
+  dbuga('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
@@ -2279,7 +2279,7 @@ function handleEvent(evt){
     console.log('about up so ignore event')
     return false;
     }
-  //dbuga(evt.type+" "+evt.source);
+  dbuga(evt.type+" "+evt.source);
   evt.y-=yOffset;
   var found=-1;
 
@@ -2522,21 +2522,21 @@ function phoneContactFormat(num){
   }
 var blurring=false;
 function hideTextarea(){
-  //dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
+  dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
   if(uiFocus>-1){
     if(uiObj[uiFocus].id.indexOf("Input")>-1){
       //dbuga(' -- dont hide');
       blurring=false;
-      return false;t
+      return false;
       }
     }
   blurring=true;
   document.activeElement.blur();
-  //dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
+  dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
   }
 var lastArea="dummyArea";
 function focusBounce(){
-  //dbuga('focusBounce() '+lastArea+" "+blurring);
+  dbuga('focusBounce() '+lastArea+" "+blurring);
   if(blurring==false){
     document.getElementById(lastArea).focus();
     setUiFocus((uiFocus+1)%uiObj.length);
@@ -2546,7 +2546,7 @@ function focusBounce(){
     }
   }
 function focusTextarea(){
-  //dbuga('focusTextarea() ' +document.activeElement.id);
+  dbuga('focusTextarea() ' +document.activeElement.id);
   if(lastArea== "inputArea"){
     lastArea="dummyArea";
   }
@@ -2974,7 +2974,14 @@ function contactsSaveSuccess(contact) {
 function contactsSaveError(contactError) {
     alert("Error = " + contactError.code);
 };
-
+function bodyClick(e){
+  dbuga('bodyClick()');
+  e.preventDefault();
+  }
+function mainClick(e){
+  dbuga('mainClick()');
+  e.preventDefault();
+  }
 </script>
 <link rel = "stylesheet" type = "text/css" href = "reset.css">
 <style>
@@ -3001,14 +3008,14 @@ function contactsSaveError(contactError) {
 }
 </style>
 </head>
-<body onload="init()" ontouchstart="devent(event)" onmousedown="devent(event)" style="background-image:url('res/Default-Landscape.png'); width:100%; height:100%;">
+<body onload="init()" onclick="bodyClick(event)" ontouchstart="devent(event)" onmousedown="devent(event)" style="background-image:url('res/Default-Landscape.png'); width:100%; height:100%;">
   <div id="preloadHolder" style="position:absolute; color:rgba(0,0,0,0);">
     <img src="nav/coversheet.jpg" id="coversheet" width=1 height=1 />
     <div style="font-family:avantbolditalic; position:absolute; top:100px;">avantbolditalic 1234567890</div>
     <div style="font-family:avantbook; position:absolute; top:100px;">avantbold 1234567890</div>
     <div style="font-family:avantbold; position:absolute; top:300px;">aventbook 1234567890</div>
   </div>
-  <canvas id="mainCanvas" style="position:absolute;" width="1" height="1" ontouchstart="touchStart(event)" onmousedown="mouseDown(event)"
+  <canvas id="mainCanvas" style="position:absolute;" width="1" height="1" ontouchstart="touchStart(event)" onmousedown="mouseDown(event)" onclick="mainClick(event)"
 ></canvas>
   <div id="menuHolder" style="position:absolute;" ></div>
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
