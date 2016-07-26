@@ -2677,7 +2677,7 @@ function closeAbout(){
   aboutUp=false;
   }
 var aboutUp=false;
-var closeCode='<div class="closer" ontouchend="event.preventDefault(); closeAbout();" onmouseup="dbuga('mouseUp'); closeAbout();"></div>';
+var closeCode='<div class="closer" ontouchend="event.preventDefault(); closeAbout();" onmouseup="closeAbout();"></div>';
 function openAbout(){
   aboutUp=true;
   // show modal link panel
