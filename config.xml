@@ -21,7 +21,9 @@
   <activity android:launchMode="singleInstance" />
 </gap:config-file>
 -->
+<preference name="android-windowSoftInputMode" value="statePan" />
 <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+<gap:plugin name="cordova-plugin-fullscreen" source="npm" />
 <allow-navigation href="corepassion.com/*" />
 <gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
 <gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" version="1.2.0" />
