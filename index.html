@@ -39,11 +39,11 @@ function onDeviceReady(){
 var web=true;
 var ios=false;
 var android=false;
+
 var viewportWidth=1;
 var viewportHeight=1;
 var canv;
 var ctx;
-
 var cellsDown=24;
 var rowCells=1;
 var cellsAcross=32;
@@ -52,18 +52,14 @@ var uiObj=[];
 var rowCount=0;
 var shifted=false;
 // begin article functions and vars
-
-
 var searchData=[];
 var articleWidth=100;
 var searchPhrase="";
 var articleHeight=100;
 var articleUp=false;
 function closeArticle(){
-
   document.getElementById('articleDiv').innerHTML="";
   articleUp=false;
-
   if((currentPage=="toolSplash")||(currentPage=="login")){
     if((currentPage=="login")&&(profileReturnPage=="appcorepassioncareer")){
       currentPage="login";
@@ -73,7 +69,6 @@ function closeArticle(){
     }
   }
   geometry();
-
 }
 var articleFilename="";
 function loadArticle(filename, lineNum){
@@ -82,7 +77,6 @@ function loadArticle(filename, lineNum){
   //dbug('loadArticle('+filename+', '+lineNum+')');
   headerText.innerHTML="Career Seeker";
   var htmlString="";
-
   htmlString+='<div id="articleHolder" class="container">';
   var fileId="not found";
   var lines=[];
@@ -103,11 +97,9 @@ function loadArticle(filename, lineNum){
   if(filename != "glossary.html"){
     lines=glossarize(lines);
     }
-
   htmlString+=lines.join("\n");
   htmlString+='<div class="closeBlackIcon" style="float:right; width:44px; height:44px;" ontouchend="javascript:event.preventDefault(); closeArticle()"></div>';
   htmlString+='</div>';
-
   htmlString+='<div class="closeBlackIconTop" ontouchend="javascript:event.preventDefault(); closeArticle()"></div>';
   
   articleDiv.innerHTML="";
@@ -120,17 +112,9 @@ function loadArticle(filename, lineNum){
   else{// this refuses to work.
     window.setTimeout('articleTop()', 1);
   }
-
   articleUp=true;
   geometry();
 }
-
-
-
-
-
-
-
 var colorMap={
         "bg":{"focus":{"r":0, "g":0, "b":0}, "highlight":{"r":200, "g":200, "b":200}, "blur":{"r":240, "g":240, "b":"240"}},
         "color":{"focus":{"r":255, "g":255, "b":255}, "highlight":{"r":0, "g":0, "b":0}, "blur":{"r":100, "g":100, "b":"100"}}
@@ -256,7 +240,6 @@ function init(){
         "label":"Email",
         "value":"",
         "focus":0}
-
         ,{
         "id":"phoneInput", "focusable":true,
         "highlights":[
@@ -303,8 +286,6 @@ function init(){
         "label":"Birthday",
         "value":"",
         "focus":0}
-
-
         ,{
         "id":"ageInYears", "focusable":false,
         "limit":10, "type":"label", 
@@ -327,10 +308,6 @@ function init(){
         "label":"Weekday",
         "value":"",
         "focus":0}
-
-
-
-
         ,{
         "id":"firstName", "focusable":true,
         "limit":5, "type":"label", 
@@ -408,7 +385,6 @@ function init(){
         "label":"Intuitive Plane",
         "value":"",
         "focus":0}
-
         ,{
         "id":"dayOfBirth", "focusable":true,
         "limit":5, "type":"label", 
@@ -464,8 +440,6 @@ function init(){
         "label":"Day:",
         "value":"",
         "focus":0}
-
-
         ,{
         "id":"destiny", "focusable":true,
         "limit":5, "type":"label", 
@@ -565,7 +539,6 @@ function init(){
         "label":"",
         "value":"",
         "focus":0}
-
         ,{
         "id":"heartsDesire", "focusable":true,
         "limit":5, "type":"label", 
@@ -621,7 +594,6 @@ function init(){
         "label":"",
         "value":"",
         "focus":0}
-
         ,{
         "id":"personality", "focusable":true,
         "limit":5, "type":"label", 
@@ -677,7 +649,6 @@ function init(){
         "label":"",
         "value":"",
         "focus":0}
-
         ,{
         "id":"habitChallenge", "focusable":true,
         "limit":5, "type":"label", 
@@ -733,7 +704,6 @@ function init(){
         "label":"",
         "value":"",
         "focus":0}
-
         ,{
         "id":"~", "focusable":false,
         "limit":5, "type":"label", 
@@ -745,7 +715,6 @@ function init(){
         "label":"Distribution of Numbers in Name",
         "value":"",
         "focus":0}
-
         ,{
         "id":"count1", "focusable":true,
         "limit":2, "type":"label", 
@@ -860,15 +829,9 @@ function init(){
   //hideSave();
   window.setInterval('secondTick()', 1000);
   window.requestAnimationFrame(tick); 
-
-
-
-
-
   $(document.body).on('keypress', function(e) {
     e.preventDefault(); 
     lastPress=e.keyCode;
-    dbuga('lastPress='+lastPress);
     if(lastPress==0){return false;}
     if(menus["search"].selected){
       searchTyped(lastPress);
@@ -877,11 +840,9 @@ function init(){
       appTyped(lastPress);
       }
     });
-
   $(document.body).on('keydown', function(e) {
     
     lastDown=e.keyCode;
-    dbuga('lastDown='+lastDown);
     if(menus["search"].selected){
       searchDown(e);
       }
@@ -889,33 +850,16 @@ function init(){
       appDown(e);
       }
     });
-  if(android){
-    document.addEventListener('keyup', getInput, false);
-    }
-
-
   document.body.style.backgroundImage="";
-
   //dbuga('init() 6' );
-
   setupLocalStorage();
   //dbuga('init() 7' );
   //createRui:function(containerRef, barColor, barTextColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, squareIcons, iconPad, selectColor, paraFont, headFont)
-
-
   rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "#ffffff", "icons/", "white", "red", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
   //dbuga('init() 8');
   openTutorial();
   //dbuga('init() completed');
-
   }
-
-
-//    document.addEventListener('keyup', getInput, false);
-
-function getInput(e){
-    dbuga('keyup '+String.fromCharCode(e.which));
-}
 function clearSearch(){
   focusTextarea(); 
   searchTyping=false; 
@@ -951,7 +895,6 @@ function searchDown(e){
       e.preventDefault();
       searchContacts();
       }
-
   }
 function appDown(e){
     if(e.keyCode==8){// delete
@@ -980,10 +923,8 @@ function appDown(e){
       setUiFocus((uiFocus+1)%uiObj.length);
       }
   }
-
 function appTyped(keyCode){
     var found=false;
-
     //dbuga("<b>keypress</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
     if(keyCode==13){//return
       found=true;
@@ -1043,7 +984,6 @@ function searchTyped(keyCode){
       menus["search"].panes[0].contents[0].value="";
       }
     var found=false;
-
     //dbug("<b>searchTyped</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
     if(keyCode==13){//return
       searchTyping=false;
@@ -1076,7 +1016,6 @@ function searchTyped(keyCode){
     rui.drawUx();
     //dbuga("searchTyped "+type+" "+char);
   }
-
 var lastDown=0;
 var lastPress=0;
 var linkedSources={
@@ -1084,7 +1023,6 @@ var linkedSources={
   "middleName":"middleNameInput",
   "lastName":"lastNameInput",
   };
-
 function roundRect(ctx, x, y, w, h, rad, lineWidth, strokeStyle, fillStyle, label, labelColor, font, iconAlpha){
   var inset=rad+lineWidth/2;
   if(lineWidth>0){
@@ -1126,8 +1064,6 @@ var hideLeft=-12;
 var unhideLeft=19;
 var hideTop=-2;
 var unhideTop=5;
-
-
 function setupLocalStorage(){
   //dbuga('setupLocalStorage()');
   if(localStorage.getItem("reading") === null) {
@@ -1150,8 +1086,6 @@ function setupLocalStorage(){
     }
   //dbuga('setupLocalStorage() completed');
   }
-
-
 var reading={"valid":false, "counts":[-1,0,0,0,0,0,0,0,0,0]};
 var daysOfWeek=["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 function nowMMDDYYYY(){
@@ -1191,7 +1125,6 @@ function userInput(){
     reading.dayOfBirth=reduceNumStr(""+reading.birthDD);//1-31 including 11/2...
     
     reading.ageInYears=getAge(reading.birthdateDate);
-
     reading.birthSum=Number(unmaster(reduceNumStr(reading.birthMM)))+Number(unmaster(reduceNumStr(reading.birthDD)))+Number(unmaster(reduceNumStr(reading.birthYYYY)));
     reading.birthpath=reduceNumStr(""+reading.birthSum, "reading.birthSum");
   //personal
@@ -1204,12 +1137,10 @@ function userInput(){
     reading.globalMonthVal=reduceNumStr(""+reading.globalMonth, "globalMonth");
     reading.personalMonthNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal);
     reading.personalMonth=reduceNumStr(""+reading.personalMonthNum, "personalMonth");
-
     reading.globalDay=nowDate.getDate();
     reading.globalDayVal=reduceNumStr(""+reading.globalDay, "globalDay");
     reading.personalDayNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal)+Number(reading.globalDay);
     reading.personalDay=reduceNumStr(reading.personalDayNum+"");
-
     var m=Number(unmaster(reduceNumStr(reading.birthMM)), "m");
     var d=Number(unmaster(reduceNumStr(reading.birthDD)), "d");
     var y=Number(unmaster(reduceNumStr(reading.birthYYYY)), "y");
@@ -1218,19 +1149,14 @@ function userInput(){
     reading.secondPinnacle=reduceNumStr(""+(d+y), "secondPinnacle");
     reading.thirdPinnacle=reduceNumStr(""+sumArray([reading.firstPinnacle,reading.secondPinnacle]), "thirdPinnacle");
     reading.fourthPinnacle=reduceNumStr(""+(m+y), "fourthPinnacle");
-
     reading.firstChallenge=reduceNumStr(""+Math.abs(m-d), "firstChallenge");
     //console.log("reading.firstChallenge "+reading.firstChallenge);
-
     reading.secondChallenge=reduceNumStr(""+Math.abs(d-y), "secondChallenge");
     //console.log("reading.secondChallenge "+reading.secondChallenge);
-
     reading.thirdChallenge=reduceNumStr(""+Math.abs(Number(unmaster(reading.firstChallenge))-Number(unmaster(reading.secondChallenge))), "thirdChallenge");
     //console.log("reading.thirdChallenge "+reading.thirdChallenge);
-
     reading.fourthChallenge=reduceNumStr(""+Math.abs(m-y), "fourthChallenge");
     //console.log("reading.fourthChallenge "+reading.fourthChallenge);
-
 // june 17 new ages
     reading.firstAgeStart=0;
     reading.firstAgeEnd=36-Number(unmaster(reading.birthpath));
@@ -1248,7 +1174,6 @@ function userInput(){
     reading.fourthAgeEnd="*";
     reading.fourthAgeLabel=reading.fourthAgeStart+" to "+reading.fourthAgeEnd;
     reading.fourthAgeValue="";
-
     }
   //dbug("reading.birthdayInput.length "+reading.birthdayInput.length); 
   if(reading.firstNameInput != ""){
@@ -1286,7 +1211,6 @@ function userInput(){
     ];
     reading.karmicArray=[];
   //dbuga("userInput counts "+reading.counts.length);
-
     for(var n=1; n<=9; n++){
       if(reading.counts[n]==0){reading.karmicArray.push(""+n);}
       }
@@ -1294,19 +1218,14 @@ function userInput(){
     reading.mentalPlane=reduceNumStr(""+(reading.counts[1]+reading.counts[8]));
     reading.emotionalPlane=reduceNumStr(""+(reading.counts[2]+reading.counts[3]+reading.counts[6]));
     reading.intuitivePlane=reduceNumStr(""+(reading.counts[7]+reading.counts[9]));
-
   
   if((reading.birthdayInput.length==8)&&(reading.firstNameInput != "")&&(reading.lastNameInput != "")){
     // fully valid
     reading.realization=reduceNumStr(""+sumArray([reading.destiny, reading.birthpath]), "realization");
     }
-
-
-
  
     localStorage.setItem("reading", JSON.stringify(reading));
     }
-
   if(metaFocus != -1){updateMeta();}
   if((reading.birthdayInput.length==8) && (reading.firstNameInput.length>0) && (reading.lastNameInput.length>0)){
     reading.valid=true;
@@ -1323,10 +1242,8 @@ function clearCalcs(){
     reading.dayOfWeekStr="";
     reading.dayOfBirth="";
     reading.ageInYears="";
-
     reading.birthSum="";
     reading.birthpath="";
-
   //added july 2
   reading.firstNameInput="";
   reading.middleNameInput="";
@@ -1334,13 +1251,10 @@ function clearCalcs(){
   reading.birthdayInput="";
   reading.birthdateDate="";
   reading.valid=false;
-
   //added july 2
   reading.currentNameInput="";
   reading.emailInput="";
   reading.phoneInput="";
-
-
   reading.firstNameSum="";
   reading.firstNameVal="";
   reading.middleNameSum="";
@@ -1376,24 +1290,18 @@ function clearCalcs(){
   
   reading.personalMonthNum="";
   reading.personalMonth="";
-
-
-
   reading.globalDay="";
   reading.globalDayVal="";
   reading.personalDayNum="";
   reading.personalDay="";
-
   reading.firstPinnacle="";
   reading.secondPinnacle="";
   reading.thirdPinnacle="";
   reading.fourthPinnacle="";
-
   reading.firstChallenge="";
   reading.secondChallenge="";
   reading.thirdChallenge="";  
   reading.fourthChallenge="";
-
   reading.firstAgeLabel="";
   reading.secondAgeLabel="";
   reading.thirdAgeLabel="";  
@@ -1402,15 +1310,11 @@ function clearCalcs(){
   reading.secondAgeValue="";
   reading.thirdAgeValue="";  
   reading.fourthAgeValue="";
-
   updateValues();
   }
-
 function updateValues(){
   updateIdValue("dayOfWeek", reading.dayOfWeekStr);
-
   updateIdValue("dayOfBirth", reading.dayOfBirth);
-
     updateIdValue("ageInYears", reading.ageInYears); 
     updateIdValue("birthpath", reading.birthpath);
 updateIdValue("firstName", reading.firstNameVal);
@@ -1422,12 +1326,10 @@ updateIdValue("destiny", reading.destiny);
     updateIdValue("realization", reading.realization);
   updateIdValue("habitChallenge", reading.habitChallenge);
   //dbuga("update counts "+reading.counts.length);
-
 for(var n=1; n<=9; n++){
     updateIdValue("count"+n, ""+reading.counts[n]);
  }
   updateIdValue("karmicLesson", reading.karmicArray.join(" "));
-
   updateIdValue("physicalPlane", ""+reading.physicalPlane);
   updateIdValue("mentalPlane", ""+reading.mentalPlane);
   updateIdValue("emotionalPlane", ""+reading.emotionalPlane);
@@ -1439,12 +1341,10 @@ for(var n=1; n<=9; n++){
   updateIdValue("secondPinnacle", ""+reading.secondPinnacle);
   updateIdValue("thirdPinnacle", ""+reading.thirdPinnacle);
   updateIdValue("fourthPinnacle", ""+reading.fourthPinnacle);
-
   updateIdValue("firstChallenge", ""+reading.firstChallenge);
   updateIdValue("secondChallenge", ""+reading.secondChallenge);
   updateIdValue("thirdChallenge", ""+reading.thirdChallenge);
   updateIdValue("fourthChallenge", ""+reading.fourthChallenge);
-
   updateIdLabel("firstAge", reading.firstAgeLabel);
   updateIdValue("firstAge", reading.firstAgeValue);
   updateIdLabel("secondAge", reading.secondAgeLabel);
@@ -1453,7 +1353,6 @@ for(var n=1; n<=9; n++){
   updateIdValue("thirdAge", reading.thirdAgeValue);
   updateIdLabel("fourthAge", reading.fourthAgeLabel);
   updateIdValue("fourthAge", reading.fourthAgeValue);
-
   }
 function getAge(birthDate) {
     var today = new Date();
@@ -1544,7 +1443,6 @@ function updateIdLabel(id, value){
       }
     }
   }
-
 function valueOfId(id){
   if(uiObj[u]===null){return "";}
   var value="";
@@ -1560,7 +1458,7 @@ var uiFocus=-1;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
-  dbuga('setUiFocus('+toNum+')');
+  //console.log('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
@@ -1586,7 +1484,6 @@ function setMetaFocus(toNum){
     }
   }
 function updateMeta(){
-
   //updateIdLabel("metaDisplay", "");
   //updateIdValue("metaDisplay", "");
   menus["dashboard"].panes[0].contents[0].text="";
@@ -1602,7 +1499,6 @@ function updateMeta(){
           label=label+" - "+titleCase(reading[linkedSources[fields[f]]]);
           }
         menus["dashboard"].panes[0].contents[0].text=label;
-
         if(inArray(uiObj[metaFocus]['value'], Object.keys(fieldMeta))){
           var values=Object.keys(fieldMeta);
           for(var v=0; v<values.length; v++){
@@ -1640,7 +1536,6 @@ function updateMeta(){
     }
   rui.drawUx();
   }
-
 function randomColor(){
   return "rgba(" + rnd(256) +","+ rnd(256) +","+ rnd(256) +",.5)";
   }
@@ -1650,7 +1545,6 @@ function tick(timestamp){
   //canv.width=viewportWidth;
   drawGrid();
   drawUi();
-
   frames++;
   window.requestAnimationFrame(tick);
   }
@@ -1663,7 +1557,6 @@ function wrapText(context, text, x, y, maxWidth, lineHeight, stroke) {
         var height = lineHeight;
         var words = text.split(' ');
         var line = '';
-
         for(var n = 0; n < words.length; n++) {
           var testLine = line + words[n] + ' ';
           var metrics = context.measureText(testLine);
@@ -1681,14 +1574,12 @@ function wrapText(context, text, x, y, maxWidth, lineHeight, stroke) {
           }
         if(stroke){context.strokeText(line, x, y);}
         else{context.fillText(line, x, y);}
-
         return height;
         }
 function wrapTest(context, text, x, y, maxWidth, lineHeight, stroke) {
         var height = lineHeight;
         var words = text.split(' ');
         var line = '';
-
         for(var n = 0; n < words.length; n++) {
           var testLine = line + words[n] + ' ';
           var metrics = context.measureText(testLine);
@@ -1709,7 +1600,6 @@ function wrapTest(context, text, x, y, maxWidth, lineHeight, stroke) {
 function drawGrid(){
   ctx.fillStyle="white";
   ctx.fillRect(0,0,canv.width, canv.height);
-
   ctx.strokeStyle="rgba(0,0,0,.05)";
   ctx.lineWidth=g/32;
   ctx.beginPath();
@@ -1722,9 +1612,7 @@ function drawGrid(){
     ctx.lineTo(cellsAcross*g, y*g);
     }
   ctx.stroke();
-
   }
-
 function drawUi(){
   var focusPad=.1*g;
   var blurPad=.05*g;
@@ -1760,7 +1648,6 @@ function drawUi(){
       bgG=Math.floor(prog*colorMap['bg']['blur'].g+(1-prog)*colorMap['bg']['highlight'].g);
       bgB=Math.floor(prog*colorMap['bg']['blur'].b+(1-prog)*colorMap['bg']['highlight'].b);
       }
-
     var pad=blurPad-focusPad*uiObj[u]['focus'];
     var value=uiObj[u].value;
     if(uiObj[u].type.indexOf("slash")>-1){
@@ -1774,7 +1661,6 @@ function drawUi(){
       //titleCase(value);
       value=titleCase(value);
       }
-
     var valueFontPx=uiObj[u].valueSize*g-pad*0;
     var labelFontPx=uiObj[u].labelSize*g-pad*0;
     var valueLinePx=uiObj[u].valueSize*g*1.2;
@@ -1809,15 +1695,12 @@ function drawUi(){
       var c=uiObj[u]['l']/2+uiObj[u]['r']/2;
       ctx.textAlign="center";
       ctx.font=valueFontPx+"px avantbook";
-
       var finding=false;
       if(uiFocus>-1){
         //if(uiObj[uiFocus]['id']=="findInput"){finding=true;}
         }
-
       //dbug('finding='+finding);
       if((uiObj[u]['id']=="metaDisplay")&&(finding)){
-
         ctx.font=labelFontPx+"px avantbook";
         wrapText(ctx, uiObj[u]['label'], c*g, uiObj[u]['t']*g+g/2, uiObj[u]['w']*g, labelLinePx, false);
         drawResultButtons();
@@ -1835,25 +1718,20 @@ function drawUi(){
     }
   }
 var lorem="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
-
 var imageDensity=1;
 var jpgQuality=1;
-
 var summaryGrid=40;//px
 var summaryDown=30;
 var summaryAcross=24;
 var summaryWidth=summaryAcross*summaryGrid;
 var summaryHeight=summaryDown*summaryGrid;
 var summaryAspect=summaryAcross/summaryDown;
-
 var reportGrid=20;//px
 var reportDown=50;
 var reportAcross=40;
 var reportWidth=reportAcross*reportGrid;
 var reportHeight=reportDown*reportGrid;
 var reportAspect=reportAcross/reportDown;
-
 var labelX=reportGrid*2;
 var labelWidth=reportGrid*9;
 var valueX=reportGrid*14;
@@ -1863,7 +1741,6 @@ var metaWidth=reportGrid*22;
 function blankContext(ctx, color, grid, across, down){
   ctx.fillStyle="white";
   ctx.fillRect(0,0,grid*across, grid*down);
-
   ctx.strokeStyle=color;
   ctx.lineWidth=grid/24;
   ctx.beginPath();
@@ -1876,7 +1753,6 @@ function blankContext(ctx, color, grid, across, down){
     ctx.lineTo(across*grid, y*grid);
     }
   ctx.stroke();  
-
   }
 function footerToContext(ctx, page){
           ctx.fillStyle="black";
@@ -1889,16 +1765,11 @@ function footerToContext(ctx, page){
           wrapText(ctx, "Powered by pixiedustapps.com", reportWidth-reportGrid*1, reportHeight-reportGrid*1, reportGrid*16, reportGrid, false);
           rCtx.textAlign="center";
           wrapText(ctx, page+"", reportWidth/2, reportHeight-reportGrid*1, reportGrid*8, reportGrid, false);
-
   }
-
-
 function metadataReport(){
   var atPage=1
-
   rCanv.height=reportHeight;
   rCanv.width=reportWidth;
-
   rCtx.fillStyle="white";
   rCtx.fillRect(0,0,reportWidth, reportHeight);
   var firstCell=2.5;
@@ -1919,25 +1790,18 @@ function metadataReport(){
   rCtx.textAlign="center";
   var subject=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);
   wrapText(rCtx, subject, reportWidth/2, textTop+reportGrid*3.5, reportWidth, reportGrid*2, false);
-
   rCtx.font=reportGrid*1+"px avantbook";
   var birthday="Birthday: "+Number(reading.birthMM)+"-"+Number(reading.birthDD)+"-"+Number(reading.birthYYYY);
   wrapText(rCtx, birthday, reportWidth/2, textTop+reportGrid*5.5, reportWidth, reportGrid*2, false);
   var dateString="Printed: "+reading.globalMonth+"/"+reading.globalDay+"/"+reading.globalYear+" - Age "+reading.ageInYears;
   wrapText(rCtx, dateString, reportWidth/2, textTop+reportGrid*7.5, reportWidth, reportGrid*2, false);
-
   footerToContext(rCtx, "");
-
   var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
   // Convert the data to binary form
   var imgData = atob(data);
   doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
   doc.addPage();
   blankContext(rCtx, "#fff", reportGrid, reportAcross, reportDown);
-
-
-
-
   rCtx.textBaseline="middle";
   var atY=reportGrid*firstCell;// start at first cell
   var uArray=[];
@@ -1955,7 +1819,6 @@ function metadataReport(){
       }
     if(thisUi>-1){
       //console.log('uiObj[thisUi][label]='+uiObj[thisUi]['label']);
-
       rCtx.font=reportGrid*.7+"px avantbold";
       var labelHeight=wrapTest(rCtx, thisMeta['label'], 0, 0, labelWidth, reportGrid, false);
       var maxHeight=labelHeight;
@@ -1976,12 +1839,8 @@ function metadataReport(){
         //console.log("maxHeight "+maxHeight +" metaHeight: " +metaHeight +" labelHeight="+labelHeight);
         if(((maxHeight+atY)>reportHeight)||(thisKey=="physicalPlane")||(thisKey=="firstLabel")||(thisKey=="thirdLabel")||(thisKey=="count1")){
           atY=reportGrid*firstCell;
-
           atPage++;
           footerToContext(rCtx, atPage);
-
-
-
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
           // Convert the data to binary form
           var imgData = atob(data);
@@ -1994,7 +1853,6 @@ function metadataReport(){
             rCtx.textAlign="left";
             wrapText(rCtx, "Distribution of Numbers in Name", labelX, atY, labelWidth*5, reportGrid, false);
             atY+=maxHeight+reportGrid;
-
             wrapText(rCtx, "Number", labelX, atY, labelWidth, reportGrid, false);
             rCtx.textAlign="right";
             wrapText(rCtx, "Occurences", valueX, atY, valueWidth, reportGrid, false);
@@ -2060,7 +1918,6 @@ function metadataReport(){
     }
           atPage++;
           footerToContext(rCtx, atPage);
-
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
           // Convert the data to binary form
           var imgData = atob(data);
@@ -2071,7 +1928,6 @@ function metadataReport(){
   
   pdfToMethod(doc, cleaned+'_'+'metadata');
   }
-
 function datasheetReport(){
   var data = canv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
   // Convert the data to binary form
@@ -2146,17 +2002,12 @@ function summaryReport(){
     if(field.align=="right"){offset=s*field.w;}
     rCtx.font=fontPx+"px "+fontFace;
     rCtx.fillText(content, field.x*s+offset, field.y*s);
-
     }
-
-
-
          
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
           // Convert the data to binary form
           var imgData = atob(data);
           doc.addImage(imgData, 'JPEG', pdfPad*pdfGrid, pdfPad*pdfGrid, (pdfAcross-pdfPad*2)*pdfGrid, (pdfDown-pdfPad*2)*pdfGrid);
-
   var cleaned=""+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput;
   cleaned=cleaned.replace(/([^a-z0-9]+)/gi, '-');
   document.getElementById('spinner').style.display="none";
@@ -2174,7 +2025,6 @@ function pdfToMethod(doc, reportName){
   var tapImage="downloadpdf.png";
   if(usePdfMethod=="save"){tapImage="savepdf.png";}
   if(usePdfMethod=="open"){tapImage="openpdf.png";}
-
   document.getElementById("downloadpdfimg").src="nav/"+tapImage;
   }
 function pdfToDiv(doc, reportName){
@@ -2184,7 +2034,6 @@ function pdfToDiv(doc, reportName){
   element.href = "iospdf.html#" + pdfData;
   element.target = "reportName";
   //element.href="javascript:var ref=window.open('data:application/pdf;base64," + pdfData+"', '_system');";
-
   }
 function pdfToSave(doc, reportName){
   //dbuga("pdfToSave "+reportName);
@@ -2275,14 +2124,12 @@ function ajaxSuccess(){
     element.href = "javascript:openPdfFile(); ";
     element.target = "";
     rCanv.style.display="none";
-
     }
   }
 function openPdfFile(){
   //console.log('openPdfFile()');
   document.getElementById('downloadpdf').style.display="none";
   //console.log('openPdfFile() hid');
-
     resumeOpenPdfFile();
   }
 function resumeOpenPdfFile(){
@@ -2294,22 +2141,19 @@ function resumeOpenPdfFile(){
 function hidePreview(){
   document.getElementById('previewCanvas').style.display="none";
   }
-
 function handleEvent(evt){
   if(aboutUp){
     console.log('about up so ignore event')
     return false;
     }
-  dbuga("handleEvent()" +evt.type+" "+evt.source);
+  //dbuga(evt.type+" "+evt.source);
   evt.y-=yOffset;
   var found=-1;
-
   for (var u=1; u<uiObj.length; u++){// skip stupid meta area
     if((evt.x>uiObj[u]['l']*g)&&(evt.x<uiObj[u]['r']*g)&&(evt.y>uiObj[u]['t']*g)&&(evt.y<uiObj[u]['b']*g)){
       found=u;
       }
     }
-
   if(found>-1){
     if(found>3){
       //hideSave()
@@ -2322,15 +2166,12 @@ function handleEvent(evt){
     else{setUiFocus(found);}
     }
   }
-
 function clearReading(){
   //dbuga('clearReading() so clearCalcs');
   firstChanged=false;
   middleChanged=false;
   lastChanged=false;
   currentChanged=false;
-
-
   selectedContactId=-1;
   updateIdValue("firstNameInput", "");
   updateIdValue("middleNameInput", "");
@@ -2341,9 +2182,7 @@ function clearReading(){
   updateIdValue("phoneInput", "");
   //updateIdValue("findInput", "");
   clearCalcs();
-
   localStorage.setItem("reading", JSON.stringify(reading));
-
   //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
   //dbuga(localStorage.reading);
   }
@@ -2359,17 +2198,10 @@ function geometry(){
     rCanv.style.width=viewportHeight*reportAspect+"px";
     rCanv.style.left="-"+viewportHeight*reportAspect+"px";
     g=viewportHeight/cellsDown;
-
     var dialogW=10*g;
     var dialogH=6*g;
     var dialogL=11*g;
     var dialogT=9*g;
-
-/*
-    document.getElementsByTagName('head')[0].appendChild(style);
-
-*/
-
     var style = document.createElement('style');
     style.type = 'text/css';
     style.innerHTML ='';
@@ -2380,22 +2212,11 @@ function geometry(){
     style.innerHTML += 'p{padding:'+viewportWidth*1/64+'px; width:'+viewportWidth*27/64+'px; text-align:left; font-size:'+viewportWidth*1/32+'+px; font-family:avantbook;}';
     style.innerHTML += '.col{margin-left:'+viewportWidth*1/64+'px; margin-top:'+viewportHeight*1/64+'px; width:'+viewportWidth/32*15+'px; height:'+Math.floor(viewportHeight*60/64)+'px; background-color:#e8e8e8; float:left;}';
     style.innerHTML += '.landscape{margin-top:'+viewportWidth*1/64+'px;width:'+viewportWidth/32*15+'px;}';
-    if(android){
-      style.innerHTML += '#inputArea{width:'+g*cellsAcross+'px; height:'+g*6+'px; opacity:.5; top:'+g*2+'px; left:0; opacity:.5; background-color:red;}';
-      }
-    else{
-      style.innerHTML += '#inputArea{width:'+g*cellsAcross+'px; height:'+g*6+'px; opacity:0; top:-'+g*6+'px; left:0; opacity:0;}';
-      }
-
     style.innerHTML += '.closer{background-image:url(icons/red/x.png); background-size:contain; background-repeat:no-repeat; background-position: 50% 50%; width:'+viewportWidth*3/64+'px; top:'+viewportHeight*0/64+'px; height:'+viewportWidth*3/64+'px; border-radius:'+viewportWidth*1.5/64+'px; background-color:#f1f1f1; position:fixed; right:'+viewportHeight*1/64+'px; display:block;}';
     //console.log('updating style '+viewportWidth/32*15);
     
 //#pdfData
     document.getElementsByTagName('head')[0].appendChild(style);
-
-
-
-
     //cellsAcross=Math.floor(viewportWidth/g);
   }
 function secondTick(){
@@ -2416,7 +2237,6 @@ function inArray(needle, haystack) {
     }
   return false;
   }
-
 function dbuga(msg){
   document.getElementById('debugDiv').style.display="block";
   document.getElementById('debugDiv').innerHTML+="<br />"+msg;
@@ -2426,13 +2246,12 @@ function dbug(msg){
   document.getElementById('debugDiv').innerHTML=""+msg;
   }
 function mouseDown(e){
-  dbuga('mouseDown');
+  //dbuga('mouseDown');
   e.preventDefault();
   var evt={"source":"mousedown", "type":"start", "x":e.clientX, "y":e.clientY};
   handleEvent(evt);
   }
 function touchStart(e){
-  dbuga('touchStart()')
   e.preventDefault();
   var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
   handleEvent(evt);
@@ -2460,7 +2279,6 @@ function strToNums(str){
     }
   return nums;
   }
-
 function specialize(str, debug){//turns 16 into 16/7 but 31 stays 31
   var reduced=reduceNumStr(str, debug);
   if(reduced.indexOf('/')>-1){
@@ -2471,7 +2289,6 @@ function specialize(str, debug){//turns 16 into 16/7 but 31 stays 31
     }
   }
 function reduceNumStr(str, debug){//"04021968"
-
   //console.log(str+" "+debug+".length="+str.length+" ");
   var masterNum="";
   var karmicNum="";
@@ -2505,7 +2322,6 @@ function master(str){
   }
 function dateFormat(num){
     if(typeof num=="undefined"){num="";}
-
     var parts=num.split('');
     var pLen=parts.length;
     for (var p=pLen; p<8; p++){
@@ -2516,7 +2332,6 @@ function dateFormat(num){
   }
 function readableFormat(num){
     if(typeof num=="undefined"){return "";}
-
     var parts=num.split('');
     var pLen=parts.length;
     for (var p=pLen; p<8; p++){
@@ -2548,42 +2363,41 @@ function phoneContactFormat(num){
   }
 var blurring=false;
 function hideTextarea(){
-  dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
+  //dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
   if(uiFocus>-1){
     if(uiObj[uiFocus].id.indexOf("Input")>-1){
       //dbuga(' -- dont hide');
       blurring=false;
-      return false;
+      return false;t
       }
     }
   blurring=true;
   document.activeElement.blur();
-  dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
+  //dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
   }
 var lastArea="dummyArea";
 function focusBounce(){
-  dbuga('focusBounce() '+lastArea+" "+blurring);
+  //dbuga('focusBounce() '+lastArea+" "+blurring);
   if(blurring==false){
     document.getElementById(lastArea).focus();
-    //setUiFocus((uiFocus+1)%uiObj.length);
+    setUiFocus((uiFocus+1)%uiObj.length);
     }
   else{
     blurring=false;
     }
   }
 function focusTextarea(){
-  dbuga('focusTextarea() lastArea='+lastArea+' active:' +document.activeElement.id);
+  //dbuga('focusTextarea() ' +document.activeElement.id);
   if(lastArea== "inputArea"){
     lastArea="dummyArea";
   }
-  else{
+  if(lastArea== "dummyArea"){
     lastArea="inputArea";
   }
   window.setTimeout(function () { 
-    dbuga('focusTextarea() timeout fired lastArea:' +lastArea+" active:"+document.activeElement.id);
     document.getElementById(lastArea).focus();
+    //dbuga('focusTextarea() timeout fired last:' +lastArea+" active:"+document.activeElement.id);
   }, 100);
-
 }
 function titleCase(str){
   var returnParts=[];
@@ -2597,10 +2411,6 @@ function titleCaseOnce(str){
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
 var pi=Math.PI;
-
-
-
-
 //menu funcs and configs
 var yOffset=0;
 function updateClientLayout(){
@@ -2611,7 +2421,6 @@ function updateClientLayout(){
   canv.width=rui.ww;
   canv.height=rui.wh-yOffset;
   canv.style.top=yOffset+"px";
-
 }
 //include these
 //rui.createRui(sbs, "#5eb8b6", "rgb(255,255,255)", "rgb(0,0,0)", "white", "rgb(185,28,27)");
@@ -2646,7 +2455,6 @@ for(var b=0; b<barButtons.length; b++){
   barButtons[b].l=0;
   buttonNumByName[barButtons[b].name]=b;
 }
-
 var menuKeys=["dashboard", "search", "system", "context"];
     //sorts stackers, 
     //stack:0 = auto collapse
@@ -2703,7 +2511,7 @@ function closeAbout(){
   aboutUp=false;
   }
 var aboutUp=false;
-var closeCode='<div class="closer" ontouchend="event.preventDefault(); closeAbout();" onmouseup="closeAbout();"></div>';
+var closeCode='<div class="closer" ontouchend="event.preventDefault(); closeAbout();" onmouseup="closeAbout()"></div>';
 function openAbout(){
   aboutUp=true;
   // show modal link panel
@@ -2753,7 +2561,6 @@ function selectResult(id){
     if(inArray("middleName", nameFields)){contactMiddle=contact.name.middleName.replace(/ /g, "-");}
     if(inArray("familyName", nameFields)){contactLast=contact.name.familyName.replace(/ /g, "-");}
     }
-
   if(validParts.length==3){// valid 3 part nickname
     updateIdValue("currentNameInput", contactFirst+" "+contactMiddle+" "+contactLast);
     updateIdValue("firstNameInput", validParts[0]);
@@ -2808,8 +2615,7 @@ function selectResult(id){
   }
 var contactsArray=[];
 function devent(e){
-  e.cancelDefault();
-  dbuga("devent "+e.target.id)
+  //alert(e.target.id)
   }
 function searchContacts(){
   menus["search"].panes[0].selection=-1;
@@ -2839,8 +2645,6 @@ function contactsFindSuccess(contacts){
     if(contactsArray[c].emails===null){contactsArray[c].emails=[];}
     if(contactsArray[c].phoneNumbers===null){contactsArray[c].phoneNumbers=[];}
     //dbuga(" - "+c+" OKAY "+contactsArray[c].name.familyName);
-
-
     //var name=JSON.stringify(contactsArray[c]);
     //name=name.replace(/\,/g, "<br>");
     //dbuga(name);
@@ -2850,11 +2654,9 @@ function contactsFindSuccess(contacts){
     }
   rui.insertResultsMenuPane(results, "search", 2)
 };
-
 function contactsFindError(contactError) {
     alert('onError!');
 };
-
 function attemptSaveContact(){
   //dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
   if(selectedContactId==-1){
@@ -2862,7 +2664,6 @@ function attemptSaveContact(){
     }
   else{saveContact();}
   }
-
 var duplicateContact={};
 function testDuplicate(){
   //dbuga('testDuplicate()');
@@ -2877,7 +2678,6 @@ function contactsTestSuccess(contacts){
   //dbuga('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
-
   for (var c=0; c<contactsArray.length ; c++){
     //dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
     if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
@@ -2898,10 +2698,8 @@ function contactsTestSuccess(contacts){
   else{
       saveContact();
     }
-
       
 };
-
 function contactsTestError(contactError) {
     alert('onError!');
 };
@@ -2909,7 +2707,6 @@ var firstChanged=false;
 var middleChanged=false;
 var lastChanged=false;
 var currentChanged=false;
-
 function saveContact(){
   //dbuga("saveContact() "+selectedContactId);
   var contact;
@@ -2928,7 +2725,6 @@ function saveContact(){
   else{
     contact=selectedContact;
     }
-
   if(contact.phoneNumbers===null){
     //dbuga('CAUGHT no emails in selectContact('+id+')');
     contact.phoneNumbers=[];
@@ -2952,7 +2748,6 @@ function saveContact(){
     contact.emails.push(email);
     }
   // branch if valid 3  part current name
-
   var validParts=[];
   
   var nicknameParts=reading.currentNameInput.split(" ");
@@ -2977,22 +2772,19 @@ function saveContact(){
     contact.nickname = n;
     }
   contact.name = name;
-
+  //specify both to support all devices // uhoh androids
   if(reading.birthdayInput.length==8){
     var bd=reading.birthdayInput;
     var birthDate=new Date(bd.substring(4,8), Number(bd.substring(0,2)) - 1, bd.substring(2,4));
     contact.birthday=birthDate;
     }
   
-
   contact.save(contactsSaveSuccess,contactsSaveError);
   //dbuga("contactsSave completed "+validParts.length);
-
   }
 function contactsSaveSuccess(contact) {
   //dbuga("contactsSaveSuccess");
   clearReading();// prevents double save
-
   //added july 2nd to prevent out of date search results
   searchContacts(); 
   // end of july 2 edits
@@ -3000,14 +2792,6 @@ function contactsSaveSuccess(contact) {
 function contactsSaveError(contactError) {
     alert("Error = " + contactError.code);
 };
-function bodyClick(e){
-  dbuga('bodyClick()');
-  e.preventDefault();
-  }
-function mainClick(e){
-  dbuga('mainClick()');
-  e.preventDefault();
-  }
 </script>
 <link rel = "stylesheet" type = "text/css" href = "reset.css">
 <style>
@@ -3034,14 +2818,14 @@ function mainClick(e){
 }
 </style>
 </head>
-<body onload="init()" onclick="bodyClick(event)" ontouchstart="devent(event)" onmousedown="devent(event)" style="background-image:url('res/Default-Landscape.png'); width:100%; height:100%;">
+<body onload="init()" ontouchstart="devent(event)" onmousedown="devent(event)" style="background-image:url('res/Default-Landscape.png'); width:100%; height:100%;">
   <div id="preloadHolder" style="position:absolute; color:rgba(0,0,0,0);">
     <img src="nav/coversheet.jpg" id="coversheet" width=1 height=1 />
     <div style="font-family:avantbolditalic; position:absolute; top:100px;">avantbolditalic 1234567890</div>
     <div style="font-family:avantbook; position:absolute; top:100px;">avantbold 1234567890</div>
     <div style="font-family:avantbold; position:absolute; top:300px;">aventbook 1234567890</div>
   </div>
-  <canvas id="mainCanvas" style="position:absolute;" width="1" height="1" ontouchstart="touchStart(event)" onmousedown="mouseDown(event)" onclick="mainClick(event)"
+  <canvas id="mainCanvas" style="position:absolute;" width="1" height="1" ontouchstart="touchStart(event)" onmousedown="mouseDown(event)"
 ></canvas>
   <div id="menuHolder" style="position:absolute;" ></div>
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
@@ -3050,7 +2834,7 @@ function mainClick(e){
   <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
   <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
   <div id="uploadingpdf" style="display:none; z-index:8;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
-  <textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style=""></textarea>
+  <textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
   <textarea id="dummyArea" onblur="focusBounce();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
 <div id="aboutDiv" style="overflow:auto; background-color:rgba(200,200,200,.75); width:100%; height:100%; position:absolute;  z-index:6;  -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px); display:none;">
