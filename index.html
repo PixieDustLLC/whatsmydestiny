@@ -29,7 +29,16 @@
 <script src="metabyfieldvalue.js"></script>
 <script src="summarybyfieldvalue.js"></script>
 <script>
+document.addEventListener('deviceready', this.onDeviceReady, false);
+function onDeviceReady(){
+  dbug('onDeviceReady()');
+  web=false;
+  if(device.platform=="Android"){android=true;}
+  if(device.platform=="iOS"){ios=true;}
+  }
 var web=true;
+var ios=false;
+var android=false;
 var viewportWidth=1;
 var viewportHeight=1;
 var canv;
@@ -880,7 +889,7 @@ function init(){
       appDown(e);
       }
     });
-  if(device.platform=="Android"){
+  if(android){
     document.addEventListener('keyup', getInput, false);
     }
 
@@ -2371,7 +2380,7 @@ function geometry(){
     style.innerHTML += 'p{padding:'+viewportWidth*1/64+'px; width:'+viewportWidth*27/64+'px; text-align:left; font-size:'+viewportWidth*1/32+'+px; font-family:avantbook;}';
     style.innerHTML += '.col{margin-left:'+viewportWidth*1/64+'px; margin-top:'+viewportHeight*1/64+'px; width:'+viewportWidth/32*15+'px; height:'+Math.floor(viewportHeight*60/64)+'px; background-color:#e8e8e8; float:left;}';
     style.innerHTML += '.landscape{margin-top:'+viewportWidth*1/64+'px;width:'+viewportWidth/32*15+'px;}';
-    if(device.platform=="Android"){
+    if(android){
       style.innerHTML += '#inputArea{width:'+g*cellsAcross+'px; height:'+g*6+'px; opacity:.5; top:'+g*2+'px; left:0; opacity:.5; background-color:red;}';
       }
     else{
@@ -2968,7 +2977,6 @@ function saveContact(){
     contact.nickname = n;
     }
   contact.name = name;
-  //specify both to support all devices // uhoh androids
 
   if(reading.birthdayInput.length==8){
     var bd=reading.birthdayInput;

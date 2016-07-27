@@ -107,6 +107,19 @@
 <gap:splash src="res/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
 <gap:splash src="res/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
 
+<splash src="res/l-ldpi.png" platform="android" qualifier="land-ldpi" />
+<splash src="res/l-mdpi.png" platform="android" qualifier="land-mdpi" />
+<splash src="res/l-hdpi.png" platform="android" qualifier="land-hdpi" />
+<splash src="res/l-xhdpi.png" platform="android" qualifier="land-xhdpi" />
+<splash src="res/l-xxhdpi.png" platform="android" qualifier="land-xxhdpi" />
+<splash src="res/l-xxxhdpi.png" platform="android" qualifier="land-xxxhdpi" />
+<splash src="res/p-ldpi.png" platform="android" qualifier="port-ldpi" />
+<splash src="res/p-mdpi.png" platform="android" qualifier="port-mdpi" />
+<splash src="res/p-hdpi.png" platform="android" qualifier="port-hdpi" />
+<splash src="res/p-xhdpi.png" platform="android" qualifier="port-xhdpi" />
+<splash src="res/p-xxhdpi.png" platform="android" qualifier="port-xxhdpi" />
+<splash src="res/p-xxxhdpi.png" platform="android" qualifier="port-xxxhdpi" />
+
 
 <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
 <gap:plugin name="org.apache.cordova.media" version="0.2.8" />
