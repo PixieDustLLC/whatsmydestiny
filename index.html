@@ -1767,8 +1767,7 @@ function createInput(parentId, id, grid, x,y,across,down){
   container.appendChild(input);
   input.addEventListener("focus", inputFocus, true);
   input.addEventListener("blur", inputBlur, true);
-  input.addEventListener("keydown", keyDownTextField, false);
-  input.addEventListener("change", changeTextField, false);
+  input.addEventListener("keyup", keyUpTextField, false);
 /*
   $(document.body).on('keypress', function(e) {
     e.preventDefault(); 
@@ -1796,8 +1795,8 @@ function createInput(parentId, id, grid, x,y,across,down){
 function changeTextField (e) {
   dbuga('changeTextField '+e.target.id+" "+e.target.value);
   }
-function keyDownTextField (e) {
-  dbuga('keyDownTextField '+e.keyCode+' '+e.target.id+" "+e.target.value);
+function keyUpTextField (e) {
+  dbuga('keyUpTextField '+e.keyCode+' '+e.target.value);
 /*
   lastDown=e.keyCode;
   if(menus["search"].selected){
