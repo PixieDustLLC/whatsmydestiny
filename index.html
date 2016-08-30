@@ -828,7 +828,8 @@ function init(){
   ];
   //hideSave();
   window.setInterval('secondTick()', 1000);
-  window.requestAnimationFrame(tick); 
+  window.requestAnimationFrame(tick);
+/*
   $(document.body).on('keypress', function(e) {
     e.preventDefault(); 
     lastPress=e.keyCode;
@@ -850,6 +851,7 @@ function init(){
       appDown(e);
       }
     });
+*/
   document.body.style.backgroundImage="";
   //dbuga('init() 6' );
 
@@ -1765,6 +1767,39 @@ function createInput(parentId, id, grid, x,y,across,down){
   container.appendChild(input);
   input.addEventListener("focus", inputFocus, true);
   input.addEventListener("blur", inputBlur, true);
+  input.addEventListener("keydown", keyDownTextField, false);
+/*
+  $(document.body).on('keypress', function(e) {
+    e.preventDefault(); 
+    lastPress=e.keyCode;
+    if(lastPress==0){return false;}
+    if(menus["search"].selected){
+      searchTyped(lastPress);
+      }
+    else{
+      appTyped(lastPress);
+      }
+    });
+  $(document.body).on('keydown', function(e) {
+    
+    lastDown=e.keyCode;
+    if(menus["search"].selected){
+      searchDown(e);
+      }
+    else{
+      appDown(e);
+      }
+    });
+*/
+  }
+function keyDownTextField (e) {
+  lastDown=e.keyCode;
+  if(menus["search"].selected){
+    searchDown(e);
+    }
+  else{
+    appDown(e);
+    }
   }
 function inputFocus(event){
   //dbuga("focus "+event.target.id);
