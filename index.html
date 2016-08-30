@@ -855,7 +855,6 @@ function init(){
   document.body.style.backgroundImage="";
   //dbuga('init() 6' );
 
-  setupLocalStorage();
   //dbuga('init() 7' );
   //createRui:function(containerRef, barColor, barTextColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, squareIcons, iconPad, selectColor, paraFont, headFont)
   rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "#ffffff", "icons/", "white", "red", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
@@ -1446,7 +1445,9 @@ function updateIdValue(id, value){
   for (var u=0; u<uiObj.length; u++){
     if(uiObj[u].id==id){
       uiObj[u].value=value;
-      document.getElementById(id)=value;
+      if(id.indexOf('Input')>-1){
+        document.getElementById(id).value=value;
+        }
       }
     }
   }
@@ -2487,6 +2488,8 @@ function updateClientLayout(){
   canv.height=rui.wh-yOffset;
   canv.style.top=yOffset+"px";
   createForm();
+  setupLocalStorage();
+
 }
 //include these
 //rui.createRui(sbs, "#5eb8b6", "rgb(255,255,255)", "rgb(0,0,0)", "white", "rgb(185,28,27)");
