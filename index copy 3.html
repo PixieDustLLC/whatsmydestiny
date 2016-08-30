@@ -31,7 +31,7 @@
 <script>
 document.addEventListener('deviceready', this.onDeviceReady, false);
 function onDeviceReady(){
-  //dbug('onDeviceReady()');
+  dbug('onDeviceReady()');
   web=false;
   if(device.platform=="Android"){android=true;}
   if(device.platform=="iOS"){ios=true;}
@@ -852,27 +852,16 @@ function init(){
     });
   document.body.style.backgroundImage="";
   //dbuga('init() 6' );
-
   setupLocalStorage();
   //dbuga('init() 7' );
   //createRui:function(containerRef, barColor, barTextColor, surroundColor, bgColor, textColor, circleColor, iconPath, barIcons, menuIcons, squareIcons, iconPad, selectColor, paraFont, headFont)
   rui.createRui(document.getElementById('menuHolder'), "#be792b", "#be792b", "#be792b", "rgb(255,255,255)", "#b91c1b", "#ffffff", "icons/", "white", "red", "red", 0.25, "rgba(200,200,200,.25)", "avantbook", "avantbold");
-
-  //dbuga('init() yOffset='+yOffset );
   //dbuga('init() 8');
   openTutorial();
   //dbuga('init() completed');
   }
-function createForm(){
-  for(var u=0; u<uiObj.length; u++){
-    if(uiObj[u].id.indexOf("Input")>-1){
-      createInput("formHolder", uiObj[u].id, g, uiObj[u].l,uiObj[u].t,uiObj[u].w,uiObj[u].h);
-      }      
-    }
-  }
-
 function clearSearch(){
-  //focusTextarea(); 
+  focusTextarea(); 
   searchTyping=false; 
   menus['search'].panes[0].contents[0].value='';
   menus['search'].panes[0].selection=-1;
@@ -939,7 +928,7 @@ function appTyped(keyCode){
     //dbuga("<b>keypress</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
     if(keyCode==13){//return
       found=true;
-      //e.preventDefault(); 
+      e.preventDefault(); 
       setUiFocus((uiFocus+1)%uiObj.length);
       }
     if(found){
@@ -1473,14 +1462,12 @@ function setUiFocus(toNum){
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   typed=false;
-/*
   if(uiFocus>-1){
     //console.log('setUiFocus('+toNum+') is '+uiObj[toNum].id);
     if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
     else{hideTextarea();}
     }
   else{hideTextarea();}
-*/
   if(uiFocus != -1){
     if(uiObj[uiFocus]['focusable']){
       setMetaFocus(toNum);
@@ -1751,35 +1738,7 @@ var valueX=reportGrid*14;
 var valueWidth=reportGrid*4;
 var metaX=reportGrid*16;
 var metaWidth=reportGrid*22;
-
-function createInput(parentId, id, grid, x,y,across,down){
-  var input = document.createElement("input");
-  input.type = "text";
-  input.id = id;
-  input.className = "textInput";
-  input.style.left=x*grid+"px";
-  input.style.top=(y*grid+yOffset)+"px";
-  input.style.width=across*grid+"px";
-  input.style.height=down*grid+"px";
-  var container=document.getElementById(parentId);
-  container.appendChild(input);
-  input.addEventListener("focus", inputFocus, true);
-  input.addEventListener("blur", inputBlur, true);
-  }
-function inputFocus(event){
-  //dbuga("focus "+event.target.id);
-  for (var u=1; u<uiObj.length; u++){// skip meta area
-    if(uiObj[u].id==event.target.id){
-      setUiFocus(u);
-      }
-    }
-  }
-function inputBlur(event){
-  //dbuga("blur "+event.target.id);
-  }
 function blankContext(ctx, color, grid, across, down){
-
-
   ctx.fillStyle="white";
   ctx.fillRect(0,0,grid*across, grid*down);
   ctx.strokeStyle=color;
@@ -2229,7 +2188,7 @@ function clearReading(){
   }
 var focusStep=.1;
 function geometry(){
-    //dbuga('geometry()');
+  //dbuga('geometry()');
     viewportWidth = window.innerWidth;
     viewportHeight = window.innerHeight;    
     canv.width=viewportWidth;
@@ -2402,7 +2361,44 @@ function phoneContactFormat(num){
     var formatted=""+parts[0]+parts[1]+parts[2]+"-"+parts[3]+parts[4]+parts[5]+"-"+parts[6]+parts[7]+parts[8]+parts[9];
     return formatted;
   }
-
+var blurring=false;
+function hideTextarea(){
+  //dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
+  if(uiFocus>-1){
+    if(uiObj[uiFocus].id.indexOf("Input")>-1){
+      //dbuga(' -- dont hide');
+      blurring=false;
+      return false;t
+      }
+    }
+  blurring=true;
+  document.activeElement.blur();
+  //dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
+  }
+var lastArea="dummyArea";
+function focusBounce(){
+  //dbuga('focusBounce() '+lastArea+" "+blurring);
+  if(blurring==false){
+    document.getElementById(lastArea).focus();
+    setUiFocus((uiFocus+1)%uiObj.length);
+    }
+  else{
+    blurring=false;
+    }
+  }
+function focusTextarea(){
+  //dbuga('focusTextarea() ' +document.activeElement.id);
+  if(lastArea== "inputArea"){
+    lastArea="dummyArea";
+  }
+  if(lastArea== "dummyArea"){
+    lastArea="inputArea";
+  }
+  window.setTimeout(function () { 
+    document.getElementById(lastArea).focus();
+    //dbuga('focusTextarea() timeout fired last:' +lastArea+" active:"+document.activeElement.id);
+  }, 100);
+}
 function titleCase(str){
   var returnParts=[];
   var parts=str.split("-");
@@ -2425,7 +2421,6 @@ function updateClientLayout(){
   canv.width=rui.ww;
   canv.height=rui.wh-yOffset;
   canv.style.top=yOffset+"px";
-  createForm();
 }
 //include these
 //rui.createRui(sbs, "#5eb8b6", "rgb(255,255,255)", "rgb(0,0,0)", "white", "rgb(185,28,27)");
@@ -2436,16 +2431,14 @@ function searchToggled(){
   if(menus["search"].selected){
     searchTyping=false;
     typed=false;
-    //focusTextarea();
+    focusTextarea();
     }
   else{
-/*
     if(uiFocus>-1){
       if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
       else{hideTextarea();}
       }
     else{hideTextarea();}
-*/
     }
   }
 var barButtons=[
@@ -2799,54 +2792,12 @@ function contactsSaveSuccess(contact) {
 function contactsSaveError(contactError) {
     alert("Error = " + contactError.code);
 };
-/*
-var blurring=false;
-function hideTextarea(){
-  //dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
-  if(uiFocus>-1){
-    if(uiObj[uiFocus].id.indexOf("Input")>-1){
-      //dbuga(' -- dont hide');
-      blurring=false;
-      return false;t
-      }
-    }
-  blurring=true;
-  document.activeElement.blur();
-  //dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
-  }
-var lastArea="dummyArea";
-function focusBounce(){
-  //dbuga('focusBounce() '+lastArea+" "+blurring);
-  if(blurring==false){
-    document.getElementById(lastArea).focus();
-    setUiFocus((uiFocus+1)%uiObj.length);
-    }
-  else{
-    blurring=false;
-    }
-  }
-function focusTextarea(){
-  //dbuga('focusTextarea() ' +document.activeElement.id);
-  if(lastArea== "inputArea"){
-    lastArea="dummyArea";
-  }
-  if(lastArea== "dummyArea"){
-    lastArea="inputArea";
-  }
-  window.setTimeout(function () { 
-    document.getElementById(lastArea).focus();
-    //dbuga('focusTextarea() timeout fired last:' +lastArea+" active:"+document.activeElement.id);
-  }, 100);
-}
-*/
 </script>
 <link rel = "stylesheet" type = "text/css" href = "reset.css">
 <style>
 #mainCanvas{background-color:#eeeeee; z-index:2; display:none;}
-#formHolder{position:absolute; z-index:3;}
-.textInput{position:absolute; z-index:; background-color:rgba(0,0,255,.5);}
-#reportCanvas{background-color:#ee9966; z-index:4;}
-#menuHolder{background-color:#ee99ff; z-index:5;}
+#reportCanvas{background-color:#ee9966; z-index:3;}
+#menuHolder{background-color:#ee99ff; z-index:4;}
 @font-face {
     font-family: 'avantbook';
     src: url('avantgarde-book.ttf') format('truetype');
@@ -2883,11 +2834,8 @@ function focusTextarea(){
   <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
   <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
   <div id="uploadingpdf" style="display:none; z-index:8;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
-<!--
   <textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
   <textarea id="dummyArea" onblur="focusBounce();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
--->
-<div id="formHolder"></div>
 <div id="aboutDiv" style="overflow:auto; background-color:rgba(200,200,200,.75); width:100%; height:100%; position:absolute;  z-index:6;  -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px); display:none;">
 </body>
