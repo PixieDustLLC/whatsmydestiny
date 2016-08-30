@@ -1797,7 +1797,7 @@ function changeTextField (e) {
   dbuga('changeTextField '+e.target.id+" "+e.target.value);
   }
 function keyDownTextField (e) {
-  dbuga('keyDownTextField '+e.keyCode);
+  dbuga('keyDownTextField '+e.keyCode+' '+e.target.id+" "+e.target.value);
 /*
   lastDown=e.keyCode;
   if(menus["search"].selected){
