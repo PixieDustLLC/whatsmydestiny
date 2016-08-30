@@ -1485,7 +1485,7 @@ function setUiFocus(toNum){
   else{hideTextarea();}
 */
   if(uiFocus != -1){
-    if(uiObj[uiFocus].id.indexOf("Input")>-1)){
+    if(uiObj[uiFocus].id.indexOf("Input")>-1){
       document.getElementById(uiObj[uiFocus].id).blur();
       }
 
@@ -1803,6 +1803,7 @@ function changeTextField (e) {
 function keyUpTextField (e) {
   dbuga('keyUpTextField '+e.keyCode+' '+e.target.value);
   if(e.keyCode==13){//enter go
+    setUiFocus(uiFocus+1);
     }
 
 /*
