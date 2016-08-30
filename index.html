@@ -1471,6 +1471,13 @@ var uiFocus=-1;
 var metaFocus=-1;
 var typed=false;
 function setUiFocus(toNum){
+  if((uiFocus>-1)&&(toNum>-1)){
+    if(uiObj[uiFocus].id.indexOf("Input")>-1){
+      if(uiObj[toNum].id.indexOf("Input")==-1){
+        hideKeyboard();
+        }
+      }
+    }
   //console.log('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
@@ -1485,15 +1492,18 @@ function setUiFocus(toNum){
   else{hideTextarea();}
 */
   if(uiFocus != -1){
-    if(uiObj[uiFocus].id.indexOf("Input")>-1){
-      document.getElementById(uiObj[uiFocus].id).blur();
-      }
-
     if(uiObj[uiFocus]['focusable']){
       setMetaFocus(toNum);
       }
     }
   }
+var hideKeyboard = function() {
+ document.activeElement.blur();
+ var inputs = document.querySelectorAll('input');
+ for(var i=0; i < inputs.length; i++) {
+  inputs[i].blur();
+ }
+};
 function setMetaFocus(toNum){
   if((menus["dashboard"].selected==false)&&(uiObj[toNum].id.indexOf("Input")==-1)){
     rui.toggleMenu('dashboard');
