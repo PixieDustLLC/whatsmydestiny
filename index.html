@@ -1474,6 +1474,7 @@ function setUiFocus(toNum){
   //console.log('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
+  
   typed=false;
 /*
   if(uiFocus>-1){
@@ -1484,6 +1485,10 @@ function setUiFocus(toNum){
   else{hideTextarea();}
 */
   if(uiFocus != -1){
+    if(uiObj[uiFocus].id.indexOf("Input")>-1)){
+      document.getElementById(uiObj[uiFocus].id).blur();
+      }
+
     if(uiObj[uiFocus]['focusable']){
       setMetaFocus(toNum);
       }
@@ -1797,6 +1802,9 @@ function changeTextField (e) {
   }
 function keyUpTextField (e) {
   dbuga('keyUpTextField '+e.keyCode+' '+e.target.value);
+  if(e.keyCode==13){//enter go
+    }
+
 /*
   lastDown=e.keyCode;
   if(menus["search"].selected){
