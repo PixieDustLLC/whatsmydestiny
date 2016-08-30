@@ -1768,6 +1768,7 @@ function createInput(parentId, id, grid, x,y,across,down){
   input.addEventListener("focus", inputFocus, true);
   input.addEventListener("blur", inputBlur, true);
   input.addEventListener("keydown", keyDownTextField, false);
+  input.addEventListener("keypress", keyDownTextField, false);
 /*
   $(document.body).on('keypress', function(e) {
     e.preventDefault(); 
@@ -1792,7 +1793,11 @@ function createInput(parentId, id, grid, x,y,across,down){
     });
 */
   }
+function keyPressTextField (e) {
+  dbuga('keyPressTextField '+e.keyCode);
+  }
 function keyDownTextField (e) {
+  dbuga('keyDownTextField '+e.keyCode);
   lastDown=e.keyCode;
   if(menus["search"].selected){
     searchDown(e);
