@@ -1446,6 +1446,7 @@ function updateIdValue(id, value){
   for (var u=0; u<uiObj.length; u++){
     if(uiObj[u].id==id){
       uiObj[u].value=value;
+      document.getElementById(id)=value;
       }
     }
   }
@@ -1811,7 +1812,7 @@ function changeTextField (e) {
   dbuga('changeTextField '+e.target.id+" "+e.target.value);
   }
 function keyUpTextField (e) {
-  dbuga('keyUpTextField '+e.keyCode+' '+e.target.value);
+  dbug('keyUpTextField '+e.keyCode+' '+e.target.value);
   if(e.keyCode==13){//enter go
     setUiFocus(uiFocus+1);
     }
