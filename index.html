@@ -999,7 +999,9 @@ function appTyped(keyCode){
   }
 
 function textInputChanged(){
+  dbuga('textInputChanged() uiFocus:'+uiFocus);
   if(uiFocus == -1){return false;} // no selection
+  dbuga(' - id:'+id);
   if(uiObj[uiFocus].id.indexOf("Input") == -1){return false;} // not input
 
 
@@ -1007,9 +1009,9 @@ function textInputChanged(){
   var id=uiObj[uiFocus].id;
   var raw=document.getElementById(id).value;
   
-  dbuga('textInputChanged() typed:'+typed+' raw:'+raw);
-  dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
-  dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
+  dbuga(' - typed:'+typed+' raw:'+raw);
+  dbuga(' - el.value:'+document.getElementById(id).value);
+  dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
 
   var cleaned="";
   var parts=raw.split("");
