@@ -909,7 +909,7 @@ function searchDown(e){
       }
   }
 function appDown(e){
-    dbuga('appDown');
+    dbuga('appDown ');
     if(e.keyCode==8){// delete
       e.preventDefault();
       found=true;
@@ -940,7 +940,7 @@ function appDown(e){
 
 function appTyped(keyCode){
     var found=false;
-    //dbuga("<b>keypress</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
+    dbuga("appTyped should be disabled");
     if(keyCode==13){//return
       found=true;
       //e.preventDefault(); 
@@ -981,7 +981,7 @@ function appTyped(keyCode){
           if(typed==false){
             uiObj[uiFocus].value=char;
             typed=true;
-            alert('appTyped');
+            alert('appTyped sets typed to true');
             }
           else{
             if(uiObj[uiFocus].value.length<uiObj[uiFocus].limit){
@@ -1039,21 +1039,7 @@ function textInputChanged(){
   document.getElementById(id).value=cleaned;
   dbuga('textInputChanged() completed so userInput()');
   userInput();
-  }      
-
-/*
-          if(typed==false){
-            uiObj[uiFocus].value=char;
-            typed=true;
-            alert(' i do not run');
-            }
-          else{
-            if(uiObj[uiFocus].value.length<uiObj[uiFocus].limit){
-              uiObj[uiFocus].value+=char;
-              }
-            }
-          }
-*/
+  }
 
 var searchTyping=false;
 function searchTyped(keyCode){
@@ -1550,15 +1536,8 @@ function setUiFocus(toNum){
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   
+  dbuga('setUiFocus sets typed('+typed+') to false');
   typed=false;
-/*
-  if(uiFocus>-1){
-    //console.log('setUiFocus('+toNum+') is '+uiObj[toNum].id);
-    if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
-    else{hideTextarea();}
-    }
-  else{hideTextarea();}
-*/
   if(uiFocus != -1){
     if(uiObj[uiFocus]['focusable']){
       setMetaFocus(toNum);
@@ -1880,7 +1859,7 @@ function changeTextField (e) {
   dbuga('changeTextField '+e.target.id+" "+e.target.value);
   }
 function keyDownTextField(e){
-  dbug('keyDownTextField keyCode:'+e.keyCode+' typed:'+typed+' '+e.target.value);
+  dbuga('keyDownTextField keyCode:'+e.keyCode+' typed:'+typed+' '+e.target.value);
   if(uiFocus == -1){return false;} // no selection
   if(uiObj[uiFocus].id.indexOf("Input") == -1){return false;} // not input
   if(typed){return false;}// already cleared
@@ -1903,15 +1882,7 @@ function keyUpTextField (e) {
     textInputChanged();
     }
   }
-/*
-  lastDown=e.keyCode;
-  if(menus["search"].selected){
-    searchDown(e);
-    }
-  else{
-    appDown(e);
-    }
-*/
+
 function inputFocus(event){
   //dbuga("focus "+event.target.id);
   for (var u=1; u<uiObj.length; u++){// skip meta area
@@ -2584,6 +2555,7 @@ function searchToggled(){
   if(menus["search"].selected){
     searchTyping=false;
     typed=false;
+    dbuga('searchToggled sets typed to false');
     //focusTextarea();
     }
   else{
