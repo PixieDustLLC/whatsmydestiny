@@ -1876,7 +1876,7 @@ function changeTextField (e) {
   dbuga('changeTextField '+e.target.id+" "+e.target.value);
   }
 function keyDownTextField(e){
-  dbug('keyDownTextField '+e.keyCode+' '+e.target.value);
+  dbug('keyDownTextField keyCode:'+e.keyCode+' typed:'+typed+' '+e.target.value);
   if(uiFocus == -1){return false;} // no selection
   if(uiObj[uiFocus].id.indexOf("Input") == -1){return false;} // not input
   if(typed){return false;}// already cleared
