@@ -909,7 +909,8 @@ function searchDown(e){
       }
   }
 function appDown(e){
-    dbuga('appDown ');
+  dbuga('appDown ?????');
+/*
     if(e.keyCode==8){// delete
       e.preventDefault();
       found=true;
@@ -936,11 +937,13 @@ function appDown(e){
       e.preventDefault();
       setUiFocus((uiFocus+1)%uiObj.length);
       }
+/*
   }
 
 function appTyped(keyCode){
+    dbuga("appTyped should be disabled ???");
+/*
     var found=false;
-    dbuga("appTyped should be disabled");
     if(keyCode==13){//return
       found=true;
       //e.preventDefault(); 
@@ -992,6 +995,7 @@ function appTyped(keyCode){
         userInput();
         }
       } 
+*/
   }
 
 function textInputChanged(){
@@ -1529,7 +1533,7 @@ function valueOfId(id){
   }
 var uiFocus=-1;
 var metaFocus=-1;
-var typed=false;
+//var typed=false;
 //var clearField=false;
 function setUiFocus(toNum){
   if((uiFocus>-1)&&(toNum>-1)){
@@ -1543,8 +1547,8 @@ function setUiFocus(toNum){
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
   
-  dbuga('setUiFocus sets typed('+typed+') to false');
-  typed=false;
+  //dbuga('setUiFocus sets typed('+typed+') to false');
+  //typed=false;
   //clearField=false;
   if(uiFocus != -1){
     if(uiObj[uiFocus]['focusable']){
@@ -1868,13 +1872,12 @@ function changeTextField (e) {
   }
 function keyDownTextField(e){
   dbug('keyDownTextField');
-  }
+  
 /* clear don't work on fuuuuu androids! reverts at keyup wtf!?
   e.preventDefault();
-  dbuga('keyDownTextField keyCode:'+e.keyCode+' typed:'+typed+' '+e.target.value);
+  dbuga('keyDownTextField keyCode:'+e.keyCode+' '+e.target.value);
   if(uiFocus == -1){return false;} // no selection
   if(uiObj[uiFocus].id.indexOf("Input") == -1){return false;} // not input
-  if(typed){return false;}// already cleared
   if(e.keyCode==9){return false;}// tab
   if(e.keyCode==13){return false;}// cr
   if(e.keyCode==16){return false;}// shift
@@ -1886,7 +1889,7 @@ function keyDownTextField(e){
   dbuga(' post - id:'+id+' value:'+document.getElementById(id).value);
   dbuga(' post - uiFocus:'+uiFocus+' value:'+  uiObj[uiFocus].value);
 
-  typed=true;
+  //typed=true;
   //clearField=true;
   dbuga(' -  set typed to true...');
 */
@@ -2578,8 +2581,8 @@ function updateClientLayout(){
 function searchToggled(){
   if(menus["search"].selected){
     searchTyping=false;
-    typed=false;
-    dbuga('searchToggled sets typed to false');
+    //typed=false;
+    //dbuga('searchToggled sets typed to false');
     //focusTextarea();
     }
   else{
