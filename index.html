@@ -1907,12 +1907,14 @@ function keyDownTextField(e){
   }
 function keyUpTextField (e) {
   var id=uiObj[uiFocus].id;
-  dbuga('keyUpTextField e,keyCode:'+e.keyCode);
+  dbuga('keyUpTextField e.keyCode:'+e.keyCode);
   dbuga(' - e.target.value:'+e.target.value);
   dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
   dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
-  if(e.keyCode==13){//enter go
-    setUiFocus(uiFocus+1);
+  if(Number(e.keyCode)==13){//enter go 
+    dbuga(' - 13 is enter go');
+    document.getElementById(id).focus();
+    //setUiFocus(uiFocus+1);
     }
   else{
     textInputChanged();
