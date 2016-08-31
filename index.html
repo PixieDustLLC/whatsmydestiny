@@ -997,7 +997,7 @@ function textInputChanged(){
   var fieldType=uiObj[uiFocus].type;
   var id=uiObj[uiFocus].id;
   var raw=document.getElementById(id).value;
-  dbug('textInputChanged() typed:'+typed+' '+raw);
+  dbuga('textInputChanged() typed:'+typed+' '+raw);
   var cleaned="";
   var parts=raw.split("");
   for (var c=0; c<parts.length; c++){
@@ -1034,6 +1034,7 @@ function textInputChanged(){
     } 
   uiObj[uiFocus].value=cleaned;
   document.getElementById(id).value=cleaned;
+  dbuga('textInputChanged() completed so userInput();
   userInput();
   }      
 
