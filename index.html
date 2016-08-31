@@ -1867,6 +1867,7 @@ function changeTextField (e) {
   dbuga('changeTextField '+e.target.id+" "+e.target.value);
   }
 function keyDownTextField(e){
+/* clear don't work on fuuuuu androids! reverts at keyup wtf!?
   e.preventDefault();
   dbuga('keyDownTextField keyCode:'+e.keyCode+' typed:'+typed+' '+e.target.value);
   if(uiFocus == -1){return false;} // no selection
@@ -1875,7 +1876,6 @@ function keyDownTextField(e){
   if(e.keyCode==9){return false;}// tab
   if(e.keyCode==13){return false;}// cr
   if(e.keyCode==16){return false;}// shift
-
   var id=uiObj[uiFocus].id;
   dbuga(' pre - id:'+id+' value:'+document.getElementById(id).value);
   dbuga(' pre - uiFocus:'+uiFocus+' value:'+  uiObj[uiFocus].value);
@@ -1887,6 +1887,7 @@ function keyDownTextField(e){
   typed=true;
   //clearField=true;
   dbuga(' -  set typed to true...');
+*/
   }
 function keyUpTextField (e) {
   e.preventDefault();
@@ -1899,21 +1900,17 @@ function keyUpTextField (e) {
     setUiFocus(uiFocus+1);
     }
   else{
-/*
-    if(clearField==true){
-      uiObj[uiFocus].value="";
-      document.getElementById(id).value="";
-      }
-*/
-    window.setTimeout("textInputChanged()",10);
+    textInputChanged();
     }
   }
 
 function inputFocus(event){
-  //dbuga("focus "+event.target.id);
+  dbuga("focus "+event.target.id);
   for (var u=1; u<uiObj.length; u++){// skip meta area
     if(uiObj[u].id==event.target.id){
       setUiFocus(u);
+      event.target.value="";
+      uiObj[u].value="";
       }
     }
   }
