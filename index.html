@@ -1001,12 +1001,12 @@ function appTyped(keyCode){
 function textInputChanged(){
   dbuga('textInputChanged() uiFocus:'+uiFocus);
   if(uiFocus == -1){return false;} // no selection
+  var id=uiObj[uiFocus].id;
   dbuga(' - id:'+id);
-  if(uiObj[uiFocus].id.indexOf("Input") == -1){return false;} // not input
+  if(id.indexOf("Input") == -1){return false;} // not input
 
 
   var fieldType=uiObj[uiFocus].type;
-  var id=uiObj[uiFocus].id;
   var raw=document.getElementById(id).value;
   
   dbuga(' - typed:'+typed+' raw:'+raw);
