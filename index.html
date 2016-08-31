@@ -1913,7 +1913,8 @@ function keyUpTextField (e) {
   dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
   if(Number(e.keyCode)==13){//enter go 
     dbuga(' - 13 is enter go');
-    document.getElementById(id).focus();
+    
+    document.getElementById(uiObj[uiFocus+1].id).focus();
     //setUiFocus(uiFocus+1);
     }
   else{
