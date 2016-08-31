@@ -935,6 +935,7 @@ function appDown(e){
       setUiFocus((uiFocus+1)%uiObj.length);
       }
   }
+
 function appTyped(keyCode){
     var found=false;
     //dbuga("<b>keypress</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
@@ -989,6 +990,66 @@ function appTyped(keyCode){
         }
       } 
   }
+
+function textInputChanged(){
+  if(uiFocus == -1){return false;} // no selection
+  if(uiObj[uiFocus].id.indexOf("Input") == -1){return false;} // not input
+  var fieldType=uiObj[uiFocus].type;
+  var id=uiObj[uiFocus].id;
+  var raw=document.getElementById(id).value;
+  dbug('textInputChanged() typed:'+typed+' '+raw);
+  var cleaned="";
+  var parts=raw.split("");
+  for (var c=0; c<parts.length; c++){
+    var char=parts[c];
+    var type="";
+    if("abcdefghijklmnopqrstuvwxyz -".indexOf(char)>-1){
+      type="alpha";
+      }
+    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(char)>-1){
+      type="alpha";
+      char=char.toLowerCase();
+      }
+    if("0123456789".indexOf(char)>-1){
+      type="numeric";
+      }
+    if("'./=`!@#$%^&*+?_{|}~".indexOf(char)>-1){
+      type="char";
+      }
+    dbuga(type+" "+char);
+    if((char != "")){// valid entry
+      if(uiFocus==1){firstChanged=true;}
+      if(uiFocus==2){middleChanged=true;}
+      if(uiFocus==3){lastChanged=true;}
+      if(uiFocus==4){currentChanged=true;}
+      if((uiFocus==1)||(uiFocus==2)||(uiFocus==3)){
+        if(char==" "){char="-";}// replace spaces with hyphen in birth name fields
+        }
+      if(fieldType.indexOf(type)>-1){// valid
+        if(cleaned.length<uiObj[uiFocus].limit){
+          cleaned+=char;
+          }
+        }
+      }
+    } 
+  uiObj[uiFocus].value=cleaned;
+  document.getElementById(id).value=cleaned;
+  userInput();
+  }      
+
+/*
+          if(typed==false){
+            uiObj[uiFocus].value=char;
+            typed=true;
+            }
+          else{
+            if(uiObj[uiFocus].value.length<uiObj[uiFocus].limit){
+              uiObj[uiFocus].value+=char;
+              }
+            }
+          }
+*/
+
 var searchTyping=false;
 function searchTyped(keyCode){
     if(searchTyping==false){
@@ -1785,6 +1846,7 @@ function createInput(parentId, id, grid, x,y,across,down){
   input.addEventListener("focus", inputFocus, true);
   input.addEventListener("blur", inputBlur, true);
   input.addEventListener("keyup", keyUpTextField, false);
+  input.addEventListener("keydown", keyDownTextField, false);
 /*
   $(document.body).on('keypress', function(e) {
     e.preventDefault(); 
@@ -1812,12 +1874,29 @@ function createInput(parentId, id, grid, x,y,across,down){
 function changeTextField (e) {
   dbuga('changeTextField '+e.target.id+" "+e.target.value);
   }
+function keyDownTextField(e){
+  dbug('keyDownTextField '+e.keyCode+' '+e.target.value);
+  if(uiFocus == -1){return false;} // no selection
+  if(uiObj[uiFocus].id.indexOf("Input") == -1){return false;} // not input
+  if(typed){return false;}// already cleared
+  if(e.keyCode==9){return false;}// tab
+  if(e.keyCode==13){return false;}// cr
+  if(e.keyCode==16){return false;}// shift
+
+  var id=uiObj[uiFocus].id;
+  uiObj[uiFocus].value="";
+  document.getElementById(id).value="";
+  typed=true;
+  }
 function keyUpTextField (e) {
-  dbug('keyUpTextField '+e.keyCode+' '+e.target.value);
+  dbuga('keyUpTextField '+e.keyCode+' '+e.target.value);
   if(e.keyCode==13){//enter go
     setUiFocus(uiFocus+1);
     }
-
+  else{
+    textInputChanged();
+    }
+  }
 /*
   lastDown=e.keyCode;
   if(menus["search"].selected){
@@ -1827,7 +1906,6 @@ function keyUpTextField (e) {
     appDown(e);
     }
 */
-  }
 function inputFocus(event){
   //dbuga("focus "+event.target.id);
   for (var u=1; u<uiObj.length; u++){// skip meta area
@@ -2908,7 +2986,7 @@ function focusTextarea(){
 <style>
 #mainCanvas{background-color:#eeeeee; z-index:2; display:none;}
 #formHolder{position:absolute; z-index:3;}
-.textInput{position:absolute; z-index:; background-color:rgba(0,0,255,.5);}
+.textInput{position:absolute; z-index:; background-color:rgba(0,0,255,.35); color:white; font-size:16px;}
 #reportCanvas{background-color:#ee9966; z-index:4;}
 #menuHolder{background-color:#ee99ff; z-index:5;}
 @font-face {
@@ -2942,7 +3020,7 @@ function focusTextarea(){
 ></canvas>
   <div id="menuHolder" style="position:absolute;" ></div>
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
-  <div id="debugDiv" style="font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; background-color:rgba(255,255,255,.85);"></div>
+  <div id="debugDiv" style="font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; right:0px; background-color:rgba(255,255,255,.85);"></div>
   <canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
   <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
   <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
