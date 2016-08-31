@@ -33,7 +33,10 @@ document.addEventListener('deviceready', this.onDeviceReady, false);
 function onDeviceReady(){
   //dbug('onDeviceReady()');
   web=false;
-  if(device.platform=="Android"){android=true;}
+  if(device.platform=="Android"){
+    android=true;
+    Immersify.enableSticky(immersifySuccess, immersifyError);
+    }
   if(device.platform=="iOS"){ios=true;}
   }
 var web=true;
@@ -1563,13 +1566,13 @@ var hideKeyboard = function() {
  for(var i=0; i < inputs.length; i++) {
   inputs[i].blur();
  }
- Immersify.enable(immersifySuccess, immersifyError);
+ //Immersify.enableSticky(immersifySuccess, immersifyError);
 };
 function immersifySuccess(){
-  dbuga('immersifySuccess()');
+  //dbuga('immersifySuccess()');
   }
 function immersifyError(){
-  dbuga('immersifyError()');
+  //dbuga('immersifyError()');
   }
 function setMetaFocus(toNum){
   if((menus["dashboard"].selected==false)&&(uiObj[toNum].id.indexOf("Input")==-1)){
