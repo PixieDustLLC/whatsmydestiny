@@ -909,6 +909,7 @@ function searchDown(e){
       }
   }
 function appDown(e){
+    dbuga('appDown');
     if(e.keyCode==8){// delete
       e.preventDefault();
       found=true;
@@ -917,6 +918,7 @@ function appDown(e){
           if(typed==false){
             uiObj[uiFocus].value="";
             typed=true;
+            alert('appDown typed=true')
             }
           else{
             var str=uiObj[uiFocus].value;
@@ -979,6 +981,7 @@ function appTyped(keyCode){
           if(typed==false){
             uiObj[uiFocus].value=char;
             typed=true;
+            alert('appTyped');
             }
           else{
             if(uiObj[uiFocus].value.length<uiObj[uiFocus].limit){
@@ -1042,6 +1045,7 @@ function textInputChanged(){
           if(typed==false){
             uiObj[uiFocus].value=char;
             typed=true;
+            alert(' i do not run');
             }
           else{
             if(uiObj[uiFocus].value.length<uiObj[uiFocus].limit){
@@ -1888,6 +1892,7 @@ function keyDownTextField(e){
   uiObj[uiFocus].value="";
   document.getElementById(id).value="";
   typed=true;
+  dbuga('keyDownTextField set typed to true...');
   }
 function keyUpTextField (e) {
   dbuga('keyUpTextField '+e.keyCode+' '+e.target.value);
