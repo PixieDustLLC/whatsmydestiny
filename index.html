@@ -1025,7 +1025,7 @@ function textInputChanged(){
     if("'./=`!@#$%^&*+?_{|}~".indexOf(char)>-1){
       type="char";
       }
-    dbuga(type+" "+char);
+    //dbuga(type+" "+char);
     if((char != "")){// valid entry
       if(uiFocus==1){firstChanged=true;}
       if(uiFocus==2){middleChanged=true;}
@@ -1867,6 +1867,8 @@ function changeTextField (e) {
   dbuga('changeTextField '+e.target.id+" "+e.target.value);
   }
 function keyDownTextField(e){
+  dbug('keyDownTextField');
+  }
 /* clear don't work on fuuuuu androids! reverts at keyup wtf!?
   e.preventDefault();
   dbuga('keyDownTextField keyCode:'+e.keyCode+' typed:'+typed+' '+e.target.value);
@@ -1890,7 +1892,6 @@ function keyDownTextField(e){
 */
   }
 function keyUpTextField (e) {
-  e.preventDefault();
   var id=uiObj[uiFocus].id;
   dbuga('keyUpTextField e,keyCode:'+e.keyCode);
   dbuga(' - e.target.value:'+e.target.value);
