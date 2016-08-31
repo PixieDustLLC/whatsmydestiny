@@ -1002,18 +1002,18 @@ function appTyped(keyCode){
   }
 
 function textInputChanged(){
-  dbuga('textInputChanged() uiFocus:'+uiFocus);
+  //dbuga('textInputChanged() uiFocus:'+uiFocus);
   if(uiFocus == -1){return false;} // no selection
   var id=uiObj[uiFocus].id;
-  dbuga(' - id:'+id);
+  //dbuga(' - id:'+id);
   if(id.indexOf("Input") == -1){return false;} // not input
 
 
   var fieldType=uiObj[uiFocus].type;
   var raw=document.getElementById(id).value;
 
-  dbuga(' - el.value:'+document.getElementById(id).value);
-  dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
+  //dbuga(' - el.value:'+document.getElementById(id).value);
+  //dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
 
   var cleaned="";
   var parts=raw.split("");
@@ -1051,7 +1051,7 @@ function textInputChanged(){
     } 
   uiObj[uiFocus].value=cleaned;
   document.getElementById(id).value=cleaned;
-  dbuga('textInputChanged() completed so userInput()');
+  //dbuga('textInputChanged() completed so userInput()');
   userInput();
   }
 
@@ -1882,7 +1882,7 @@ function changeTextField (e) {
   //dbuga('changeTextField '+e.target.id+" "+e.target.value);
   }
 function keyDownTextField(e){
-  dbug('keyDownTextField');
+  //dbug('keyDownTextField');
   
 /* clear don't work on fuuuuu androids! reverts at keyup wtf!?
   e.preventDefault();
@@ -1907,12 +1907,13 @@ function keyDownTextField(e){
   }
 function keyUpTextField (e) {
   var id=uiObj[uiFocus].id;
-  dbuga('keyUpTextField e.keyCode:'+e.keyCode);
-  dbuga(' - e.target.value:'+e.target.value);
-  dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
-  dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
+  //dbuga('keyUpTextField e.keyCode:'+e.keyCode);
+  //dbuga(' - e.target.value:'+e.target.value);
+  //dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
+  //dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
+
   if(Number(e.keyCode)==13){//enter go 
-    dbuga(' - 13 is enter go');
+    //dbuga(' - 13 is enter go');
     
     document.getElementById(uiObj[uiFocus+1].id).focus();
     //setUiFocus(uiFocus+1);
