@@ -1530,7 +1530,7 @@ function valueOfId(id){
 var uiFocus=-1;
 var metaFocus=-1;
 var typed=false;
-var clearField=false;
+//var clearField=false;
 function setUiFocus(toNum){
   if((uiFocus>-1)&&(toNum>-1)){
     if(uiObj[uiFocus].id.indexOf("Input")>-1){
@@ -1545,7 +1545,7 @@ function setUiFocus(toNum){
   
   dbuga('setUiFocus sets typed('+typed+') to false');
   typed=false;
-  clearField=false;
+  //clearField=false;
   if(uiFocus != -1){
     if(uiObj[uiFocus]['focusable']){
       setMetaFocus(toNum);
@@ -1874,7 +1874,7 @@ function keyDownTextField(e){
   if(e.keyCode==9){return false;}// tab
   if(e.keyCode==13){return false;}// cr
   if(e.keyCode==16){return false;}// shift
-/*
+
   var id=uiObj[uiFocus].id;
   dbuga(' pre - id:'+id+' value:'+document.getElementById(id).value);
   dbuga(' pre - uiFocus:'+uiFocus+' value:'+  uiObj[uiFocus].value);
@@ -1882,9 +1882,9 @@ function keyDownTextField(e){
   document.getElementById(id).value="";
   dbuga(' post - id:'+id+' value:'+document.getElementById(id).value);
   dbuga(' post - uiFocus:'+uiFocus+' value:'+  uiObj[uiFocus].value);
-*/
+
   typed=true;
-  clearField=true;
+  //clearField=true;
   dbuga(' -  set typed to true...');
   }
 function keyUpTextField (e) {
@@ -1897,10 +1897,12 @@ function keyUpTextField (e) {
     setUiFocus(uiFocus+1);
     }
   else{
+/*
     if(clearField==true){
       uiObj[uiFocus].value="";
       document.getElementById(id).value="";
       }
+*/
     window.setTimeout("textInputChanged()",10);
     }
   }
