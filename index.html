@@ -1868,10 +1868,14 @@ function keyDownTextField(e){
   if(e.keyCode==16){return false;}// shift
 
   var id=uiObj[uiFocus].id;
+  dbuga(' pre - id:'+id+' value:'+document.getElementById(id).value);
+  dbuga(' pre - uiFocus:'+uiFocus+' value:'+  uiObj[uiFocus].value);
   uiObj[uiFocus].value="";
   document.getElementById(id).value="";
+  dbuga(' post - id:'+id+' value:'+document.getElementById(id).value);
+  dbuga(' post - uiFocus:'+uiFocus+' value:'+  uiObj[uiFocus].value);
   typed=true;
-  dbuga('keyDownTextField set typed to true...');
+  dbuga(' -  set typed to true...');
   }
 function keyUpTextField (e) {
   dbuga('keyUpTextField '+e.keyCode+' '+e.target.value);
