@@ -1002,19 +1002,22 @@ function appTyped(keyCode){
   }
 
 function textInputChanged(){
-  //dbuga('textInputChanged() uiFocus:'+uiFocus);
+  dbuga('textInputChanged() uiFocus:'+uiFocus);
   if(uiFocus == -1){return false;} // no selection
   var id=uiObj[uiFocus].id;
-  //dbuga(' - id:'+id);
+  dbuga(' - id:'+id);
   if(id.indexOf("Input") == -1){return false;} // not input
 
 
   var fieldType=uiObj[uiFocus].type;
   var raw=document.getElementById(id).value;
 
-  //dbuga(' - el.value:'+document.getElementById(id).value);
-  //dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
+  dbuga(' - el.value:'+document.getElementById(id).value);
+  dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
 
+  if(allSelecting){
+    dbuga('all selecting, so what?');
+    }
   var cleaned="";
   var parts=raw.split("");
   for (var c=0; c<parts.length; c++){
@@ -1922,14 +1925,15 @@ function keyUpTextField (e) {
     textInputChanged();
     }
   }
-
+var allSelecting=false;
 function inputFocus(event){
-  //dbuga("focus "+event.target.id);
+  dbug("focus "+event.target.id);
   for (var u=1; u<uiObj.length; u++){// skip meta area
     if(uiObj[u].id==event.target.id){
+      allSelecting=true;
       setUiFocus(u);
       event.target.value="";
-      uiObj[u].value="";
+      //uiObj[u].value="";
       }
     }
   }
