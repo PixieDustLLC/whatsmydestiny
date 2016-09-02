@@ -1760,7 +1760,12 @@ function createForm(){
 
 function createInput(parentId, id, grid, x,y,across,down){
   var input = document.createElement("input");
-  input.type = "text";
+  if(id=="emailInput"){  input.type = "email";}
+  else if(id=="phoneInput"){  input.type = "tel";}
+  else{input.type = "text";}
+  input.setAttribute("autocomplete", "off");
+  input.setAttribute("autocorrect", "off");
+  input.setAttribute("autocapitalize", "off");
   input.id = id;
   input.className = "textInput";
   input.style.left=x*grid+"px";
