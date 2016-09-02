@@ -1950,7 +1950,7 @@ function searchDown(e){
 
 
 function blankContext(ctx, color, grid, across, down){
-
+  dbuga('blankContext');
 
   ctx.fillStyle="white";
   ctx.fillRect(0,0,grid*across, grid*down);
@@ -2401,7 +2401,7 @@ function clearReading(){
   }
 var focusStep=1;
 function geometry(){
-    //dbuga('geometry()');
+    dbuga('geometry()');
     viewportWidth = window.innerWidth;
     viewportHeight = window.innerHeight;    
     canv.width=viewportWidth;
@@ -2591,7 +2591,7 @@ var pi=Math.PI;
 //menu funcs and configs
 var yOffset=0;
 function updateClientLayout(){
-  //dbuga('updateClientLayout()');
+  dbuga('updateClientLayout()');
   yOffset=rui.g*2.5;
   // called by rui.geometry();
   //console.log('updateClientLayout()');
