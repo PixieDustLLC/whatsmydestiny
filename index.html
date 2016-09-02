@@ -1807,6 +1807,7 @@ function inputOnFocus(event){
   //dbuga(' -- el('+uiObj[uiFocus].id+').value:'+document.getElementById(uiObj[uiFocus].id).value);
   //dbuga(' -- document.activeElement.value:'+document.activeElement.value);
   //dbuga(' -- event.target.value:'+event.target.value);
+  redrawAll();
   }
 
 function inputOnKeyDown(e){
@@ -1823,9 +1824,11 @@ function inputOnKeyUp(e){
   if((Number(e.keyCode)==13)||(Number(e.keyCode)==9)){//enter go 
     if(Number(e.keyCode)==13){
       document.getElementById(uiObj[uiFocus+1].id).focus();
+      redrawAll();
       }
     else{
       //dbuga(' - 9 is tab');
+      redrawAll();
       }
     }
   else{
@@ -2396,7 +2399,7 @@ function clearReading(){
   //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
   //dbuga(localStorage.reading);
   }
-var focusStep=.1;
+var focusStep=1;
 function geometry(){
     //dbuga('geometry()');
     viewportWidth = window.innerWidth;
