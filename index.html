@@ -1746,6 +1746,10 @@ var metaX=reportGrid*16;
 var metaWidth=reportGrid*22;
 
 
+
+
+var spaceSprocket="";
+
 function createForm(){
   for(var u=0; u<uiObj.length; u++){
     if(uiObj[u].id.indexOf("Input")>-1){
@@ -1772,10 +1776,10 @@ function createInput(parentId, id, grid, x,y,across,down){
   input.addEventListener("keyup", inputOnKeyUp, false);
   }
 function inputOnBlur(event){
-  dbug("inputOnBlur "+event.target.id);
+  dbuga("inputOnBlur "+event.target.id);
   }
 function inputOnFocus(event){
-  dbuga("inputOnFocus "+event.target.id);
+  dbug("inputOnFocus "+event.target.id);
   for (var u=1; u<uiObj.length; u++){// skip meta area
     if(uiObj[u].id==event.target.id){
       allSelecting=true;
@@ -1807,7 +1811,7 @@ function inputOnKeyUp(e){
       }
     }
   else{
-
+    spaceSprocket=e.target.value;
     dbuga(' - PRE uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
     inputValueToUiObj();
     dbuga(' - POST uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
@@ -1829,8 +1833,8 @@ function inputValueToUiObj(){
 
 
   var fieldType=uiObj[uiFocus].type;
-  var raw=document.getElementById(id).value;
-
+  //var raw=document.getElementById(id).value;
+  var raw=spaceSprocket;
   dbuga(' - el.value:'+document.getElementById(id).value);
   dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
 
