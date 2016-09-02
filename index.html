@@ -1790,10 +1790,12 @@ function inputOnFocus(event){
       allSelecting=true;
       setUiFocus(u);
       document.getElementById(uiObj[u].id).value="";
+      event.target.value="";
       //uiObj[u].value="";
       }
     }
-  dbuga(' - completed document.activeElement:'+document.activeElement.id);
+  dbuga(' -- '+document.activeElement.id+' value:'+document.getElementById(uiObj[u].id).value);
+  dbuga(' -- event.target.value:'+event.target.value);
   }
 
 function inputOnKeyDown(e){
