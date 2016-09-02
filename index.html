@@ -1548,13 +1548,16 @@ function randomColor(){
   }
 var frames=0;
 function tick(timestamp){
-  
+  if(uiObj[uiFocus].id.indexOf('Input') == -1){redrawAll();}
   //canv.width=viewportWidth;
-  drawGrid();
-  drawUi();
   frames++;
   window.requestAnimationFrame(tick);
   }
+function redrawAll(){
+  drawGrid();
+  drawUi();
+  }
+
 //window.requestAnimationFrame(tick); 
 function rnd(range){
   return Math.floor(Math.random()*range);
@@ -1891,6 +1894,7 @@ function inputValueToUiObj(){
   document.getElementById(id).value=cleaned;
   //dbuga('inputValueToUiObj() completed so userInput()');
   userInput();
+  redrawAll();
   }
 
 
