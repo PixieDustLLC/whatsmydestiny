@@ -2401,7 +2401,7 @@ function clearReading(){
   }
 var focusStep=1;
 function geometry(){
-    //dbuga('geometry()');
+    dbuga('geometry()');
     viewportWidth = window.innerWidth;
     viewportHeight = window.innerHeight;    
     canv.width=viewportWidth;
@@ -2431,6 +2431,7 @@ function geometry(){
 //#pdfData
     document.getElementsByTagName('head')[0].appendChild(style);
     //cellsAcross=Math.floor(viewportWidth/g);
+
   }
 function secondTick(){
   //dbug("fps:"+frames);
