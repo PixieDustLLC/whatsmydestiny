@@ -869,7 +869,7 @@ function init(){
   }
 // unused
 function appDown(e){
-  dbuga('appDown ?????');
+  //dbuga('appDown ?????');
 /*
     if(e.keyCode==8){// delete
       e.preventDefault();
@@ -901,7 +901,7 @@ function appDown(e){
   }
 
 function appTyped(keyCode){
-    dbuga("appTyped should be disabled ???");
+    //dbuga("appTyped should be disabled ???");
 /*
     var found=false;
     if(keyCode==13){//return
@@ -1047,7 +1047,7 @@ var unhideLeft=19;
 var hideTop=-2;
 var unhideTop=5;
 function setupLocalStorage(){
-  dbuga('setupLocalStorage()');
+  //dbuga('setupLocalStorage()');
   if(localStorage.getItem("reading") === null) {
     //dbuga('setupLocalStorage()3 reading null');
     localStorage.setItem("reading", JSON.stringify(reading));
@@ -1416,7 +1416,7 @@ function updateIdValue(id, value){
     if(uiObj[u].id==id){
       uiObj[u].value=value;
       if(id.indexOf('Input')>-1){
-        dbuga('localStorage set '+id+' to '+value);
+        //dbuga('localStorage set '+id+' to '+value);
         document.getElementById(id).value=value;
         }
       }
@@ -1763,6 +1763,7 @@ function createInput(parentId, id, grid, x,y,across,down){
   var input = document.createElement("input");
   if(id=="emailInput"){  input.type = "email";}
   else if(id=="phoneInput"){  input.type = "tel";}
+  else if(id=="birthdayInput"){  input.type = "tel";}
   else{input.type = "text";}
   input.setAttribute("autocomplete", "off");
   input.setAttribute("autocorrect", "off");
@@ -1782,11 +1783,11 @@ function createInput(parentId, id, grid, x,y,across,down){
   input.addEventListener("keyup", inputOnKeyUp, false);
   }
 function inputOnBlur(event){
-  dbuga("inputOnBlur "+event.target.id);
+  //dbuga("inputOnBlur "+event.target.id);
   }
 function inputOnFocus(event){
   spaceSprocket="";
-  dbug("inputOnFocus "+event.target.id);
+  //dbug("inputOnFocus "+event.target.id);
   for (var u=1; u<uiObj.length; u++){// skip meta area
     if(uiObj[u].id==event.target.id){
       allSelecting=true;
@@ -1796,61 +1797,61 @@ function inputOnFocus(event){
       //uiObj[u].value=""; // don't clear the data 
       }
     }
-  dbuga(' -- uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
-  dbuga(' -- el('+uiObj[uiFocus].id+').value:'+document.getElementById(uiObj[uiFocus].id).value);
-  dbuga(' -- document.activeElement.value:'+document.activeElement.value);
-  dbuga(' -- event.target.value:'+event.target.value);
+  //dbuga(' -- uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
+  //dbuga(' -- el('+uiObj[uiFocus].id+').value:'+document.getElementById(uiObj[uiFocus].id).value);
+  //dbuga(' -- document.activeElement.value:'+document.activeElement.value);
+  //dbuga(' -- event.target.value:'+event.target.value);
   }
 
 function inputOnKeyDown(e){
-  dbuga('inputOnKeyDown no action');
+  //dbuga('inputOnKeyDown no action');
   }
 
 function inputOnKeyUp(e){
   var id=uiObj[uiFocus].id;
-  dbuga('keyUpTextField <b>e.keyCode:'+e.keyCode+'</b>');
-  dbuga(' - e.target.value:'+e.target.value);
-  dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
-  dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
+  //dbuga('keyUpTextField <b>e.keyCode:'+e.keyCode+'</b>');
+  //dbuga(' - e.target.value:'+e.target.value);
+  //dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
+  //dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
 
   if((Number(e.keyCode)==13)||(Number(e.keyCode)==9)){//enter go 
     if(Number(e.keyCode)==13){
       document.getElementById(uiObj[uiFocus+1].id).focus();
       }
     else{
-      dbuga(' - 9 is tab');
+      //dbuga(' - 9 is tab');
       }
     }
   else{
     spaceSprocket=e.target.value;
-    dbuga(' - PRE uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
+    //dbuga(' - PRE uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
     inputValueToUiObj();
-    dbuga(' - POST uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
+    //dbuga(' - POST uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
     }
   }
 
 function inputOnChange (e) {
-  dbuga('inputOnChange no action '+e.target.id+" value:"+e.target.value);
+  //dbuga('inputOnChange no action '+e.target.id+" value:"+e.target.value);
   }
 
 var allSelecting=false;
 
 function inputValueToUiObj(){
-  dbuga('inputValueToUiObj() uiFocus:'+uiFocus);
+  //dbuga('inputValueToUiObj() uiFocus:'+uiFocus);
   if(uiFocus == -1){return false;} // no selection
   var id=uiObj[uiFocus].id;
-  dbuga(' - id:'+id);
+  //dbuga(' - id:'+id);
   if(id.indexOf("Input") == -1){return false;} // not input
 
 
   var fieldType=uiObj[uiFocus].type;
   //var raw=document.getElementById(id).value;
   var raw=spaceSprocket;
-  dbuga(' - el.value:'+document.getElementById(id).value);
-  dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
+  //dbuga(' - el.value:'+document.getElementById(id).value);
+  //dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
 
   if(allSelecting){
-    dbuga('  allSelecting, so what?');
+    //dbuga('  allSelecting, so what?');
     }
   var cleaned="";
   var parts=raw.split("");
@@ -1888,7 +1889,7 @@ function inputValueToUiObj(){
     } 
   uiObj[uiFocus].value=cleaned;
   document.getElementById(id).value=cleaned;
-  dbuga('inputValueToUiObj() completed so userInput()');
+  //dbuga('inputValueToUiObj() completed so userInput()');
   userInput();
   }
 
@@ -1906,7 +1907,7 @@ function clearSearch(){
   rui.drawUx();
   }
 function searchDown(e){
-  dbuga('searchDown '+e.keyCode);
+  //dbuga('searchDown '+e.keyCode);
     if(e.keyCode==8){// delete
       e.preventDefault();
       if(searchTyping==false){
