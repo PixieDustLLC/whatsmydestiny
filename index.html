@@ -867,52 +867,9 @@ function init(){
   openTutorial();
   //dbuga('init() completed');
   }
-function createForm(){
-  for(var u=0; u<uiObj.length; u++){
-    if(uiObj[u].id.indexOf("Input")>-1){
-      createInput("formHolder", uiObj[u].id, g, uiObj[u].l,uiObj[u].t,uiObj[u].w,uiObj[u].h);
-      }      
-    }
-  }
-
-function clearSearch(){
-  //focusTextarea(); 
-  searchTyping=false; 
-  menus['search'].panes[0].contents[0].value='';
-  menus['search'].panes[0].selection=-1;
-  menus['search'].panes[1].selection=-1;
-  menus['search'].panes[2].selection=-1;
-  rui.drawUx();
-  }
-function searchDown(e){
-  //dbuga('searchDown '+e.keyCode);
-    if(e.keyCode==8){// delete
-      e.preventDefault();
-      if(searchTyping==false){
-        menus["search"].panes[0].contents[0].value="";
-        searchTyping=true;
-        }
-      else{
-        var str=menus["search"].panes[0].contents[0].value;
-        var parts=str.split("");
-        if(parts.length>0){
-          var junk=parts.pop();
-          }
-        menus["search"].panes[0].contents[0].value=parts.join('');
-        }
-      rui.drawUx();
-      }
-    if(e.keyCode==9){//tab?
-      e.preventDefault();
-      //setUiFocus((uiFocus+1)%uiObj.length);
-      }
-    if(e.keyCode==13){//cr
-      e.preventDefault();
-      searchContacts();
-      }
-  }
+// unused
 function appDown(e){
-  //dbuga('appDown ?????');
+  dbuga('appDown ?????');
 /*
     if(e.keyCode==8){// delete
       e.preventDefault();
@@ -944,7 +901,7 @@ function appDown(e){
   }
 
 function appTyped(keyCode){
-    //dbuga("appTyped should be disabled ???");
+    dbuga("appTyped should be disabled ???");
 /*
     var found=false;
     if(keyCode==13){//return
@@ -1001,62 +958,6 @@ function appTyped(keyCode){
 */
   }
 
-function textInputChanged(){
-  //dbuga('textInputChanged() uiFocus:'+uiFocus);
-  if(uiFocus == -1){return false;} // no selection
-  var id=uiObj[uiFocus].id;
-  //dbuga(' - id:'+id);
-  if(id.indexOf("Input") == -1){return false;} // not input
-
-
-  var fieldType=uiObj[uiFocus].type;
-  var raw=document.getElementById(id).value;
-
-  //dbuga(' - el.value:'+document.getElementById(id).value);
-  //dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
-
-  if(allSelecting){
-    //dbuga('all selecting, so what?');
-    }
-  var cleaned="";
-  var parts=raw.split("");
-  for (var c=0; c<parts.length; c++){
-    var char=parts[c];
-    var type="";
-    if("abcdefghijklmnopqrstuvwxyz -".indexOf(char)>-1){
-      type="alpha";
-      }
-    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(char)>-1){
-      type="alpha";
-      char=char.toLowerCase();
-      }
-    if("0123456789".indexOf(char)>-1){
-      type="numeric";
-      }
-    if("'./=`!@#$%^&*+?_{|}~".indexOf(char)>-1){
-      type="char";
-      }
-    //dbuga(type+" "+char);
-    if((char != "")){// valid entry
-      if(uiFocus==1){firstChanged=true;}
-      if(uiFocus==2){middleChanged=true;}
-      if(uiFocus==3){lastChanged=true;}
-      if(uiFocus==4){currentChanged=true;}
-      if((uiFocus==1)||(uiFocus==2)||(uiFocus==3)){
-        if(char==" "){char="-";}// replace spaces with hyphen in birth name fields
-        }
-      if(fieldType.indexOf(type)>-1){// valid
-        if(cleaned.length<uiObj[uiFocus].limit){
-          cleaned+=char;
-          }
-        }
-      }
-    } 
-  uiObj[uiFocus].value=cleaned;
-  document.getElementById(id).value=cleaned;
-  //dbuga('textInputChanged() completed so userInput()');
-  userInput();
-  }
 
 var searchTyping=false;
 function searchTyped(keyCode){
@@ -1569,7 +1470,9 @@ var hideKeyboard = function() {
  for(var i=0; i < inputs.length; i++) {
   inputs[i].blur();
  }
- Immersify.enableSticky(immersifySuccess, immersifyError);
+  if(android){
+   Immersify.enableSticky(immersifySuccess, immersifyError);
+   }
 };
 function immersifySuccess(){
   //dbuga('immersifySuccess()');
@@ -1842,6 +1745,15 @@ var valueWidth=reportGrid*4;
 var metaX=reportGrid*16;
 var metaWidth=reportGrid*22;
 
+
+function createForm(){
+  for(var u=0; u<uiObj.length; u++){
+    if(uiObj[u].id.indexOf("Input")>-1){
+      createInput("formHolder", uiObj[u].id, g, uiObj[u].l,uiObj[u].t,uiObj[u].w,uiObj[u].h);
+      }      
+    }
+  }
+
 function createInput(parentId, id, grid, x,y,across,down){
   var input = document.createElement("input");
   input.type = "text";
@@ -1853,94 +1765,161 @@ function createInput(parentId, id, grid, x,y,across,down){
   input.style.height=down*grid+"px";
   var container=document.getElementById(parentId);
   container.appendChild(input);
-  input.addEventListener("focus", inputFocus, true);
-  input.addEventListener("blur", inputBlur, true);
-  input.addEventListener("keyup", keyUpTextField, false);
-  input.addEventListener("keydown", keyDownTextField, false);
-/*
-  $(document.body).on('keypress', function(e) {
-    e.preventDefault(); 
-    lastPress=e.keyCode;
-    if(lastPress==0){return false;}
-    if(menus["search"].selected){
-      searchTyped(lastPress);
-      }
-    else{
-      appTyped(lastPress);
-      }
-    });
-  $(document.body).on('keydown', function(e) {
-    
-    lastDown=e.keyCode;
-    if(menus["search"].selected){
-      searchDown(e);
-      }
-    else{
-      appDown(e);
-      }
-    });
-*/
+  input.addEventListener("blur", inputOnBlur, false);
+  input.addEventListener("focus", inputOnFocus, false);
+  input.addEventListener("keydown", inputOnKeyDown, false);
+  input.addEventListener("change", inputOnChange, false);
+  input.addEventListener("keyup", inputOnKeyUp, false);
   }
-function changeTextField (e) {
-  //dbuga('changeTextField '+e.target.id+" "+e.target.value);
+function inputOnBlur(event){
+  dbug("inputOnBlur "+event.target.id);
   }
-function keyDownTextField(e){
-  //dbug('keyDownTextField');
-  
-/* clear don't work on fuuuuu androids! reverts at keyup wtf!?
-  e.preventDefault();
-  //dbuga('keyDownTextField keyCode:'+e.keyCode+' '+e.target.value);
-  if(uiFocus == -1){return false;} // no selection
-  if(uiObj[uiFocus].id.indexOf("Input") == -1){return false;} // not input
-  if(e.keyCode==9){return false;}// tab
-  if(e.keyCode==13){return false;}// cr
-  if(e.keyCode==16){return false;}// shift
-  var id=uiObj[uiFocus].id;
-  //dbuga(' pre - id:'+id+' value:'+document.getElementById(id).value);
-  //dbuga(' pre - uiFocus:'+uiFocus+' value:'+  uiObj[uiFocus].value);
-  uiObj[uiFocus].value="";
-  document.getElementById(id).value="";
-  //dbuga(' post - id:'+id+' value:'+document.getElementById(id).value);
-  //dbuga(' post - uiFocus:'+uiFocus+' value:'+  uiObj[uiFocus].value);
-
-  //typed=true;
-  //clearField=true;
-  //dbuga(' -  set typed to true...');
-*/
-  }
-function keyUpTextField (e) {
-  var id=uiObj[uiFocus].id;
-  //dbuga('keyUpTextField e.keyCode:'+e.keyCode);
-  //dbuga(' - e.target.value:'+e.target.value);
-  //dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
-  //dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
-
-  if((Number(e.keyCode)==13)||(Number(e.keyCode)==9)){//enter go 
-    //dbuga(' - 13 is enter go');
-    if(Number(e.keyCode)==13){
-      document.getElementById(uiObj[uiFocus+1].id).focus();
-      }
-    }
-  else{
-    textInputChanged();
-    }
-  }
-var allSelecting=false;
-function inputFocus(event){
-  //dbug("focus "+event.target.id);
+function inputOnFocus(event){
+  dbuga("inputOnFocus "+event.target.id);
   for (var u=1; u<uiObj.length; u++){// skip meta area
     if(uiObj[u].id==event.target.id){
       allSelecting=true;
       setUiFocus(u);
-      //event.target.value="";
       document.getElementById(uiObj[u].id).value="";
       //uiObj[u].value="";
       }
     }
+  dbuga(' - completed document.activeElement:'+document.activeElement.id);
   }
-function inputBlur(event){
-  //dbuga("blur "+event.target.id);
+
+function inputOnKeyDown(e){
+  dbuga('inputOnKeyDown no action');
   }
+
+function inputOnKeyUp(e){
+  var id=uiObj[uiFocus].id;
+  dbuga('keyUpTextField <b>e.keyCode:'+e.keyCode+'</b>');
+  dbuga(' - e.target.value:'+e.target.value);
+  dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
+  dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
+
+  if((Number(e.keyCode)==13)||(Number(e.keyCode)==9)){//enter go 
+    if(Number(e.keyCode)==13){
+      document.getElementById(uiObj[uiFocus+1].id).focus();
+      }
+    else{
+      dbuga(' - 9 is tab');
+      }
+    }
+  else{
+    inputValueToUiObj();
+    }
+  }
+
+function inputOnChange (e) {
+  dbuga('inputOnChange no action '+e.target.id+" value:"+e.target.value);
+  }
+
+var allSelecting=false;
+
+function inputValueToUiObj(){
+  dbuga('inputValueToUiObj() uiFocus:'+uiFocus);
+  if(uiFocus == -1){return false;} // no selection
+  var id=uiObj[uiFocus].id;
+  dbuga(' - id:'+id);
+  if(id.indexOf("Input") == -1){return false;} // not input
+
+
+  var fieldType=uiObj[uiFocus].type;
+  var raw=document.getElementById(id).value;
+
+  dbuga(' - el.value:'+document.getElementById(id).value);
+  dbuga(' - uiObj['+uiFocus+'].value:'+  uiObj[uiFocus].value);
+
+  if(allSelecting){
+    dbuga('  allSelecting, so what?');
+    }
+  var cleaned="";
+  var parts=raw.split("");
+  for (var c=0; c<parts.length; c++){
+    var char=parts[c];
+    var type="";
+    if("abcdefghijklmnopqrstuvwxyz -".indexOf(char)>-1){
+      type="alpha";
+      }
+    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(char)>-1){
+      type="alpha";
+      char=char.toLowerCase();
+      }
+    if("0123456789".indexOf(char)>-1){
+      type="numeric";
+      }
+    if("'./=`!@#$%^&*+?_{|}~".indexOf(char)>-1){
+      type="char";
+      }
+    //dbuga(type+" "+char);
+    if((char != "")){// valid entry
+      if(uiFocus==1){firstChanged=true;}
+      if(uiFocus==2){middleChanged=true;}
+      if(uiFocus==3){lastChanged=true;}
+      if(uiFocus==4){currentChanged=true;}
+      if((uiFocus==1)||(uiFocus==2)||(uiFocus==3)){
+        if(char==" "){char="-";}// replace spaces with hyphen in birth name fields
+        }
+      if(fieldType.indexOf(type)>-1){// valid
+        if(cleaned.length<uiObj[uiFocus].limit){
+          cleaned+=char;
+          }
+        }
+      }
+    } 
+  uiObj[uiFocus].value=cleaned;
+  document.getElementById(id).value=cleaned;
+  dbuga('inputValueToUiObj() completed so userInput()');
+  userInput();
+  }
+
+
+
+
+
+function clearSearch(){
+  //focusTextarea(); 
+  searchTyping=false; 
+  menus['search'].panes[0].contents[0].value='';
+  menus['search'].panes[0].selection=-1;
+  menus['search'].panes[1].selection=-1;
+  menus['search'].panes[2].selection=-1;
+  rui.drawUx();
+  }
+function searchDown(e){
+  dbuga('searchDown '+e.keyCode);
+    if(e.keyCode==8){// delete
+      e.preventDefault();
+      if(searchTyping==false){
+        menus["search"].panes[0].contents[0].value="";
+        searchTyping=true;
+        }
+      else{
+        var str=menus["search"].panes[0].contents[0].value;
+        var parts=str.split("");
+        if(parts.length>0){
+          var junk=parts.pop();
+          }
+        menus["search"].panes[0].contents[0].value=parts.join('');
+        }
+      rui.drawUx();
+      }
+    if(e.keyCode==9){//tab?
+      e.preventDefault();
+      //setUiFocus((uiFocus+1)%uiObj.length);
+      }
+    if(e.keyCode==13){//cr
+      e.preventDefault();
+      searchContacts();
+      }
+  }
+
+
+
+
+
+
 function blankContext(ctx, color, grid, across, down){
 
 
