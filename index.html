@@ -1548,7 +1548,10 @@ function randomColor(){
   }
 var frames=0;
 function tick(timestamp){
-  if(uiObj[uiFocus].id.indexOf('Input') == -1){redrawAll();}
+  if(uiFocus == -1){redrawAll();}
+  else{
+    if(uiObj[uiFocus].id.indexOf('Input') == -1){redrawAll();}
+    }
   //canv.width=viewportWidth;
   frames++;
   window.requestAnimationFrame(tick);
