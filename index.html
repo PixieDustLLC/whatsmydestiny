@@ -1047,7 +1047,7 @@ var unhideLeft=19;
 var hideTop=-2;
 var unhideTop=5;
 function setupLocalStorage(){
-  //dbuga('setupLocalStorage()');
+  dbuga('setupLocalStorage()');
   if(localStorage.getItem("reading") === null) {
     //dbuga('setupLocalStorage()3 reading null');
     localStorage.setItem("reading", JSON.stringify(reading));
@@ -1416,6 +1416,7 @@ function updateIdValue(id, value){
     if(uiObj[u].id==id){
       uiObj[u].value=value;
       if(id.indexOf('Input')>-1){
+        dbuga('localStorage set '+id+' to '+value);
         document.getElementById(id).value=value;
         }
       }
@@ -1784,6 +1785,7 @@ function inputOnBlur(event){
   dbuga("inputOnBlur "+event.target.id);
   }
 function inputOnFocus(event){
+  spaceSprocket="";
   dbug("inputOnFocus "+event.target.id);
   for (var u=1; u<uiObj.length; u++){// skip meta area
     if(uiObj[u].id==event.target.id){
@@ -1791,10 +1793,12 @@ function inputOnFocus(event){
       setUiFocus(u);
       document.getElementById(uiObj[u].id).value="";
       event.target.value="";
-      //uiObj[u].value="";
+      //uiObj[u].value=""; // don't clear the data 
       }
     }
-  dbuga(' -- '+document.activeElement.id+' value:'+document.getElementById(uiObj[u].id).value);
+  dbuga(' -- uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
+  dbuga(' -- el('+uiObj[uiFocus].id+').value:'+document.getElementById(uiObj[uiFocus].id).value);
+  dbuga(' -- document.activeElement.value:'+document.activeElement.value);
   dbuga(' -- event.target.value:'+event.target.value);
   }
 
