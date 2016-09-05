@@ -31,14 +31,35 @@
 <script>
 document.addEventListener('deviceready', this.onDeviceReady, false);
 function onDeviceReady(){
-  //dbug('onDeviceReady()');
+  dbug('onDeviceReady()');
   web=false;
   if(device.platform=="Android"){
     android=true;
     Immersify.enableSticky(immersifySuccess, immersifyError);
     }
   if(device.platform=="iOS"){ios=true;}
-  }
+
+    var options = new ContactFindOptions();
+    options.filter = "";          // empty search string returns all contacts
+    options.multiple = true;      // return multiple results
+    filter = ["displayName", "name"];   // return contact.displayName 
+    navigator.contacts.find(filter, onSuccess, onError, options);
+}
+
+// onSuccess: Get a snapshot of the current contacts
+
+function onSuccess(contacts) {
+  dbuga('success');
+       for (var i = 0; i < contacts.length; i++) {
+            dbuga("Display Name = " + contacts[i].displayName);
+        }
+}
+
+// onError: Failed to get the contacts
+
+function onError(contactError) {
+     alert('onError!');
+}
 var web=true;
 var ios=false;
 var android=false;
@@ -2837,16 +2858,24 @@ function searchContacts(){
   menus['search'].panes[2].selection=-1;
   rui.drawUx();
   dbuga('searchContacts() fired');
-var options      = new ContactFindOptions();
-options.filter   = menus["search"].panes[0].contents[0].value;
-options.multiple = true;
-options.desiredFields = [];
-var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.nickname];
-navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options);
+  var options      = new ContactFindOptions();
+  options.filter   = menus["search"].panes[0].contents[0].value;
+  options.multiple = true;
+  options.desiredFields = [];
+/*
+  var fields = [
+    navigator.contacts.fieldType.displayName, 
+    navigator.contacts.fieldType.name,
+    navigator.contacts.fieldType.nickname
+  ];
+*/
+  var fields = ["displayName", "name"];
+  navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options);
+  dbuga('searchContacts() completed');
   }
 function contactsFindSuccess(contacts){
   menus['search'].panes[2].selection=-1;
-  //dbuga('Found ' + contacts.length + ' contacts.');
+  dbuga('Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var results=[];
   for (var c=0; c<contactsArray.length ; c++){
@@ -2866,7 +2895,8 @@ function contactsFindSuccess(contacts){
     if(contactsArray[c].nickname !=""){nameLabel+=" - "+contactsArray[c].nickname;}
     results.push(nameLabel);
     }
-  rui.insertResultsMenuPane(results, "search", 2)
+  rui.insertResultsMenuPane(results, "search", 2);
+  dbuga('contactsFindSuccess completed');
 };
 function contactsFindError(contactError) {
     alert('onError!');
