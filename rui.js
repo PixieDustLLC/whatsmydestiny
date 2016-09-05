@@ -170,6 +170,7 @@ insertResultsMenuPane:function(results, menuName, paneNum){
   },
 
 drawMenus:function(){
+  //traceUi=true;
   rui.mctx.fillStyle=rui.surroundColor;
  
   for(var m=0; m<menuKeys.length; m++){
@@ -218,7 +219,6 @@ drawMenus:function(){
         menus[menuKeys[m]].panes[p].r=px+rui.g*panes[p].width;
         menus[menuKeys[m]].panes[p].t=py;
         menus[menuKeys[m]].panes[p].b=py+rui.g*height;
-
         if(traceUi){
           //surround for example
           rui.mctx.strokeStyle="#f00";
@@ -235,6 +235,13 @@ drawMenus:function(){
             menus[menuKeys[m]].panes[p].contents[c].r=px+rui.g*contents[c].x+rui.g*contents[c].w; 
             menus[menuKeys[m]].panes[p].contents[c].t=py+rui.g*contents[c].y;
             menus[menuKeys[m]].panes[p].contents[c].b=py+rui.g*contents[c].y+rui.g*contents[c].h;
+            if(menus[menuKeys[m]].panes[p].contents[c].type=="input"){
+              var el=document.getElementById('searchInput');
+              el.style.top=(py+rui.g*contents[c].y)+"px";
+              el.style.left=(px+rui.g*contents[c].x)+"px";
+              el.style.height=(rui.g*contents[c].h)+"px";
+              el.style.width=(rui.g*contents[c].w)+"px";
+              }
             if(panes[p].selection==c){
               rui.mctx.fillStyle=rui.selectColor;
               rui.mctx.shadowColor = '#888';

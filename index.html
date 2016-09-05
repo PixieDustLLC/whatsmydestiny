@@ -1764,6 +1764,11 @@ function createForm(){
       }      
     }
   }
+//       {"x":0, "y":0, "w":28, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"input", "func":"clearSearch()", "value":"search input"},
+function createSearch(){
+  console.log(menus.search.panes[0].contents[0]);
+  createInput("menuHolder", "searchInput", 10, -1,-1,1,1);
+  }
 
 function createInput(parentId, id, grid, x,y,across,down){
   var input = document.createElement("input");
@@ -1793,49 +1798,71 @@ function inputOnBlur(event){
   }
 function inputOnFocus(event){
   spaceSprocket="";
-  //dbug("inputOnFocus "+event.target.id);
-  for (var u=1; u<uiObj.length; u++){// skip meta area
-    if(uiObj[u].id==event.target.id){
-      allSelecting=true;
-      setUiFocus(u);
-      document.getElementById(uiObj[u].id).value="";
-      event.target.value="";
-      //uiObj[u].value=""; // don't clear the data 
-      }
+  if(event.target.id=="searchInput"){
+    searchOnFocus(event);
     }
-  //dbuga(' -- uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
-  //dbuga(' -- el('+uiObj[uiFocus].id+').value:'+document.getElementById(uiObj[uiFocus].id).value);
-  //dbuga(' -- document.activeElement.value:'+document.activeElement.value);
-  //dbuga(' -- event.target.value:'+event.target.value);
-  redrawAll();
+  else{
+    //dbug("inputOnFocus "+event.target.id);
+    for (var u=1; u<uiObj.length; u++){// skip meta area
+      if(uiObj[u].id==event.target.id){
+        allSelecting=true;
+        setUiFocus(u);
+        document.getElementById(uiObj[u].id).value="";
+        event.target.value="";
+        //uiObj[u].value=""; // don't clear the data 
+        }
+      }
+    //dbuga(' -- uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
+    //dbuga(' -- el('+uiObj[uiFocus].id+').value:'+document.getElementById(uiObj[uiFocus].id).value);
+    //dbuga(' -- document.activeElement.value:'+document.activeElement.value);
+    //dbuga(' -- event.target.value:'+event.target.value);
+    redrawAll();
+    }
   }
 
 function inputOnKeyDown(e){
   //dbuga('inputOnKeyDown no action');
   }
-
-function inputOnKeyUp(e){
-  var id=uiObj[uiFocus].id;
-  //dbuga('keyUpTextField <b>e.keyCode:'+e.keyCode+'</b>');
-  //dbuga(' - e.target.value:'+e.target.value);
-  //dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
-  //dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
-
-  if((Number(e.keyCode)==13)||(Number(e.keyCode)==9)){//enter go 
-    if(Number(e.keyCode)==13){
-      document.getElementById(uiObj[uiFocus+1].id).focus();
-      redrawAll();
-      }
-    else{
-      //dbuga(' - 9 is tab');
-      redrawAll();
-      }
+function searchKeyUp(e){
+  //dbuga('searchKeyUp(e)');
+  if((Number(e.keyCode)==13)||(Number(e.keyCode)==9)){
+    searchContacts();
     }
   else{
-    spaceSprocket=e.target.value;
-    //dbuga(' - PRE uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
-    inputValueToUiObj();
-    //dbuga(' - POST uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
+    menus["search"].panes[0].contents[0].value=e.target.value;
+    rui.drawUx();
+    }
+  }
+function searchOnFocus(e){
+  //dbuga('searchOnFocus(e)');
+  }
+function inputOnKeyUp(e){
+  if(e.target.id=="searchInput"){
+    searchKeyUp(e);
+    }
+  else{
+    var id=uiObj[uiFocus].id;
+    //dbuga('keyUpTextField <b>e.keyCode:'+e.keyCode+'</b>');
+    //dbuga(' - e.target.value:'+e.target.value);
+    //dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
+    //dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
+
+    if((Number(e.keyCode)==13)||(Number(e.keyCode)==9)){//enter go 
+      if(Number(e.keyCode)==13){
+        document.getElementById(uiObj[uiFocus+1].id).focus();
+        redrawAll();
+        }
+      else{
+        //dbuga(' - 9 is tab');
+        redrawAll();
+        }
+      }
+    else{
+      spaceSprocket=e.target.value;
+      //dbuga(' - PRE uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
+      inputValueToUiObj();
+      //dbuga(' - POST uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
+      }
     }
   }
 
@@ -2599,6 +2626,7 @@ function updateClientLayout(){
   canv.height=rui.wh-yOffset;
   canv.style.top=yOffset+"px";
   createForm();
+  createSearch();
   setupLocalStorage();
 
 }
@@ -2609,12 +2637,15 @@ function updateClientLayout(){
 //if(target=="menu"){rui.menuEvent(type, touches);}
 function searchToggled(){
   if(menus["search"].selected){
-    searchTyping=false;
+    document.getElementById('searchInput').focus();
+    //searchTyping=false;
     //typed=false;
     //dbuga('searchToggled sets typed to false');
     //focusTextarea();
     }
   else{
+    document.getElementById('searchInput').blur();
+    document.getElementById('searchInput').style.top="-1000px";
 /*
     if(uiFocus>-1){
       if(uiObj[uiFocus].id.indexOf("Input")>-1){focusTextarea();}
@@ -3020,7 +3051,7 @@ function focusTextarea(){
 <style>
 #mainCanvas{background-color:#eeeeee; z-index:2; display:none;}
 #formHolder{position:absolute; z-index:3;}
-.textInput{position:absolute; z-index:; background-color:rgba(0,0,0,0); color:white; opacity:0;}
+.textInput{position:absolute; z-index:; background-color:rgba(255,0,0,.5); color:white; opacity:.5;}
 #reportCanvas{background-color:#ee9966; z-index:4;}
 #menuHolder{background-color:#ee99ff; z-index:5;}
 @font-face {
