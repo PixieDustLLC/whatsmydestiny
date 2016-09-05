@@ -2922,16 +2922,16 @@ var middleChanged=false;
 var lastChanged=false;
 var currentChanged=false;
 function saveContact(){
-  //dbuga("saveContact() "+selectedContactId);
+  dbuga("saveContact() "+selectedContactId);
   var contact;
   if(selectedContactId!=-1){
     if((firstChanged)&&(middleChanged)&&(lastChanged)&&(currentChanged)){
-          //dbuga('changed all 4 names so save new contact');
+          dbuga('changed all 4 names so save new contact');
           selectedContactId=-1;
       }
     }
   if(selectedContactId==-1){
-    // create a new contact object
+    dbuga('create a new contact object');
     contact = navigator.contacts.create();
     contact.phoneNumbers=[];
     contact.emails=[];
@@ -2940,7 +2940,7 @@ function saveContact(){
     contact=selectedContact;
     }
   if(contact.phoneNumbers===null){
-    //dbuga('CAUGHT no emails in selectContact('+id+')');
+    dbuga('CAUGHT no emails in selectContact('+id+')');
     contact.phoneNumbers=[];
     }
   if(contact.phoneNumbers.length>0){
@@ -2951,7 +2951,7 @@ function saveContact(){
     contact.phoneNumbers.push(phoneNumber);
     }
   if(contact.emails===null){
-    //dbuga('CAUGHT no emails in saveContact()');
+    dbuga('CAUGHT no emails in saveContact()');
     contact.emails=[];
     }
   if(contact.emails.length>0){
@@ -2994,10 +2994,10 @@ function saveContact(){
     }
   
   contact.save(contactsSaveSuccess,contactsSaveError);
-  //dbuga("contactsSave completed "+validParts.length);
+  dbuga("contactsSave completed "+validParts.length);
   }
 function contactsSaveSuccess(contact) {
-  //dbuga("contactsSaveSuccess");
+  dbuga("contactsSaveSuccess");
   clearReading();// prevents double save
   //added july 2nd to prevent out of date search results
   searchContacts(); 
