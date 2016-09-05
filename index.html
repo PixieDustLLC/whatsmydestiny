@@ -2748,7 +2748,7 @@ function emailWes(){
   window.setTimeout("window.open('mailto:wes@weshamilton.com?subject=Request from Whats My Destiny app', '_system')", 100);
   }
 function selectResult(id){
-  //console.log("selectResult "+id);
+  console.log("selectResult "+id);
   menus["search"].selected=false;
   barButtons[2].selected=false;
   rui.drawUx();
@@ -2789,7 +2789,7 @@ function selectResult(id){
     }
   
   if(contact.birthday != ""){
-    //dbuga("contact.birthday "+contact.birthday);
+    dbuga("contact.birthday "+contact.birthday);
     var birthdayObj=new Date(Number(contact.birthday));
     var dd=birthdayObj.getDate();
     if(dd<10){dd="0"+dd;}
@@ -2801,14 +2801,14 @@ function selectResult(id){
   updateIdValue("birthdayInput", contact.birthday);
   // convert to mmddyyyy
   if(contact.emails===null){
-    //dbuga('CAUGHT no emails in selectContact('+id+')');
+    dbuga('CAUGHT no emails in selectContact('+id+')');
     contact.emails=[];
     }
   if(contact.emails.length>0){updateIdValue("emailInput", contact.emails[0].value);}
   else{updateIdValue("emailInput", "");}
   var cleaned="";
   if(contact.phoneNumbers===null){
-    //dbuga('CAUGHT no emails in selectContact('+id+')');
+    dbuga('CAUGHT no emails in selectContact('+id+')');
     contact.phoneNumbers=[];
     }
   if(contact.phoneNumbers.length>0){
@@ -2836,7 +2836,7 @@ function searchContacts(){
   menus['search'].panes[1].selection=-1;
   menus['search'].panes[2].selection=-1;
   rui.drawUx();
-  //dbuga('searchContacts() fired');
+  dbuga('searchContacts() fired');
 var options      = new ContactFindOptions();
 options.filter   = menus["search"].panes[0].contents[0].value;
 options.multiple = true;
@@ -2858,10 +2858,10 @@ function contactsFindSuccess(contacts){
     if(contactsArray[c].birthday===null){contactsArray[c].birthday="";}
     if(contactsArray[c].emails===null){contactsArray[c].emails=[];}
     if(contactsArray[c].phoneNumbers===null){contactsArray[c].phoneNumbers=[];}
-    //dbuga(" - "+c+" OKAY "+contactsArray[c].name.familyName);
-    //var name=JSON.stringify(contactsArray[c]);
+    dbuga(" - "+c+" OKAY "+contactsArray[c].name.familyName);
+    var name=JSON.stringify(contactsArray[c]);
     //name=name.replace(/\,/g, "<br>");
-    //dbuga(name);
+    dbuga(name);
     var nameLabel=contactsArray[c].name.givenName+" "+contactsArray[c].name.middleName+" "+contactsArray[c].name.familyName;
     if(contactsArray[c].nickname !=""){nameLabel+=" - "+contactsArray[c].nickname;}
     results.push(nameLabel);
@@ -2872,7 +2872,7 @@ function contactsFindError(contactError) {
     alert('onError!');
 };
 function attemptSaveContact(){
-  //dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
+  dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
   if(selectedContactId==-1){
     testDuplicate();
     }
@@ -2880,7 +2880,7 @@ function attemptSaveContact(){
   }
 var duplicateContact={};
 function testDuplicate(){
-  //dbuga('testDuplicate()');
+  dbuga('testDuplicate()');
   var options      = new ContactFindOptions();
   options.filter   = reading.firstNameInput;
   options.multiple = true;
@@ -2889,18 +2889,18 @@ function testDuplicate(){
   navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
   }
 function contactsTestSuccess(contacts){
-  //dbuga('testSuccess Found ' + contacts.length + ' contacts.');
+  dbuga('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
   for (var c=0; c<contactsArray.length ; c++){
-    //dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
+    dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
     if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
       matchedId=contactsArray[c].id;
       duplicateContact=contactsArray[c];
       }
-    //dbuga('contact Okay');
+    dbuga('contact Okay');
     }
-  //dbuga('matchedId='+matchedId);
+  dbuga('matchedId='+matchedId);
   if(matchedId>-1){
     var r = confirm("Duplicate found, Update?");
     if (r == true) {
