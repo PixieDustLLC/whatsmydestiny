@@ -1942,6 +1942,8 @@ function clearSearch(){
   menus['search'].panes[1].selection=-1;
   menus['search'].panes[2].selection=-1;
   rui.drawUx();
+  rui.toggleMenu('search');
+  hideKeyboard();
   }
 function searchDown(e){
   //dbuga('searchDown '+e.keyCode);
