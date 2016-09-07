@@ -14,22 +14,26 @@
 <description>Wes Hamilton Numerology</description>
 <gap:platform name="ios" />
 <gap:platform name="android" />
-
+<!--
 <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 <gap:plugin name="cordova-plugin-fullscreen" source="npm" />
 <plugin name="com.toluhta.immersify" spec="0.1.0" source="pgb" />
-
-<allow-navigation href="corepassion.com/*" />
 <gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
 <gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" version="1.2.0" />
+<plugin name="cordova-plugin-contacts" spec="1.1.0" source="pgb" />
+<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
+<gap:plugin name="org.apache.cordova.device" />
+<gap:plugin name="org.apache.cordova.media" />
+<gap:plugin name="org.apache.cordova.network-information" />
+<gap:plugin name="org.apache.cordova.inappbrowser" />
+
+-->
+<allow-navigation href="corepassion.com/*" />
 <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 <preference name="orientation" value="landscape" />
 <preference name="target-device" value="tablet" />
 <preference name="fullscreen" value="true" /> 
 
-<plugin name="cordova-plugin-contacts" spec="1.1.0" source="pgb" />
-
-<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
 <preference name="StatusBarOverlaysWebView" value="true" />
 <gap:config-file platform="ios" parent="UIStatusBarHidden">
     <true/>
@@ -112,11 +116,8 @@
 <splash src="res/p-xxhdpi.png" platform="android" qualifier="port-xxhdpi" />
 <splash src="res/p-xxxhdpi.png" platform="android" qualifier="port-xxxhdpi" />
 
-<plugin name="cordova-plugin-file" />
-<gap:plugin name="org.apache.cordova.device" />
-<gap:plugin name="org.apache.cordova.media" />
-<gap:plugin name="org.apache.cordova.network-information" />
-<gap:plugin name="org.apache.cordova.inappbrowser" />
+<!--
+-->
 <gap:config-file platform="android" parent="/manifest">
   <application android:debuggable="false" />
 </gap:config-file>
