@@ -170,6 +170,7 @@ insertResultsMenuPane:function(results, menuName, paneNum){
   },
 
 drawMenus:function(){
+  dbuga('drawMenus');
   //traceUi=true;
   rui.mctx.fillStyle=rui.surroundColor;
  
