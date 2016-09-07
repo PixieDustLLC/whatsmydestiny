@@ -1848,7 +1848,11 @@ function searchKeyUp(e){
   }
 function searchOnFocus(e){
   //dbuga('searchOnFocus(e)');
+              var el=document.getElementById('searchInput');
+              el.style.top="-1000px";
   }
+
+
 function inputOnKeyUp(e){
   if(e.target.id=="searchInput"){
     searchKeyUp(e);
