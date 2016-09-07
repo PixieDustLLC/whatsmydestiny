@@ -237,11 +237,13 @@ drawMenus:function(){
             menus[menuKeys[m]].panes[p].contents[c].t=py+rui.g*contents[c].y;
             menus[menuKeys[m]].panes[p].contents[c].b=py+rui.g*contents[c].y+rui.g*contents[c].h;
             if(menus[menuKeys[m]].panes[p].contents[c].type=="input"){
-              var el=document.getElementById('searchInput');
-              el.style.top=(py+rui.g*contents[c].y)+"px";
-              el.style.left=(px+rui.g*contents[c].x)+"px";
-              el.style.height=(rui.g*contents[c].h)+"px";
-              el.style.width=(rui.g*contents[c].w)+"px";
+              if(document.getElementById('searchInput').id != "searchInput"){
+                var el=document.getElementById('searchInput');
+                el.style.top=(py+rui.g*contents[c].y)+"px";
+                el.style.left=(px+rui.g*contents[c].x)+"px";
+                el.style.height=(rui.g*contents[c].h)+"px";
+                el.style.width=(rui.g*contents[c].w)+"px";
+                }
               }
             if(panes[p].selection==c){
               rui.mctx.fillStyle=rui.selectColor;
