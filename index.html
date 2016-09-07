@@ -1797,10 +1797,10 @@ function repositionInputs(){
   for (var u=1; u<uiObj.length; u++){// skip meta area
     var id=uiObj[u].id;
     if(id.indexOf("Input") > -1){
-      dbuga('id');
-      document.getElementById(id).style.backgroundColor="red";
-      document.getElementById(id).style.opacity="1";
-      document.getElementById(id).style.top=uiObj[u].t+"px";
+      //dbuga('id');
+      //document.getElementById(id).style.backgroundColor="red";
+      //document.getElementById(id).style.opacity="1";
+      document.getElementById(id).style.top=(uiObj[u].t*g+yOffset)+"px";
       }
     }
   }
