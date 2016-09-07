@@ -1793,10 +1793,22 @@ function createInput(parentId, id, grid, x,y,across,down){
   input.addEventListener("change", inputOnChange, false);
   input.addEventListener("keyup", inputOnKeyUp, false);
   }
+function repositionInputs(){
+  for (var u=1; u<uiObj.length; u++){// skip meta area
+    var id=uiObj[u].id;
+    if(id.indexOf("Input") > -1){
+      dbuga('id');
+      document.getElementById(id).style.backgroundColor="red";
+      document.getElementById(id).style.opacity="1";
+      document.getElementById(id).style.top=uiObj[u].t+"px";
+      }
+    }
+  }
 function inputOnBlur(event){
   //dbuga("inputOnBlur "+event.target.id);
   }
 function inputOnFocus(event){
+  repositionInputs();
   spaceSprocket="";
   if(event.target.id=="searchInput"){
     searchOnFocus(event);
@@ -1808,6 +1820,7 @@ function inputOnFocus(event){
         allSelecting=true;
         setUiFocus(u);
         document.getElementById(uiObj[u].id).value="";
+        document.getElementById(uiObj[u].id).style.top="-1000px";
         event.target.value="";
         //uiObj[u].value=""; // don't clear the data 
         }
