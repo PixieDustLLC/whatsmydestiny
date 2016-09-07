@@ -15,7 +15,7 @@
 <gap:platform name="ios" />
 <gap:platform name="android" />
 
-
+<!-- should be okay -->
 <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 <gap:plugin name="cordova-plugin-fullscreen" source="npm" />
 <plugin name="com.toluhta.immersify" spec="0.1.0" source="pgb" />
