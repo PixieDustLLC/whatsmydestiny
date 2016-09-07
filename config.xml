@@ -124,7 +124,7 @@
 <splash src="res/p-xxxhdpi.png" platform="android" qualifier="port-xxxhdpi" />
 
 
-<gap:plugin name="org.apache.cordova.device" version="0.2.12" />
+<gap:plugin name="org.apache.cordova.device" />
 <gap:plugin name="org.apache.cordova.media" />
 <gap:plugin name="org.apache.cordova.network-information" />
 <gap:plugin name="org.apache.cordova.inappbrowser" />
