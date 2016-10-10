@@ -17,6 +17,7 @@
 
 <!-- should be okay -->
 <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+<plugin name="cordova-plugin-whitelist" source="npm" spec="1.2.2" />
 <gap:plugin name="cordova-plugin-fullscreen" source="npm" />
 <plugin name="com.toluhta.immersify" spec="0.1.0" source="pgb" />
 <gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
@@ -54,7 +55,9 @@
     <false/>
 </gap:config-file>
 
-<access origin="*" />
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <access origin="*" /> 
 
 
 <feature name="http://api.phonegap.com/1.0/network" />
