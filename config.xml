@@ -58,6 +58,8 @@
     <allow-navigation href="*" />
     <allow-intent href="*" />
     <access origin="*" /> 
+<access origin="http://whatsmydestiny.com" />
+<access origin="https://www.google-analytics.com" />
 
 
 <feature name="http://api.phonegap.com/1.0/network" />
