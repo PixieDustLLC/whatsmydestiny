@@ -1121,7 +1121,7 @@ function userInput(){
     reading.personalYear=reduceNumStr(""+personalYearNum, "personalYear");
   
     reading.globalMonth=nowDate.getMonth()+1;
-    dbuga("reading.globalMonth "+reading.globalMonth);
+    //dbuga("reading.globalMonth "+reading.globalMonth);
     reading.globalMonthVal=reduceNumStr(""+reading.globalMonth, "globalMonth");
 
     reading.personalMonthNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal);
@@ -2559,7 +2559,7 @@ function specialize(str, debug){//turns 16 into 16/7 but 31 stays 31
     }
   }
 function reduceNumStr(str, debug){//"04021968"
-  dbuga("reduceNumStr("+str+", "+debug+") str.length="+str.length+" ");
+  //dbuga("reduceNumStr("+str+", "+debug+") str.length="+str.length+" ");
   var masterNum="";
   var karmicNum="";
   if((str=="11")||(str=="22")||(str=="33")){masterNum=str+"/";}
@@ -2575,9 +2575,9 @@ function reduceNumStr(str, debug){//"04021968"
     if((sum==11)||(sum==22)||(sum==33)){masterNum=sum+"/";}
     if((sum==13)||(sum==14)||(sum==16)||(sum==19)){karmicNum=sum+"/";}
     str=""+sum+"";
-    console.log(" - "+str+"="+str.length);
+    //console.log(" - "+str+"="+str.length);
     }
-  if(safety==0){dbuga(debug+" reduce error str="+str);}
+  if(safety==0){alert(debug+" reduce error str="+str);}
   return masterNum+karmicNum+str;
   }
 function unmaster(str){
