@@ -1121,12 +1121,14 @@ function userInput(){
     reading.personalYear=reduceNumStr(""+personalYearNum, "personalYear");
   
     reading.globalMonth=nowDate.getMonth()+1;
+    dbuga("reading.globalMonth "+reading.globalMonth);
     reading.globalMonthVal=reduceNumStr(""+reading.globalMonth, "globalMonth");
+
     reading.personalMonthNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal);
     reading.personalMonth=reduceNumStr(""+reading.personalMonthNum, "personalMonth");
     reading.globalDay=nowDate.getDate();
     reading.globalDayVal=reduceNumStr(""+reading.globalDay, "globalDay");
-    reading.personalDayNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal)+Number(reading.globalDay);
+    reading.personalDayNum=Number(master(reading.personalYear))+Number(reading.globalMonth)+Number(reading.globalDay);
     reading.personalDay=reduceNumStr(reading.personalDayNum+"", "personalDayNum");
     var m=Number(unmaster(reduceNumStr(reading.birthMM)), "m");
     var d=Number(unmaster(reduceNumStr(reading.birthDD)), "d");
