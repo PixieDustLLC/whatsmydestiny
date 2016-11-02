@@ -1109,10 +1109,10 @@ function userInput(){
     reading.dayOfWeekNum=reading.birthdateDate.getDay();
     reading.dayOfWeekStr=daysOfWeek[reading.dayOfWeekNum];
     //reading.dayOfBirth=specialize(reading.birthDD);//1-31 including 11/2...
-    reading.dayOfBirth=reduceNumStr(""+reading.birthDD);//1-31 including 11/2...
+    reading.dayOfBirth=reduceNumStr(""+reading.birthDD, "birthDD");//1-31 including 11/2...
     
     reading.ageInYears=getAge(reading.birthdateDate);
-    reading.birthSum=Number(unmaster(reduceNumStr(reading.birthMM)))+Number(unmaster(reduceNumStr(reading.birthDD)))+Number(unmaster(reduceNumStr(reading.birthYYYY)));
+    reading.birthSum=Number(unmaster(reduceNumStr(reading.birthMM, "birthMM")))+Number(unmaster(reduceNumStr(reading.birthDD, "birthDD")))+Number(unmaster(reduceNumStr(reading.birthYYYY, "birthYYYY")));
     reading.birthpath=reduceNumStr(""+reading.birthSum, "reading.birthSum");
   //personal
     reading.globalYear=nowDate.getFullYear();
@@ -1127,7 +1127,7 @@ function userInput(){
     reading.globalDay=nowDate.getDate();
     reading.globalDayVal=reduceNumStr(""+reading.globalDay, "globalDay");
     reading.personalDayNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal)+Number(reading.globalDay);
-    reading.personalDay=reduceNumStr(reading.personalDayNum+"");
+    reading.personalDay=reduceNumStr(reading.personalDayNum+"", "personalDayNum");
     var m=Number(unmaster(reduceNumStr(reading.birthMM)), "m");
     var d=Number(unmaster(reduceNumStr(reading.birthDD)), "d");
     var y=Number(unmaster(reduceNumStr(reading.birthYYYY)), "y");
@@ -1201,10 +1201,10 @@ function userInput(){
     for(var n=1; n<=9; n++){
       if(reading.counts[n]==0){reading.karmicArray.push(""+n);}
       }
-    reading.physicalPlane=reduceNumStr(""+(reading.counts[4]+reading.counts[5]));
-    reading.mentalPlane=reduceNumStr(""+(reading.counts[1]+reading.counts[8]));
-    reading.emotionalPlane=reduceNumStr(""+(reading.counts[2]+reading.counts[3]+reading.counts[6]));
-    reading.intuitivePlane=reduceNumStr(""+(reading.counts[7]+reading.counts[9]));
+    reading.physicalPlane=reduceNumStr(""+(reading.counts[4]+reading.counts[5]), "physicalPlane");
+    reading.mentalPlane=reduceNumStr(""+(reading.counts[1]+reading.counts[8]), "mentalPlane");
+    reading.emotionalPlane=reduceNumStr(""+(reading.counts[2]+reading.counts[3]+reading.counts[6]), "emotionalPlane");
+    reading.intuitivePlane=reduceNumStr(""+(reading.counts[7]+reading.counts[9]), "intuitivePlane");
   
   if((reading.birthdayInput.length==8)&&(reading.firstNameInput != "")&&(reading.lastNameInput != "")){
     // fully valid
