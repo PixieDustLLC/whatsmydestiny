@@ -1124,7 +1124,7 @@ function userInput(){
     //dbuga("reading.globalMonth "+reading.globalMonth);
     reading.globalMonthVal=reduceNumStr(""+reading.globalMonth, "globalMonth");
 
-    reading.personalMonthNum=Number(master(reading.personalYear))+Number(reading.globalMonthVal);
+    reading.personalMonthNum=Number(master(reading.personalYear))+Number(reading.globalMonth);
     reading.personalMonth=reduceNumStr(""+reading.personalMonthNum, "personalMonth");
     reading.globalDay=nowDate.getDate();
     reading.globalDayVal=reduceNumStr(""+reading.globalDay, "globalDay");
@@ -1133,19 +1133,14 @@ function userInput(){
     var m=Number(unmaster(reduceNumStr(reading.birthMM)), "m");
     var d=Number(unmaster(reduceNumStr(reading.birthDD)), "d");
     var y=Number(unmaster(reduceNumStr(reading.birthYYYY)), "y");
-      //console.log(m+" "+d+" "+y);
     reading.firstPinnacle=reduceNumStr(""+(m+d), "firstPinnacle");
     reading.secondPinnacle=reduceNumStr(""+(d+y), "secondPinnacle");
     reading.thirdPinnacle=reduceNumStr(""+sumArray([reading.firstPinnacle,reading.secondPinnacle]), "thirdPinnacle");
     reading.fourthPinnacle=reduceNumStr(""+(m+y), "fourthPinnacle");
     reading.firstChallenge=reduceNumStr(""+Math.abs(m-d), "firstChallenge");
-    //console.log("reading.firstChallenge "+reading.firstChallenge);
     reading.secondChallenge=reduceNumStr(""+Math.abs(d-y), "secondChallenge");
-    //console.log("reading.secondChallenge "+reading.secondChallenge);
     reading.thirdChallenge=reduceNumStr(""+Math.abs(Number(unmaster(reading.firstChallenge))-Number(unmaster(reading.secondChallenge))), "thirdChallenge");
-    //console.log("reading.thirdChallenge "+reading.thirdChallenge);
     reading.fourthChallenge=reduceNumStr(""+Math.abs(m-y), "fourthChallenge");
-    //console.log("reading.fourthChallenge "+reading.fourthChallenge);
 // june 17 new ages
     reading.firstAgeStart=0;
     reading.firstAgeEnd=36-Number(unmaster(reading.birthpath));
