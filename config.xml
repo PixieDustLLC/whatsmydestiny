@@ -23,16 +23,16 @@
 <!-- known bad - update
 <plugin name="com.toluhta.immersify" spec="0.1.0" source="pgb" />
 <plugin name="cordova-plugin-contacts" spec="1.1.0" source="pgb" />
+<gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
+<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" version="1.2.0" />
+<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
+<gap:plugin name="org.apache.cordova.device" />
 -->
 <!-- test -->
 <plugin name="cordova-plugin-inappbrowser" source="npm" />
 <plugin name="cordova-plugin-media" source="npm" spec="1.0.1" />
 <plugin name="cordova-plugin-network-information" source="npm" spec="1.0.1" />
 
-<gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
-<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" version="1.2.0" />
-<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
-<gap:plugin name="org.apache.cordova.device" />
 
 <!-- bad - dumped
 <gap:plugin name="org.apache.cordova.media" />
