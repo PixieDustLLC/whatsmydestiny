@@ -32,12 +32,13 @@
 <gap:plugin name="org.apache.cordova.device" />
 -->
 <!-- test -->
-<gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
 
 <!-- bad - dumped
 <gap:plugin name="org.apache.cordova.media" />
 <gap:plugin name="org.apache.cordova.inappbrowser" />
 <gap:plugin name="org.apache.cordova.network-information" />
+
+<gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
 
 -->
 
