@@ -32,12 +32,14 @@
 <gap:plugin name="org.apache.cordova.device" />
 -->
 <!-- test -->
+<plugin name="cordova-fs-plugin-fullscreen" source="npm" />
 
 <!-- bad - dumped
 <gap:plugin name="org.apache.cordova.media" />
 <gap:plugin name="org.apache.cordova.inappbrowser" />
 <gap:plugin name="org.apache.cordova.network-information" />
 
+// don't know yet that this is not needed
 <gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
 
 -->
