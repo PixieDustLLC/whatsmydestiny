@@ -1810,6 +1810,7 @@ function inputOnBlur(event){
   //dbuga("inputOnBlur "+event.target.id);
   }
 function inputOnFocus(event){
+  dbuga("inputOnFocus "+event.target.id);
   repositionInputs();
   spaceSprocket="";
   if(event.target.id=="searchInput"){
@@ -1849,7 +1850,7 @@ function searchKeyUp(e){
     }
   }
 function searchOnFocus(e){
-  //dbuga('searchOnFocus(e)');
+  dbuga('searchOnFocus(e)');
               var el=document.getElementById('searchInput');
               el.style.top="-1000px";
   //el.style.backgroundColor="red";
@@ -2905,7 +2906,7 @@ function contactsFindError(contactError) {
     alert('onError!');
 };
 function attemptSaveContact(){
-  dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
+  //dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
   if(selectedContactId==-1){
     testDuplicate();
     }
@@ -2913,7 +2914,7 @@ function attemptSaveContact(){
   }
 var duplicateContact={};
 function testDuplicate(){
-  dbuga('testDuplicate()');
+  //dbuga('testDuplicate()');
   var options      = new ContactFindOptions();
   options.filter   = reading.firstNameInput;
   options.multiple = true;
@@ -2922,18 +2923,18 @@ function testDuplicate(){
   navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
   }
 function contactsTestSuccess(contacts){
-  dbuga('testSuccess Found ' + contacts.length + ' contacts.');
+  //dbuga('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
   for (var c=0; c<contactsArray.length ; c++){
-    dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
+    //dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
     if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
       matchedId=contactsArray[c].id;
       duplicateContact=contactsArray[c];
       }
-    dbuga('contact Okay');
+    //dbuga('contact Okay');
     }
-  dbuga('matchedId='+matchedId);
+  //dbuga('matchedId='+matchedId);
   if(matchedId>-1){
     var r = confirm("Duplicate found, Update?");
     if (r == true) {
@@ -2955,16 +2956,16 @@ var middleChanged=false;
 var lastChanged=false;
 var currentChanged=false;
 function saveContact(){
-  dbuga("saveContact() "+selectedContactId);
+  //dbuga("saveContact() "+selectedContactId);
   var contact;
   if(selectedContactId!=-1){
     if((firstChanged)&&(middleChanged)&&(lastChanged)&&(currentChanged)){
-          dbuga('changed all 4 names so save new contact');
+          //dbuga('changed all 4 names so save new contact');
           selectedContactId=-1;
       }
     }
   if(selectedContactId==-1){
-    dbuga('create a new contact object');
+    //dbuga('create a new contact object');
     contact = navigator.contacts.create();
     contact.phoneNumbers=[];
     contact.emails=[];
@@ -2973,7 +2974,7 @@ function saveContact(){
     contact=selectedContact;
     }
   if(contact.phoneNumbers===null){
-    dbuga('CAUGHT no emails in selectContact('+id+')');
+    //dbuga('CAUGHT no emails in selectContact('+id+')');
     contact.phoneNumbers=[];
     }
   if(contact.phoneNumbers.length>0){
@@ -2984,7 +2985,7 @@ function saveContact(){
     contact.phoneNumbers.push(phoneNumber);
     }
   if(contact.emails===null){
-    dbuga('CAUGHT no emails in saveContact()');
+    //dbuga('CAUGHT no emails in saveContact()');
     contact.emails=[];
     }
   if(contact.emails.length>0){
@@ -3027,10 +3028,10 @@ function saveContact(){
     }
   
   contact.save(contactsSaveSuccess,contactsSaveError);
-  dbuga("contactsSave completed "+validParts.length);
+  //dbuga("contactsSave completed "+validParts.length);
   }
 function contactsSaveSuccess(contact) {
-  dbuga("contactsSaveSuccess");
+  //dbuga("contactsSaveSuccess");
   clearReading();// prevents double save
   //added july 2nd to prevent out of date search results
   searchContacts(); 
@@ -3042,7 +3043,7 @@ function contactsSaveError(contactError) {
 /*
 var blurring=false;
 function hideTextarea(){
-  //dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
+  dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
   if(uiFocus>-1){
     if(uiObj[uiFocus].id.indexOf("Input")>-1){
       //dbuga(' -- dont hide');
@@ -3052,11 +3053,11 @@ function hideTextarea(){
     }
   blurring=true;
   document.activeElement.blur();
-  //dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
+  dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
   }
 var lastArea="dummyArea";
 function focusBounce(){
-  //dbuga('focusBounce() '+lastArea+" "+blurring);
+  dbuga('focusBounce() '+lastArea+" "+blurring);
   if(blurring==false){
     document.getElementById(lastArea).focus();
     setUiFocus((uiFocus+1)%uiObj.length);
@@ -3066,7 +3067,7 @@ function focusBounce(){
     }
   }
 function focusTextarea(){
-  //dbuga('focusTextarea() ' +document.activeElement.id);
+  dbuga('focusTextarea() ' +document.activeElement.id);
   if(lastArea== "inputArea"){
     lastArea="dummyArea";
   }
