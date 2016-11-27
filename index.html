@@ -1485,7 +1485,7 @@ function immersifyError(){
   }
 function setMetaFocus(toNum){
   if((menus["dashboard"].selected==false)&&(uiObj[toNum].id.indexOf("Input")==-1)){
-    rui.toggleMenu('dashboard');
+    rui.toggleMenu('dashboard', 'setMetaFocus');
     }
   if(inArray(uiObj[toNum]['id'], Object.keys(metaByFieldValue))){
     metaFocus=toNum;
@@ -1963,7 +1963,7 @@ function clearSearch(){
   menus['search'].panes[1].selection=-1;
   menus['search'].panes[2].selection=-1;
   rui.drawUx();
-  rui.toggleMenu('search');
+  rui.toggleMenu('search', 'clearSearch');
   hideKeyboard();
   }
 function searchDown(e){
@@ -2681,10 +2681,10 @@ function searchToggled(){
     }
   }
 var barButtons=[
-{"name":"systemToggle", "func":"rui.toggleMenu('system')", "selected":false, "float":"left", "labelOn":"menu.png", "labelOff":"menu.png"},
-{"name":"contextToggle", "func":"rui.toggleMenu('context')", "selected":false, "float":"right", "labelOn":"shortmenu.png", "labelOff":"shortmenu.png"},
-{"name":"searchToggle", "func":"rui.toggleMenu('search'); searchToggled();", "selected":false, "float":"right", "labelOn":"magnifier.png", "labelOff":"magnifier.png"},
-{"name":"dashboardToggle", "func":"rui.toggleMenu('dashboard')", "selected":false, "float":"center", "labelOn":"panes.png", "labelOff":"panes.png"}
+{"name":"systemToggle", "func":"rui.toggleMenu('system', 'barButton func')", "selected":false, "float":"left", "labelOn":"menu.png", "labelOff":"menu.png"},
+{"name":"contextToggle", "func":"rui.toggleMenu('context', 'barButton func')", "selected":false, "float":"right", "labelOn":"shortmenu.png", "labelOff":"shortmenu.png"},
+{"name":"searchToggle", "func":"rui.toggleMenu('search', 'barButton func'); searchToggled();", "selected":false, "float":"right", "labelOn":"magnifier.png", "labelOff":"magnifier.png"},
+{"name":"dashboardToggle", "func":"rui.toggleMenu('dashboard', 'barButton func')", "selected":false, "float":"center", "labelOn":"panes.png", "labelOff":"panes.png"}
 ];
 var buttonNumByName={};
 for(var b=0; b<barButtons.length; b++){
@@ -2699,7 +2699,7 @@ var menuKeys=["dashboard", "search", "system", "context"];
     //stack:0 = auto collapse
 var menus={"system":{"selected":false, "stack":4, "buttonName":"systemToggle", "align":"left", "panes":[
     {"width":10, "height":14, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "grow":1.1, "contents":[
-       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"rui.toggleMenu('search'); searchToggled();", "icon":"profile", "label":"contacts"},
+       {"x":0, "y":0, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"rui.toggleMenu('search', 'menu func'); searchToggled();", "icon":"profile", "label":"contacts"},
        {"x":0, "y":3, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openWebsite()", "icon":"www", "label":"website"},
        {"x":0, "y":6, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openAbout()", "icon":"i", "label":"about"},
        {"x":0, "y":9, "w":10, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"openSupport()", "icon":"questionmark", "label":"support"},
