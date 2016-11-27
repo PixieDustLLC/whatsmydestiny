@@ -1963,6 +1963,8 @@ function clearSearch(){
   menus['search'].panes[0].selection=-1;
   menus['search'].panes[1].selection=-1;
   menus['search'].panes[2].selection=-1;
+  document.getElementById('searchInput').value="";
+
   rui.drawUx();
   //// why was this ever here?
   //// rui.toggleMenu('search', 'clearSearch');
