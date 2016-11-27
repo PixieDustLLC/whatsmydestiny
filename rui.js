@@ -508,7 +508,7 @@ menuEvent:function(type, touches){
       }
     if(type=="touchmove"){rui.barFound=-1;}
     if(rui.barFound>-1){
-      //dbuga("rui.barFound: "+rui.barFound);
+      dbuga(type+" rui.barFound: "+rui.barFound);
       var junk=eval(barButtons[rui.barFound].func);
       //dbuga(barButtons[rui.barFound].func);
       }
@@ -600,7 +600,7 @@ menuEvent:function(type, touches){
 
       if((obj.type=="icon")||(obj.type=="iconInvert")||(obj.type=="input")||(obj.type=="squaretool")){
         var junk=eval(obj.func);
-        //console.log(obj);
+        dbuga('touchend '+obj.type);
         }
       }
     }// end of touchend
