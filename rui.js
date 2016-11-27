@@ -90,7 +90,7 @@ var rui = {
     if(barButtons[b].selected){barButtons[b].selected=false;}
     else{barButtons[b].selected=true;}
     menus[menuName].selected=barButtons[b].selected;
-    //dbuga("toggleMenu) "+menuName+" barButtons["+b+"].selected="+barButtons[b].selected);
+    dbuga("toggleMenu) "+menuName+" barButtons["+b+"].selected="+barButtons[b].selected);
     rui.drawUx();
     return "toggleMenu("+menuName+") return";
   },
@@ -578,7 +578,7 @@ menuEvent:function(type, touches){
         var buttonNum=buttonNumByName[menus[menuKeys[m]].buttonName];
         menus[menuKeys[m]].panes[0].selection=-1;
         if(rui.barFound != buttonNum){// dont close if it's this menus button
-          //dbuga('FORCE CLOSE buttonName='+menus[menuKeys[m]].buttonName + ' buttonNum='+buttonNum);
+          dbuga('FORCE CLOSE buttonName='+menus[menuKeys[m]].buttonName + ' buttonNum='+buttonNum);
           menus[menuKeys[m]].selected=false;
           barButtons[buttonNum].selected=false;
           rui.drawUx();
