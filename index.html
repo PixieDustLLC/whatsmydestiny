@@ -1768,6 +1768,7 @@ function createForm(){
   }
 //       {"x":0, "y":0, "w":28, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"input", "func":"clearSearch()", "value":"search input"},
 function createSearch(){
+  dbug('createSearch()');
   console.log(menus.search.panes[0].contents[0]);
   createInput("menuHolder", "searchInput", 10, -1,-1,1,1);
   }
@@ -2647,6 +2648,7 @@ function titleCaseOnce(str){
 var pi=Math.PI;
 //menu funcs and configs
 var yOffset=0;
+var setupComplete=false;
 function updateClientLayout(){
   //dbuga('updateClientLayout()');
   yOffset=rui.g*2.5;
@@ -2655,10 +2657,12 @@ function updateClientLayout(){
   canv.width=rui.ww;
   canv.height=rui.wh-yOffset;
   canv.style.top=yOffset+"px";
-  createForm();
-  createSearch();
-  setupLocalStorage();
-
+  if(setupComplete==false){
+    createForm();
+    createSearch();
+    setupLocalStorage();
+    setupComplete=true;
+  }
 }
 //include these
 //rui.createRui(sbs, "#5eb8b6", "rgb(255,255,255)", "rgb(0,0,0)", "white", "rgb(185,28,27)");
@@ -3125,7 +3129,7 @@ function focusTextarea(){
 ></canvas>
   <div id="menuHolder" style="position:absolute;" ></div>
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
-  <div id="debugDiv" style="font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; left:0px; background-color:rgba(255,255,255,.85);"></div>
+  <div id="debugDiv" style="width:400px;font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; left:0px; background-color:rgba(255,255,255,.85);"></div>
   <canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
   <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
   <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
