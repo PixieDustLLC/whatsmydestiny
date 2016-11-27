@@ -1956,6 +1956,7 @@ function inputValueToUiObj(){
 
 
 function clearSearch(){
+  dbuga('clearSearch()');
   //focusTextarea(); 
   searchTyping=false; 
   menus['search'].panes[0].contents[0].value='';
@@ -1963,7 +1964,8 @@ function clearSearch(){
   menus['search'].panes[1].selection=-1;
   menus['search'].panes[2].selection=-1;
   rui.drawUx();
-  rui.toggleMenu('search', 'clearSearch');
+  //// why was this ever here?
+  //// rui.toggleMenu('search', 'clearSearch');
   hideKeyboard();
   }
 function searchDown(e){
@@ -2744,6 +2746,7 @@ var menus={"system":{"selected":false, "stack":4, "buttonName":"systemToggle", "
 var selectedContactId=-1;
 var selectedContact={};
 function closeAbout(){
+  
   document.getElementById('aboutDiv').scrollTop=0;
   document.getElementById('aboutDiv').style.display="none";
   rui.menuFound=-1;
