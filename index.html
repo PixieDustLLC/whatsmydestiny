@@ -2520,7 +2520,7 @@ function mouseDown(e){
   handleEvent(evt);
   }
 function touchStart(e){
-  dbuga('touchStart');
+  dbuga('touchStart(e)');
   e.preventDefault();
   var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
   handleEvent(evt);
@@ -3112,7 +3112,7 @@ function focusTextarea(){
 }
 </style>
 </head>
-<body onload="init()" ontouchstart="devent(event)" onmousedown="devent(event)" style="background-image:url('res/Default-Landscape.png'); width:100%; height:100%;">
+<body onload="init()" style="background-image:url('res/Default-Landscape.png'); width:100%; height:100%;">
   <div id="preloadHolder" style="position:absolute; color:rgba(0,0,0,0);">
     <img src="nav/coversheet.jpg" id="coversheet" width=1 height=1 />
     <div style="font-family:avantbolditalic; position:absolute; top:-300px;">avantbolditalic 1234567890</div>

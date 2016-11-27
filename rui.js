@@ -53,6 +53,7 @@ var rui = {
   containerRef.insertAdjacentHTML("beforeend", htmlString);
     rui.mcanv=document.getElementById('menuCanvas');
     rui.mctx=rui.mcanv.getContext('2d');
+/*
     rui.mcanv.addEventListener('mousedown', function(e){
       e.preventDefault();
       rui.menuEvent("touchstart", [{"pageX":e.pageX, "pageY":e.pageY}]);
@@ -68,6 +69,7 @@ var rui = {
       e.preventDefault();
       rui.menuEvent("touchend", []);
     }, false);
+*/
     rui.mcanv.addEventListener('touchstart', function(e){
       e.preventDefault();
       rui.menuEvent("touchstart", e.touches);
