@@ -40,7 +40,8 @@ function onDeviceReady(){
   web=false;
   if(device.platform=="Android"){
     android=true;
-    Immersify.enableSticky(immersifySuccess, immersifyError);
+    AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+    //Immersify.enableSticky(immersifySuccess, immersifyError); // no longer using plugin
     }
   if(device.platform=="iOS"){ios=true;}
   }
@@ -2391,13 +2392,19 @@ function inArray(needle, haystack) {
     }
   return false;
   }
+var debugging=false; 
+
 function dbuga(msg){
-  document.getElementById('debugDiv').style.display="block";
-  document.getElementById('debugDiv').innerHTML+="<br />"+msg;
+  if(debugging){
+    document.getElementById('debugDiv').style.display="block";
+    document.getElementById('debugDiv').innerHTML+="<br />"+msg;
+    }
   }
 function dbug(msg){
-  document.getElementById('debugDiv').style.display="block";
-  document.getElementById('debugDiv').innerHTML=""+msg;
+  if(debugging){
+    document.getElementById('debugDiv').style.display="block";
+    document.getElementById('debugDiv').innerHTML=""+msg;
+    }
   }
 function mouseDown(e){
   dbuga('mouseDown');
@@ -2674,12 +2681,10 @@ function errorFunction(error)
 {
     dbuga(error);
 }
- 
 function selectResult(id){
   dbuga("selectResult "+id);
   menus["search"].selected=false;
   barButtons[2].selected=false;
-  AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   rui.drawUx();
   var contact=contactsArray[id];
   selectedContactId=contact.id;
