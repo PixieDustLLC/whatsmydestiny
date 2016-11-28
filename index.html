@@ -2665,10 +2665,21 @@ function openWebsite(){
 function emailWes(){
   window.setTimeout("window.open('mailto:wes@weshamilton.com?subject=Request from Whats My Destiny app', '_system')", 100);
   }
+function successFunction()
+{
+    dbuga("It worked!");
+}
+ 
+function errorFunction(error)
+{
+    dbuga(error);
+}
+ 
 function selectResult(id){
-  console.log("selectResult "+id);
+  dbuga("selectResult "+id);
   menus["search"].selected=false;
   barButtons[2].selected=false;
+  AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   rui.drawUx();
   var contact=contactsArray[id];
   selectedContactId=contact.id;
