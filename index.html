@@ -838,29 +838,7 @@ function init(){
   //hideSave();
   window.setInterval('secondTick()', 1000);
   window.requestAnimationFrame(tick);
-/*
-  $(document.body).on('keypress', function(e) {
-    e.preventDefault(); 
-    lastPress=e.keyCode;
-    if(lastPress==0){return false;}
-    if(menus["search"].selected){
-      searchTyped(lastPress);
-      }
-    else{
-      appTyped(lastPress);
-      }
-    });
-  $(document.body).on('keydown', function(e) {
-    
-    lastDown=e.keyCode;
-    if(menus["search"].selected){
-      searchDown(e);
-      }
-    else{
-      appDown(e);
-      }
-    });
-*/
+
   document.body.style.backgroundImage="";
   //dbuga('init() 6' );
 
@@ -1350,6 +1328,8 @@ function setUiFocus(toNum){
       setMetaFocus(toNum);
       }
     }
+  AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+
   }
 var hideKeyboard = function() {
  document.activeElement.blur();
@@ -2686,6 +2666,8 @@ function selectResult(id){
   menus["search"].selected=false;
   barButtons[2].selected=false;
   rui.drawUx();
+  AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+
   var contact=contactsArray[id];
   selectedContactId=contact.id;
   selectedContact=contact;
