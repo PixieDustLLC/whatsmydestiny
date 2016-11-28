@@ -875,134 +875,16 @@ function init(){
 // unused
 function appDown(e){
   dbuga('appDown ?????');
-/*
-    if(e.keyCode==8){// delete
-      e.preventDefault();
-      found=true;
-      if(uiFocus>-1){
-        if(uiObj[uiFocus].type != "label"){
-          if(typed==false){
-            uiObj[uiFocus].value="";
-            typed=true;
-            alert('appDown typed=true')
-            }
-          else{
-            var str=uiObj[uiFocus].value;
-            var parts=str.split("");
-            if(parts.length>0){
-              var junk=parts.pop();
-              }
-            uiObj[uiFocus].value=parts.join('');
-            }
-          userInput();
-          }
-        }
-      }
-    if(e.keyCode==9){
-      e.preventDefault();
-      setUiFocus((uiFocus+1)%uiObj.length);
-      }
-/*
   }
  
 function appTyped(keyCode){
     dbuga("appTyped should be disabled ???");
-/*
-    var found=false;
-    if(keyCode==13){//return
-      found=true;
-      //e.preventDefault(); 
-      setUiFocus((uiFocus+1)%uiObj.length);
-      }
-    if(found){
-      //dbuga("found="+found);
-      return false;
-      }
-    var char=String.fromCharCode(keyCode);
-    var type="";
-    if("abcdefghijklmnopqrstuvwxyz -".indexOf(char)>-1){
-      type="alpha";
-      }
-    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(char)>-1){
-      type="alpha";
-      char=char.toLowerCase();
-      }
-    if("0123456789".indexOf(char)>-1){
-      type="numeric";
-      }
-    if("'./=`!@#$%^&*+?_{|}~".indexOf(char)>-1){
-      type="char";
-      }
-    //dbuga(type+" "+char);
-    if((char != "")&&(uiFocus>-1)){// valid entry
-      //dbuga(type+" "+char);
-      if(uiFocus==1){firstChanged=true;}
-      if(uiFocus==2){middleChanged=true;}
-      if(uiFocus==3){lastChanged=true;}
-      if(uiFocus==4){currentChanged=true;}
-      if((uiFocus==1)||(uiFocus==2)||(uiFocus==3)){
-        if(char==" "){char="-";}// replace spaces with hyphen in birth name fields
-        }
-      if(uiObj[uiFocus].type != "label"){
-        var fieldType=uiObj[uiFocus].type;
-        if(fieldType.indexOf(type)>-1){
-          if(typed==false){
-            uiObj[uiFocus].value=char;
-            typed=true;
-            alert('appTyped sets typed to true');
-            }
-          else{
-            if(uiObj[uiFocus].value.length<uiObj[uiFocus].limit){
-              uiObj[uiFocus].value+=char;
-              }
-            }
-          }
-        userInput();
-        }
-      } 
-*/
   }
 
 
 var searchTyping=false;
 function searchTyped(keyCode){
-  dbug('searchTyped('+keyCode+') searchTyping:'+searchTyping);
-    if(searchTyping==false){
-      searchTyping=true;
-      menus["search"].panes[0].contents[0].value="";
-      }
-    var found=false;
-    dbuga("<b> - searchTyped</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
-    if(keyCode==13){//return
-      searchTyping=false;
-      found=true;
-      //console.log('return');
-      }
-    if(found){
-      //dbuga("found="+found);
-      return false;
-      }
-    var char=String.fromCharCode(keyCode);
-    var type="";
-    if("abcdefghijklmnopqrstuvwxyz -".indexOf(char)>-1){
-      type="alpha";
-      }
-    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(char)>-1){
-      type="alpha";
-      char=char.toLowerCase();
-      }
-    if("0123456789".indexOf(char)>-1){
-      type="numeric";
-      }
-    if("'./=`!@#$%^&*+?_{|}~".indexOf(char)>-1){
-      type="char";
-      }
-    if(type=="alpha"){
-      menus["search"].panes[0].contents[0].value+=char;
-      }
-  
-    rui.drawUx();
-    //dbuga("searchTyped "+type+" "+char);
+  dbuga('searchTyped('+keyCode+') searchTyping:'+searchTyping);
   }
 var lastDown=0;
 var lastPress=0;
@@ -1973,7 +1855,7 @@ function clearSearch(){
   ////hideKeyboard();
   }
 function searchDown(e){
-  //dbuga('searchDown '+e.keyCode);
+  dbuga('searchDown '+e.keyCode+' searchTyping='+searchTyping);
     if(e.keyCode==8){// delete
       e.preventDefault();
       if(searchTyping==false){
