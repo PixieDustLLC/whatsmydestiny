@@ -874,7 +874,7 @@ function init(){
   }
 // unused
 function appDown(e){
-  dbuga('appDown ?????');
+  //dbuga('appDown ?????');
 /*
     if(e.keyCode==8){// delete
       e.preventDefault();
@@ -904,9 +904,9 @@ function appDown(e){
       }
 /*
   }
- 
+
 function appTyped(keyCode){
-    dbuga("appTyped should be disabled ???");
+    //dbuga("appTyped should be disabled ???");
 /*
     var found=false;
     if(keyCode==13){//return
@@ -966,13 +966,12 @@ function appTyped(keyCode){
 
 var searchTyping=false;
 function searchTyped(keyCode){
-  dbug('searchTyped('+keyCode+') searchTyping:'+searchTyping);
     if(searchTyping==false){
       searchTyping=true;
       menus["search"].panes[0].contents[0].value="";
       }
     var found=false;
-    dbuga("<b> - searchTyped</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
+    //dbug("<b>searchTyped</b> lastDown:"+lastDown +" keyCode:"+keyCode+" "+String.fromCharCode(keyCode));
     if(keyCode==13){//return
       searchTyping=false;
       found=true;
@@ -3051,6 +3050,46 @@ function contactsSaveSuccess(contact) {
 function contactsSaveError(contactError) {
     alert("Error = " + contactError.code);
 };
+/*
+var blurring=false;
+function hideTextarea(){
+  dbuga('hideTextarea() uiFocus:'+uiFocus+' last:'+lastArea+' blur:'+blurring);
+  if(uiFocus>-1){
+    if(uiObj[uiFocus].id.indexOf("Input")>-1){
+      //dbuga(' -- dont hide');
+      blurring=false;
+      return false;t
+      }
+    }
+  blurring=true;
+  document.activeElement.blur();
+  dbuga('after hideTextarea() active:'+document.activeElement.id+" blurring:"+blurring);
+  }
+var lastArea="dummyArea";
+function focusBounce(){
+  dbuga('focusBounce() '+lastArea+" "+blurring);
+  if(blurring==false){
+    document.getElementById(lastArea).focus();
+    setUiFocus((uiFocus+1)%uiObj.length);
+    }
+  else{
+    blurring=false;
+    }
+  }
+function focusTextarea(){
+  dbuga('focusTextarea() ' +document.activeElement.id);
+  if(lastArea== "inputArea"){
+    lastArea="dummyArea";
+  }
+  if(lastArea== "dummyArea"){
+    lastArea="inputArea";
+  }
+  window.setTimeout(function () { 
+    document.getElementById(lastArea).focus();
+    //dbuga('focusTextarea() timeout fired last:' +lastArea+" active:"+document.activeElement.id);
+  }, 100);
+}
+*/
 </script>
 <link rel = "stylesheet" type = "text/css" href = "reset.css">
 <style>
@@ -3095,6 +3134,10 @@ function contactsSaveError(contactError) {
   <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
   <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
   <div id="uploadingpdf" style="display:none; z-index:8;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
+<!--
+  <textarea id="inputArea" onblur="focusBounce();"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
+  <textarea id="dummyArea" onblur="focusBounce();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:20px; height:20px; position:absolute; right:30px; top:3px; opacity:0;"></textarea>
+-->
 <div id="formHolder"></div>
 <div id="aboutDiv" style="overflow:auto; background-color:rgba(200,200,200,.75); width:100%; height:100%; position:absolute;  z-index:6;  -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px); display:none;">
