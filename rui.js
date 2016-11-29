@@ -497,6 +497,7 @@ roundRect:function(ctx, x, y, width, height, radius, fill, stroke) {
 
 
 menuEvent:function(type, touches){
+  dbuga('menuEvent '+type');
   if(touches.length>2){dbug('');}
   //if(type=="touchstart"){dbug('');}
   if(((type=="touchstart")||(type=="touchmove"))&&(touches.length==1)){
@@ -609,6 +610,8 @@ menuEvent:function(type, touches){
         }
       }
     }// end of touchend
+  dbuga(' - menuEvent completed');
+
   },
   loadedImg:function(id){
     rui.preloaded++;
