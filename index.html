@@ -2780,8 +2780,8 @@ function searchContacts(){
 */
   var fields = ["displayName", "name"];
   navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options);
-  menus["search"].panes[2].contents=[
- {"x":1, "y":1, "w":42, "h":6, "l":0, "r":0, "t":0, "b":0, "type":"paragraph", "text":"Retrieving contacts, please wait."}];
+  menus["search"].panes[2].contents.push(
+ {"x":1, "y":1, "w":42, "h":6, "l":0, "r":0, "t":0, "b":0, "type":"paragraph", "text":"Retrieving contacts, please wait."});
   rui.drawUx();
   dbuga('searchContacts() completed');
   }
