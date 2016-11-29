@@ -2301,7 +2301,7 @@ function handleEvent(evt){
     }
   }
 function clearReading(){
-  //dbuga('clearReading() so clearCalcs');
+  dbuga('clearReading() so clearCalcs');
   firstChanged=false;
   middleChanged=false;
   lastChanged=false;
@@ -2319,6 +2319,7 @@ function clearReading(){
   localStorage.setItem("reading", JSON.stringify(reading));
   //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
   //dbuga(localStorage.reading);
+  updateValues();
   }
 var focusStep=1;
 function geometry(){
@@ -2751,6 +2752,7 @@ function selectResult(id){
   middleChanged=false;
   lastChanged=false;
   currentChanged=false;
+  updateValues();
   }
 var contactsArray=[];
 function devent(e){
