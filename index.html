@@ -2319,7 +2319,8 @@ function clearReading(){
   localStorage.setItem("reading", JSON.stringify(reading));
   //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
   //dbuga(localStorage.reading);
-  updateValues();
+  ////updateValues();
+  drawUi();
   }
 var focusStep=1;
 function geometry(){
@@ -2752,7 +2753,8 @@ function selectResult(id){
   middleChanged=false;
   lastChanged=false;
   currentChanged=false;
-  updateValues();
+  ////updateValues();
+  drawUi();
   }
 var contactsArray=[];
 function devent(e){
