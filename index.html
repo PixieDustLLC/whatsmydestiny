@@ -2808,8 +2808,9 @@ function contactsFindSuccess(contacts){
     if(contactsArray[c].nickname !=""){nameLabel+=" - "+contactsArray[c].nickname;}
 
     var invalid=false;
-    if(nameLabel.indexOf("undefined")>-1){invalid=true;}
     if(contactsArray[c].name.givenName==""){invalid=true;}
+    if(contactsArray[c].name.givenName=="undefined"){invalid=true;}
+    if(contactsArray[c].name.middleName=="undefined"){contactsArray[c].name.middleName="";}
     if(invalid==false){
       results.push(nameLabel);
     }
