@@ -2813,9 +2813,9 @@ function contactsFindSuccess(contacts){
     if((contactsArray[c].nickname != "")&&(contactsArray[c].nickname != "undefined")){nameLabel+=" - "+contactsArray[c].nickname;}
 
     var invalid=false;
-    if(contactsArray[c].name.givenName==""){invalid=true;}
-    if(contactsArray[c].name.givenName=="undefined"){invalid=true;}
-    if(inArray("givenName", Object.keys(contactsArray[c]))==false){invalid=true;}
+    //if(contactsArray[c].name.givenName==""){invalid=true;}
+    //if(contactsArray[c].name.givenName=="undefined"){invalid=true;}
+    if(inArray("givenName", Object.keys(contactsArray[c].name))==false){invalid=true;}
     if(invalid==false){
       results.push(nameLabel);
     }
