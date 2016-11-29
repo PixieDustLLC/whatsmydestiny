@@ -157,6 +157,7 @@ var rui = {
   rui.mcanv.height=Math.floor(maxHeight*rui.g);
   },
 
+
 insertResultsMenuPane:function(results, menuName, paneNum){
   var template=menus[menuName].panes[paneNum].contents[0];
   var pane=menus[menuName].panes[paneNum];

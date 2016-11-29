@@ -2779,13 +2779,15 @@ function searchContacts(){
 */
   var fields = ["displayName", "name"];
   navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options);
-  dbuga('searchContacts() completed');
+  menus["search"].panes[2].contents=[
+ {"x":1, "y":1, "w":42, "h":6, "l":0, "r":0, "t":0, "b":0, "type":"paragraph", "text":"Retrieving contacts, please wait."}];  dbuga('searchContacts() completed');
   }
 function contactsFindSuccess(contacts){
   menus['search'].panes[2].selection=-1;
   dbuga('Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var results=[];
+  var skipped=0;
   for (var c=0; c<contactsArray.length ; c++){
     //dbuga(" c="+c);
     if(contactsArray[c].nickname===null){contactsArray[c].nickname="";}
@@ -2800,11 +2802,17 @@ function contactsFindSuccess(contacts){
     //name=name.replace(/\,/g, "<br>");
     //dbuga(name);
     var nameLabel=contactsArray[c].name.givenName+" "+contactsArray[c].name.middleName+" "+contactsArray[c].name.familyName;
+
     if(contactsArray[c].nickname !=""){nameLabel+=" - "+contactsArray[c].nickname;}
-    results.push(nameLabel);
+    if(contactsArray[c].name.givenName != "undefined"){
+      results.push(nameLabel);
     }
+    else{
+      skipped++;
+    }
+  }
   rui.insertResultsMenuPane(results, "search", 2);
-  dbuga('contactsFindSuccess completed');
+  dbuga('contactsFindSuccess completed skipped='+skipped);
 };
 function contactsFindError(contactError) {
     alert('onError!');
