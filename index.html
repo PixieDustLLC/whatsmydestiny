@@ -2787,6 +2787,7 @@ function searchContacts(){
 function contactsFindSuccess(contacts){
   menus['search'].panes[2].selection=-1;
   dbuga('Found ' + contacts.length + ' contacts.');
+  dbuga(JSON.stringify(contacts[0]));
   contactsArray=contacts;
   var results=[];
   var skipped=0;
@@ -2799,18 +2800,22 @@ function contactsFindSuccess(contacts){
     if(contactsArray[c].birthday===null){contactsArray[c].birthday="";}
     if(contactsArray[c].emails===null){contactsArray[c].emails=[];}
     if(contactsArray[c].phoneNumbers===null){contactsArray[c].phoneNumbers=[];}
+
+    if(contactsArray[c].name.middleName=="undefined"){contactsArray[c].name.middleName="";}
+
+
     //dbuga(" - "+c+" OKAY "+contactsArray[c].name.familyName);
     var name=JSON.stringify(contactsArray[c]);
     //name=name.replace(/\,/g, "<br>");
     //dbuga(name);
-    var nameLabel=contactsArray[c].name.givenName+" "+contactsArray[c].name.middleName+" "+contactsArray[c].name.familyName;
+    var nameLabel="["+contactsArray[c].name.givenName+"|"+contactsArray[c].name.middleName+"|"+contactsArray[c].name.familyName+"]";
 
-    if(contactsArray[c].nickname !=""){nameLabel+=" - "+contactsArray[c].nickname;}
+    if((contactsArray[c].nickname != "")&&(contactsArray[c].nickname != "undefined")){nameLabel+=" - "+contactsArray[c].nickname;}
 
     var invalid=false;
     if(contactsArray[c].name.givenName==""){invalid=true;}
     if(contactsArray[c].name.givenName=="undefined"){invalid=true;}
-    if(contactsArray[c].name.middleName=="undefined"){contactsArray[c].name.middleName="";}
+    if(inArray("givenName", Object.keys(contactsArray[c]))==false){invalid=true;}
     if(invalid==false){
       results.push(nameLabel);
     }
