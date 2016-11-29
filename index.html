@@ -2611,8 +2611,8 @@ var menus={"system":{"selected":false, "stack":4, "buttonName":"systemToggle", "
   },
   "context":{"selected":false,  "stack":3, "buttonName":"contextToggle", "align":"right", "panes":[
     {"width":8, "height":11, "left":-4, "top":4, "selection":-1, "barColor":"#be792b", "barPad":.5, "grow":1.1, "contents":[
-       {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"attemptSaveContact()", "icon":"disk", "label":"save"},
-       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"clearReading(); menus['context'].panes[0].selection=-1;", "icon":"blank", "label":"clear"},
+       {"x":0, "y":0, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"menuSave()", "icon":"disk", "label":"save"},
+       {"x":0, "y":3, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"menuClear(); menus['context'].panes[0].selection=-1;", "icon":"blank", "label":"clear"},
        {"x":0, "y":6, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"metadataReport()", "icon":"pdfdoc", "label":"report"},
        {"x":0, "y":9, "w":8, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"icon", "func":"summaryReport()", "icon":"pdfdoc", "label":"summary"}
       ]}
@@ -2622,6 +2622,15 @@ var menus={"system":{"selected":false, "stack":4, "buttonName":"systemToggle", "
 // end of menu configs
 var selectedContactId=-1;
 var selectedContact={};
+function menuSave(){
+  rui.toggleMenu('context', 'menuSave');
+  attemptSaveContact();
+  }
+function menuClear(){
+  rui.toggleMenu('context', 'menuClear');
+  clearReading();
+  }
+
 function closeAbout(){
   
   document.getElementById('aboutDiv').scrollTop=0;
@@ -2847,7 +2856,7 @@ var middleChanged=false;
 var lastChanged=false;
 var currentChanged=false;
 function saveContact(){
-  //dbuga("saveContact() "+selectedContactId);
+  dbuga("saveContact() "+selectedContactId);
   var contact;
   if(selectedContactId!=-1){
     if((firstChanged)&&(middleChanged)&&(lastChanged)&&(currentChanged)){
@@ -2919,7 +2928,7 @@ function saveContact(){
     }
   
   contact.save(contactsSaveSuccess,contactsSaveError);
-  //dbuga("contactsSave completed "+validParts.length);
+  dbuga("  contactsSave completed "+validParts.length);
   }
 function contactsSaveSuccess(contact) {
   //dbuga("contactsSaveSuccess");

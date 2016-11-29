@@ -53,8 +53,9 @@ var rui = {
   containerRef.insertAdjacentHTML("beforeend", htmlString);
     rui.mcanv=document.getElementById('menuCanvas');
     rui.mctx=rui.mcanv.getContext('2d');
-/*
+
     rui.mcanv.addEventListener('mousedown', function(e){
+      dbuga('mousedown');
       e.preventDefault();
       rui.menuEvent("touchstart", [{"pageX":e.pageX, "pageY":e.pageY}]);
     }, false);
@@ -66,10 +67,12 @@ var rui = {
       }
     }, false);
     rui.mcanv.addEventListener('mouseup', function(e){
+      dbuga('mouseup');
+
       e.preventDefault();
       rui.menuEvent("touchend", []);
     }, false);
-*/
+
     rui.mcanv.addEventListener('touchstart', function(e){
       e.preventDefault();
       rui.menuEvent("touchstart", e.touches);
@@ -605,8 +608,8 @@ menuEvent:function(type, touches){
         }
 
       if((obj.type=="icon")||(obj.type=="iconInvert")||(obj.type=="input")||(obj.type=="squaretool")){
+        dbuga(' - touchend obj.func='+obj.func);
         var junk=eval(obj.func);
-        dbuga('touchend '+obj.type);
         }
       }
     }// end of touchend
