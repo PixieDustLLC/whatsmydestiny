@@ -2809,7 +2809,7 @@ function contactsFindSuccess(contacts){
 
     var invalid=false;
     if(nameLabel.indexOf("undefined")>-1){invalid=true;}
-    if(contactsArray[c].name.givenName=""){invalid=true;}
+    if(contactsArray[c].name.givenName==""){invalid=true;}
     if(invalid==false){
       results.push(nameLabel);
     }
