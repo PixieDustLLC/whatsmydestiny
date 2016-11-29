@@ -2374,7 +2374,7 @@ function inArray(needle, haystack) {
     }
   return false;
   }
-var debugging=false; 
+var debugging=true; 
 
 function dbuga(msg){
   if(debugging){
@@ -2765,7 +2765,7 @@ function searchContacts(){
   menus['search'].panes[1].selection=-1;
   menus['search'].panes[2].selection=-1;
   rui.drawUx();
-  //dbuga('searchContacts() fired');
+  dbuga('searchContacts() fired');
   var options      = new ContactFindOptions();
   options.filter   = menus["search"].panes[0].contents[0].value;
   options.multiple = true;
@@ -2779,11 +2779,11 @@ function searchContacts(){
 */
   var fields = ["displayName", "name"];
   navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options);
-  //dbuga('searchContacts() completed');
+  dbuga('searchContacts() completed');
   }
 function contactsFindSuccess(contacts){
   menus['search'].panes[2].selection=-1;
-  //dbuga('Found ' + contacts.length + ' contacts.');
+  dbuga('Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var results=[];
   for (var c=0; c<contactsArray.length ; c++){
@@ -2804,7 +2804,7 @@ function contactsFindSuccess(contacts){
     results.push(nameLabel);
     }
   rui.insertResultsMenuPane(results, "search", 2);
-  //dbuga('contactsFindSuccess completed');
+  dbuga('contactsFindSuccess completed');
 };
 function contactsFindError(contactError) {
     alert('onError!');
