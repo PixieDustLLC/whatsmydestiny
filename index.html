@@ -2768,6 +2768,7 @@ function searchContacts(){
   dbuga('searchContacts() menu='+menus["search"].panes[0].contents[0].value+' input='+document.getElementById('searchInput').value);
   var options      = new ContactFindOptions();
   options.filter   = menus["search"].panes[0].contents[0].value;
+  options.hasPhoneNumber = true;
   options.multiple = true;
   options.desiredFields = [];
 /*
