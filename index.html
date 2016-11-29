@@ -2623,12 +2623,12 @@ var menus={"system":{"selected":false, "stack":4, "buttonName":"systemToggle", "
 var selectedContactId=-1;
 var selectedContact={};
 function menuSave(){
-  rui.toggleMenu('context', 'menuSave');
   attemptSaveContact();
+  rui.toggleMenu('context', 'menuSave');
   }
 function menuClear(){
-  rui.toggleMenu('context', 'menuClear');
   clearReading();
+  rui.toggleMenu('context', 'menuClear');
   }
 
 function closeAbout(){
