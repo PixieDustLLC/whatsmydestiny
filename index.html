@@ -2374,7 +2374,7 @@ function inArray(needle, haystack) {
     }
   return false;
   }
-var debugging=true; 
+var debugging=false; 
 
 function dbuga(msg){
   if(debugging){
@@ -2607,7 +2607,7 @@ var menus={"system":{"selected":false, "stack":4, "buttonName":"systemToggle", "
       ]
     },
     {"width":34, "height":-1, "left":-17, "top":7, "selection":-1, "barColor":"", "barPad":.5, "grow":1.1, "contents":[
-       {"x":0, "y":0, "w":34, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"template", "text":"a default result", "id":-1, "func":"selectResult"}
+       {"x":0, "y":0, "w":34, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"template", "text":"a default result", "id":-1, "func":"selectResult"\
       ]}
     ]
   },
@@ -2780,8 +2780,12 @@ function searchContacts(){
 */
   var fields = ["displayName", "name"];
   navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options);
+  var template=menus[menuName].panes[paneNum].contents[0];
+  menus["search"].panes[2].contents=[];
+  menus["search"].panes[2].contents.push(template);
   menus["search"].panes[2].contents.push(
  {"x":1, "y":1, "w":42, "h":6, "l":0, "r":0, "t":0, "b":0, "type":"paragraph", "text":"Retrieving contacts, please wait."});
+
   rui.drawUx();
   dbuga('searchContacts() completed');
   }
@@ -2791,7 +2795,6 @@ function contactsFindSuccess(contacts){
   dbuga(JSON.stringify(contacts[0]));
   contactsArray=contacts;
   var results=[];
-  var skipped=0;
   for (var c=0; c<contactsArray.length ; c++){
     //dbuga(" c="+c);
     if(contactsArray[c].nickname===null){contactsArray[c].nickname="";}
@@ -2813,19 +2816,10 @@ function contactsFindSuccess(contacts){
 
     if((contactsArray[c].nickname != "")&&(contactsArray[c].nickname != "undefined")){nameLabel+=" - "+contactsArray[c].nickname;}
 
-    var invalid=false;
-    //if(contactsArray[c].name.givenName==""){invalid=true;}
-    //if(contactsArray[c].name.givenName=="undefined"){invalid=true;}
-    if(inArray("givenName", Object.keys(contactsArray[c].name))==false){invalid=true;}
-    if(invalid==false){
-      results.push(nameLabel);
-    }
-    else{
-      skipped++;
-    }
+    results.push(nameLabel);
   }
   rui.insertResultsMenuPane(results, "search", 2);
-  dbuga('contactsFindSuccess completed skipped='+skipped);
+  dbuga('contactsFindSuccess completed ');
 };
 function contactsFindError(contactError) {
     alert('onError!');
