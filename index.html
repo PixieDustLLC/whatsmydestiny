@@ -2391,14 +2391,14 @@ function dbug(msg){
 function mouseDown(e){
   dbuga('mouseDown');
   e.preventDefault();
-  var evt={"source":"mousedown", "type":"start", "x":e.clientX, "y":e.clientY};
-  handleEvent(evt);
+  //var evt={"source":"mousedown", "type":"start", "x":e.clientX, "y":e.clientY};
+  //handleEvent(evt);
   }
 function touchStart(e){
   dbuga('touchStart(e)');
   e.preventDefault();
-  var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
-  handleEvent(evt);
+  //var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
+  //handleEvent(evt);
   }
 var alphabet= "abcdefghijklmnopqrstuvwxyz";
 var valphabet="12345678912345678912345678";
@@ -2607,7 +2607,7 @@ var menus={"system":{"selected":false, "stack":4, "buttonName":"systemToggle", "
       ]
     },
     {"width":34, "height":-1, "left":-17, "top":7, "selection":-1, "barColor":"", "barPad":.5, "grow":1.1, "contents":[
-       {"x":0, "y":0, "w":34, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"template", "text":"a default result", "id":-1, "func":"selectResult"\
+       {"x":0, "y":0, "w":34, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"template", "text":"a default result", "id":-1, "func":"selectResult"}
       ]}
     ]
   },
@@ -2641,7 +2641,7 @@ function closeAbout(){
   aboutUp=false;
   }
 var aboutUp=false;
-var closeCode='<div class="closer" ontouchend="event.preventDefault(); closeAbout();" onmouseup="closeAbout()"></div>';
+var closeCode='<div class="closer" ontouchend="event.preventDefault(); closeAbout();"></div>';
 function openAbout(){
   aboutUp=true;
   // show modal link panel
@@ -2999,7 +2999,7 @@ function contactsSaveError(contactError) {
   <div id="menuHolder" style="position:absolute;" ></div>
   <canvas id="reportCanvas" style="position:absolute; display:none;"></canvas>
   <div id="debugDiv" style="width:400px;font-family:avantbook; position:absolute;  display:none; z-index:5; top:50px; left:0px; background-color:rgba(255,255,255,.85);"></div>
-  <canvas id="previewCanvas" style="display:none; position:absolute;" onclick="hidePreview();"></canvas>
+  <canvas id="previewCanvas" style="display:none; position:absolute;" ontouchstart="hidePreview();"></canvas>
   <div id="spinner" style="display:none; z-index:8;"><img class="dialogimage" src="nav/please_wait.png"/></div>
   <div id="downloadpdf" style="display:none; z-index:8;"><a id="pdfData" href=""><img id="downloadpdfimg" src="nav/downloadpdf.png"/></a></div>
   <div id="uploadingpdf" style="display:none; z-index:8;"><img class="dialogimage" src="nav/uploadingpdf.png"/></a><div id="uploadingpercent">0%</div></div>
