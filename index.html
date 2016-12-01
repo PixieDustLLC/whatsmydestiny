@@ -2826,10 +2826,15 @@ function contactsFindError(contactError) {
 };
 function attemptSaveContact(){
   dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
-  if(selectedContactId==-1){
-    testDuplicate();
+  if(reading.phoneInput.length != 9){
+    alert('Phone number is required to save contact');
     }
-  else{saveContact();}
+  else{
+    if(selectedContactId==-1){
+      testDuplicate();
+      }
+    else{saveContact();}
+    }
   }
 var duplicateContact={};
 function testDuplicate(){
