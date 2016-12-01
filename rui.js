@@ -506,7 +506,7 @@ menuEvent:function(type, touches){
     rui.touching=true;
     var x=touches[0].pageX;
     var y=touches[0].pageY;
-    dbuga('menuEvent' +type+" x:"+x+" y:"+y);
+    dbuga('menuEvent ' +type+" x:"+x+" y:"+y);
     
     rui.barFound=-1;
     for (var b=0; b<barButtons.length; b++){

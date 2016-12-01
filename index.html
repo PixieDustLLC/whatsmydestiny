@@ -2397,8 +2397,8 @@ function mouseDown(e){
 function touchStart(e){
   dbug('touchStart');
   e.preventDefault();
-  //var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
-  //handleEvent(evt);
+  var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
+  handleEvent(evt);
   }
 var alphabet= "abcdefghijklmnopqrstuvwxyz";
 var valphabet="12345678912345678912345678";
