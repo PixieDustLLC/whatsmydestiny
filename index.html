@@ -2975,6 +2975,7 @@ function saveContact(){
     var n=titleCase(reading.firstNameInput)+" "+titleCase(reading.middleNameInput)+" "+titleCase(reading.lastNameInput);
     contact.displayName = n;
     contact.nickname = n;
+    dbuga("3 parts completed");
     }
   else{
     name.givenName =  titleCase(reading.firstNameInput);
@@ -2983,16 +2984,17 @@ function saveContact(){
     var n=titleCase(validParts.join(" "));
     contact.displayName = n;
     contact.nickname = n;
+    dbuga("reading to contact completed");
     }
   contact.name = name;
-
+  dbuga('  name='+name);
   //specify both to support all devices // uhoh androids
   if(reading.birthdayInput.length==8){
     var bd=reading.birthdayInput;
     var birthDate=new Date(bd.substring(4,8), Number(bd.substring(0,2)) - 1, bd.substring(2,4));
     contact.birthday=birthDate;
     }
-  
+  dbuga('birthday');
   contact.save(contactsSaveSuccess,contactsSaveError);
   dbuga("  contactsSave completed "+validParts.length);
   }
