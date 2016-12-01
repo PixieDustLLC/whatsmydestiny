@@ -2813,7 +2813,7 @@ dbuga(' passed familyName='+contacts[c].name.familyName);
 dbuga(' passed givenName='+contacts[c].name.familyName);
               var contact=JSON.parse(JSON.stringify(contacts[c]));
               if(inArray("middleName", Object.keys(contact.name))==false){
-                contact.name["middleName"=""];
+                contact.name["middleName"]="";
                 }
               contactsArray.push(contact);
               }
