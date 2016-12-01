@@ -612,7 +612,7 @@ menuEvent:function(type, touches){
         }
       }
     }// end of touchend
-  dbuga(' - menuEvent completed');
+  //dbuga(' - menuEvent completed');
 
   },
   loadedImg:function(id){

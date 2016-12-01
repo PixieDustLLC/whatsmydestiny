@@ -2374,7 +2374,7 @@ function inArray(needle, haystack) {
     }
   return false;
   }
-var debugging=false; 
+var debugging=true; 
 
 function dbuga(msg){
   if(debugging){
@@ -2395,7 +2395,7 @@ function mouseDown(e){
   //handleEvent(evt);
   }
 function touchStart(e){
-  dbuga('touchStart(e)');
+  dbug('touchStart');
   e.preventDefault();
   //var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
   //handleEvent(evt);
