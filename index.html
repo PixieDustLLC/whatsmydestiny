@@ -2840,7 +2840,7 @@ dbuga(' passed givenName='+contacts[c].name.familyName);
     var name=JSON.stringify(contactsArray[c]);
     name=name.replace(/\,/g, "<br>");
     dbuga(name);
-    var nameLabel=""+contactsArray[c].name.givenName+" "+contactsArray[c].name.middleName+" "+contactsArray[c].name.familyName+"]";
+    var nameLabel=""+contactsArray[c].name.givenName+" "+contactsArray[c].name.middleName+" "+contactsArray[c].name.familyName+"";
 
     if((contactsArray[c].nickname != "")&&(contactsArray[c].nickname != "undefined")){nameLabel+=" - "+contactsArray[c].nickname;}
 
