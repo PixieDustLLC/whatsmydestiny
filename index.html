@@ -2826,7 +2826,7 @@ function contactsFindError(contactError) {
 };
 function attemptSaveContact(){
   dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
-  if(reading.phoneInput.length != 9){
+  if(reading.phoneInput.length != 10){
     alert('Phone number is required to save contact');
     }
   else{
