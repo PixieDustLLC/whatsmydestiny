@@ -581,8 +581,9 @@ menuEvent:function(type, touches){
           }
         }
       }
-    if((rui.menuFound>-1)&&(rui.paneFound>-1)&&(rui.contentFound>-1)){
-      // off menu, close menus and pass event 
+    dbuga('rui.menuFound='+rui.menuFound+' rui.paneFound='+rui.paneFound+' rui.contentFound='+rui.contentFound);
+    if((rui.menuFound==-1)&&(rui.paneFound==-1)&&(rui.contentFound==-1)){
+      dbuga('off menu, close menus and pass event'); 
       rui.closeMenu("system", "rui.menuEvent");
       rui.closeMenu("context", "rui.menuEvent");
       var evt={"source":"touchstart", "type":"start", "x":touches[0].clientX, "y":touches[0].clientY};
