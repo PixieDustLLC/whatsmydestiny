@@ -2685,7 +2685,7 @@ function selectResult(id){
 
   var contact=contactsArray[id];
   selectedContactId=contact.id;
-  selectedContact=contact;
+  selectedContact=JSON.parse(JSON.stringify(contact));
   var contactFirst="";
   var contactMiddle="";
   var contactLast="";
@@ -2933,6 +2933,7 @@ function saveContact(){
     contact.emails=[];
     }
   else{
+    dbuga('contact=selectedContact');
     contact=selectedContact;
     }
   if(contact.phoneNumbers===null){
@@ -2946,6 +2947,7 @@ function saveContact(){
     var phoneNumber = new ContactField('home', phoneContactFormat(reading.phoneInput), false);  
     contact.phoneNumbers.push(phoneNumber);
     }
+  dbuga("contact.emails="+contact.emails.length);
   if(contact.emails===null){
     dbuga('CAUGHT no emails in saveContact()');
     contact.emails=[];
@@ -2965,6 +2967,7 @@ function saveContact(){
     if(nicknameParts[p].length>0){validParts.push(nicknameParts[p]);}
     }
   var name = new ContactName();  
+  dbuga("validParts.length="+validParts.length);
   if(validParts.length==3){// valid 3 part current name, put into contact name f, m, l
     name.givenName =  titleCase(validParts[0]);
     name.middleName = titleCase(validParts[1]);
