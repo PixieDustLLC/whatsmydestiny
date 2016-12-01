@@ -2851,6 +2851,7 @@ function contactsTestSuccess(contacts){
   contactsArray=contacts;
   var matchedId=-1;
   for (var c=0; c<contactsArray.length ; c++){
+    dbuga(Object.keys(contactsArray[c].name).join("|");
     if(inArray(Object.keys(contactsArray[c].name), "familyName")){
       if(inArray(Object.keys(contactsArray[c].name), "givenName")){
         if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
