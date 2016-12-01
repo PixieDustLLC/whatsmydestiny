@@ -163,6 +163,7 @@ var rui = {
 
 
 insertResultsMenuPane:function(results, menuName, paneNum){
+  
   var template=menus[menuName].panes[paneNum].contents[0];
   var pane=menus[menuName].panes[paneNum];
   menus[menuName].panes[paneNum].contents=[];
@@ -176,7 +177,7 @@ insertResultsMenuPane:function(results, menuName, paneNum){
     menus[menuName].panes[paneNum].contents.push(newResult);
     }
   rui.drawMenus();
-  //console.log(template);
+  dbuga('insertResultsMenuPane'+results.length);
   },
 
 drawMenus:function(){

@@ -2767,6 +2767,7 @@ function searchContacts(){
   menus['search'].panes[1].selection=-1;
   menus['search'].panes[2].selection=-1;
   rui.drawUx();
+  hideKeyboard();
   dbuga('searchContacts() menu='+menus["search"].panes[0].contents[0].value+' input='+document.getElementById('searchInput').value);
   var options      = new ContactFindOptions();
   options.filter   = menus["search"].panes[0].contents[0].value;
