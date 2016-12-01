@@ -2674,6 +2674,7 @@ function errorFunction(error)
 }
 function selectResult(id){
   dbuga("selectResult "+id);
+  hideKeyboard();
   menus["search"].selected=false;
   barButtons[2].selected=false;
   rui.drawUx();
