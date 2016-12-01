@@ -2675,9 +2675,8 @@ function errorFunction(error)
 function selectResult(id){
   dbuga("selectResult "+id);
   hideKeyboard();
-  menus["search"].selected=false;
-  barButtons[2].selected=false;
-  rui.drawUx();
+  rui.closeMenu('search');
+  rui.closeMenu('dashboard');
   AndroidFullScreen.immersiveMode(successFunction, errorFunction);
 
   var contact=contactsArray[id];
