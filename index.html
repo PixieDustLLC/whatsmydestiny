@@ -2301,7 +2301,7 @@ function handleEvent(evt){
     }
   }
 function clearReading(){
-  dbuga('clearReading() so clearCalcs');
+  dbuga('clearReading() so clearCalcs update values and drawUi');
   firstChanged=false;
   middleChanged=false;
   lastChanged=false;
@@ -2318,9 +2318,9 @@ function clearReading(){
   clearCalcs();
   localStorage.setItem("reading", JSON.stringify(reading));
   //dbuga("clearReading completed reading keys length: "+Object.keys(reading).length);
-  //dbuga(localStorage.reading);
-  ////updateValues();
+  updateValues();
   drawUi();
+  dbuga('clear completed');
   }
 var focusStep=1;
 function geometry(){
@@ -2825,7 +2825,7 @@ function contactsFindError(contactError) {
     alert('onError!');
 };
 function attemptSaveContact(){
-  //dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
+  dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
   if(selectedContactId==-1){
     testDuplicate();
     }
@@ -2833,7 +2833,7 @@ function attemptSaveContact(){
   }
 var duplicateContact={};
 function testDuplicate(){
-  //dbuga('testDuplicate()');
+  dbuga('testDuplicate()');
   var options      = new ContactFindOptions();
   options.filter   = reading.firstNameInput;
   options.multiple = true;
@@ -2842,18 +2842,18 @@ function testDuplicate(){
   navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
   }
 function contactsTestSuccess(contacts){
-  //dbuga('testSuccess Found ' + contacts.length + ' contacts.');
+  dbuga('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
   for (var c=0; c<contactsArray.length ; c++){
-    //dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
+    dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
     if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
       matchedId=contactsArray[c].id;
       duplicateContact=contactsArray[c];
       }
-    //dbuga('contact Okay');
+    dbuga('contact Okay');
     }
-  //dbuga('matchedId='+matchedId);
+  dbuga('matchedId='+matchedId);
   if(matchedId>-1){
     var r = confirm("Duplicate found, Update?");
     if (r == true) {
@@ -2879,12 +2879,12 @@ function saveContact(){
   var contact;
   if(selectedContactId!=-1){
     if((firstChanged)&&(middleChanged)&&(lastChanged)&&(currentChanged)){
-          //dbuga('changed all 4 names so save new contact');
+          dbuga('changed all 4 names so save new contact');
           selectedContactId=-1;
       }
     }
   if(selectedContactId==-1){
-    //dbuga('create a new contact object');
+    dbuga('create a new contact object');
     contact = navigator.contacts.create();
     contact.phoneNumbers=[];
     contact.emails=[];
@@ -2893,7 +2893,7 @@ function saveContact(){
     contact=selectedContact;
     }
   if(contact.phoneNumbers===null){
-    //dbuga('CAUGHT no emails in selectContact('+id+')');
+    dbuga('CAUGHT no emails in selectContact('+id+')');
     contact.phoneNumbers=[];
     }
   if(contact.phoneNumbers.length>0){
@@ -2904,7 +2904,7 @@ function saveContact(){
     contact.phoneNumbers.push(phoneNumber);
     }
   if(contact.emails===null){
-    //dbuga('CAUGHT no emails in saveContact()');
+    dbuga('CAUGHT no emails in saveContact()');
     contact.emails=[];
     }
   if(contact.emails.length>0){
@@ -2939,6 +2939,7 @@ function saveContact(){
     contact.nickname = n;
     }
   contact.name = name;
+
   //specify both to support all devices // uhoh androids
   if(reading.birthdayInput.length==8){
     var bd=reading.birthdayInput;
@@ -2950,8 +2951,9 @@ function saveContact(){
   dbuga("  contactsSave completed "+validParts.length);
   }
 function contactsSaveSuccess(contact) {
-  //dbuga("contactsSaveSuccess");
+  dbuga("contactsSaveSuccess");
   clearReading();// prevents double save
+  drawUi();
   //added july 2nd to prevent out of date search results
   searchContacts(); 
   // end of july 2 edits
