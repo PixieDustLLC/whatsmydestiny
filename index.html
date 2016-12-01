@@ -2625,11 +2625,13 @@ var menus={"system":{"selected":false, "stack":4, "buttonName":"systemToggle", "
 var selectedContactId=-1;
 var selectedContact={};
 function menuSave(){
+  menus.context.panes[0].selection=-1;
   attemptSaveContact();
   rui.toggleMenu('context', 'menuSave');
   }
 function menuClear(){
   clearReading();
+  menus.context.panes[0].selection=-1;
   rui.toggleMenu('context', 'menuClear');
   }
 
@@ -2793,10 +2795,29 @@ function contactsFindSuccess(contacts){
   menus['search'].panes[2].selection=-1;
   dbuga('Found ' + contacts.length + ' contacts.');
   dbuga(JSON.stringify(contacts[0]));
-  contactsArray=contacts;
+  contactsArray=[];
+  for (var c=0; c<contacts.length ; c++){
+    if(inArray(Object.keys(contacts[c]), "name")){
+      if(inArray(Object.keys(contacts[c].name), "familyName")){
+        if(inArray(Object.keys(contacts[c].name), "middleName")){
+          if(inArray(Object.keys(contacts[c].name), "givenName")){
+            if(contacts[c].name.familyName!=""){
+              if(contacts[c].name.givenName!=""){
+                var contact=contacts[c];
+                contactsArray.push(contact);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+ 
   var results=[];
   for (var c=0; c<contactsArray.length ; c++){
     //dbuga(" c="+c);
+
+
     if(contactsArray[c].nickname===null){contactsArray[c].nickname="";}
     if(contactsArray[c].name.givenName===null){contactsArray[c].name.givenName="";}
     if(contactsArray[c].name.middleName===null){contactsArray[c].name.middleName="";}
@@ -2804,8 +2825,6 @@ function contactsFindSuccess(contacts){
     if(contactsArray[c].birthday===null){contactsArray[c].birthday="";}
     if(contactsArray[c].emails===null){contactsArray[c].emails=[];}
     if(contactsArray[c].phoneNumbers===null){contactsArray[c].phoneNumbers=[];}
-
-    if(contactsArray[c].name.middleName=="undefined"){contactsArray[c].name.middleName="";}
 
 
     //dbuga(" - "+c+" OKAY "+contactsArray[c].name.familyName);
