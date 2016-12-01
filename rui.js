@@ -582,7 +582,7 @@ menuEvent:function(type, touches){
         }
       }
     dbuga('rui.menuFound='+rui.menuFound+' rui.paneFound='+rui.paneFound+' rui.contentFound='+rui.contentFound);
-    if((rui.menuFound==-1)&&(rui.paneFound==-1)&&(rui.contentFound==-1)){
+    if((rui.barFound==-1)&&(rui.menuFound==-1)&&(rui.paneFound==-1)&&(rui.contentFound==-1)){
       dbuga('off menu, close menus and pass event'); 
       rui.closeMenu("system", "rui.menuEvent");
       rui.closeMenu("context", "rui.menuEvent");
