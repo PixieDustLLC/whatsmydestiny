@@ -2801,11 +2801,11 @@ function contactsFindSuccess(contacts){
   contactsArray=[];
   for (var c=0; c<contacts.length ; c++){
 dbuga('c='+c);
-    if(inArray(Object.keys(contacts[c]), "name")){
+    if(inArray("name", Object.keys(contacts[c]))){
 dbuga(' passed name');
-      if(inArray(Object.keys(contacts[c].name), "familyName")){
+      if(inArray("familyName", Object.keys(contacts[c].name))){
 dbuga(' passed familyName');
-        if(inArray(Object.keys(contacts[c].name), "givenName")){
+        if(inArray("givenName", Object.keys(contacts[c].name))){
 dbuga(' passed givenName');
           if(contacts[c].name.familyName!=""){
 dbuga(' passed familyName='+contacts[c].name.familyName);
@@ -2877,10 +2877,10 @@ function contactsTestSuccess(contacts){
   var matchedId=-1;
   for (var c=0; c<contactsArray.length; c++){
     dbuga(" - "+Object.keys(contactsArray[c]).join("|"));
-    if(inArray(Object.keys(contactsArray[c]), "name")){
+    if(inArray("name", Object.keys(contactsArray[c]))){
       dbuga(" - - "+Object.keys(contactsArray[c].name).join("|"));
-      if(inArray(Object.keys(contactsArray[c].name), "familyName")){
-        if(inArray(Object.keys(contactsArray[c].name), "givenName")){
+      if(inArray("familyName", Object.keys(contactsArray[c].name))){
+        if(inArray("givenName", Object.keys(contactsArray[c].name))){
           if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
             if(contactsArray[c].name.givenName.toLowerCase()==reading.firstNameInput){
               matchedId=contactsArray[c].id;
