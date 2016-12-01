@@ -57,20 +57,20 @@ var rui = {
     rui.mcanv.addEventListener('mousedown', function(e){
       dbuga('mousedown');
       e.preventDefault();
-      rui.menuEvent("touchstart", [{"pageX":e.pageX, "pageY":e.pageY}]);
+      //rui.menuEvent("touchstart", [{"pageX":e.pageX, "pageY":e.pageY}]);
     }, false);
     rui.mcanv.addEventListener('mousemove', function(e){
       e.preventDefault();
       if((rui.touching)&&(e.pageY>rui.g*3)){
         //console.log(e.pageY+'>'+rui.g*3);
-        rui.menuEvent("touchmove", [{"pageX":e.pageX, "pageY":e.pageY}]);
+        //rui.menuEvent("touchmove", [{"pageX":e.pageX, "pageY":e.pageY}]);
       }
     }, false);
     rui.mcanv.addEventListener('mouseup', function(e){
       dbuga('mouseup');
 
       e.preventDefault();
-      rui.menuEvent("touchend", []);
+      //rui.menuEvent("touchend", []);
     }, false);
 
     rui.mcanv.addEventListener('touchstart', function(e){
