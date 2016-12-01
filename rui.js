@@ -588,6 +588,7 @@ menuEvent:function(type, touches){
       rui.closeMenu("system", "rui.menuEvent");
       rui.closeMenu("context", "rui.menuEvent");
       rui.closeMenu("search", "rui.menuEvent");
+      hideKeyboard();
       var evt={"source":"touchstart", "type":"start", "x":touches[0].clientX, "y":touches[0].clientY};
       handleEvent(evt);    
       }// end of touchstart touchmove
