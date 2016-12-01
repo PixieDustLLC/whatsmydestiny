@@ -90,6 +90,10 @@ var rui = {
   //dbuga('createRui completed');
 
   },
+  closeMenu:function(menuName, caller){
+    var b=buttonNumByName[menuName+"Toggle"];
+    if(barButtons[b].selected){rui.toggleMenu(menuName, caller);}
+  },
   toggleMenu:function(menuName, caller){
     var b=buttonNumByName[menuName+"Toggle"];
     if(barButtons[b].selected){barButtons[b].selected=false;}
@@ -573,11 +577,18 @@ menuEvent:function(type, touches){
           // instead, revert founds to prev
           rui.menuFound=prevMenu;
           rui.paneFound=prevPane;
-         rui.contentFound=prevContent;         
+          rui.contentFound=prevContent;         
           }
         }
       }
-    }// end of touchstart touchend
+    if((rui.menuFound>-1)&&(rui.paneFound>-1)&&(rui.contentFound>-1)){
+      // off menu, close menus and pass event 
+      rui.closeMenu("system", "rui.menuEvent");
+      rui.closeMenu("context", "rui.menuEvent");
+      var evt={"source":"touchstart", "type":"start", "x":touches[0].clientX, "y":touches[0].clientY};
+      handleEvent(evt);    
+      }// end of touchstart touchmove
+    }
   if(type=="touchend"){  
     rui.touching=false;
     //console.log('touchend');
