@@ -506,7 +506,10 @@ roundRect:function(ctx, x, y, width, height, radius, fill, stroke) {
 
 
 menuEvent:function(type, touches){
-  if(touches.length>2){debugging=!(debugging);}
+  if(touches.length>2){
+    debugging=!(debugging);
+    dbug('debugging='+debugging);
+    }
   if(type=="touchstart"){dbug('');}
   if((type=="touchstart")&&(touches.length==1)){
     rui.touching=true;
