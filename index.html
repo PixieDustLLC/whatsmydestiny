@@ -2850,16 +2850,19 @@ function contactsTestSuccess(contacts){
   dbuga('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
-  for (var c=0; c<contactsArray.length ; c++){
-    dbuga(Object.keys(contactsArray[c].name).join("|"));
-    if(inArray(Object.keys(contactsArray[c].name), "familyName")){
-      if(inArray(Object.keys(contactsArray[c].name), "givenName")){
-        if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
-          if(contactsArray[c].name.givenName.toLowerCase()==reading.firstNameInput){
-            matchedId=contactsArray[c].id;
-            duplicateContact=contactsArray[c];
-            dbuga("contactsArray[c].name.givenName="+contactsArray[c].name.givenName);
-            dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
+  for (var c=0; c<contactsArray.length; c++){
+    dbuga(" - "+Object.keys(contactsArray[c]).join("|"));
+    if(inArray(Object.keys(contactsArray[c]), "name")){
+      dbuga(" - - "+Object.keys(contactsArray[c].name).join("|"));
+      if(inArray(Object.keys(contactsArray[c].name), "familyName")){
+        if(inArray(Object.keys(contactsArray[c].name), "givenName")){
+          if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
+            if(contactsArray[c].name.givenName.toLowerCase()==reading.firstNameInput){
+              matchedId=contactsArray[c].id;
+              duplicateContact=contactsArray[c];
+              dbuga("contactsArray[c].name.givenName="+contactsArray[c].name.givenName);
+              dbuga("contactsArray[c].name.familyName="+contactsArray[c].name.familyName);
+              }
             }
           }
         }
