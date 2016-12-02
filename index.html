@@ -2731,7 +2731,7 @@ function selectResult(id){
     contact.birthday=mm+""+dd+""+yyyy;
     }
 */
-  updateIdValue("birthdayInput", isoToSlash(contact.birthday));
+  updateIdValue("birthdayInput", isoToMMDDYYYY(contact.birthday));
   // convert to mmddyyyy
   if(contact.emails===null){
     //dbuga('CAUGHT no emails in selectContact('+id+')');
@@ -2762,7 +2762,7 @@ function selectResult(id){
   ////updateValues();
   drawUi();
   }
-function isoToSlash(iso){
+function isoToMMDDYYYY(iso){
   var slash="";
   if(iso.length>9){
     iso=iso.substring(0,10);
