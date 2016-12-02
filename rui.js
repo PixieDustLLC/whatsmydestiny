@@ -510,7 +510,7 @@ menuEvent:function(type, touches){
     debugging=!(debugging);
     dbug('debugging='+debugging);
     }
-  if(type=="touchstart"){dbug('');}
+  if(type=="touchstart"){dbug('touchstart');}
   if((type=="touchstart")&&(touches.length==1)){
     rui.touching=true;
     var x=touches[0].pageX;
