@@ -2798,7 +2798,9 @@ function searchContacts(){
   ];
 */
   var fields = ["displayName", "name"];
+  dbuga(' fields.length='+fields.length);
   navigator.contacts.find(fields, contactsFindSuccess, contactsFindError, options);
+/*
   var template=menus[menuName].panes[paneNum].contents[0];
   menus["search"].panes[2].contents=[];
   menus["search"].panes[2].contents.push(template);
@@ -2806,6 +2808,7 @@ function searchContacts(){
  {"x":1, "y":1, "w":42, "h":6, "l":0, "r":0, "t":0, "b":0, "type":"paragraph", "text":"Retrieving contacts, please wait."});
 
   rui.drawUx();
+*/
   dbuga('searchContacts() completed');
   }
 function contactsFindSuccess(contacts){
