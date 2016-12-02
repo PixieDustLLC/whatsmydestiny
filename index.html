@@ -2817,22 +2817,22 @@ function contactsFindSuccess(contacts){
 
   menus['search'].panes[2].selection=-1;
   dbuga(JSON.stringify(contacts[0]));
-  contactsArray=contacts;
-  for (var c=0; c<contactsArray.length ; c++){
+  contactsArray=[];
+  for (var c=0; c<contacts.length ; c++){
 dbuga('c='+c);
-    if(inArray("name", Object.keys(contactsArray[c]))){
+    if(inArray("name", Object.keys(contacts[c]))){
 dbuga(' passed name');
-      if(inArray("familyName", Object.keys(contactsArray[c].name))){
+      if(inArray("familyName", Object.keys(contacts[c].name))){
 dbuga(' passed familyName');
-        if(inArray("givenName", Object.keys(contactsArray[c].name))){
+        if(inArray("givenName", Object.keys(contacts[c].name))){
 dbuga(' passed givenName');
-          if(contactsArray[c].name.familyName!=""){
-dbuga(' passed familyName='+contactsArray[c].name.familyName);
-            if(contactsArray[c].name.givenName!=""){
-dbuga(' passed givenName='+contactsArray[c].name.familyName);
+          if(contacts[c].name.familyName!=""){
+dbuga(' passed familyName='+contacts[c].name.familyName);
+            if(contacts[c].name.givenName!=""){
+dbuga(' passed givenName='+contacts[c].name.familyName);
               var contact=contacts[c];
-              if(inArray("middleName", Object.keys(contactsArray[c].name))==false){
-                contactsArray[c].name["middleName"]="";
+              if(inArray("middleName", Object.keys(contacts[c].name))==false){
+                contacts[c].name["middleName"]="";
                 }
               contactsArray.push(contact);
               }
