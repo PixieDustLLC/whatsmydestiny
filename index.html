@@ -2719,7 +2719,7 @@ function selectResult(id){
     updateIdValue("middleNameInput", contactMiddle);
     updateIdValue("lastNameInput", contactLast);
     }
-  
+/*  
   if(contact.birthday != ""){
     dbuga("contact.birthday "+contact.birthday);
     var birthdayObj=new Date(Number(contact.birthday));
@@ -2730,7 +2730,8 @@ function selectResult(id){
     var yyyy=birthdayObj.getFullYear();
     contact.birthday=mm+""+dd+""+yyyy;
     }
-  updateIdValue("birthdayInput", contact.birthday);
+*/
+  updateIdValue("birthdayInput", isoToSlash(contact.birthday));
   // convert to mmddyyyy
   if(contact.emails===null){
     //dbuga('CAUGHT no emails in selectContact('+id+')');
@@ -2760,6 +2761,17 @@ function selectResult(id){
   currentChanged=false;
   ////updateValues();
   drawUi();
+  }
+function isoToSlash(iso){
+  var slash="";
+  if(iso.length>9){
+    iso=iso.substring(0,10);
+    var parts=iso.split("-");
+    if(parts.length==3){
+      slash=parts[1]+"/"+parts[2]+"/"+parts[0];
+      }
+    }
+  return slash;
   }
 var contactsArray=[];
 function devent(e){
@@ -2880,9 +2892,9 @@ function contactsTestSuccess(contacts){
   contactsArray=contacts;
   var matchedId=-1;
   for (var c=0; c<contactsArray.length; c++){
-    dbuga(" - "+Object.keys(contactsArray[c]).join("|"));
+    //dbuga(" - "+Object.keys(contactsArray[c]).join("|"));
     if(inArray("name", Object.keys(contactsArray[c]))){
-      dbuga(" - - "+Object.keys(contactsArray[c].name).join("|"));
+      //dbuga(" - - "+Object.keys(contactsArray[c].name).join("|"));
       if(inArray("familyName", Object.keys(contactsArray[c].name))){
         if(inArray("givenName", Object.keys(contactsArray[c].name))){
           if(contactsArray[c].name.familyName.toLowerCase()==reading.lastNameInput){
