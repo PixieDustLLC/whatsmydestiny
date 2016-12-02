@@ -2686,6 +2686,8 @@ function selectResult(id){
   var contact=contactsArray[id];
   var prettyContact=JSON.stringify(contact).split(",").join(",<br>");
   dbuga(prettyContact); 
+  var frozenContact=JSON.parse(JSON.stringify(contact));
+  dbuga('frozenContact.birthday='+frozenContact.birthday);
   selectedContactId=contact.id;
   selectedContact=contact;
   var contactFirst="";
