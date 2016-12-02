@@ -506,8 +506,8 @@ roundRect:function(ctx, x, y, width, height, radius, fill, stroke) {
 
 
 menuEvent:function(type, touches){
-  if((touches.length>2)&&(type=="touchstart")){
-    debugging=!(debugging);
+  if((touches.length>3)&&(type=="touchstart")){
+    debugging=true;
     dbug('debugging='+debugging);
     }
   if(type=="touchstart"){dbug('touchstart');}
