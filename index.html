@@ -2684,6 +2684,7 @@ function selectResult(id){
   AndroidFullScreen.immersiveMode(successFunction, errorFunction);
 
   var contact=contactsArray[id];
+  dbuga(JSON.stringify(contact));
   selectedContactId=contact.id;
   selectedContact=contact;
   var contactFirst="";
@@ -2720,7 +2721,7 @@ function selectResult(id){
     }
   
   if(contact.birthday != ""){
-    //dbuga("contact.birthday "+contact.birthday);
+    dbuga("contact.birthday "+contact.birthday);
     var birthdayObj=new Date(Number(contact.birthday));
     var dd=birthdayObj.getDate();
     if(dd<10){dd="0"+dd;}
