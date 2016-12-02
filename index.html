@@ -2732,7 +2732,8 @@ function selectResult(id){
     contact.birthday=mm+""+dd+""+yyyy;
     }
 */
-  updateIdValue("birthdayInput", isoToMMDDYYYY(contact.birthday));
+  dbuga('contact.birthday='+contact.birthday);
+  updateIdValue("birthdayInput", isoToMMDDYYYY(""+contact.birthday));
   // convert to mmddyyyy
   if(contact.emails===null){
     //dbuga('CAUGHT no emails in selectContact('+id+')');
