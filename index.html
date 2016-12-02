@@ -2685,7 +2685,7 @@ function selectResult(id){
 
   var contact=contactsArray[id];
   selectedContactId=contact.id;
-  selectedContact=JSON.parse(JSON.stringify(contact));
+  selectedContact=contact;
   var contactFirst="";
   var contactMiddle="";
   var contactLast="";
@@ -2994,7 +2994,7 @@ function saveContact(){
     var birthDate=new Date(bd.substring(4,8), Number(bd.substring(0,2)) - 1, bd.substring(2,4));
     contact.birthday=birthDate;
     }
-  dbuga('birthday');
+  dbuga('contact.birthday='+birthDate);
   contact.save(contactsSaveSuccess,contactsSaveError);
   dbuga("  contactsSave completed "+validParts.length);
   }
