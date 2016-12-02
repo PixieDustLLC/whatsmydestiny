@@ -2812,8 +2812,10 @@ function searchContacts(){
   dbuga('searchContacts() completed');
   }
 function contactsFindSuccess(contacts){
-  menus['search'].panes[2].selection=-1;
+  dbuga('contactsFindSuccess');
   dbuga('Found ' + contacts.length + ' contacts.');
+
+  menus['search'].panes[2].selection=-1;
   dbuga(JSON.stringify(contacts[0]));
   contactsArray=contacts;
   for (var c=0; c<contactsArray.length ; c++){
