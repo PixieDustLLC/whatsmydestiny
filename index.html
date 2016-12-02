@@ -2768,7 +2768,7 @@ function isoToMMDDYYYY(iso){
     var isoTen=iso.substring(0,10);
     var parts=isoTen.split("-");
     if(parts.length==3){
-      slash=parts[1]+"/"+parts[2]+"/"+parts[0];
+      slash=parts[1]+""+parts[2]+""+parts[0];
       }
     }
   dbuga('isoToMMDDYYYY('+iso+') '+slash);
