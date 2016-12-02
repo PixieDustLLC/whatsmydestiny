@@ -2765,12 +2765,13 @@ function selectResult(id){
 function isoToMMDDYYYY(iso){
   var slash="";
   if(iso.length>9){
-    iso=iso.substring(0,10);
-    var parts=iso.split("-");
+    var isoTen=iso.substring(0,10);
+    var parts=isoTen.split("-");
     if(parts.length==3){
       slash=parts[1]+"/"+parts[2]+"/"+parts[0];
       }
     }
+  dbuga('isoToMMDDYYYY('+iso+') '+slash);
   return slash;
   }
 var contactsArray=[];
