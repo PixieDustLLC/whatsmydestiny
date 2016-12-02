@@ -2391,7 +2391,7 @@ function dbug(msg){
     }
   }
 function mouseDown(e){
-  dbuga('mouseDown');
+  //dbuga('mouseDown');
   e.preventDefault();
   //var evt={"source":"mousedown", "type":"start", "x":e.clientX, "y":e.clientY};
   //handleEvent(evt);
@@ -2684,7 +2684,8 @@ function selectResult(id){
   AndroidFullScreen.immersiveMode(successFunction, errorFunction);
 
   var contact=contactsArray[id];
-  dbuga(JSON.stringify(contact));
+  var prettyContact=JSON.stringify(contact).split(",").join(",<br>");
+  dbuga(prettyContact); 
   selectedContactId=contact.id;
   selectedContact=contact;
   var contactFirst="";
