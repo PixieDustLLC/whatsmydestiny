@@ -2888,7 +2888,7 @@ function attemptSaveContact(){
     if(selectedContactId==-1){
       testDuplicate();
       }
-    else{saveContact();}
+    else{saveContact(false);}
     }
   }
 var duplicateContact={};
@@ -2930,11 +2930,11 @@ function contactsTestSuccess(contacts){
     if (r == true) {
       selectedContact=duplicateContact;
       selectedContactId=matchedId;
-      saveContact();
+      saveContact(true);
       }
     }
   else{
-      saveContact();
+      saveContact(false);
     }
       
 };
@@ -2945,13 +2945,15 @@ var firstChanged=false;
 var middleChanged=false;
 var lastChanged=false;
 var currentChanged=false;
-function saveContact(){
-  dbuga("saveContact() "+selectedContactId);
+function saveContact(update){
+  dbuga("saveContact("+update+") selectedContactId="+selectedContactId);
   var contact;
-  if(selectedContactId!=-1){
-    if((firstChanged)&&(middleChanged)&&(lastChanged)&&(currentChanged)){
-          dbuga('changed all 4 names so save new contact');
-          selectedContactId=-1;
+  if(update==false){
+    if(selectedContactId!=-1){
+      if((firstChanged)&&(middleChanged)&&(lastChanged)&&(currentChanged)){
+        dbuga('changed all 4 names so save new contact');
+        selectedContactId=-1;
+        }
       }
     }
   if(selectedContactId==-1){
