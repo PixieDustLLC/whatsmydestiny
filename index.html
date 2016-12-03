@@ -3021,7 +3021,7 @@ function saveContact(update){
   //specify both to support all devices // uhoh androids
   if(reading.birthdayInput.length==8){
     var bd=reading.birthdayInput;
-    var birthDate=new Date(bd.substring(4,8), Number(bd.substring(0,2)) - 1, bd.substring(2,4));
+    var birthDate=new Date(bd.substring(4,8), Number(bd.substring(0,2)) - 1, bd.substring(2,4)+1);
     contact.birthday=birthDate;
     }
   dbuga('contact.birthday='+birthDate);
