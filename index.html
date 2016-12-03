@@ -2877,7 +2877,10 @@ function contactsFindError(contactError) {
     alert('onError!');
 };
 function attemptSaveContact(){
-  dbuga('attemptSaveContact() reading.phoneInput.length='+reading.phoneInput.length+' selectedContactId='+selectedContactId);
+  dbuga('attemptSaveContact() selectedContactId='+selectedContactId);
+  dbuga('  reading.phoneInput:'+reading.phoneInput+' length='+reading.phoneInput.length);
+  dbuga('  valueOfId("phoneInput")='+valueOfId("phoneInput")+' length='+valueOfId("phoneInput").length);
+
   if(reading.phoneInput.length != 10){
     alert('Phone number is required to save contact');
     }
