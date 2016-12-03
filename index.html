@@ -3021,11 +3021,12 @@ function saveContact(update){
   //specify both to support all devices // uhoh androids
   if(reading.birthdayInput.length==8){
     var bd=reading.birthdayInput;
-    var birthDate=new Date(bd.substring(4,8), Number(bd.substring(0,2)) - 1, bd.substring(2,4));
-    dbuga(bd.substring(4,8)+" "+(Number(bd.substring(0,2)) - 1)+" "+bd.substring(2,4));
+    var birthDate=new Date(bd.substring(4,8), Number(bd.substring(0,2)) - 1, bd.substring(2,4)+1,0,0,0,0);
     contact.birthday=birthDate;
     }
-  dbuga('contact.birthday='+birthDate);
+  dbuga('contact.birthday='+contact.birthday);
+  var frozen=JSON.parse(JSON.stringify(contact));
+  dbuga('frozen.birthday='+frozen.birthday);
   contact.save(contactsSaveSuccess,contactsSaveError);
   dbuga("  contactsSave completed "+validParts.length);
   }
