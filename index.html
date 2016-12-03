@@ -3022,7 +3022,7 @@ function saveContact(update){
   if(reading.birthdayInput.length==8){
     var bd=reading.birthdayInput;
     dbuga('4,8:'+bd.substring(4,8)+' 0,2:'+bd.substring(0,2)+' 2,4:'+bd.substring(2,4));
-    var birthDate=new Date(Number(bd.substring(4,8)), Number(bd.substring(0,2)) - 1, Number(bd.substring(2,4))+1,0,0,0,0);
+    var birthDate=new Date(Number(bd.substring(4,8)), Number(bd.substring(0,2)) - 1, Number(bd.substring(2,4)),0,0,0,0);
     contact.birthday=birthDate;
     }
   dbuga('contact.birthday='+contact.birthday);
