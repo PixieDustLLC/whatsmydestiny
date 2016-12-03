@@ -2894,6 +2894,7 @@ function testDuplicate(){
   var options      = new ContactFindOptions();
   options.filter   = reading.firstNameInput;
   options.multiple = true;
+  options.hasPhoneNumber = true;
   options.desiredFields = [];
   var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.nickname];
   navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
