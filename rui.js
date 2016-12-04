@@ -506,6 +506,7 @@ roundRect:function(ctx, x, y, width, height, radius, fill, stroke) {
 
 
 menuEvent:function(type, touches){
+  if(type=="touchmove"){return false;}
   if((touches.length>3)&&(type=="touchstart")){
     debugging=true;
     dbug('debugging='+debugging);
@@ -586,10 +587,10 @@ menuEvent:function(type, touches){
           }
         }
       }
-    //dbuga('rui.menuFound='+rui.menuFound+' rui.paneFound='+rui.paneFound+' rui.contentFound='+rui.contentFound);
-    //dbuga('rui.barFound='+rui.barFound+' type='+type);
+    dbuga('rui.menuFound='+rui.menuFound+' rui.paneFound='+rui.paneFound+' rui.contentFound='+rui.contentFound);
+    dbuga('rui.barFound='+rui.barFound+' type='+type);
     if((type=="touchstart")&&(rui.barFound==-1)&&(rui.menuFound==-1)&&(rui.paneFound==-1)&&(rui.contentFound==-1)){
-      //dbuga('off menu, close menus and pass event'); 
+      dbuga('off menu, close menus and pass event'); 
       rui.closeMenu("system", "rui.menuEvent");
       rui.closeMenu("context", "rui.menuEvent");
       rui.closeMenu("search", "rui.menuEvent");
