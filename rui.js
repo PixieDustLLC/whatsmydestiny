@@ -52,8 +52,10 @@ var rui = {
       }
   containerRef.insertAdjacentHTML("beforeend", htmlString);
     rui.mcanv=document.getElementById('menuCanvas');
+    
     rui.mctx=rui.mcanv.getContext('2d');
-
+    rui.mctx.imageSmoothingEnabled=false;
+/*
     rui.mcanv.addEventListener('mousedown', function(e){
       //dbuga('mousedown');
       e.preventDefault();
@@ -72,7 +74,7 @@ var rui = {
       e.preventDefault();
       //rui.menuEvent("touchend", []);
     }, false);
-
+*/
     rui.mcanv.addEventListener('touchstart', function(e){
       e.preventDefault();
       rui.menuEvent("touchstart", e.touches);
@@ -109,6 +111,7 @@ var rui = {
       return false;
       }
     if((window.innerWidth != rui.ww)||(window.innerHeight != rui.wh)){
+      dbug(rui.ww+' '+window.innerWidth);
       rui.ww=window.innerWidth;
       rui.wh=window.innerHeight;
       if(rui.ww<rui.wh){
@@ -528,7 +531,7 @@ menuEvent:function(type, touches){
     if(rui.barFound>-1){
       //dbuga(type+" rui.barFound: "+rui.barFound);
       var junk=eval(barButtons[rui.barFound].func);
-      //dbuga(barButtons[rui.barFound].func);
+      dbuga(barButtons[rui.barFound].func);
       }
     var prevMenu=rui.menuFound;
     var prevPane=rui.paneFound;
@@ -565,7 +568,7 @@ menuEvent:function(type, touches){
         if(obj.type=="color"){
           var jString=obj.func+'("'+obj.color+'", "'+type+'")';
           var junk=eval(jString);
-          //console.log(jString+" returned "+junk);
+          dbuga(jString+" returned "+junk);
           }
         rui.drawUx();
         }
@@ -628,7 +631,7 @@ menuEvent:function(type, touches){
         }
 
       if((obj.type=="icon")||(obj.type=="iconInvert")||(obj.type=="input")||(obj.type=="squaretool")){
-        //dbuga(' - touchend obj.func='+obj.func);
+        dbuga(' - touchend obj.func='+obj.func);
         var junk=eval(obj.func);
         }
       }
