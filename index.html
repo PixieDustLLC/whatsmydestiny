@@ -2858,7 +2858,7 @@ dbuga(' passed givenName');
           if(contacts[c].name.familyName!=""){
 dbuga(' passed familyName='+contacts[c].name.familyName);
             if(contacts[c].name.givenName!=""){
-dbuga(' passed givenName='+contacts[c].name.familyName);
+dbuga(' passed givenName='+contacts[c].name.givenName);
               var contact=contacts[c];
               if(inArray("middleName", Object.keys(contacts[c].name))==false){
                 contacts[c].name["middleName"]="";
@@ -2878,7 +2878,7 @@ dbuga(' passed givenName='+contacts[c].name.familyName);
 
     if(contactsArray[c].nickname===null){contactsArray[c].nickname="";}
     if(contactsArray[c].name.givenName===null){contactsArray[c].name.givenName="";}
-    if(contactsArray[c].name.middleName===null){contactsArray[c].name.givenName="";}
+    if(contactsArray[c].name.middleName===null){contactsArray[c].name.middleName="";}
     if(contactsArray[c].name.familyName===null){contactsArray[c].name.familyName="";}
     if(contactsArray[c].birthday===null){contactsArray[c].birthday="";}
     if(contactsArray[c].emails===null){contactsArray[c].emails=[];}
@@ -2928,7 +2928,7 @@ function testDuplicate(){
   navigator.contacts.find(fields, contactsTestSuccess, contactsTestError, options);
   }
 function contactsTestSuccess(contacts){
-  dbug('testSuccess Found ' + contacts.length + ' contacts.');
+  dbuga('testSuccess Found ' + contacts.length + ' contacts.');
   contactsArray=contacts;
   var matchedId=-1;
   for (var c=0; c<contactsArray.length; c++){
@@ -2959,6 +2959,7 @@ function contactsTestSuccess(contacts){
     if (r == true) {
       selectedContact=duplicateContact;
       selectedContactId=matchedId;
+      
       saveContact(true);
       }
     }
@@ -2997,7 +2998,7 @@ function saveContact(update){
     contact=selectedContact;
     }
   if(contact.phoneNumbers===null){
-    dbuga('CAUGHT no emails in selectContact('+id+')');
+    dbuga('CAUGHT no phones in selectContact('+id+')');
     contact.phoneNumbers=[];
     }
   if(contact.phoneNumbers.length>0){
@@ -3041,13 +3042,16 @@ function saveContact(update){
     name.givenName =  titleCase(reading.firstNameInput);
     name.middleName = titleCase(reading.middleNameInput);
     name.familyName = titleCase(reading.lastNameInput);
+    dbuga("name.givenName="+name.givenName)
+    dbuga("name.middleName="+name.middleName)
+    dbuga("name.familyName="+name.familyName)
     var n=titleCase(validParts.join(" "));
     contact.displayName = n;
     contact.nickname = n;
     dbuga("reading to contact completed");
     }
   contact.name = name;
-  dbuga('  name='+name);
+  dbuga('  name='+JSON.stringify(name));
   //specify both to support all devices // uhoh androids
   if(reading.birthdayInput.length==8){
     var bd=reading.birthdayInput;
