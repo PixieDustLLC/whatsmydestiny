@@ -2710,9 +2710,30 @@ function selectResult(id){
   if(contact.name===null){}
   else{
     var nameFields=Object.keys(contact.name);
-    if(inArray("givenName", nameFields)){contactFirst=contact.name.givenName.replace(/ /g, "-");}
-    if(inArray("middleName", nameFields)){contactMiddle=contact.name.middleName.replace(/ /g, "-");}
-    if(inArray("familyName", nameFields)){contactLast=contact.name.familyName.replace(/ /g, "-");}
+    if(inArray("givenName", nameFields)){
+      if(contact.name.givenName !== null){
+        contactFirst=contact.name.givenName.replace(/ /g, "-");
+        }
+      else{
+        contactFirst="";
+        }
+      }
+    if(inArray("middleName", nameFields)){
+      if(contact.name.middleName !== null){
+        contactMiddle=contact.name.middleName.replace(/ /g, "-");
+        }
+      else{
+        contactMiddle="";
+        }
+      }
+    if(inArray("familyName", nameFields)){
+      if(contact.name.familyName !== null){
+        contactLast=contact.name.familyName.replace(/ /g, "-");
+        }
+      else{
+        contactLast="";
+        }
+      }
     }
   if(validParts.length==3){// valid 3 part nickname
     updateIdValue("currentNameInput", contactFirst+" "+contactMiddle+" "+contactLast);
