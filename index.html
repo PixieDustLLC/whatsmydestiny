@@ -1632,7 +1632,7 @@ function createForm(){
   }
 //       {"x":0, "y":0, "w":28, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"input", "func":"clearSearch()", "value":"search input"},
 function createSearch(){
-  dbug('createSearch()');
+  //dbug('createSearch()');
   console.log(menus.search.panes[0].contents[0]);
   createInput("menuHolder", "searchInput", 10, -1,-1,1,1);
   }
@@ -2397,7 +2397,7 @@ function mouseDown(e){
   //handleEvent(evt);
   }
 function touchStart(e){
-  dbug('touchStart');
+  //dbug('touchStart');
   e.preventDefault();
   var evt={"source":"touchstart", "type":"start", "x":e.touches[0].clientX, "y":e.touches[0].clientY};
   handleEvent(evt);
