@@ -100,6 +100,7 @@
 <!-- iPad -->
 <icon src="res/icon-72.png" gap:platform="ios" width="72" height="72" />
 <icon src="res/icon-72@2x.png" gap:platform="ios" width="144" height="144" />
+<icon src="res/icon-83.5@2x.png" platform="ios" width="167" height="167"/>
 
 <!-- multitasking and settings iOS -->
 <icon src="res/icon-58.png" platform="ios" width="58" height="58" />
