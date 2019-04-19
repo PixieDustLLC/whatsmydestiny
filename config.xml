@@ -3,11 +3,11 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
-        versionCode="9" 
-        version   = "1.9">
+        versionCode="10"
+        version   = "2.0">
 
     <!-- versionCode is optional and Android only -->
-<preference name="phonegap-version" value="cli-6.5.0" />
+<preference name="phonegap-version" value="cli-7.1.0" />
 
 <preference name="webviewbounce" value="false" />
 <name>What's My Destiny?</name>
@@ -48,7 +48,7 @@
 <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 <preference name="orientation" value="landscape" />
 <preference name="target-device" value="tablet" />
-<preference name="fullscreen" value="true" /> 
+<preference name="fullscreen" value="true" />
 
 <preference name="StatusBarOverlaysWebView" value="true" />
 <gap:config-file platform="ios" parent="UIStatusBarHidden">
@@ -60,7 +60,7 @@
 
     <allow-navigation href="*" />
     <allow-intent href="*" />
-    <access origin="*" /> 
+    <access origin="*" />
 <access origin="http://whatsmydestiny.com" />
 <access origin="https://www.google-analytics.com" />
 
