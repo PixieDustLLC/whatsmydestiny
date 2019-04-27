@@ -110,7 +110,7 @@ function loadArticle(filename, lineNum){
   htmlString+='<div class="closeBlackIcon" style="float:right; width:44px; height:44px;" ontouchend="javascript:event.preventDefault(); closeArticle()"></div>';
   htmlString+='</div>';
   htmlString+='<div class="closeBlackIconTop" ontouchend="javascript:event.preventDefault(); closeArticle()"></div>';
-  
+
   articleDiv.innerHTML="";
   //document.getElementById('articleDiv').scrollTop=0
   articleDiv.innerHTML=htmlString;
@@ -141,16 +141,16 @@ function init(){
   geometry();
   labelObj=[
   ];
-  var defaultValueSize=.85; 
-  var defaultLabelSize=.75; 
+  var defaultValueSize=.85;
+  var defaultLabelSize=.75;
   uiObj=[{
         "id":"metaDisplay", "focusable":false,
-        "limit":2, "type":"label", 
-        "w":12, "h":6.5, 
-        "l":19, "t":1, 
-        "r":31, "b":7.5, 
+        "limit":2, "type":"label",
+        "w":12, "h":6.5,
+        "l":19, "t":1,
+        "r":31, "b":7.5,
         "down":1, "up":-11,
-        "valueSize":.6, "labelSize":.7, 
+        "valueSize":.6, "labelSize":.7,
         "label":"",
         "value":"",
         "focus":0}
@@ -167,13 +167,13 @@ function init(){
          "heartsDesire",
          "personality",
          "habitChallenge"
-         ], 
-        "limit":20, "type":"alpha", 
-        "w":20, "h":rowCells, 
-        "l":1, "t":1, 
-        "r":21, "b":2, 
+         ],
+        "limit":20, "type":"alpha",
+        "w":20, "h":rowCells,
+        "l":1, "t":1,
+        "r":21, "b":2,
         "down":1, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"First Name",
         "value":"",
         "focus":0}
@@ -191,12 +191,12 @@ function init(){
          "personality",
          "habitChallenge"
          ],
-        "limit":20, "type":"alpha", 
-        "w":20, "h":rowCells, 
-        "l":1, "t":2, 
-        "r":21, "b":3, 
+        "limit":20, "type":"alpha",
+        "w":20, "h":rowCells,
+        "l":1, "t":2,
+        "r":21, "b":3,
         "down":1, "up":-1,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Middle Name",
         "value":"",
         "focus":0}
@@ -214,12 +214,12 @@ function init(){
          "personality",
          "habitChallenge"
          ],
-        "limit":20, "type":"alpha", 
-        "w":20, "h":rowCells, 
-        "l":1, "t":3, 
-        "r":21, "b":4, 
+        "limit":20, "type":"alpha",
+        "w":20, "h":rowCells,
+        "l":1, "t":3,
+        "r":21, "b":4,
         "down":1, "up":-1,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Last Name",
         "value":"",
         "focus":0}
@@ -227,12 +227,12 @@ function init(){
         "id":"currentNameInput", "focusable":true,
         "highlights":[
          ],
-        "limit":40, "type":"alpha", 
-        "w":20, "h":rowCells, 
-        "l":1, "t":4, 
-        "r":21, "b":5, 
+        "limit":40, "type":"alpha",
+        "w":20, "h":rowCells,
+        "l":1, "t":4,
+        "r":21, "b":5,
         "down":1, "up":-1,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Current Name",
         "value":"",
         "focus":0}
@@ -240,12 +240,12 @@ function init(){
         "id":"emailInput", "focusable":true,
         "highlights":[
          ],
-        "limit":40, "type":"alphacharnumeric", 
-        "w":20, "h":rowCells, 
-        "l":1, "t":5, 
-        "r":21, "b":6, 
+        "limit":40, "type":"alphacharnumeric",
+        "w":20, "h":rowCells,
+        "l":1, "t":5,
+        "r":21, "b":6,
         "down":1, "up":-1,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Email",
         "value":"",
         "focus":0}
@@ -253,12 +253,12 @@ function init(){
         "id":"phoneInput", "focusable":true,
         "highlights":[
          ],
-        "limit":20, "type":"numericphone", 
-        "w":9, "h":2, 
-        "l":22, "t":1, 
-        "r":31, "b":3, 
+        "limit":20, "type":"numericphone",
+        "w":9, "h":2,
+        "l":22, "t":1,
+        "r":31, "b":3,
         "down":1, "up":-1,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Phone",
         "value":"",
         "focus":0}
@@ -286,551 +286,551 @@ function init(){
          "thirdAge",
          "fourthAge",
          ],
-        "limit":8, "type":"numericslash", 
-        "w":9, "h":2, 
-        "l":22, "t":4, 
-        "r":31, "b":6, 
+        "limit":8, "type":"numericslash",
+        "w":9, "h":2,
+        "l":22, "t":4,
+        "r":31, "b":6,
         "down":-5, "up":-1,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Birthday",
         "value":"",
         "focus":0}
         ,{
         "id":"ageInYears", "focusable":false,
-        "limit":10, "type":"label", 
-        "w":9, "h":1, 
-        "l":22, "t":7, 
-        "r":31, "b":8, 
+        "limit":10, "type":"label",
+        "w":9, "h":1,
+        "l":22, "t":7,
+        "r":31, "b":8,
         "down":2, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Age",
         "value":"",
         "focus":0}
         ,{
         "id":"dayOfWeek", "focusable":false,
-        "limit":10, "type":"label", 
-        "w":9, "h":1, 
-        "l":22, "t":9, 
-        "r":31, "b":10, 
+        "limit":10, "type":"label",
+        "w":9, "h":1,
+        "l":22, "t":9,
+        "r":31, "b":10,
         "down":2, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Weekday",
         "value":"",
         "focus":0}
         ,{
         "id":"firstName", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":7, 
-        "r":10, "b":8, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":7,
+        "r":10, "b":8,
         "down":2, "up":-3,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"First Name",
         "value":"",
         "focus":0}
         ,{
         "id":"physicalPlane", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":12, "t":7, 
-        "r":21, "b":8, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":12, "t":7,
+        "r":21, "b":8,
         "down":2, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Physical Plane",
         "value":"",
         "focus":0}
         ,{
         "id":"middleName", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":8, 
-        "r":10, "b":9, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":8,
+        "r":10, "b":9,
         "down":2, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Middle Name",
         "value":"",
         "focus":0}
         ,{
         "id":"mentalPlane", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":12, "t":8, 
-        "r":21, "b":9, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":12, "t":8,
+        "r":21, "b":9,
         "down":2, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Mental Plane",
         "value":"",
         "focus":0}
         ,{
         "id":"lastName", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":9, 
-        "r":10, "b":10, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":9,
+        "r":10, "b":10,
         "down":3, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Last Name",
         "value":"",
         "focus":0}
         ,{
         "id":"emotionalPlane", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":12, "t":9, 
-        "r":21, "b":10, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":12, "t":9,
+        "r":21, "b":10,
         "down":1, "up":-2,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Emotional Plane",
         "value":"",
         "focus":0}
         ,{
         "id":"intuitivePlane", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":12, "t":10, 
-        "r":21, "b":11, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":12, "t":10,
+        "r":21, "b":11,
         "down":3, "up":-1,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Intuitive Plane",
         "value":"",
         "focus":0}
         ,{
         "id":"dayOfBirth", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":11, 
-        "r":10, "b":12, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":11,
+        "r":10, "b":12,
         "down":1, "up":-3,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Day of Birth",
         "value":"",
         "focus":0}
         ,{
         "id":"birthpath", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":12, 
-        "r":10, "b":13, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":12,
+        "r":10, "b":13,
         "down":4, "up":-1,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Birthpath",
         "value":"",
         "focus":0}
         ,{
         "id":"personalYear", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":8, "h":rowCells, 
-        "l":12, "t":12, 
-        "r":20, "b":13, 
+        "limit":5, "type":"label",
+        "w":8, "h":rowCells,
+        "l":12, "t":12,
+        "r":20, "b":13,
         "down":4, "up":-3,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Personal Year:",
         "value":"",
         "focus":0}
         ,{
         "id":"personalMonth", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":5, "h":rowCells, 
-        "l":20, "t":12, 
-        "r":25, "b":13, 
+        "limit":5, "type":"label",
+        "w":5, "h":rowCells,
+        "l":20, "t":12,
+        "r":25, "b":13,
         "down":4, "up":-4,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Month:",
         "value":"",
         "focus":0}
         ,{
         "id":"personalDay", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":25, "t":12, 
-        "r":29, "b":13, 
+        "limit":5, "type":"label",
+        "w":4, "h":rowCells,
+        "l":25, "t":12,
+        "r":29, "b":13,
         "down":4, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Day:",
         "value":"",
         "focus":0}
         ,{
         "id":"destiny", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":14, 
-        "r":10, "b":15, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":14,
+        "r":10, "b":15,
         "down":4, "up":-4,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Destiny",
         "value":"",
         "focus":0}
         ,{
         "id":"~", "focusable":false,
-        "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":16, "t":14, 
-        "r":20, "b":15, 
+        "limit":5, "type":"label",
+        "w":4, "h":rowCells,
+        "l":16, "t":14,
+        "r":20, "b":15,
         "down":5, "up":-4,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Pinnacles",
         "value":"",
         "focus":0}
         ,{
         "id":"~", "focusable":false,
-        "limit":5, "type":"label", 
-        "w":5, "h":rowCells, 
-        "l":21, "t":14, 
-        "r":26, "b":15, 
+        "limit":5, "type":"label",
+        "w":5, "h":rowCells,
+        "l":21, "t":14,
+        "r":26, "b":15,
         "down":5, "up":-4,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Challenges",
         "value":"",
         "focus":0}
         ,{
         "id":"~", "focusable":false,
-        "limit":5, "type":"label", 
-        "w":3, "h":rowCells, 
-        "l":27, "t":14, 
-        "r":30, "b":15, 
+        "limit":5, "type":"label",
+        "w":3, "h":rowCells,
+        "l":27, "t":14,
+        "r":30, "b":15,
         "down":5, "up":-4,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Ages",
         "value":"",
         "focus":0}
         ,{
         "id":"realization", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":15, 
-        "r":10, "b":16, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":15,
+        "r":10, "b":16,
         "down":5, "up":-4,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Realization",
         "value":"",
         "focus":0}
         ,{
         "id":"firstLabel", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":12, "t":15, 
-        "r":16, "b":16, 
+        "limit":5, "type":"label",
+        "w":4, "h":rowCells,
+        "l":12, "t":15,
+        "r":16, "b":16,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"First",
         "value":"",
         "focus":0}
         ,{
         "id":"firstPinnacle", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":2, "h":rowCells, 
-        "l":16, "t":15, 
-        "r":18, "b":16, 
+        "limit":5, "type":"label",
+        "w":2, "h":rowCells,
+        "l":16, "t":15,
+        "r":18, "b":16,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"firstChallenge", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":2, "h":rowCells, 
-        "l":21, "t":15, 
-        "r":23, "b":16, 
+        "limit":5, "type":"label",
+        "w":2, "h":rowCells,
+        "l":21, "t":15,
+        "r":23, "b":16,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"firstAge", "focusable":false,
-        "limit":5, "type":"label", 
-        "w":6, "h":rowCells, 
-        "l":25, "t":15, 
-        "r":31, "b":16, 
+        "limit":5, "type":"label",
+        "w":6, "h":rowCells,
+        "l":25, "t":15,
+        "r":31, "b":16,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"heartsDesire", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":16, 
-        "r":10, "b":17, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":16,
+        "r":10, "b":17,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Heart's Desire",
         "value":"",
         "focus":0}
         ,{
         "id":"secondLabel", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":12, "t":16, 
-        "r":16, "b":17, 
+        "limit":5, "type":"label",
+        "w":4, "h":rowCells,
+        "l":12, "t":16,
+        "r":16, "b":17,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Second",
         "value":"",
         "focus":0}
         ,{
         "id":"secondPinnacle", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":2, "h":rowCells, 
-        "l":16, "t":16, 
-        "r":18, "b":17, 
+        "limit":5, "type":"label",
+        "w":2, "h":rowCells,
+        "l":16, "t":16,
+        "r":18, "b":17,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"secondChallenge", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":2, "h":rowCells, 
-        "l":21, "t":16, 
-        "r":23, "b":17, 
+        "limit":5, "type":"label",
+        "w":2, "h":rowCells,
+        "l":21, "t":16,
+        "r":23, "b":17,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"secondAge", "focusable":false,
-        "limit":5, "type":"label", 
-        "w":6, "h":rowCells, 
-        "l":25, "t":16, 
-        "r":31, "b":17, 
+        "limit":5, "type":"label",
+        "w":6, "h":rowCells,
+        "l":25, "t":16,
+        "r":31, "b":17,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"personality", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":17, 
-        "r":10, "b":18, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":17,
+        "r":10, "b":18,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Personality",
         "value":"",
         "focus":0}
         ,{
         "id":"thirdLabel", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":12, "t":17, 
-        "r":16, "b":18, 
+        "limit":5, "type":"label",
+        "w":4, "h":rowCells,
+        "l":12, "t":17,
+        "r":16, "b":18,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Third",
         "value":"",
         "focus":0}
         ,{
         "id":"thirdPinnacle", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":2, "h":rowCells, 
-        "l":16, "t":17, 
-        "r":18, "b":18, 
+        "limit":5, "type":"label",
+        "w":2, "h":rowCells,
+        "l":16, "t":17,
+        "r":18, "b":18,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"thirdChallenge", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":2, "h":rowCells, 
-        "l":21, "t":17, 
-        "r":23, "b":18, 
+        "limit":5, "type":"label",
+        "w":2, "h":rowCells,
+        "l":21, "t":17,
+        "r":23, "b":18,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"thirdAge", "focusable":false,
-        "limit":5, "type":"label", 
-        "w":6, "h":rowCells, 
-        "l":25, "t":17, 
-        "r":31, "b":18, 
+        "limit":5, "type":"label",
+        "w":6, "h":rowCells,
+        "l":25, "t":17,
+        "r":31, "b":18,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"habitChallenge", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":9, "h":rowCells, 
-        "l":1, "t":18, 
-        "r":10, "b":19, 
+        "limit":5, "type":"label",
+        "w":9, "h":rowCells,
+        "l":1, "t":18,
+        "r":10, "b":19,
         "down":5, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Habit Challenge",
         "value":"",
         "focus":0}
         ,{
         "id":"fourthLabel", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":4, "h":rowCells, 
-        "l":12, "t":18, 
-        "r":16, "b":19, 
+        "limit":5, "type":"label",
+        "w":4, "h":rowCells,
+        "l":12, "t":18,
+        "r":16, "b":19,
         "down":6, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Fourth",
         "value":"",
         "focus":0}
         ,{
         "id":"fourthPinnacle", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":2, "h":rowCells, 
-        "l":16, "t":18, 
-        "r":18, "b":19, 
+        "limit":5, "type":"label",
+        "w":2, "h":rowCells,
+        "l":16, "t":18,
+        "r":18, "b":19,
         "down":8, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"fourthChallenge", "focusable":true,
-        "limit":5, "type":"label", 
-        "w":2, "h":rowCells, 
-        "l":21, "t":18, 
-        "r":23, "b":19, 
+        "limit":5, "type":"label",
+        "w":2, "h":rowCells,
+        "l":21, "t":18,
+        "r":23, "b":19,
         "down":10, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"fourthAge", "focusable":false,
-        "limit":5, "type":"label", 
-        "w":6, "h":rowCells, 
-        "l":25, "t":18, 
-        "r":31, "b":19, 
+        "limit":5, "type":"label",
+        "w":6, "h":rowCells,
+        "l":25, "t":18,
+        "r":31, "b":19,
         "down":11, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"",
         "value":"",
         "focus":0}
         ,{
         "id":"~", "focusable":false,
-        "limit":5, "type":"label", 
-        "w":8, "h":rowCells*2, 
-        "l":1, "t":20, 
-        "r":9, "b":22, 
+        "limit":5, "type":"label",
+        "w":8, "h":rowCells*2,
+        "l":1, "t":20,
+        "r":9, "b":22,
         "down":11, "up":-5,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Distribution of Numbers in Name",
         "value":"",
         "focus":0}
         ,{
         "id":"count1", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":1, "h":2, 
-        "l":10, "t":20, 
-        "r":11, "b":22, 
+        "limit":2, "type":"label",
+        "w":1, "h":2,
+        "l":10, "t":20,
+        "r":11, "b":22,
         "down":10, "up":-6,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"1",
         "value":"",
         "focus":0}
         ,{
         "id":"count2", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":1, "h":2, 
-        "l":11.75, "t":20, 
-        "r":12.75, "b":22, 
+        "limit":2, "type":"label",
+        "w":1, "h":2,
+        "l":11.75, "t":20,
+        "r":12.75, "b":22,
         "down":1, "up":-6,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"2",
         "value":"",
         "focus":0}
         ,{
         "id":"count3", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":1, "h":2, 
-        "l":13.5, "t":20, 
-        "r":14.5, "b":22, 
+        "limit":2, "type":"label",
+        "w":1, "h":2,
+        "l":13.5, "t":20,
+        "r":14.5, "b":22,
         "down":1, "up":-7,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"3",
         "value":"",
         "focus":0}
         ,{
         "id":"count4", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":1, "h":2, 
-        "l":15.25, "t":20, 
-        "r":16.25, "b":22, 
+        "limit":2, "type":"label",
+        "w":1, "h":2,
+        "l":15.25, "t":20,
+        "r":16.25, "b":22,
         "down":1, "up":-7,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"4",
         "value":"",
         "focus":0}
         ,{
         "id":"count5", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":1, "h":2, 
-        "l":17, "t":20, 
-        "r":18, "b":22, 
+        "limit":2, "type":"label",
+        "w":1, "h":2,
+        "l":17, "t":20,
+        "r":18, "b":22,
         "down":1, "up":-8,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"5",
         "value":"",
         "focus":0}
         ,{
         "id":"count6", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":1, "h":2, 
-        "l":18.75, "t":20, 
-        "r":19.75, "b":22, 
+        "limit":2, "type":"label",
+        "w":1, "h":2,
+        "l":18.75, "t":20,
+        "r":19.75, "b":22,
         "down":1, "up":-9,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"6",
         "value":"",
         "focus":0}
         ,{
         "id":"count7", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":1, "h":2, 
-        "l":20.5, "t":20, 
-        "r":21.5, "b":22, 
+        "limit":2, "type":"label",
+        "w":1, "h":2,
+        "l":20.5, "t":20,
+        "r":21.5, "b":22,
         "down":1, "up":-9,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"7",
         "value":"",
         "focus":0}
         ,{
         "id":"count8", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":1, "h":2, 
-        "l":22.25, "t":20, 
-        "r":23.25, "b":22, 
+        "limit":2, "type":"label",
+        "w":1, "h":2,
+        "l":22.25, "t":20,
+        "r":23.25, "b":22,
         "down":1, "up":-10,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"8",
         "value":"",
         "focus":0}
         ,{
         "id":"count9", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":1, "h":2, 
-        "l":24, "t":20, 
-        "r":25, "b":22, 
+        "limit":2, "type":"label",
+        "w":1, "h":2,
+        "l":24, "t":20,
+        "r":25, "b":22,
         "down":1, "up":-10,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"9",
         "value":"",
         "focus":0}
         ,{
         "id":"karmicLesson", "focusable":true,
-        "limit":2, "type":"label", 
-        "w":6, "h":2, 
-        "l":25.5, "t":20, 
-        "r":31.5, "b":22, 
+        "limit":2, "type":"label",
+        "w":6, "h":2,
+        "l":25.5, "t":20,
+        "r":31.5, "b":22,
         "down":1, "up":-11,
-        "valueSize":defaultValueSize, "labelSize":defaultLabelSize, 
+        "valueSize":defaultValueSize, "labelSize":defaultLabelSize,
         "label":"Karmic Lesson",
         "value":"",
         "focus":0}
@@ -855,7 +855,7 @@ function init(){
 function appDown(e){
   dbuga('appDown ?????');
   }
- 
+
 function appTyped(keyCode){
     dbuga("appTyped should be disabled ???");
   }
@@ -885,7 +885,7 @@ function roundRect(ctx, x, y, w, h, rad, lineWidth, strokeStyle, fillStyle, labe
     ctx.fillStyle=fillStyle;
     ctx.fill();
     ctx.lineWidth=lineWidth;
-    ctx.stroke(); 
+    ctx.stroke();
     }
   if(label.indexOf(".png")>-1){
     ctx.globalAlpha=iconAlpha;
@@ -895,9 +895,9 @@ function roundRect(ctx, x, y, w, h, rad, lineWidth, strokeStyle, fillStyle, labe
     }
   else{
     ctx.fillStyle=labelColor;
-    ctx.textBaseline= "middle";  
-    ctx.textAlign= "center";  
-    ctx.font=font;  
+    ctx.textBaseline= "middle";
+    ctx.textAlign= "center";
+    ctx.font=font;
     var parts=label.split("-");
     //1:step:1/2, start:1/2
     //2:step:1/3 start:1/3
@@ -959,8 +959,8 @@ function userInput(){
   reading.emailInput=valueOfId("emailInput").toLowerCase();
   reading.phoneInput=valueOfId("phoneInput");
   reading.birthdayInput=valueOfId("birthdayInput");
-  
-  if(reading.birthdayInput.length==8){ 
+
+  if(reading.birthdayInput.length==8){
     reading.birthMMDDYYYY=reading.birthdayInput;
     var parts=reading.birthdayInput.split('');
     reading.birthYYYY=parts.slice(4,8).join('');
@@ -972,7 +972,7 @@ function userInput(){
     reading.dayOfWeekStr=daysOfWeek[reading.dayOfWeekNum];
     //reading.dayOfBirth=specialize(reading.birthDD);//1-31 including 11/2...
     reading.dayOfBirth=reduceNumStr(""+reading.birthDD, "birthDD");//1-31 including 11/2...
-    
+
     reading.ageInYears=getAge(reading.birthdateDate);
     reading.birthSum=Number(unmaster(reduceNumStr(reading.birthMM, "birthMM")))+Number(unmaster(reduceNumStr(reading.birthDD, "birthDD")))+Number(unmaster(reduceNumStr(reading.birthYYYY, "birthYYYY")));
     reading.birthpath=reduceNumStr(""+reading.birthSum, "reading.birthSum");
@@ -981,7 +981,7 @@ function userInput(){
     reading.globalYearVal=reduceNumStr(""+reading.globalYear, "globalyear");
     var personalYearNum=Number(reading.birthMM)+Number(reading.birthDD)+Number(reading.globalYear);
     reading.personalYear=reduceNumStr(""+personalYearNum, "personalYear");
-  
+
     reading.globalMonth=nowDate.getMonth()+1;
     //dbuga("reading.globalMonth "+reading.globalMonth);
     reading.globalMonthVal=reduceNumStr(""+reading.globalMonth, "globalMonth");
@@ -1021,7 +1021,7 @@ function userInput(){
     reading.fourthAgeLabel=reading.fourthAgeStart+" to "+reading.fourthAgeEnd;
     reading.fourthAgeValue="";
     }
-  //dbug("reading.birthdayInput.length "+reading.birthdayInput.length); 
+  //dbug("reading.birthdayInput.length "+reading.birthdayInput.length);
   if(reading.firstNameInput != ""){
     reading.firstNameSum=sumArray(strToNums(valueOfId("firstNameInput")));
     reading.firstNameVal=reduceNumStr(""+reading.firstNameSum, "reading.firstNameSum");
@@ -1045,14 +1045,14 @@ function userInput(){
     reading.personality=reduceNumStr(""+sumLetterArray(reading.nameConsonantArray), "personality");
     reading.habitChallenge=reduceNumStr(""+reading.nameStr.length, "habitChallenge");
     reading.counts=[-1,
-    numberCount(1,reading.nameStr), 
-    numberCount(2,reading.nameStr), 
-    numberCount(3,reading.nameStr), 
-    numberCount(4,reading.nameStr), 
-    numberCount(5,reading.nameStr), 
-    numberCount(6,reading.nameStr), 
-    numberCount(7,reading.nameStr), 
-    numberCount(8,reading.nameStr), 
+    numberCount(1,reading.nameStr),
+    numberCount(2,reading.nameStr),
+    numberCount(3,reading.nameStr),
+    numberCount(4,reading.nameStr),
+    numberCount(5,reading.nameStr),
+    numberCount(6,reading.nameStr),
+    numberCount(7,reading.nameStr),
+    numberCount(8,reading.nameStr),
     numberCount(9,reading.nameStr)
     ];
     reading.karmicArray=[];
@@ -1064,12 +1064,12 @@ function userInput(){
     reading.mentalPlane=reduceNumStr(""+(reading.counts[1]+reading.counts[8]), "mentalPlane");
     reading.emotionalPlane=reduceNumStr(""+(reading.counts[2]+reading.counts[3]+reading.counts[6]), "emotionalPlane");
     reading.intuitivePlane=reduceNumStr(""+(reading.counts[7]+reading.counts[9]), "intuitivePlane");
-  
+
   if((reading.birthdayInput.length==8)&&(reading.firstNameInput != "")&&(reading.lastNameInput != "")){
     // fully valid
     reading.realization=reduceNumStr(""+sumArray([reading.destiny, reading.birthpath]), "realization");
     }
- 
+
     localStorage.setItem("reading", JSON.stringify(reading));
     }
   if(metaFocus != -1){updateMeta();}
@@ -1114,7 +1114,7 @@ function clearCalcs(){
   reading.nameConsonantArray=[];
   reading.personality="";
   reading.realization="";
-    
+
   reading.habitChallenge="";
   reading.karmicArray=[];
   //dbuga("clearCalcs counts "+reading.counts.length);
@@ -1130,10 +1130,10 @@ function clearCalcs(){
   reading.globalYearVal="";
   var personalYearNum="";
   reading.personalYear="";
-  
+
   reading.globalMonth="";
   reading.globalMonthVal="";
-  
+
   reading.personalMonthNum="";
   reading.personalMonth="";
   reading.globalDay="";
@@ -1146,22 +1146,22 @@ function clearCalcs(){
   reading.fourthPinnacle="";
   reading.firstChallenge="";
   reading.secondChallenge="";
-  reading.thirdChallenge="";  
+  reading.thirdChallenge="";
   reading.fourthChallenge="";
   reading.firstAgeLabel="";
   reading.secondAgeLabel="";
-  reading.thirdAgeLabel="";  
+  reading.thirdAgeLabel="";
   reading.fourthAgeLabel="";
   reading.firstAgeValue="";
   reading.secondAgeValue="";
-  reading.thirdAgeValue="";  
+  reading.thirdAgeValue="";
   reading.fourthAgeValue="";
   updateValues();
   }
 function updateValues(){
   updateIdValue("dayOfWeek", reading.dayOfWeekStr);
   updateIdValue("dayOfBirth", reading.dayOfBirth);
-    updateIdValue("ageInYears", reading.ageInYears); 
+    updateIdValue("ageInYears", reading.ageInYears);
     updateIdValue("birthpath", reading.birthpath);
 updateIdValue("firstName", reading.firstNameVal);
     updateIdValue("middleName", reading.middleNameVal);
@@ -1220,7 +1220,7 @@ function numberCount(num, str){
 function vowels(str){
   var vowels=[];
   var consonants=[];
-  var parts=str.split(''); 
+  var parts=str.split('');
   var prevVowel=false;
   for(var p=0; p<parts.length; p++){
     if(isVowel(parts[p])){
@@ -1243,7 +1243,7 @@ function vowels(str){
 function consonants(str){
   var vowels=[];
   var consonants=[];
-  var parts=str.split(''); 
+  var parts=str.split('');
   var prevVowel=false;
   for(var p=0; p<parts.length; p++){
     if(isVowel(parts[p])){
@@ -1319,7 +1319,7 @@ function setUiFocus(toNum){
   //console.log('setUiFocus('+toNum+')');
   //updateIdLabel('metaDisplay', "");
   uiFocus=toNum;
-  
+
   //dbuga('setUiFocus sets typed('+typed+') to false');
   //typed=false;
   //clearField=false;
@@ -1427,7 +1427,7 @@ function redrawAll(){
   drawUi();
   }
 
-//window.requestAnimationFrame(tick); 
+//window.requestAnimationFrame(tick);
 function rnd(range){
   return Math.floor(Math.random()*range);
   }
@@ -1475,7 +1475,7 @@ function wrapTest(context, text, x, y, maxWidth, lineHeight, stroke) {
         //console.log(y+" "+height+" "+text)
         return height;
         }
- 
+
 function drawGrid(){
   ctx.fillStyle="white";
   ctx.fillRect(0,0,canv.width, canv.height);
@@ -1627,7 +1627,7 @@ function createForm(){
   for(var u=0; u<uiObj.length; u++){
     if(uiObj[u].id.indexOf("Input")>-1){
       createInput("formHolder", uiObj[u].id, g, uiObj[u].l,uiObj[u].t,uiObj[u].w,uiObj[u].h);
-      }      
+      }
     }
   }
 //       {"x":0, "y":0, "w":28, "h":2, "l":0, "r":0, "t":0, "b":0, "type":"input", "func":"clearSearch()", "value":"search input"},
@@ -1690,7 +1690,7 @@ function inputOnFocus(event){
         document.getElementById(uiObj[u].id).value="";
         document.getElementById(uiObj[u].id).style.top="-1000px";
         event.target.value="";
-        //uiObj[u].value=""; // don't clear the data 
+        //uiObj[u].value=""; // don't clear the data
         }
       }
     //dbuga(' -- uiObj['+uiFocus+'].value:'+uiObj[uiFocus].value);
@@ -1733,7 +1733,7 @@ function inputOnKeyUp(e){
     //dbuga(' - id:'+id+' value:'+document.getElementById(id).value);
     //dbuga(' - uiFocus:'+uiFocus+' uiObj[uiFocus].value:'+  uiObj[uiFocus].value);
 
-    if((Number(e.keyCode)==13)||(Number(e.keyCode)==9)){//enter go 
+    if((Number(e.keyCode)==13)||(Number(e.keyCode)==9)){//enter go
       if(Number(e.keyCode)==13){
         document.getElementById(uiObj[uiFocus+1].id).focus();
         redrawAll();
@@ -1808,7 +1808,7 @@ function inputValueToUiObj(){
           }
         }
       }
-    } 
+    }
   uiObj[uiFocus].value=cleaned;
   document.getElementById(id).value=cleaned;
   //dbuga('inputValueToUiObj() completed so userInput()');
@@ -1822,8 +1822,8 @@ function inputValueToUiObj(){
 
 function clearSearch(){
   dbuga('clearSearch()');
-  //focusTextarea(); 
-  searchTyping=false; 
+  //focusTextarea();
+  searchTyping=false;
   menus['search'].panes[0].contents[0].value='';
   menus['search'].panes[0].selection=-1;
   menus['search'].panes[1].selection=-1;
@@ -1886,7 +1886,7 @@ function blankContext(ctx, color, grid, across, down){
     ctx.moveTo(0, y*grid);
     ctx.lineTo(across*grid, y*grid);
     }
-  ctx.stroke();  
+  ctx.stroke();
   }
 function footerToContext(ctx, page){
           ctx.fillStyle="black";
@@ -1911,7 +1911,7 @@ function metadataReport(){
   var pdfAcross=26;
   var pdfDown=pdfAcross/reportAspect;
   var pdfPad=1.25;
-  
+
   var doc = new jsPDF('p', 'mm', [198,254]);
   rCanv.style.display="block";
   blankContext(rCtx, "#fff", reportGrid, reportAcross, reportDown);
@@ -2004,7 +2004,7 @@ function metadataReport(){
               valueString=uiObj[u].label;
               //labelString+=" - ends "+uiObj[u].value;
               }
-            }          
+            }
           }
         if(thisKey=="secondLabel"){
           for (var u=0; u<uiObj.length; u++){
@@ -2013,7 +2013,7 @@ function metadataReport(){
               valueString=uiObj[u].label;
               //labelString+=" - ends "+uiObj[u].value;
               }
-            }          
+            }
           }
         if(thisKey=="thirdLabel"){
           for (var u=0; u<uiObj.length; u++){
@@ -2021,14 +2021,14 @@ function metadataReport(){
               valueString=uiObj[u].label;
               //labelString+=" - ends "+uiObj[u].value;
               }
-            }          
+            }
           }
         if(thisKey=="fourthLabel"){
           for (var u=0; u<uiObj.length; u++){
             if(uiObj[u]['id']=="fourthAge"){
               valueString=uiObj[u].label;
               }
-            }          
+            }
           }
         rCtx.fillStyle="black";
         rCtx.font=reportGrid*.8+"px avantbold";
@@ -2059,7 +2059,7 @@ function metadataReport(){
   var cleaned=""+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput;
   cleaned=cleaned.replace(/([^a-z0-9]+)/gi, '-');
   document.getElementById('spinner').style.display="none";
-  
+
   pdfToMethod(doc, cleaned+'_'+'metadata');
   }
 function datasheetReport(){
@@ -2076,7 +2076,7 @@ function datasheetReport(){
   var cleaned=""+reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput;
   cleaned=cleaned.replace(/([^a-z0-9]+)/gi, '-');
   document.getElementById('spinner').style.display="none";
-  
+
   pdfToMethod(doc, cleaned+'_'+'datasheet');
   }
 function summaryReport(){
@@ -2093,7 +2093,7 @@ function summaryReport(){
   var doc = new jsPDF('p', 'mm', [198,254]);
   rCanv.style.display="block";
   blankContext(rCtx, "#fff", summaryGrid, summaryAcross, summaryDown);
-  for (var f=0; f<summaryFields.length; f++){    
+  for (var f=0; f<summaryFields.length; f++){
     field=summaryFields[f];
     var h=.5;
     var fontPx=s/2.25;
@@ -2117,7 +2117,7 @@ function summaryReport(){
       if(field.content=="karmicArray"){content=reading.karmicArray.join(", ");}
       if(field.content=="fullName"){content=titleCase(reading.firstNameInput+" "+reading.middleNameInput+" "+reading.lastNameInput);}
       if(field.content=="bornOn"){content="born on "+readableFormat(reading.birthdayInput);}
-      if(field.content=="printedOn"){content="Printed: "+dateFormat(nowMMDDYYYY())+" - Age "+reading.ageInYears;} 
+      if(field.content=="printedOn"){content="Printed: "+dateFormat(nowMMDDYYYY())+" - Age "+reading.ageInYears;}
       }
     if(field.type.indexOf("meta")>-1){
       //console.log("field.content="+field.content+" summaryByFieldValue[field.content]=");
@@ -2137,7 +2137,7 @@ function summaryReport(){
     rCtx.font=fontPx+"px "+fontFace;
     rCtx.fillText(content, field.x*s+offset, field.y*s);
     }
-         
+
           var data = rCanv.toDataURL('image/jpeg', jpgQuality).slice('data:image/jpeg;base64,'.length);
           // Convert the data to binary form
           var imgData = atob(data);
@@ -2147,7 +2147,7 @@ function summaryReport(){
   document.getElementById('spinner').style.display="none";
   pdfToMethod(doc, cleaned+'_'+'summary');
   }
-var usePdfMethod="server"; 
+var usePdfMethod="server";
 function pdfToMethod(doc, reportName){
   //dbuga("pdfToMethod "+reportName);
   //var defaultMethod=pdfMethod[platform][browser];
@@ -2184,7 +2184,7 @@ function pdfToServer(doc, calling){
   window.setTimeout("checkInternet()", 1000);
   reportName=calling;
   reportFile="http://whatsmydestiny.com/destinyapp/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
-  
+
   //console.log('pdfToServer '+calling+ ' '+reportFile);
   var pdf=doc.output();
   chunks=[];
@@ -2199,7 +2199,7 @@ function pdfToServer(doc, calling){
       }
     }
   //dbuga("pdfToServer *** chunks.length="+chunks.length);
-  document.getElementById('uploadingpercent').innerHTML="0%";  
+  document.getElementById('uploadingpercent').innerHTML="0%";
   document.getElementById('uploadingpdf').style.display="block";
   totalChunks=chunks.length;
   saveChunk();
@@ -2223,7 +2223,7 @@ function checkInternet(){
   }
 }
 function ajaxError(){
- 
+
     //dbuga('ajaxError()');
     alert('ajaxError() Unable to reach server. Please check your connection and try agin.');
     document.getElementById('uploadingpdf').style.display="none";
@@ -2239,7 +2239,7 @@ function saveChunk(){
   data.append("chunkNum", chunkNum);
   data.append("reportName", reportName);
   data.append("pdfData", aChunk);
-    
+
   var xhr = new XMLHttpRequest();
   xhr.onload = ajaxSuccess;
   xhr.open( 'post', 'http://www.whatsmydestiny.com/destinyapp/uploadpdf.php', true );
@@ -2328,7 +2328,7 @@ var focusStep=1;
 function geometry(){
     //dbuga('geometry()');
     viewportWidth = window.innerWidth;
-    viewportHeight = window.innerHeight;    
+    viewportHeight = window.innerHeight;
     canv.width=viewportWidth;
     canv.height=viewportHeight;
     canv.style.display="block";
@@ -2352,7 +2352,7 @@ function geometry(){
     style.innerHTML += '.landscape{margin-top:'+viewportWidth*1/64+'px;width:'+viewportWidth/32*15+'px;}';
     style.innerHTML += '.closer{background-image:url(icons/red/x.png); background-size:contain; background-repeat:no-repeat; background-position: 50% 50%; width:'+viewportWidth*3/64+'px; top:'+viewportHeight*0/64+'px; height:'+viewportWidth*3/64+'px; border-radius:'+viewportWidth*1.5/64+'px; background-color:#f1f1f1; position:fixed; right:'+viewportHeight*1/64+'px; display:block;}';
     //console.log('updating style '+viewportWidth/32*15);
-    
+
 //#pdfData
     document.getElementsByTagName('head')[0].appendChild(style);
     //cellsAcross=Math.floor(viewportWidth/g);
@@ -2376,7 +2376,7 @@ function inArray(needle, haystack) {
     }
   return false;
   }
-var debugging=false; 
+var debugging=false;
 
 function dbuga(msg){
   if(debugging){
@@ -2541,7 +2541,7 @@ function updateClientLayout(){
 //include these
 //rui.createRui(sbs, "#5eb8b6", "rgb(255,255,255)", "rgb(0,0,0)", "white", "rgb(185,28,27)");
 //ctx, bar, bg, text, iconset , circle
-//include in touch events   
+//include in touch events
 //if(target=="menu"){rui.menuEvent(type, touches);}
 function searchToggled(){
   if(menus["search"].selected){
@@ -2578,7 +2578,7 @@ for(var b=0; b<barButtons.length; b++){
   buttonNumByName[barButtons[b].name]=b;
 }
 var menuKeys=["dashboard", "search", "system", "context"];
-    //sorts stackers, 
+    //sorts stackers,
     //stack:0 = auto collapse
 var menus={"system":{"selected":false, "stack":4, "buttonName":"systemToggle", "align":"left", "panes":[
     {"width":10, "height":14, "left":-5, "top":4, "barColor":"#be792b", "barPad":.5, "grow":1.1, "contents":[
@@ -2641,7 +2641,7 @@ function menuClear(){
   }
 
 function closeAbout(){
-  
+
   document.getElementById('aboutDiv').scrollTop=0;
   document.getElementById('aboutDiv').style.display="none";
   rui.menuFound=-1;
@@ -2674,7 +2674,7 @@ function successFunction()
 {
     dbuga("It worked!");
 }
- 
+
 function errorFunction(error)
 {
     dbuga(error);
@@ -2688,7 +2688,7 @@ function selectResult(id){
 
   var contact=contactsArray[id];
   var prettyContact=JSON.stringify(contact).split(",").join(",<br>");
-  dbuga(prettyContact); 
+  dbuga(prettyContact);
   var frozenContact=JSON.parse(JSON.stringify(contact));
   dbuga('frozenContact.birthday='+frozenContact.birthday);
   selectedContactId=contact.id;
@@ -2746,7 +2746,7 @@ function selectResult(id){
     updateIdValue("middleNameInput", contactMiddle);
     updateIdValue("lastNameInput", contactLast);
     }
-/*  
+/*
   if(contact.birthday != ""){
     dbuga("contact.birthday "+contact.birthday);
     var birthdayObj=new Date(Number(contact.birthday));
@@ -2821,7 +2821,7 @@ function searchContacts(){
   options.desiredFields = [];
 /*
   var fields = [
-    navigator.contacts.fieldType.displayName, 
+    navigator.contacts.fieldType.displayName,
     navigator.contacts.fieldType.name,
     navigator.contacts.fieldType.nickname
   ];
@@ -2870,7 +2870,7 @@ dbuga(' passed givenName='+contacts[c].name.givenName);
         }
       }
     }
- 
+
   var results=[];
   for (var c=0; c<contactsArray.length ; c++){
     //dbuga(" c="+c);
@@ -2959,14 +2959,14 @@ function contactsTestSuccess(contacts){
     if (r == true) {
       selectedContact=duplicateContact;
       selectedContactId=matchedId;
-      
+
       saveContact(true);
       }
     }
   else{
     saveContact(false);
     }
-      
+
   dbuga('completed')
   }
 function contactsTestError(contactError) {
@@ -3005,7 +3005,7 @@ function saveContact(update){
     contact.phoneNumbers[0].value=phoneContactFormat(reading.phoneInput);
     }
   else{
-    var phoneNumber = new ContactField('home', phoneContactFormat(reading.phoneInput), false);  
+    var phoneNumber = new ContactField('home', phoneContactFormat(reading.phoneInput), false);
     contact.phoneNumbers.push(phoneNumber);
     }
   dbuga("contact.emails="+contact.emails.length);
@@ -3017,17 +3017,17 @@ function saveContact(update){
     contact.emails[0].value=reading.emailInput;
     }
   else{
-    var email = new ContactField('home', reading.emailInput, false);    
+    var email = new ContactField('home', reading.emailInput, false);
     contact.emails.push(email);
     }
   // branch if valid 3  part current name
   var validParts=[];
-  
+
   var nicknameParts=reading.currentNameInput.split(" ");
   for (var p=0; p<nicknameParts.length; p++){
     if(nicknameParts[p].length>0){validParts.push(nicknameParts[p]);}
     }
-  var name = new ContactName();  
+  var name = new ContactName();
   dbuga("validParts.length="+validParts.length);
   if(validParts.length==3){// valid 3 part current name, put into contact name f, m, l
     name.givenName =  titleCase(validParts[0]);
@@ -3070,7 +3070,7 @@ function contactsSaveSuccess(contact) {
   clearReading();// prevents double save
   drawUi();
   //added july 2nd to prevent out of date search results
-  searchContacts(); 
+  searchContacts();
   // end of july 2 edits
 };
 function contactsSaveError(contactError) {
