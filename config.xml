@@ -3,13 +3,13 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
-        versionCode="13"
-        version   = "2.3">
+        versionCode="14"
+        version   = "2.4">
 
     <!-- versionCode is optional and Android only -->
 <preference name="phonegap-version" value="cli-9.0.0" />
 <preference name="android-targetSdkVersion" value="28" />
-
+<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 <preference name="webviewbounce" value="false" />
 <name>What's My Destiny?</name>
 <description>Wes Hamilton Numerology</description>
