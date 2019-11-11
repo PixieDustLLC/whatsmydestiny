@@ -12,7 +12,9 @@
 <meta name = "apple-mobile-web-app-capable" content = "yes">
 <meta name = "title" content = "Num" /><meta name = "description" content = "Wes Hamilton Numerology" />
 <title>Wes Hamilton Numerology</title>
+<!-- restore when replublishing to phonegap!
 <script src="phonegap.js"></script>
+-->
 <script src="jquery.min.js"></script>
 
 <script type="text/javascript" src="about.js"></script>
@@ -956,7 +958,7 @@ function userInput(){
   reading.middleNameInput=valueOfId("middleNameInput").toLowerCase();
   reading.lastNameInput=valueOfId("lastNameInput").toLowerCase();
   reading.currentNameInput=valueOfId("currentNameInput").toLowerCase();
-  reading.emailInput=valueOfId("emailInput").toLowerCase();
+  reading.emailInput=valueOfId("emailInput");
   reading.phoneInput=valueOfId("phoneInput");
   reading.birthdayInput=valueOfId("birthdayInput");
 
@@ -1537,8 +1539,9 @@ function drawUi(){
       }
     if(uiObj[u].type.indexOf("alpha")>-1){
       if (typeof value == 'undefined'){value="";}
-      //titleCase(value);
-      value=titleCase(value);
+      if(uiObj[u].id != "emailInput"){
+        value=titleCase(value);
+        }
       }
     var valueFontPx=uiObj[u].valueSize*g-pad*0;
     var labelFontPx=uiObj[u].labelSize*g-pad*0;
@@ -2183,7 +2186,7 @@ var reportFile="";
 function pdfToServer(doc, calling){
   window.setTimeout("checkInternet()", 1000);
   reportName=calling;
-  reportFile="http://whatsmydestiny.com/destinyapp/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
+  reportFile="https://whatsmydestiny.com/destinyapp/whatsmydestiny/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
 
   //console.log('pdfToServer '+calling+ ' '+reportFile);
   var pdf=doc.output();
@@ -2209,7 +2212,7 @@ function pdfToServer(doc, calling){
 function checkInternet(){
   var xhr = new  XMLHttpRequest;
   var status;
-  xhr.open( "HEAD", 'http://www.whatsmydestiny.com/wp-content/uploads/1.gif', false );
+  xhr.open( "HEAD", 'https://www.whatsmydestiny.com/wp-content/uploads/1.gif', false );
   try {
     xhr.send();
     //dbuga('checkInternet() passed');
@@ -2238,11 +2241,13 @@ function saveChunk(){
   var data = new FormData();
   data.append("chunkNum", chunkNum);
   data.append("reportName", reportName);
+  data.append("emailto", valueOfId('emailInput'));
+  data.append("emailtoname", valueOfId('firstNameInput')+" "+valueOfId('lastNameInput'));
   data.append("pdfData", aChunk);
 
   var xhr = new XMLHttpRequest();
   xhr.onload = ajaxSuccess;
-  xhr.open( 'post', 'http://www.whatsmydestiny.com/destinyapp/uploadpdf.php', true );
+  xhr.open( 'post', 'https://www.whatsmydestiny.com/destinyapp/whatsmydestiny/uploadpdf.php', true );
   xhr.send(data);
   }
 function ajaxSuccess(){
@@ -2266,7 +2271,7 @@ function openPdfFile(){
   //console.log('openPdfFile()');
   document.getElementById('downloadpdf').style.display="none";
   //console.log('openPdfFile() hid');
-    resumeOpenPdfFile();
+  ////resumeOpenPdfFile();2019
   }
 function resumeOpenPdfFile(){
   //console.log('resumeOpenPdfFile() ');
@@ -2509,6 +2514,7 @@ function phoneContactFormat(num){
   }
 
 function titleCase(str){
+  //console.log('titleCase'+str);
   var returnParts=[];
   var parts=str.split("-");
   for(var p=0; p<parts.length; p++){
@@ -2517,6 +2523,7 @@ function titleCase(str){
   return returnParts.join("-");
   }
 function titleCaseOnce(str){
+  //console.log('titleCaseOnce '+str);
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   }
 var pi=Math.PI;
@@ -2662,10 +2669,10 @@ function openTutorial(){
   document.getElementById('aboutDiv').innerHTML=tutorialCode+closeCode;
   }
 function openSupport(){
-  var ref = window.open("http://www.whatsmydestiny.com/support/", "_system");
+  var ref = window.open("https://www.whatsmydestiny.com/support/", "_system");
   }
 function openWebsite(){
-  var ref = window.open("http://www.whatsmydestiny.com", "_system");
+  var ref = window.open("https://www.whatsmydestiny.com", "_system");
   }
 function emailWes(){
   window.setTimeout("window.open('mailto:wes@weshamilton.com?subject=Request from Whats My Destiny app', '_system')", 100);
