@@ -2276,6 +2276,7 @@ function openPdfFile(){
 function resumeOpenPdfFile(){
   //console.log('resumeOpenPdfFile() ');
   //console.log(""+reportFile);
+  reportFile=reportFile.replace("http:", "https:");
   window.open(""+reportFile, "_system");
   //console.log('resumeOpenPdfFile() done');
   }
