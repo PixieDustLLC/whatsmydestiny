@@ -2186,7 +2186,7 @@ var reportFile="";
 function pdfToServer(doc, calling){
   window.setTimeout("checkInternet()", 1000);
   reportName=calling;
-  reportFile="https://whatsmydestiny.com/destinyapp/whatsmydestiny/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
+  reportFile="https://whatsmydestiny.com/destinyapp/reports/" +reportName+"_"+btoa(reportName)+ ".pdf"
 
   //console.log('pdfToServer '+calling+ ' '+reportFile);
   var pdf=doc.output();
@@ -2241,13 +2241,13 @@ function saveChunk(){
   var data = new FormData();
   data.append("chunkNum", chunkNum);
   data.append("reportName", reportName);
-  data.append("emailto", valueOfId('emailInput'));
-  data.append("emailtoname", valueOfId('firstNameInput')+" "+valueOfId('lastNameInput'));
+  //data.append("emailto", valueOfId('emailInput'));
+  //data.append("emailtoname", valueOfId('firstNameInput')+" "+valueOfId('lastNameInput'));
   data.append("pdfData", aChunk);
 
   var xhr = new XMLHttpRequest();
   xhr.onload = ajaxSuccess;
-  xhr.open( 'post', 'https://www.whatsmydestiny.com/destinyapp/uploadmaildeletepdf.php', true );
+  xhr.open( 'post', 'https://www.whatsmydestiny.com/destinyapp/uploadpdf.php', true );
   xhr.send(data);
   }
 function ajaxSuccess(){
@@ -2271,7 +2271,7 @@ function openPdfFile(){
   //console.log('openPdfFile()');
   document.getElementById('downloadpdf').style.display="none";
   //console.log('openPdfFile() hid');
-  ////resumeOpenPdfFile();2019
+  resumeOpenPdfFile();2019
   }
 function resumeOpenPdfFile(){
   //console.log('resumeOpenPdfFile() ');

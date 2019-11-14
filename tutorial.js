@@ -14,7 +14,7 @@ tutorialCode+='<p>4. The Main menu is three stacked lines. Use it to search Cont
 tutorialCode+='</div>';
 tutorialCode+='<div class="col">';
 tutorialCode+='<img class="landscape" src="tutorial5.png" />';
-tutorialCode+='<p>5. Create a Report with the right context menu by tapping Report. The app will show progress uploading and then a check email message. The report is sent to your email. The Summary report has the same process. </p>';
+tutorialCode+='<p>5. Create a Report with the right context menu by tapping Report. The app will show progress uploading and then a tap to download message. The report downloads in a browser window on your device. The Summary report has the same process. </p>';
 tutorialCode+='<img class="landscape" src="tutorial6.png" />';
 tutorialCode+='<p>6. Tap the search icon or select Contacts from the main menu to enter search text to find a contact.  Tap the red search icon to start the search. Tap a name in the results list to view their information. </p>';
 tutorialCode+='<p>&copy;2016 Wes Hamilton</p>';
