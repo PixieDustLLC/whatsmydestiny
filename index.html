@@ -6,13 +6,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
+<!--
 <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' *; connect-src *">
-
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' http://*; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *; media-src *; img-src * 'self' data: file: cdvfile: http: https:; frame-src http: https: gap: cdvfile:; connect-src *">
 
 <meta name = "apple-mobile-web-app-capable" content = "yes">
 <meta name = "title" content = "Num" /><meta name = "description" content = "Wes Hamilton Numerology" />
 <title>Wes Hamilton Numerology</title>
-<!-- restore when replublishing to phonegap!
+<!--
 <script src="phonegap.js"></script>
 -->
 <script src="jquery.min.js"></script>
@@ -42,7 +44,7 @@ function onDeviceReady(){
   web=false;
   if(device.platform=="Android"){
     android=true;
-    AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+    ////AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     //Immersify.enableSticky(immersifySuccess, immersifyError); // no longer using plugin
     }
   if(device.platform=="iOS"){ios=true;}
@@ -1330,7 +1332,7 @@ function setUiFocus(toNum){
       setMetaFocus(toNum);
       }
     }
-  AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+  ////AndroidFullScreen.immersiveMode(successFunction, errorFunction);
 
   }
 var hideKeyboard = function() {
@@ -2692,7 +2694,7 @@ function selectResult(id){
   hideKeyboard();
   rui.closeMenu('search');
   rui.closeMenu('dashboard');
-  AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+  ////////AndroidFullScreen.immersiveMode(successFunction, errorFunction);
 
   var contact=contactsArray[id];
   var prettyContact=JSON.stringify(contact).split(",").join(",<br>");
