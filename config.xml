@@ -3,8 +3,8 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
-        versionCode="16"
-        version   = "2.6">
+        versionCode="18"
+        version   = "2.8">
 
     <!-- versionCode is optional and Android only -->
 <preference name="phonegap-version" value="cli-9.0.0" />
@@ -21,8 +21,11 @@
 <gap:plugin name="cordova-plugin-fullscreen" source="npm" />
 <plugin name="cordova-plugin-inappbrowser" source="npm" />
 <plugin name="cordova-plugin-media" source="npm" spec="1.0.1" />
-<plugin name="cordova-plugin-network-information" source="npm" spec="1.0.1" />
 <plugin name="cordova-plugin-contacts" source="npm" spec="2.2.0" />
+
+<plugin name="cordova-plugin-network-information" spec="2.0.2" />
+<plugin name="cordova-plugin-whitelist" source="npm" />
+
 
 
 <!-- known bad - update
@@ -60,7 +63,7 @@
     <allow-navigation href="*" />
     <allow-intent href="*" />
     <access origin="*" />
-<access origin="http://whatsmydestiny.com" />
+<access origin="https://whatsmydestiny.com" />
 <access origin="https://www.google-analytics.com" />
 
 
