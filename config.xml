@@ -3,157 +3,134 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
-        versionCode="19"
-        version   = "2.9">
+        versionCode="20"
+        version   = "2.10">
+        <!--
+        <plugin name="com.phonegap.plugins.childbrowser" spec="5.0.0" source="pgb" />
+        <preference name="phonegap-version" value="cli-5.2.0" />
 
-    <!-- versionCode is optional and Android only -->
-<preference name="phonegap-version" value="cli-9.0.0" />
-<preference name="android-targetSdkVersion" value="28" />
-<preference name="AndroidPersistentFileLocation" value="Compatibility" />
-<preference name="webviewbounce" value="false" />
-<name>What's My Destiny?</name>
-<description>Wes Hamilton Numerology</description>
-<gap:platform name="ios" />
-<gap:platform name="android" />
+        -->
+        <preference name="phonegap-version" value="cli-9.0.0" />
+        <preference name="android-targetSdkVersion" value="28" />
 
-<!-- should be okay -->
-<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-<gap:plugin name="cordova-plugin-fullscreen" source="npm" />
-<plugin name="cordova-plugin-inappbrowser" source="npm" />
-<plugin name="cordova-plugin-media" source="npm" spec="1.0.1" />
-<plugin name="cordova-plugin-contacts" source="npm" spec="2.2.0" />
+            <name>La Forêt</name>
+            <description>La Forêt Chocolate</description>
+        <gap:platform name="android" />
 
-<plugin name="cordova-plugin-network-information" spec="2.0.2" />
-<plugin name="cordova-plugin-whitelist" source="npm" />
+        <gap:platform name="ios" />
+        <gap:config-file platform="android" parent="/manifest/application">
+            <activity android:launchMode="singleInstance" />
+            <preference name="keeprunning" value="false"/>
+        </gap:config-file>
+        <preference name="Fullscreen" value="true" />
 
-<preference name="permissions" value="none"/>
-
-
-<!-- known bad - update
-<plugin name="cordova-plugin-contacts" spec="1.1.0" source="pgb" />
-<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" version="1.2.0" />
-<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
-<gap:plugin name="org.apache.cordova.device" />
--->
-
-<!-- bad - dumped
-<plugin name="com.toluhta.immersify" spec="0.1.0" source="pgb" />
-<gap:plugin name="org.apache.cordova.media" />
-<gap:plugin name="org.apache.cordova.inappbrowser" />
-<gap:plugin name="org.apache.cordova.network-information" />
-
-// don't know yet that this is not needed
-<gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
-
--->
-<!--2020 rejected testing
-<allow-navigation href="corepassion.com/*" />
--->
-<preference name="KeyboardDisplayRequiresUserAction" value="false" />
-<preference name="orientation" value="landscape" />
-<preference name="target-device" value="tablet" />
-<preference name="fullscreen" value="true" />
-
-<preference name="StatusBarOverlaysWebView" value="true" />
-<gap:config-file platform="ios" parent="UIStatusBarHidden">
-    <true/>
-</gap:config-file>
-<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
-    <false/>
-</gap:config-file>
-<!-- 2020 debug linking
-    <allow-navigation href="*" />
-    <allow-intent href="*" />
--->
-    <access origin="*" />
-<access origin="https://whatsmydestiny.com" />
-<access origin="https://www.google-analytics.com" />
+        <preference name="StatusBarOverlaysWebView" value="true" />
+        <gap:config-file platform="ios" parent="UIStatusBarHidden">
+            <true/>
+        </gap:config-file>
+        <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+            <false/>
+        </gap:config-file>
 
 
-<feature name="http://api.phonegap.com/1.0/network" />
-<feature name="http://api.phonegap.com/1.0/notification" />
-<feature name="http://api.phonegap.com/1.0/media" />
-<feature name="http://api.phonegap.com/1.0/device" />
+        <preference name="permissions" value="none"/>
+        <gap:splash src="splash960.png" />
+        <!--
+        <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
+        <gap:plugin name="org.apache.cordova.media" version="0.2.8" />
+        <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+        <gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0" />
+        OK<gap:plugin name="io.litehelpers.cordova.sqlitestorage" version="0.7.5" />
+        <gap:plugin name="org.apache.cordova.file-transfer" version="0.4.2" />
+        <gap:plugin name="org.apache.cordova.file" version="1.0.1" />
+        <plugin name="cordova-plugin-inappbrowser" spec="1.0.1" source="pgb" />
+        -->
+        <plugin name="cordova-sqlite-storage" spec="~0.8.5" />
+        <plugin name="cordova-plugin-network-information" spec="2.0.2" />
+        <plugin name="cordova-plugin-inappbrowser" source="npm" />
+        <plugin name="cordova-plugin-whitelist" source="npm" />
+        <access origin="*" />
+        <access origin="mailto:*" launch-external="yes"/>
 
 
 
+        <feature name="http://api.phonegap.com/1.0/network" />
+        <feature name="http://api.phonegap.com/1.0/media" />
+        <feature name="http://api.phonegap.com/1.0/device" />
+        <!--
+        <feature name="http://api.phonegap.com/1.0/notification" />
+        -->
+
+
+        <!--
+        <plugin name="org.apache.cordova.file-transfer" spec="0.5.0" source="pgb" />
+        <plugin name="cordova-plugin-file" spec="3.0.0" source="pgb" />
 
 
 
-<icon src="icon.png" />
-<splash src="splash.png" />
+        new
+
+        one of these
+        <plugin name="cordova-plugin-inappbrowser" spec="1.0.1" source="pgb" />
+        <plugin name="org.apache.cordova.inappbrowser" spec="0.6.0" source="pgb" />
+        <plugin name="cordova-plugin-inappbrowser" spec="1.0.1" source="pgb" />
+        <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
+        <gap:plugin name="cordova-plugin-inappbrowser" spec="1.0.1" source="pgb" />
+        -->
 
 
-<gap:splash src="res/splash.png" />
 
-<icon src="res/ldpi.png" platform="android" qualifier="ldpi" />
-<icon src="res/mdpi.png" platform="android" qualifier="mdpi" />
-<icon src="res/hdpi.png" platform="android" qualifier="hdpi" />
-<icon src="res/xhdpi.png" platform="android" qualifier="xhdpi" />
-<icon src="res/xxhdpi.png" platform="android" qualifier="xxhdpi" />
-<icon src="res/xxxhdpi.png" platform="android" qualifier="fr-xxhdpi" />
-
-<!-- Define app icon for each platform. -->
-<icon src="res/android_icon.png" />
-<!-- iOS 7+ -->
+        <gap:splash src="res/splash.png" />
+        <icon src="res/icon1024.png" width="1024" height="1024" />
 
 
-<icon src="res/icon-29.png" width="29" height="29"/>
-<icon src="res/icon-29@2x.png" width="58" height="58"/>
-<icon src="res/icon-29@3x.png" width="87" height="87"/>
+        <!-- Define app icon for each platform. -->
+        <icon src="res/android_icon.png" />
+        <!-- iOS 7+ -->
+        <!-- iPhone 6 / 6+ -->
+        <icon src="res/icon-60@3x.png" gap:platform="ios" width="180" height="180" />
+        <!-- new idunno -->
+        <icon src="res/icon-20.png" gap:platform="ios" width="20" height="20" />
+        <icon src="res/icon-20@2x.png" gap:platform="ios" width="40" height="40" />
 
-<!-- iPhone / iPod Touch  -->
-<icon src="res/icon-60.png" gap:platform="ios" width="60" height="60" />
-<icon src="res/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
+        <!-- iPhone / iPod Touch  -->
+        <icon src="res/icon-60.png" gap:platform="ios" width="60" height="60" />
+        <icon src="res/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
 
-<!-- iPhone 6 / 6+ -->
-<icon src="res/icon-60@3x.png" gap:platform="ios" width="180" height="180" />
+        <!-- iPad -->
+        <icon src="res/icon-76.png" gap:platform="ios" width="76" height="76" />
+        <icon src="res/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
+
+        <!-- iOS 6.1 icons -->
+        <!-- iPhone / iPod Touch -->
+        <icon src="res/icon.png" gap:platform="ios" width="57" height="57" />
+        <icon src="res/icon@2x.png" gap:platform="ios" width="114" height="114" />
+
+        <!-- iPad -->
+        <icon src="res/icon-72.png" gap:platform="ios" width="72" height="72" />
+        <icon src="res/icon-72@2x.png" gap:platform="ios" width="144" height="144" />
 
 
-<!-- iPad -->
-<icon src="res/icon-72.png" gap:platform="ios" width="72" height="72" />
-<icon src="res/icon-72@2x.png" gap:platform="ios" width="144" height="144" />
-<!-- iPad -->
-<icon src="res/icon-76.png" gap:platform="ios" width="76" height="76" />
-<icon src="res/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
+        <!-- Define app splash screen for each platform. -->
+        <!-- iPhone and iPod touch -->
+        <gap:splash src="res/Default.png" gap:platform="ios" width="320" height="480" />
+        <gap:splash src="res/Default@2x.png" gap:platform="ios" width="640" height="960" />
 
-<!-- app store icon -->
-<icon src="res/icon-1024.png" width="1024" height="1024" />
-<!-- uh... -->
-<icon src="res/icon-small-20.png" width="20" height="20"/>
-<icon src="res/icon-small-20@2x.png" width="40" height="40"/>
-<icon src="res/icon-small-20@3x.png" width="60" height="60"/>
+        <!-- iPhone 5 / iPod Touch (5th Generation) -->
+        <gap:splash src="res/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
 
-<icon src="res/icon-small-40.png" width="40" height="40"/>
-<icon src="res/icon-small-40@2x.png" width="80" height="80"/>
-<icon src="res/icon-small-40@3x.png" width="120" height="120"/>
-<!-- iOS 6.1 icons -->
-<!-- iPhone / iPod Touch -->
-<icon src="res/icon.png" gap:platform="ios" width="57" height="57" />
-<icon src="res/icon@2x.png" gap:platform="ios" width="114" height="114" />
+        <!-- iPhone 6 -->
+        <gap:splash src="res/Default-667h@2x.png" gap:platform="ios" width="750" height="1334" />
+        <gap:splash src="res/Default-Portrait-736h@3x.png" gap:platform="ios" width="1242" height="2208" />
+        <gap:splash src="res/Default-Landscape-736h@3x.png" gap:platform="ios" width="2208" height="1242" />
 
-<!-- Define app splash screen for each platform. -->
-<!-- iPhone and iPod touch -->
-<gap:splash src="res/Default.png" gap:platform="ios" width="320" height="480" />
-<gap:splash src="res/Default@2x.png" gap:platform="ios" width="640" height="960" />
+        <!-- iPad -->
+        <gap:splash src="res/Default-Portrait.png" gap:platform="ios" width="768" height="1024" />
+        <gap:splash src="res/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
 
-<!-- iPhone 5 / iPod Touch (5th Generation) -->
-<gap:splash src="res/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
+        <!-- Retina iPad -->
+        <gap:splash src="res/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
+        <gap:splash src="res/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
 
-<!-- iPhone 6 -->
-<gap:splash src="res/Default-667h@2x.png" gap:platform="ios" width="750" height="1334" />
-<gap:splash src="res/Default-Portrait-736h@3x.png" gap:platform="ios" width="1242" height="2208" />
-<gap:splash src="res/Default-Landscape-736h@3x.png" gap:platform="ios" width="2208" height="1242" />
 
-<!-- iPad -->
-<gap:splash src="res/Default-Portrait.png" gap:platform="ios" width="768" height="1024" />
-<gap:splash src="res/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
-
-<!-- Retina iPad -->
-<gap:splash src="res/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
-<gap:splash src="res/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
-
-<gap:config-file platform="android" parent="/manifest">
-  <application android:debuggable="false" />
-</gap:config-file>
-</widget>
+        </widget>
