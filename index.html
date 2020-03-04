@@ -2672,7 +2672,13 @@ function openTutorial(){
   document.getElementById('aboutDiv').innerHTML=tutorialCode+closeCode;
   }
 function openSupport(){
+  alert('openSupport()');
+  try{
   var ref = window.open("https://www.whatsmydestiny.com/support/", "_system");
+  }
+  catch(err){
+    alert(err.message);
+  }
   }
 function openWebsite(){
   var ref = window.open("https://www.whatsmydestiny.com", "_system");
