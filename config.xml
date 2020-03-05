@@ -4,7 +4,7 @@
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
         versionCode="16"
-        version   = "2.14">
+        version   = "2.15">
 
     <!-- versionCode is optional and Android only -->
 <preference name="phonegap-version" value="cli-9.0.0" />
@@ -15,35 +15,18 @@
 <description>Wes Hamilton Numerology</description>
 <gap:platform name="ios" />
 <gap:platform name="android" />
+<preference name="permissions" value="none"/>
 
 <!-- should be okay -->
 <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 <gap:plugin name="cordova-plugin-fullscreen" source="npm" />
 <plugin name="cordova-plugin-inappbrowser" source="npm" />
 <plugin name="cordova-plugin-media" source="npm" spec="1.0.1" />
-<plugin name="cordova-plugin-network-information" source="npm" spec="1.0.1" />
+<plugin name="cordova-plugin-network-information" source="npm" spec="2.0.2" />
 <plugin name="cordova-plugin-contacts" source="npm" spec="2.2.0" />
-
-
-<!-- known bad - update
-<plugin name="cordova-plugin-contacts" spec="1.1.0" source="pgb" />
-<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" version="1.2.0" />
-<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
-<gap:plugin name="org.apache.cordova.device" />
--->
-
-<!-- bad - dumped
-<plugin name="com.toluhta.immersify" spec="0.1.0" source="pgb" />
-<gap:plugin name="org.apache.cordova.media" />
-<gap:plugin name="org.apache.cordova.inappbrowser" />
-<gap:plugin name="org.apache.cordova.network-information" />
-
-// don't know yet that this is not needed
-<gap:plugin name="org.devgeeks.canvas2imageplugin" version="0.6.0"/>
-
--->
-
+<!--
 <allow-navigation href="corepassion.com/*" />
+-->
 <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 <preference name="orientation" value="landscape" />
 <preference name="target-device" value="tablet" />
@@ -57,20 +40,7 @@
     <false/>
 </gap:config-file>
 <access origin="*" />
-<allow-intent href="http://*/*" />
-<allow-intent href="https://*/*" />
-<allow-intent href="tel:*" />
-<allow-intent href="sms:*" />
-<allow-intent href="mailto:*" />
-<allow-intent href="geo:*" />
-<!--
-    <allow-navigation href="*" />
-    <allow-intent href="*" />
-    <access origin="*" />
-<access origin="http://whatsmydestiny.com" />
-<access origin="https://www.google-analytics.com" />
-
--->
+<access origin="mailto:*" launch-external="yes"/>
 
 <feature name="http://api.phonegap.com/1.0/network" />
 <feature name="http://api.phonegap.com/1.0/notification" />
