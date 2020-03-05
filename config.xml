@@ -4,7 +4,7 @@
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
         versionCode="16"
-        version   = "2.13">
+        version   = "2.14">
 
     <!-- versionCode is optional and Android only -->
 <preference name="phonegap-version" value="cli-9.0.0" />
