@@ -4,7 +4,7 @@
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
         versionCode="16"
-        version   = "2.12">
+        version   = "2.13">
 
     <!-- versionCode is optional and Android only -->
 <preference name="phonegap-version" value="cli-9.0.0" />
@@ -56,13 +56,21 @@
 <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
     <false/>
 </gap:config-file>
-
+<access origin="*" />
+<allow-intent href="http://*/*" />
+<allow-intent href="https://*/*" />
+<allow-intent href="tel:*" />
+<allow-intent href="sms:*" />
+<allow-intent href="mailto:*" />
+<allow-intent href="geo:*" />
+<!--
     <allow-navigation href="*" />
     <allow-intent href="*" />
     <access origin="*" />
 <access origin="http://whatsmydestiny.com" />
 <access origin="https://www.google-analytics.com" />
 
+-->
 
 <feature name="http://api.phonegap.com/1.0/network" />
 <feature name="http://api.phonegap.com/1.0/notification" />
