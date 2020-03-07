@@ -3,8 +3,8 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
-        versionCode="24"
-        version   = "2.24">
+        versionCode="25"
+        version   = "2.25">
 
 <name>What's My Destiny?</name>
 <description>Wes Hamilton Numerology</description>
@@ -50,7 +50,7 @@
 <preference name="orientation" value="landscape" />
 <preference name="target-device" value="tablet" />
 
-<gap:plugin name="cordova-plugin-fullscreen" source="npm" />
+<plugin name="cordova-plugin-fullscreen" source="npm" />
 <plugin name="cordova-plugin-media" source="npm" spec="1.0.1" />
 <plugin name="cordova-plugin-contacts" source="npm" spec="2.2.0" />
 
