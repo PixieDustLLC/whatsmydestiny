@@ -3,36 +3,22 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
-        versionCode="16"
-        version   = "2.19">
+        versionCode="21"
+        version   = "2.21">
 
-    <!-- versionCode is optional and Android only -->
-<preference name="phonegap-version" value="cli-9.0.0" />
-<preference name="android-targetSdkVersion" value="28" />
-<preference name="AndroidPersistentFileLocation" value="Compatibility" />
-<preference name="webviewbounce" value="false" />
 <name>What's My Destiny?</name>
 <description>Wes Hamilton Numerology</description>
-<gap:platform name="ios" />
+<!-- laforet loadout -->
 <gap:platform name="android" />
-<preference name="permissions" value="none"/>
+<gap:platform name="ios" />
+<gap:config-file platform="android" parent="/manifest/application">
+    <activity android:launchMode="singleInstance" />
+    <preference name="keeprunning" value="false"/>
 
-<!-- should be okay -->
-<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-<!-- test if stopping linkout
-<gap:plugin name="cordova-plugin-fullscreen" source="npm" />
--->
-<plugin name="cordova-plugin-inappbrowser" source="npm" />
-<plugin name="cordova-plugin-media" source="npm" spec="1.0.1" />
-<plugin name="cordova-plugin-network-information" source="npm" spec="2.0.2" />
-<plugin name="cordova-plugin-contacts" source="npm" spec="2.2.0" />
-<!--
-<allow-navigation href="corepassion.com/*" />
--->
-<preference name="KeyboardDisplayRequiresUserAction" value="false" />
-<preference name="orientation" value="landscape" />
-<preference name="target-device" value="tablet" />
-<preference name="fullscreen" value="true" />
+</gap:config-file>
+<preference name="phonegap-version" value="cli-9.0.0" />
+<preference name="android-targetSdkVersion" value="28" />
+<preference name="Fullscreen" value="true" />
 
 <preference name="StatusBarOverlaysWebView" value="true" />
 <gap:config-file platform="ios" parent="UIStatusBarHidden">
@@ -41,6 +27,29 @@
 <gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
     <false/>
 </gap:config-file>
+
+
+<preference name="permissions" value="none"/>
+<gap:splash src="splash960.png" />
+<plugin name="cordova-sqlite-storage" spec="~0.8.5" />
+<plugin name="cordova-plugin-network-information" spec="2.0.2" />
+<plugin name="cordova-plugin-inappbrowser" source="npm" />
+<plugin name="cordova-plugin-whitelist" source="npm" />
+<access origin="*" />
+<access origin="mailto:*" launch-external="yes"/>
+
+
+
+<feature name="http://api.phonegap.com/1.0/network" />
+<feature name="http://api.phonegap.com/1.0/media" />
+<feature name="http://api.phonegap.com/1.0/device" />
+
+<!--end of laforet loadout -->
+<!-- original no linkout loadout
+<gap:platform name="ios" />
+<gap:platform name="android" />
+<allow-navigation href="*" />
+<allow-intent href="*" />
 <access origin="*" />
 <access origin="mailto:*" launch-external="yes"/>
 
@@ -49,6 +58,32 @@
 <feature name="http://api.phonegap.com/1.0/media" />
 <feature name="http://api.phonegap.com/1.0/device" />
 
+<preference name="permissions" value="none"/>
+<preference name="phonegap-version" value="cli-9.0.0" />
+<preference name="android-targetSdkVersion" value="28" />
+<preference name="AndroidPersistentFileLocation" value="Compatibility" />
+<preference name="webviewbounce" value="false" />
+<preference name="KeyboardDisplayRequiresUserAction" value="false" />
+<preference name="orientation" value="landscape" />
+<preference name="target-device" value="tablet" />
+<preference name="fullscreen" value="true" />
+<preference name="StatusBarOverlaysWebView" value="true" />
+
+<gap:plugin name="cordova-plugin-whitelist" source="npm" />
+<gap:plugin name="cordova-plugin-fullscreen" source="npm" />
+<plugin name="cordova-plugin-inappbrowser" source="npm" />
+<plugin name="cordova-plugin-media" source="npm" spec="1.0.1" />
+<plugin name="cordova-plugin-network-information" source="npm" spec="2.0.2" />
+<plugin name="cordova-plugin-contacts" source="npm" spec="2.2.0" />
+
+<gap:config-file platform="ios" parent="UIStatusBarHidden">
+    <true/>
+</gap:config-file>
+<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
+    <false/>
+</gap:config-file>
+
+-->
 
 
 
