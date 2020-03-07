@@ -3,8 +3,8 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         xmlns:android = "http://schemas.android.com/apk/res/android"
         id        = "com.pixiedustapps.whatsmydestiny"
-        versionCode="25"
-        version   = "2.25">
+        versionCode="26"
+        version   = "2.26">
 
 <name>What's My Destiny?</name>
 <description>Wes Hamilton Numerology</description>
