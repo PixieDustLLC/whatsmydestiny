@@ -529,7 +529,7 @@ menuEvent:function(type, touches){
       }
     if(type=="touchmove"){rui.barFound=-1;}
     if(rui.barFound>-1){
-      alert(type+" rui.barFound: "+rui.barFound+" so eval "+barButtons[rui.barFound].func);
+      dbuga(type+" rui.barFound: "+rui.barFound+" so eval "+barButtons[rui.barFound].func);
       var junk=eval(barButtons[rui.barFound].func);
       dbuga(barButtons[rui.barFound].func);
       }
@@ -621,7 +621,7 @@ menuEvent:function(type, touches){
       var obj=menus[menuKeys[rui.menuFound]].panes[rui.paneFound].contents[rui.contentFound];
       if(obj.type=="result"){
         var jString=obj.func+'('+obj.id+')';
-        alert("result so eval "+jString);
+        dbuga("result so eval "+jString);
         var junk=eval(jString);
         //console.log(obj);
         }
@@ -632,7 +632,7 @@ menuEvent:function(type, touches){
         }
 
       if((obj.type=="icon")||(obj.type=="iconInvert")||(obj.type=="input")||(obj.type=="squaretool")){
-        alert(obj.type+' - touchend obj.func='+obj.func+ ' so eval ');
+        dbuga(obj.type+' - touchend obj.func='+obj.func+ ' so eval ');
         var junk=eval(obj.func);
         }
       }
