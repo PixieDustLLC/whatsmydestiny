@@ -1904,6 +1904,7 @@ function metadataReport(){
   rui.paneFound=-1;
   rui.contentFound=-1;
   menus['context'].panes[0].selection=-1
+  rui.closeMenu('context');
 
   var atPage=1
   rCanv.height=reportHeight;
@@ -2089,6 +2090,7 @@ function summaryReport(){
   rui.paneFound=-1;
   rui.contentFound=-1;
   menus['context'].panes[0].selection=-1
+  rui.closeMenu('context');
 
   rCanv.height=summaryHeight;
   rCanv.width=summaryWidth;
