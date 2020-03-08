@@ -1899,6 +1899,12 @@ function footerToContext(ctx, page){
           wrapText(ctx, page+"", reportWidth/2, reportHeight-reportGrid*1, reportGrid*8, reportGrid, false);
   }
 function metadataReport(){
+  rui.touching=false;
+  rui.menuFound=-1;
+  rui.paneFound=-1;
+  rui.contentFound=-1;
+  menus['context'].panes[0].selection=-1
+
   var atPage=1
   rCanv.height=reportHeight;
   rCanv.width=reportWidth;
@@ -2078,6 +2084,12 @@ function datasheetReport(){
   pdfToMethod(doc, cleaned+'_'+'datasheet');
   }
 function summaryReport(){
+  rui.touching=false;
+  rui.menuFound=-1;
+  rui.paneFound=-1;
+  rui.contentFound=-1;
+  menus['context'].panes[0].selection=-1
+
   rCanv.height=summaryHeight;
   rCanv.width=summaryWidth;
   var s=summaryGrid;
