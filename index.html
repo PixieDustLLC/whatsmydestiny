@@ -2668,12 +2668,18 @@ function openTutorial(){
   }
 function openSupport(){
   rui.touching=false;
+  rui.menuFound=-1;
+  rui.paneFound=-1;
+  rui.contentFound=-1;
   menus['system'].panes[0].selection=-1
   rui.closeMenu('system');
   var ref = window.open("https://www.whatsmydestiny.com/support/", "_system");
   }
 function openWebsite(){
   rui.touching=false;
+  rui.menuFound=-1;
+  rui.paneFound=-1;
+  rui.contentFound=-1;
   menus['system'].panes[0].selection=-1
   rui.closeMenu('system');
   var ref = window.open("https://www.whatsmydestiny.com", "_system");

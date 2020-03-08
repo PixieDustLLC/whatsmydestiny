@@ -44,7 +44,7 @@ var rui = {
   var htmlString="";
     htmlString+='<canvas id="menuCanvas" style="position:absolute; Zbackground-color:rgba(127,127,127,.25);" width='+rui.ww+' height='+rui.g*3.5+'></canvas>';
     rui.preloaded=0;
-    for (var p=0; p<rui.preloadArray.length; p++){      
+    for (var p=0; p<rui.preloadArray.length; p++){
       var preload=rui.preloadArray[p];
       htmlString+='<img src="'+rui.iconPath+barIcons+'/'+preload+'" id="bar_'+preload+'" style="float:left; width:10px; height:10px;" onload="(function(e){rui.loadedImg(e.id);})(this)" />';
       htmlString+='<img src="'+rui.iconPath+menuIcons+'/'+preload+'" id="menu_'+preload+'" style="float:left; width:10px; height:10px;" onload="(function(e){rui.loadedImg(e.id);})(this)" />';
@@ -52,7 +52,7 @@ var rui = {
       }
   containerRef.insertAdjacentHTML("beforeend", htmlString);
     rui.mcanv=document.getElementById('menuCanvas');
-    
+
     rui.mctx=rui.mcanv.getContext('2d');
     rui.mctx.imageSmoothingEnabled=false;
 /*
@@ -143,7 +143,7 @@ var rui = {
     rui.measureMenus();
     rui.drawMenus();
     rui.drawBarBackground();
-    rui.drawBarButtons(); 
+    rui.drawBarButtons();
     //console.log('rui.drawUx() completed');
   },
   measureMenus:function(){
@@ -166,7 +166,7 @@ var rui = {
 
 
 insertResultsMenuPane:function(results, menuName, paneNum){
-  
+
   var template=menus[menuName].panes[paneNum].contents[0];
   var pane=menus[menuName].panes[paneNum];
   menus[menuName].panes[paneNum].contents=[];
@@ -187,7 +187,7 @@ drawMenus:function(){
   //dbuga('drawMenus');
   //traceUi=true;
   rui.mctx.fillStyle=rui.surroundColor;
- 
+
   for(var m=0; m<menuKeys.length; m++){
     var panes=menus[menuKeys[m]].panes;
     //dbuga(panes.length);
@@ -204,7 +204,7 @@ drawMenus:function(){
       var cx=0;
       if(menus[menuKeys[m]].align=="left"){cx=0-(rui.ww-width)/2+rui.g/3;}
       if(menus[menuKeys[m]].align=="right"){cx=(rui.ww-width)/2-rui.g/3;}
-      
+
       //dbuga("top:" +top+" left:"+left+" :right:"+right+" width:"+width+" height:"+height);
       if(rui.surroundColor != ""){
         rui.mctx.fillStyle=rui.surroundColor;
@@ -247,7 +247,7 @@ drawMenus:function(){
           var grow=1;
           if(contents[c].type != "template"){// ignore template
             menus[menuKeys[m]].panes[p].contents[c].l=px+rui.g*contents[c].x;
-            menus[menuKeys[m]].panes[p].contents[c].r=px+rui.g*contents[c].x+rui.g*contents[c].w; 
+            menus[menuKeys[m]].panes[p].contents[c].r=px+rui.g*contents[c].x+rui.g*contents[c].w;
             menus[menuKeys[m]].panes[p].contents[c].t=py+rui.g*contents[c].y;
             menus[menuKeys[m]].panes[p].contents[c].b=py+rui.g*contents[c].y+rui.g*contents[c].h;
             if(menus[menuKeys[m]].panes[p].contents[c].type=="input"){
@@ -302,7 +302,7 @@ drawMenus:function(){
                 rui.mctx.strokeStyle=color;
                 }
 
-              rui.mctx.fillStyle=color;  
+              rui.mctx.fillStyle=color;
               }
 
             rui.roundRect(rui.mctx, px+rui.g*contents[c].x+pad, py+rui.g*contents[c].y+pad, rui.g*contents[c].w-pad*2, rui.g*contents[c].h-pad*2, rui.g*(contents[c].h/16), true, true);
@@ -400,7 +400,7 @@ drawMenus:function(){
     rui.mctx.shadowColor = 'rgba(255,255,255,.5)';
     rui.mctx.shadowBlur = rui.g;
             var cPad=rui.g/2;
-            //wrap 
+            //wrap
             rui.mctx.fillStyle=rui.textColor;
             rui.mctx.textBaseline="hanging";
             rui.mctx.textAlign="left";
@@ -424,7 +424,7 @@ drawMenus:function(){
   },
   drawBarButtons:function(){
     rui.mctx.fillStyle="#00f";
-  
+
     var atLeft=1;
     var atRight=1;
     for (var b=0; b<barButtons.length; b++){
@@ -463,8 +463,8 @@ drawMenus:function(){
           }
         rui.mctx.drawImage(img, l+pad, t+pad, w-pad*2, h-pad*2);
         }
-      else{//not image    
-        //console.log('text bar button '+label+" "+rui.barTextColor);    
+      else{//not image
+        //console.log('text bar button '+label+" "+rui.barTextColor);
         rui.mctx.fillStyle=rui.barTextColor;
         rui.mctx.textBaseline="middle";
         rui.mctx.textAlign="center";
@@ -498,7 +498,7 @@ roundRect:function(ctx, x, y, width, height, radius, fill, stroke) {
   }
   if (fill) {
     ctx.fill();
-  }        
+  }
   },
 
   geometryInterval:"",
@@ -520,7 +520,7 @@ menuEvent:function(type, touches){
     var x=touches[0].pageX;
     var y=touches[0].pageY;
     //dbuga('menuEvent ' +type+" x:"+x+" y:"+y);
-    
+
     rui.barFound=-1;
     for (var b=0; b<barButtons.length; b++){
       if((x>barButtons[b].l)&&(x<barButtons[b].r)&&(y>barButtons[b].t)&&(y<barButtons[b].b)){
@@ -529,7 +529,7 @@ menuEvent:function(type, touches){
       }
     if(type=="touchmove"){rui.barFound=-1;}
     if(rui.barFound>-1){
-      dbuga(type+" rui.barFound: "+rui.barFound+" so eval");
+      alert(type+" rui.barFound: "+rui.barFound+" so eval "+barButtons[rui.barFound].func);
       var junk=eval(barButtons[rui.barFound].func);
       dbuga(barButtons[rui.barFound].func);
       }
@@ -586,23 +586,23 @@ menuEvent:function(type, touches){
           // instead, revert founds to prev
           rui.menuFound=prevMenu;
           rui.paneFound=prevPane;
-          rui.contentFound=prevContent;         
+          rui.contentFound=prevContent;
           }
         }
       }
     dbuga('rui.menuFound='+rui.menuFound+' rui.paneFound='+rui.paneFound+' rui.contentFound='+rui.contentFound);
     dbuga('rui.barFound='+rui.barFound+' type='+type);
     if((type=="touchstart")&&(rui.barFound==-1)&&(rui.menuFound==-1)&&(rui.paneFound==-1)&&(rui.contentFound==-1)){
-      dbuga('off menu, close menus and pass event'); 
+      dbuga('off menu, close menus and pass event');
       rui.closeMenu("system", "rui.menuEvent");
       rui.closeMenu("context", "rui.menuEvent");
       rui.closeMenu("search", "rui.menuEvent");
       hideKeyboard();
       var evt={"source":"touchstart", "type":"start", "x":touches[0].clientX, "y":touches[0].clientY};
-      handleEvent(evt);    
+      handleEvent(evt);
       }// end of touchstart touchmove
     }
-  if(type=="touchend"){  
+  if(type=="touchend"){
     rui.touching=false;
     //console.log('touchend');
     for (var m=0; m<menuKeys.length; m++){// hide exclusive menus
@@ -621,7 +621,7 @@ menuEvent:function(type, touches){
       var obj=menus[menuKeys[rui.menuFound]].panes[rui.paneFound].contents[rui.contentFound];
       if(obj.type=="result"){
         var jString=obj.func+'('+obj.id+')';
-        dbuga("result so eval");
+        alert("result so eval "+jString);
         var junk=eval(jString);
         //console.log(obj);
         }
@@ -632,7 +632,7 @@ menuEvent:function(type, touches){
         }
 
       if((obj.type=="icon")||(obj.type=="iconInvert")||(obj.type=="input")||(obj.type=="squaretool")){
-        dbuga(obj.type+' - touchend obj.func='+obj.func+ ' so eval');
+        alert(obj.type+' - touchend obj.func='+obj.func+ ' so eval ');
         var junk=eval(obj.func);
         }
       }
