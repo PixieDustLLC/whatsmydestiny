@@ -2667,11 +2667,13 @@ function openTutorial(){
   document.getElementById('aboutDiv').innerHTML=tutorialCode+closeCode;
   }
 function openSupport(){
+  rui.touching=false;
   menus['system'].panes[0].selection=-1
   rui.closeMenu('system');
   var ref = window.open("https://www.whatsmydestiny.com/support/", "_system");
   }
 function openWebsite(){
+  rui.touching=false;
   menus['system'].panes[0].selection=-1
   rui.closeMenu('system');
   var ref = window.open("https://www.whatsmydestiny.com", "_system");
